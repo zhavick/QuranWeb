@@ -1,14 +1,16 @@
-# Master Plan 2 & Brainstorming: Kumpulan Cerita Para Rasulullah
-## Konsep Integrasi Modul Qashashul Anbiya' (Kisah 25 Nabi & Rasul) pada QuranWeb
+# Master Plan 2 & Brainstorming: Modul Kisah Para Rasulullah & Jurnal Literasi Blog
+## Konsep Integrasi Modul Qashashul Anbiya' (Kisah 25 Nabi & Rasul) dan Modul Blog / Jurnal Tadabbur Qur'ani pada QuranWeb
 
 * **Nama Dokumen:** MasterPlan-2.md
-* **Fokus Dokumen:** Brainstorming Konseptual & Perencanaan Strategis (No Code — Pure Ideation)
-* **Kategori:** Modul Edukasi, Tadabbur & Kontekstualisasi Sejarah Nabawi
-* **Target Pembaca:** Seluruh Pengguna Muslim, Terkhusus Lansia, Keluarga, Guru Tilawah, dan Generasi Muda
+* **Fokus Dokumen:** Brainstorming Konseptual & Perencanaan Strategis (No Code — Pure Ideation Only)
+* **Kategori:** Modul Edukasi, Tadabbur, Sejarah Nabawi & Literasi Qur'ani
+* **Target Pengguna:** Umat Muslim Seluruh Usia, Terkhusus Lansia, Keluarga, Guru Tilawah, dan Penuntut Ilmu
 
 ---
 
-## 1. Latar Belakang & Filosofi Fitur
+# BAGIAN I: KONSEP KUMPULAN CERITA PARA RASULULLAH (QASHASHUL ANBIYA')
+
+## 1. Latar Belakang & Filosofi Fitur Kisah Rasul
 
 ### 1.1. Mengapa Kisah Para Rasul di Dalam QuranWeb?
 Al-Qur'anul Karim bukan sekadar kumpulan hukum dan perintah ibadah, melainkan kitab hikmah yang **lebih dari sepertiganya berisi qashash (kisah-kisah teladan masa lampau)**. Allah SWT berfirman:
@@ -30,7 +32,7 @@ Menghadirkan **Modul Kumpulan Cerita Para Rasulullah** di dalam QuranWeb bertuju
 
 ---
 
-## 2. Nilai Unik & Diferensiasi Utama
+## 2. Nilai Unik & Diferensiasi Utama Kisah Rasul
 
 Berbeda dengan aplikasi kisah nabi umum yang biasanya berdiri sendiri sebagai kumpulan artikel lepas, modul kisah pada QuranWeb memiliki keunikan strategis:
 
@@ -47,169 +49,240 @@ Setiap kisah rasul dirangkum dengan tab khusus yang menyoroti doa-doa yang diaba
 - Doa Nabi Zakariya saat memohon keturunan di usia senja.
 - Doa Nabi Ayyub saat memohon kesembuhan penyakit.
 - Doa Nabi Musa saat menghadapi Fir'aun (*Rabbi-syrahlii shadrii wa yassirlii amrii*).
-Hal ini memberi nilai praktis bagi kaum lansia yang sering mencari amalan doa mustajab dalam Al-Qur'an.
 
 ---
 
 ## 3. Cakupan Konten: 25 Nabi & Rasul Utama
 
-Konten dirancang mencakup **25 Nabi dan Rasul** yang wajib diimani, dengan pembagian hierarki yang memudahkan navigasi:
-
-```mermaid
-flowchart TD
-    Root["25 Nabi & Rasulullah"] --> Era1["Era Permulaan & Para Bapak Kemanusiaan"]
-    Root --> Era2["Era Kebangkitan Tauhid & Bani Israil"]
-    Root --> Era3["Era Penutup Para Nabi (Khatamul Anbiya)"]
-
-    Era1 --> N1["Nabi Adam AS"]
-    Era1 --> N2["Nabi Idris AS"]
-    Era1 --> N3["Nabi Nuh AS (Ulul Azmi)"]
-    Era1 --> N4["Nabi Hud AS (Kaum 'Ad)"]
-    Era1 --> N5["Nabi Shalih AS (Kaum Tsamud)"]
-
-    Era2 --> N6["Nabi Ibrahim AS (Khalilullah - Ulul Azmi)"]
-    Era2 --> N7["Nabi Luth AS"]
-    Era2 --> N8["Nabi Isma'il AS & Nabi Ishaq AS"]
-    Era2 --> N9["Nabi Ya'qub AS & Nabi Yusuf AS"]
-    Era2 --> N10["Nabi Ayyub AS & Nabi Syu'aib AS"]
-    Era2 --> N11["Nabi Musa AS (Kalimullah - Ulul Azmi) & Nabi Harun AS"]
-    Era2 --> N12["Nabi Dzulkifli, Daud, Sulaiman, Ilyas, Ilyasa, Yunus AS"]
-    Era2 --> N13["Nabi Zakariya, Yahya, & Isa AS (Ruhullah - Ulul Azmi)"]
-
-    Era3 --> N14["Baginda Nabi Muhammad SAW (Sayyidul Anbiya' wal Mursalin - Ulul Azmi)"]
-```
-
-### Penandaan Khusus (Badges & Kategori)
-1. **Gelar Ulul Azmi:** Diberi tanda kehormatan khusus (Nabi Nuh, Ibrahim, Musa, Isa, dan Muhammad SAW) yang menunjukkan puncak kesabaran dan keteguhan dakwah.
-2. **Peta Kaum Terdahulu:** Identifikasi kaum yang dihadapi (Kaum 'Ad, Tsamud, Madyan, Sodom, Fir'aun & Bani Israil, Quraisy).
-3. **Mukjizat Utama:** Merinci mukjizat fisik maupun maknawi yang diberikan Allah SWT untuk membungkam keingkaran umatnya.
+Konten dirancang mencakup **25 Nabi dan Rasul** yang wajib diimani, dengan pembagian hierarki:
+- **Era Permulaan:** Nabi Adam AS, Idris AS, Nuh AS (Ulul Azmi), Hud AS (Kaum 'Ad), Shalih AS (Kaum Tsamud).
+- **Era Kebangkitan Tauhid & Bani Israil:** Nabi Ibrahim AS (Ulul Azmi), Luth AS, Ismail AS, Ishaq AS, Ya'qub AS, Yusuf AS, Ayyub AS, Syu'aib AS, Musa AS (Ulul Azmi), Harun AS, Dzulkifli AS, Daud AS, Sulaiman AS, Ilyas AS, Ilyasa AS, Yunus AS, Zakariya AS, Yahya AS, Isa AS (Ulul Azmi).
+- **Era Penutup Kenabian (*Khatamul Anbiya'*):** Baginda Nabi Muhammad SAW (Sayyidul Mursalin - Ulul Azmi).
 
 ---
 
 ## 4. Struktur Anatomi Setiap Halaman Kisah Nabi
-
-Setiap nabi disajikan dengan struktur informasi yang terstandarisasi agar nyaman dibaca bertahap:
-
-### 1. Kartu Identitas & Ikhtisar Singkat (*Executive Summary*)
-- Nama lengkap dan nasab ringkas.
-- Julukan kenabian (misal: *Khalilullah*, *Kalimullah*, *Ruhullah*, *Habibullah*).
-- Wilayah dakwah geografis (Mesir, Babilonia, Syam, Madyan, Mekah/Madinah).
-- Jumlah penyebutan nama dalam Al-Qur'an (misal: Nabi Musa disebutkan 136 kali, Nabi Ibrahim 69 kali).
-
-### 2. Linimasa Babak Kehidupan (*Chronological Episodes*)
-Setiap kisah dipecah menjadi beberapa babak pendek yang dapat diselesaikan dalam 3–5 menit membaca (mencegah kelelahan mata lansia):
-- **Babak 1:** Kelahiran, Masa Kecil, & Tanda-Tanda Kenabian.
-- **Babak 2:** Seruan Dakwah Tauhid & Penentangan Kaumnya.
-- **Babak 3:** Puncak Ujian, Mukjizat, & Pertolongan Gaib dari Allah.
-- **Babak 4:** Akhir Perjuangan, Kemenangan Kebenaran, & Warisan Risalah.
-
-### 3. Untaian Mutiara Hikmah & Tadabbur Kehidupan
-Poin-poin refleksi aplikatif untuk kehidupan modern sehari-hari:
-- Teladan dalam mendidik anak (Kisah Nabi Ibrahim & Ismail, atau nasehat Luqman).
-- Teladan dalam menghadapi kedzaliman pemimpin (Nabi Musa di hadapan Fir'aun).
-- Teladan dalam menjaga kesucian diri di tengah godaan (Nabi Yusuf di istana Mesir).
-- Teladan menjaga prasangka baik kepada Allah saat musibah panjang (Nabi Ayyub).
-
-### 4. Kompilasi Doa Nabawi
-Teks Arab doa nabi, transliterasi latin, terjemahan Indonesia, nomor surat/ayat rujukan, serta tombol dengarkan lantunan doa.
-
-### 5. Indeks Ayat Terkait di Al-Qur'an
-Daftar seluruh surat dalam mushaf yang memuat nama atau kisah nabi tersebut dengan tautan langsung menuju pembaca Al-Qur'an.
+1. **Kartu Identitas & Ikhtisar Singkat:** Nama, julukan, wilayah dakwah, kaum, jumlah sebutan dalam Al-Qur'an.
+2. **Linimasa Babak Kehidupan (3–5 Menit Baca):** Kelahiran, seruan tauhid, puncak ujian & mukjizat, kemenangan kebenaran.
+3. **Mutiara Hikmah & Refleksi Kehidupan:** Pelajaran akhlak untuk kehidupan masa kini.
+4. **Kompilasi Doa Nabawi:** Teks Arab, transliterasi, terjemahan, dan rujukan ayat.
+5. **Indeks Ayat Terkait di Mushaf:** Daftar tautan langsung ke surat dan ayat bersangkutan.
 
 ---
 
-## 5. Mode Eksplorasi Antarmuka (User Experience & Discovery Modes)
+## 5. Mode Eksplorasi Kisah Rasul
+- **Mode Garis Waktu Kronologis:** Menelusuri silsilah kenabian dari Adam AS hingga Muhammad SAW.
+- **Mode Tematik Solusi Batin:** Berdasarkan masalah hidup (Ujian Sakit -> Nabi Ayyub, Doa Usia Senja -> Nabi Zakariya, Terjebak Masalah Berat -> Nabi Yunus, Fitnah -> Nabi Yusuf).
+- **Mode Peta Jejak Para Nabi:** Visualisasi titik-titik wilayah dakwah nabi di Timur Tengah & Afrika Utara.
+- **Mode Membaca Bersama Cucu (*Family Storytelling*):** Gaya bahasa bertutur hangat untuk kakek/nenek membacakan hikmah kepada anak dan cucu.
 
-Untuk memfasilitasi berbagai tipe pengguna, modul kisah dirancang memiliki 4 sudut pandang eksplorasi:
+---
+---
 
-### A. Tampilan Kartu Berurutan (*Chronological List*)
-Tampilan standar berbentuk grid kartu elegan dari Nabi pertama (Adam AS) hingga Nabi penutup (Muhammad SAW), lengkap dengan nomor urut, foto ilustrasi siluet kaligrafi nama nabi, dan ringkasan satu kalimat hikmah.
+# BAGIAN II: BRAINSTORMING MODUL BLOG & JURNAL TADABBUR QUR'ANI
 
-### B. Mode Tematik "Solusi Batin Berdasarkan Masalah Hidup"
-Menu filter cerdas yang sangat disukai pengguna yang sedang mencari pelipur lara atau motivasi spiritual:
-- *"Sedang Menghadapi Ujian Sakit & Kehilangan"* ➡️ Mengarahkan ke Kisah Nabi Ayyub AS.
-- *"Sedang Merasa Sendirian & Terjebak Masalah Berat"* ➡️ Mengarahkan ke Kisah Nabi Yunus AS di perut ikan.
-- *"Mendambakan Anak & Doa di Usia Senja"* ➡️ Mengarahkan ke Kisah Nabi Zakariya AS & Nabi Ibrahim AS.
-- *"Menghadapi Fitnah & Tuduhan Palsu"* ➡️ Mengarahkan ke Kisah Nabi Yusuf AS & Nabi Isa AS (dan Sayyidah Maryam).
-- *"Membangun Bisnis, Kepemimpinan & Rasa Syukur"* ➡️ Mengarahkan ke Kisah Nabi Daud AS & Nabi Sulaiman AS.
+## 6. Latar Belakang & Urgensi Modul Blog pada QuranWeb
 
-### C. Mode Peta Jejak Para Nabi (*Interactive Historic Mapping Concept*)
-Visualisasi peta ilustrasi dunia kuno (Timur Tengah & Afrika Utara) yang menunjukkan titik-titik lokasi dakwah:
-- Lembah Makkah & Bukit Shafa/Marwah (Nabi Ismail & Ibrahim AS).
-- Gurun Sinai & Lembah Thuwa (Nabi Musa AS).
-- Danau Thabariyyah & Yerusalem/Baitul Maqdis (Nabi Isa & Daud AS).
-- Reruntuhan Al-Hijr / Mada'in Shalih (Nabi Shalih AS).
-- Negeri Yaman / Ma'rib & Hadramaut (Nabi Hud AS).
+### 6.1. Mengapa QuranWeb Memerlukan Modul Blog?
+Selama ini aplikasi Al-Qur'an sering kali hanya berperan sebagai "alat baca teks" (*reader tool*). Begitu pengguna selesai tilawah satu atau dua halaman, aplikasi ditutup. 
 
-### D. Mode Membaca Cerita Bersama Cucu (*Family / Bedtime Reading Mode*)
-Khusus dirancang bagi kakek/nenek atau orang tua yang ingin membacakan kisah nabi kepada anak-cucu sebelum tidur:
-- Tampilan teks lebih besar, bahasa yang lebih bertutur (*storytelling mode*).
-- Dilengkapi pertanyaan refleksi ringan di akhir cerita untuk bahan diskusi hangat keluarga.
+Keberadaan **Modul Blog (Jurnal Literasi & Tadabbur Qur'ani)** memberikan dimensi baru:
+1. **Membangun Ekosistem Pemahaman:** Menghubungkan teks firman Allah dengan dinamika kehidupan nyata sehari-hari umat Islam.
+2. **Media Edukasi Mendalam Tanpa Rasa Menggurui:** Menyajikan artikel-artikel bernas tentang tafsir, adab tilawah, kesehatan spiritual lansia, dan sejarah Islam dengan bahasa yang sejuk, santun, dan mudah dicerna.
+3. **Kanal Komunikasi Tim Pengembang & Komunitas:** Media resmi mengabarkan perkembangan fitur QuranWeb, panduan penggunaan PWA offline, dan seruan kebaikan wakaf digital.
+
+### 6.2. Nilai Filosofi: Bukan Blog Komersial Biasa
+* ❌ **BUKAN portal gosip / clickbait:** Menolak judul sensasional, berita politik polaritatif, atau konten kontroversial yang memecah belah umat.
+* ❌ **BUKAN media beriklan bising:** Bebas dari banner iklan pihak ketiga, popup jebakan, atau video autoplay yang mengganggu kenyamanan.
+*  **ADALAH Jurnal Tadabbur Bermartabat:** Bernilai ibadah, menenangkan hati (*peace of mind*), mencerahkan wawasan, dan memperkuat cinta kepada Kitab Suci Al-Qur'an.
 
 ---
 
-## 6. Integrasi dengan Fitur Aksesibilitas QuranWeb
+## 7. Pilar-Pilar Kategori Konten Blog (Content Pillars)
 
-Karakteristik ramah lansia yang telah dibangun di QuranWeb akan diterapkan sepenuhnya pada modul kisah ini:
+Untuk menjaga keberagaman dan relevansi materi, konten blog dikelompokkan ke dalam **5 Pilar Utama**:
 
-1. **Dukungan Penuh 4 Tema Warna:**
-   - Pembacaan kisah pada tema **Sepia** memberikan sensasi seperti membaca buku klasik bersampul kulit.
-   - Tema **Dark Inverse** dan **High Contrast** menjaga ketajaman huruf tanpa menyilaukan mata pembaca lansia saat membaca malam hari.
-2. **Ukuran Teks Narasi yang Skalabel:**
-   - Pengguna dapat memperbesar teks narasi bahasa Indonesia hingga ukuran yang sangat nyaman tanpa perlu memakai kacamata baca.
-3. **Penanda Kisah Terakhir Dibaca (*Story Bookmark*):**
-   - Mengingat kisah nabi cukup panjang, posisi paragraf terakhir yang sedang dibaca otomatis disimpan sehingga pembaca lansia dapat melanjutkan kembali bacaannya dengan mudah di kemudian hari.
-4. **Estimasi Waktu Baca (*Read Time Indicator*):**
-   - Menampilkan label estimasi waktu baca (misal: `Waktu baca: ~4 menit`) agar pengguna lansia dapat mengukur kenyamanan fisiknya.
+```mermaid
+flowchart TD
+    BlogRoot["Modul Blog: Jurnal Tadabbur & Literasi Qur'ani"] --> P1["1. Tadabbur & Tafsir Tematik (Maudhu'i)"]
+    BlogRoot --> P2["2. Lansia & Kebugaran Ibadah (Elder Care)"]
+    BlogRoot --> P3["3. Mutiara Ulumul Qur'an & Tajwid"]
+    BlogRoot --> P4["4. Tazkiyatun Nafs & Penyejuk Hati"]
+    BlogRoot --> P5["5. Warta QuranWeb & Catatan Rilis"]
+
+    P1 --> P1_1["Menemukan Ketenangan di Tengah Hiruk Pikuk Modern"]
+    P1 --> P1_2["Konsep Rezeki Berkah & Syukur dalam Surat Ibrahim"]
+
+    P2 --> P2_1["Tips Menjaga Konsistensi Tilawah di Usia Emas"]
+    P2 --> P2_2["Mencegah Demensia Melalui Muraja'ah Harian"]
+
+    P3 --> P3_1["Mengenal Rahasia Pembagian 'Ain (Ruku') Mushaf"]
+    P3 --> P3_2["Keindahan Perbedaan Qira'at Riwayat Hafsh & Warsy"]
+
+    P4 --> P4_1["Kekuatan Doa di Sepertiga Malam Terakhir"]
+    P4 --> P4_2["Adab Menjaga Hati Saat Ditimpa Ujian Berat"]
+
+    P5 --> P5_1["Pembaruan Aplikasi: Panduan Fitur Audio & PWA"]
+    P5 --> P5_2["Laporan Transparansi Server & Wakaf Digital"]
+```
+
+### Penjelasan Rinci Setiap Pilar:
+
+#### Pilar 1: Tadabbur & Tafsir Tematik (*Tafsir Maudhu'i*)
+Mengkaji ayat-ayat Al-Qur'an dengan pendekatan tematik yang menyentuh realitas kehidupan:
+* *"Bagaimana Al-Qur'an Mengajarkan Manajemen Stres dan Berdamai dengan Takdir"*
+* *"Keadilan Sosial dan Larangan Eksploitasi: Tadabbur Surat Al-Muthaffifin"*
+* *"Pendidikan Karakter Anak: Membedah Wasiat Luqman Al-Hakim"*
+
+#### Pilar 2: Lansia & Kebugaran Ibadah (*Elder Care & Active Aging*)
+Konten khusus yang menyapa kebutuhan komunitas pembaca lansia dan keluarganya:
+* *"Panduan Mengatur Posisi Ergonomis Duduk Tilawah untuk Mencegah Nyeri Pinggang"*
+* *"Menjaga Kualitas Pendengaran dan Manfaat Menyimak Murottal bagi Lansia"*
+* *"Pentingnya Pencahayaan Lembut dan Tipografi Ramah Mata Saat Membaca Al-Qur'an"*
+
+#### Pilar 3: Mutiara Ulumul Qur'an, Tajwid & Bahasa Arab
+Edukasi literasi Al-Qur'an bagi yang ingin memperdalam ilmu:
+* *"Mengapa Mushaf Standar Indonesia Menggunakan Rasm Utsmani Karakteristik Khusus?"*
+* *"Memahami 7 Tanda Waqaf Utama: Kapan Harus Berhenti dan Kapan Boleh Lanjut"*
+* *"Mengenal Kata-Kata Indah Al-Qur'an: Makna Mendalam di Balik Kata Rahmah, Sakinah, dan Barakah"*
+
+#### Pilar 4: Tazkiyatun Nafs & Penyejuk Jiwa (*Spiritual Solace*)
+Esai reflektif pendek (2–3 menit baca) yang menyejukkan hati di saat cemas, lelah, atau berduka:
+* *"Ketika Doamu Belum Terjawab: Meneladani Kesabaran Nabi Zakariya"*
+* *"Menghidupkan Jiwa yang Gersang dengan Dzikir Pagi dan Petang"*
+
+#### Pilar 5: Warta QuranWeb & Catatan Rilis (*Changelog & Announcement*)
+Transparansi pembaruan aplikasi dan panduan teknis bagi pengguna:
+* *"Cara Memasang QuranWeb ke Layar Utama Ponsel (PWA) untuk Akses Tanpa Internet"*
+* *"Pembaruan Versi: Penambahan 5 Qari Murottal dan Pengaturan Kecepatan Suara"*
 
 ---
 
-## 7. Standar Keabsahan Sumber Data & Fiqih Sirah
+## 8. Fitur Spesial: Ekosistem Taut Terintegrasi (*Interactive Quran Ecosystem*)
 
-Kisah-kisah nabi sangat rentan disusupi riwayat-riwayat *Israiliyyat* (cerita rakyat kuno yang tidak jelas sanadnya dan sering kali merendahkan martabat para nabi). Oleh karena itu, modul ini menetapkan batasan kurasi konten yang sangat ketat:
+Modul blog pada QuranWeb bukan sekadar artikel teks biasa, melainkan terhubung erat dengan seluruh komponen aplikasi:
 
-### Sumber Rujukan Utama yang Diakui
-1. **Kitab Qashashul Anbiya'** karya Al-Hafidz Ibnu Katsir rahimahullah.
-2. **Tafsir Al-Qur'an Al-'Azhim** karya Ibnu Katsir (terjemahan resmi Kemenag RI / pustaka mu'tabar).
-3. **Tafsir Al-Azhar** karya Buya Hamka (untuk kedalaman kontekstual dan sentuhan rasa bahasa Indonesia yang mendidik).
-4. **Sirah Nabawiyah Ar-Rahiq Al-Makhtum** karya Syaikh Shafiyyurrahman Al-Mubarakfuri (khusus Sirah Nabi Muhammad SAW).
+### 1. Kartu Kutipan Ayat Interaktif (*Embedded Ayah Widget*)
+Setiap kali artikel menyebutkan dalil firman Allah, ayat tersebut disajikan dalam kotak kartu khusus yang memiliki:
+- Teks Arab berharakat indah (font LPMQ Misbah).
+- Terjemahan bahasa Indonesia resmi Kemenag RI.
+- **Tombol Play Murottal Mini:** Pengguna bisa mendengarkan pelafalan ayat tersebut langsung di dalam artikel.
+- **Tombol "Buka di Mushaf":** Satu sentuhan langsung membawa pengguna ke lembar tilawah penuh untuk membaca ayat sebelum dan sesudahnya.
 
-### Kaidah Penyajian Kisah
-- **I'timad 'ala Nash (Berpatokan pada Teks Wahyu):** Menolak secara tegas cerita-cerita khayalan atau mitos yang bertentangan dengan keagungan sifat para nabi (*Ma'shum* / terjaga dari dosa nista).
-- **Fokus pada Hikmah, Bukan Rincian Tanpa Faidah:** Al-Qur'an sengaja tidak menyebutkan rincian seperti warna anjing Ashabul Kahfi atau dimensi persis kapal Nabi Nuh; modul ini mengikuti adab Al-Qur'an dengan memusatkan perhatian pada esensi tauhid dan pesan moral.
+### 2. Taut Silang ke Modul Cerita Para Rasul
+Jika sebuah artikel membahas tema kepemimpinan Nabi Sulaiman atau kesabaran Nabi Nuh, terdapat lencana tautan cerdas:
+> 💡 *Baca selengkapnya riwayat lengkap perjuangan dakwah beliau di: **Kisah Nabi Sulaiman AS**.*
 
----
-
-## 8. Sinergi dengan Sistem Telemetri & Administrator
-
-Data interaksi pengguna terhadap modul kisah dapat dihubungkan ke backend PostgreSQL yang sudah berjalan:
-1. **Pencatatan Minat Pembaca:** Mencatat kisah nabi mana yang paling sering dibaca untuk memahami kebutuhan spiritual masyarakat (misal: lonjakan pembaca kisah Nabi Yusuf atau Nabi Ayyub).
-2. **Portal Admin (`/admin`):**
-   - Grafik popularitas kisah para nabi.
-   - Ringkasan durasi rata-rata membaca kisah nabi.
-3. **Portal Pengguna (`/user`):**
-   - Kartu daftar kisah favorit pengguna.
-   - Riwayat kisah yang telah selesai ditadabburi (*Story Reading Tracker*).
+### 3. Taut Silang ke Jadwal Shalat & Doa
+Artikel yang membahas keutamaan shalat dhuha atau tahajjud otomatis menampilkan kartu pengingat waktu aktual dan hitung mundur jadwal shalat sesuai lokasi pembaca.
 
 ---
 
-## 9. Rekomendasi Tahapan Pematangan Ide (Next Steps)
+## 9. Desain Antarmuka & Standar Aksesibilitas Pembaca (UX & Reader Experience)
 
-| Tahap | Fokus Utama | Target Luaran Konseptual |
+Karakteristik ramah lansia yang telah menjadi identitas QuranWeb diterapkan secara konsisten pada modul blog:
+
+### A. Kenyamanan Tipografi Editorial
+- **Format Paragraf Lapang:** Lebar baris teks dibatasi (*max-width 680px–720px*) agar mata pembaca tidak lelah melompat dari ujung kiri ke ujung kanan layar.
+- **Line-Height & Letter-Spacing:** Spasi antar-baris `1.75x–1.8x` dan jarak antar-paragraf lega, sangat ramah bagi pembaca bermata minus/plus atau lanjut usia.
+- **Pilihan Jenis Font Bacaan:** Pengguna dapat memilih antara font sans-serif modern (bersih) atau font serif buku editorial (klasik).
+
+### B. Integrasi 4 Tema Tampilan
+- 📜 **Tema Sepia (Kertas Antik):** Sangat disukai pembaca lansia karena memberikan kehangatan seperti membaca majalah cetak di teras rumah.
+- 🌙 **Tema Dark Inverse (OLED):** Tulisan putih/abu terang di atas latar hitam pekat untuk membaca sebelum tidur tanpa silau.
+- 🔲 **Tema High Contrast:** Memastikan teks hitam legam di atas latar putih bersih dengan garis batas tajam bagi pengguna dengan keterbatasan penglihatan.
+
+### C. Fitur Penunjang Kenyamanan Membaca
+1. **Slider Ukuran Font Artikel:** Pengguna dapat mengubah ukuran teks artikel dari `16px` hingga `28px` secara instan.
+2. **Indikator Estimasi Waktu Baca:** Label seperti `⏱️ Waktu Baca: ~4 menit` membantu lansia mengatur ritme membaca.
+3. **Bilah Kemajuan Membaca (*Reading Progress Bar*):** Garis indikator tipis di bagian atas layar yang menunjukkan persentase panjang artikel yang telah diselesaikan.
+4. **Penanda Artikel Tersimpan (*Reading List / Bookmark Artikel*):** Pembaca dapat menyimpan artikel favorit untuk dibaca kembali saat santai.
+5. **Mode Narasi Suara (*Text-to-Speech / Audio Article Concept*):** Konsep masa depan di mana artikel dapat diperdengarkan secara audio bagi lansia yang sedang lelah membaca layar.
+
+---
+
+## 10. Pengelolaan Konten melalui Portal Administrator (`/admin`)
+
+Untuk menjaga kualitas tulisan dan kemudahan penerbitan, modul blog dikelola langsung melalui Portal Admin:
+
+### 1. Antarmuka Manajemen Artikel (CMS Sederhana & Cepat)
+- **Tabel Daftar Artikel:** Menampilkan judul, kategori/pilar, nama penulis, tanggal terbit, status (*Draft* / *Published*), dan jumlah pembaca.
+- **Editor Artikel Berbantuan:**
+  - Penulisan format Markdown atau Rich-Text editor yang bersih.
+  - *Shortcode* instan untuk menyisipkan ayat Al-Qur'an (misal: `[ayah surah=2 ayah=255]`), otomatis merender teks Arab, terjemahan, dan audio player tanpa perlu copas manual.
+- **Pratinjau Langsung (*Live Preview Dual-Pane*):** Administrator dapat melihat tampilan artikel di layar Desktop dan Mobile secara berdampingan sebelum diterbitkan.
+
+### 2. Pengaturan Jadwal Terbit (*Scheduled Publishing*)
+Administrator dapat menjadwalkan artikel terbit secara otomatis pada momentum tertentu (misalnya: setiap hari Jumat pagi untuk tema keutamaan Al-Kahfi, atau awal bulan hijriah).
+
+### 3. Analisis Minat & Metrik Pembaca di PostgreSQL
+- **Statistik Artikel Populer:** Mengukur artikel mana yang paling sering dibaca dan paling lama diresapi durasi membacanya.
+- **Topik Paling Dicari:** Menganalisis kata kunci pencarian pengguna di blog untuk merencanakan artikel lanjutan yang dibutuhkan jamaah.
+
+---
+
+## 11. Integrasi pada Portal Pengguna Terdaftar (`/user`)
+
+Bagi pengguna yang telah mendaftar atau masuk ke akun pribadinya, modul blog menyediakan fitur personalisasi:
+1. **Daftar Baca Nanti (*Read Later List*):** Menyimpan artikel menarik yang belum sempat dibaca.
+2. **Catatan Tadabbur Pribadi (*Personal Reflection Notes*):** Pengguna dapat menuliskan satu dua paragraf renungan pribadi di bawah artikel yang hanya bisa dibaca oleh dirinya sendiri.
+3. **Riwayat Bacaan Selesai:** Catatan artikel yang telah tuntas dibaca sebagai motivasi konsistensi belajar.
+
+---
+
+## 12. Struktur Data Konseptual Blog (Schema Ideation)
+
+Secara konseptual, struktur data blog dirancang ramping, mandiri, dan efisien:
+
+```text
+Entitas Artikel Blog (Blog Article):
+├── ID Unik (Slug URL SEO-Friendly, misal: /blog/menemukan-ketenangan-surat-ibrahim)
+├── Judul Artikel (Title) & Ringkasan Singkat (Excerpt)
+├── Kategori Pilar (Tafsir / Elder Care / Ulumul Quran / Refleksi / Berita)
+├── Tag Kata Kunci (Keywords)
+├── Nama Penulis / Asatidz / Kontributor
+├── Estimasi Waktu Baca (Menit)
+├── Konten Lengkap (Format Markdown / JSON Blocks dengan Embedded Quran Ayahs)
+├── Tautan Terkait (Daftar ID Surat/Ayat Al-Qur'an dan ID Kisah Rasul)
+├── Waktu Dibuat & Waktu Terbit
+└── Status (Draft / Published / Archived)
+```
+
+---
+
+## 13. Matriks Perbandingan: Nilai Tambah QuranWeb Blog
+
+| Aspek | Blog Islami Konvensional | Modul Blog QuranWeb |
 | :--- | :--- | :--- |
-| **Fase A** | Inventarisasi Data & Penulisan Narasi | Menyiapkan 25 draf naskah kisah terkurasi, pemetaan ayat Al-Qur'an terkait, dan kompilasi doa-doa nabi. |
-| **Fase B** | Desain Antarmuka & Sketsa UX | Menentukan penempatan tab menu baru di bilah samping navigasi, layout kartu nabi, dan tampilan lembar baca narasi. |
-| **Fase C** | Desain Taut Silang (*Interlinking Architecture*) | Merancang titik temu interaksi antara lembar tilawah mushaf dengan modul kisah (dan sebaliknya). |
-| **Fase D** | Uji Keterbacaan Lansia & Umat | Menguji draf gaya bahasa kepada kelompok usia 55+ tahun untuk memastikan alur bahasa menyejukkan hati dan mudah dipahami. |
+| **Iklan & Monetisasi** | Penuh banner iklan pop-up & display ads yang membingungkan lansia. | **100% Bersih & Bebas Iklan (Waqaf Digital).** |
+| **Integrasi Mushaf** | Kutipan teks Arab berupa gambar statis atau teks mentah tanpa audio. | **Interaktif:** Ada murottal mini & tombol 1-klik buka ayat langsung di lembar tilawah. |
+| **Aksesibilitas** | Ukuran font kaku, jarang mendukung tema malam ramah mata. | **4 Tema Warna (Sepia/Dark/High Contrast) + Slider Font hingga 28px.** |
+| **Fokus Konten** | Sering mengejar trending topik politik / khilafiyah sensasional. | **Fokus pada Tadabbur ayat, keimanan, keteladanan sirah, dan panduan ibadah lansia.** |
+| **Akses Offline** | Membutuhkan koneksi internet aktif setiap membuka halaman. | **Didukung PWA Cache Storage:** Artikel yang disimpan dapat dibaca ulang saat offline. |
 
 ---
 
-## 10. Kesimpulan Brainstorming
+## 14. Rekomendasi Roadmap Perwujudan Ide
 
-Penambahan **Menu Kumpulan Cerita Para Rasulullah** merupakan evolusi alami yang sangat selaras dengan visi awal QuranWeb. Fitur ini tidak sekadar menambah volume konten, melainkan **memberikan jiwa dan latar sejarah bagi setiap ayat yang dibaca**.
+Untuk memastikan penambahan modul blog berjalan terukur dan tidak membebani performa aplikasi utama, disarankan tahapan sebagai berikut:
 
-Dengan memadukan kemudahan navigasi Al-Qur'an (Surat, Juz, 'Ain), kenyamanan aksesibilitas lansia, serta kedalaman kisah teladan para Rasul, QuranWeb akan bertransformasi menjadi **rumah digital tilawah dan tadabbur yang holistik, mencerahkan, dan menginspirasi seluruh keluarga muslim**.
+| Fase | Sasaran Utama | Target Luaran |
+| :--- | :--- | :--- |
+| **Fase 1: Kurasi Konten Perdana** | Menyiapkan 5–10 artikel percontohan berbobot tinggi yang mewakili 5 pilar utama. | Kumpulan naskah terverifikasi tanpa kekeliruan kutipan ayat. |
+| **Fase 2: Arsitektur UI & Layout Desain** | Merancang antarmuka daftar artikel kartu (*blog catalog*) dan lembar baca artikel (*article reader*). | Wireframe & mockup responsif (Desktop & Mobile). |
+| **Fase 3: Widget Kutipan Ayat Interaktif** | Merancang integrasi kartu ayat di dalam artikel yang terhubung ke audio murottal dan reader utama. | Prototipe interlinking artikel-ke-mushaf. |
+| **Fase 4: Panel Manajemen Admin & Metrik** | Mengintegrasikan editor artikel pada `/admin` dan penyimpanan riwayat baca di `/user`. | Antarmuka CMS yang siap pakai oleh editor konten. |
 
 ---
-*Dokumen ini disusun sebagai cetak biru konseptual murni untuk memandu perumusan desain dan spesifikasi fungsional tahap berikutnya.*
 
+## 15. Kesimpulan Penutup
+
+Penggabungan antara **Kumpulan Cerita Para Rasulullah** (Bagian I) dan **Modul Blog Literasi & Tadabbur Qur'ani** (Bagian II) menjadikan QuranWeb bukan sekadar mushaf digital pasif, melainkan **Pusat Pembelajaran dan Sahabat Kehidupan Spiritual Umat Muslim**.
+
+Kedua modul ini saling menopang secara harmonis:
+- **Mushaf Inti:** Menyajikan lafadz wahyu ilahi (Surat, Juz, 'Ain) dengan kenyamanan baca maksimal.
+- **Kisah Rasul:** Memberikan teladan nyata perjuangan hidup dan doa-doa para Nabi.
+- **Modul Blog:** Menguraikan hikmah, menjawab kegelisahan hidup modern, dan membimbing jamaah lansia merawat ibadah dengan penuh keikhlasan.
+
+---
+*Dokumen ini merupakan catatan pemikiran konseptual utuh untuk menjadi landasan perancangan fungsional (FSD) dan arsitektur teknis (TSD) pada pengembangan mendatang.*

@@ -177,7 +177,7 @@ docker compose down
 
 3. **Jalankan Backend Service:**
    ```bash
-   DATABASE_URL=postgres://quran_user:quran_secret_password@localhost:5432/quranweb PORT=4000 node server/index.js
+   DATABASE_URL=postgres://quran_user:quran_secret_password@localhost:5572/quranweb PORT=4000 node server/index.js
    ```
 
 4. **Kompilasi & Build Produksi:**

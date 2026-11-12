@@ -6,7 +6,7 @@
 * **Tanggal Rilis Dokumen:** 13 November 2026
 * **Lingkungan Pengujian (Test Environment):**
   - **Docker Deployment:** `http://localhost:3382`
-  - **Database:** PostgreSQL 16 Alpine (`quranweb`, port internal 5432)
+  - **Database:** PostgreSQL 16 Alpine (`quranweb`, host port 5572, container port 5432)
   - **Backend API:** Node.js 20 Service (`/api`, port internal 4000)
   - **Frontend Client:** React 19 + TypeScript + Tailwind CSS (Nginx Alpine reverse proxy)
   - **Perangkat Uji:** Desktop (macOS Chrome/Safari), Mobile Browser (iOS Safari, Android Chrome)

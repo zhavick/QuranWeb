@@ -228,3 +228,5 @@ Aplikasi ini dirilis di bawah naungan **Open Waqf License / MIT License**. Kode 
 
 *Semoga aplikasi ini menjadi amal jariyah yang membawa keberkahan dan memudahkan setiap muslim dalam berinteraksi dengan Kitab Suci Al-Qur'an di mana pun dan kapan pun.* 🤲
 
+*Syafix Said*
+

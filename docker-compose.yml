@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: quran-postgres
+    environment:
+      POSTGRES_DB: quranweb
+      POSTGRES_USER: quran_user
+      POSTGRES_PASSWORD: quran_secret_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: quran-api
+    environment:
+      DATABASE_URL: postgres://quran_user:quran_secret_password@postgres:5432/quranweb
+      PORT: 4000
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  quranweb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: quran-web
+    ports:
+      - "3382:3382"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

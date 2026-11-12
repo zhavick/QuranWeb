@@ -1,0 +1,11 @@
+{
+  "name": "Quran Web — Al-Qur'an Digital",
+  "short_name": "QuranWeb",
+  "description": "Aplikasi Al-Qur'an digital dengan navigasi Surat, Juz, dan 'Ain, mode layar penuh di desktop dan proporsional di mobile.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f766e",
+  "lang": "id"
+}
+

@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'Amiri Quran';
+  src: url('/fonts/amiri-quran.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('/fonts/amiri.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Scheherazade New';
+  src: url('/fonts/scheherazade.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.arabic-text {
+  direction: rtl;
+  unicode-bidi: isolate;
+  text-align: right;
+  word-spacing: 0.1em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.font-arabic-lpmq {
+  font-family: 'LPMQ Isep Misbah', 'Amiri Quran', 'Scheherazade New', serif;
+}
+
+.font-arabic-amiri {
+  font-family: 'Amiri Quran', 'Amiri', 'Scheherazade New', serif;
+}
+
+.font-arabic-scheherazade {
+  font-family: 'Scheherazade New', 'Amiri Quran', serif;
+}
+
+/* Tajweed Color Tokens */
+.tajweed-ghunnah { color: #16a34a; }
+.tajweed-ikhfa { color: #059669; }
+.tajweed-idgham { color: #9333ea; }
+.tajweed-iqlab { color: #0284c7; }
+.tajweed-qalqalah { color: #2563eb; }
+.tajweed-madd { color: #dc2626; }
+.tajweed-silent { color: #94a3b8; }
+
+html[data-theme='dark'] .tajweed-ghunnah { color: #4ade80; }
+html[data-theme='dark'] .tajweed-ikhfa { color: #34d399; }
+html[data-theme='dark'] .tajweed-idgham { color: #c084fc; }
+html[data-theme='dark'] .tajweed-iqlab { color: #38bdf8; }
+html[data-theme='dark'] .tajweed-qalqalah { color: #60a5fa; }
+html[data-theme='dark'] .tajweed-madd { color: #f87171; }
+html[data-theme='dark'] .tajweed-silent { color: #64748b; }
+
+/* Override tajweed colors in High Contrast mode for maximum readability */
+html[data-theme='high-contrast'] [class^='tajweed-'] {
+  color: inherit !important;
+}
+

@@ -1,9 +1,14 @@
-const CACHE_NAME = 'quranweb-cache-v1';
+const CACHE_NAME = 'quranweb-cache-v5';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
   '/data/meta.json',
+  '/data/prophets_meta.json',
+  '/data/prophets_data.json',
+  '/data/blog_articles.json',
+  '/data/rabbana_duas.json',
+  '/data/daily_dzikr.json',
   '/fonts/amiri-quran.woff2',
   '/fonts/amiri.woff2',
   '/fonts/scheherazade.woff2',

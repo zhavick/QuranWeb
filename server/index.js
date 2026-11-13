@@ -25,6 +25,24 @@ const memoryDb = {
     },
     {
       id: 2,
+      username: 'asatidz',
+      email: 'asatidz@quranweb.id',
+      password: 'asatidz123',
+      role: 'asatidz',
+      full_name: "Ustadz DR. Ahmad Mu'allim, Lc.",
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: 3,
+      username: 'editor',
+      email: 'editor@quranweb.id',
+      password: 'editor123',
+      role: 'editor',
+      full_name: 'Siti Maryam, S.Pd.I (Tim Redaksi)',
+      created_at: new Date().toISOString(),
+    },
+    {
+      id: 4,
       username: 'fulan',
       email: 'user@quranweb.id',
       password: 'user123',
@@ -174,10 +192,12 @@ async function initDb() {
           created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
         );
 
-        -- Seed Default Users
+        -- Seed Default Users (Fase 1 & Fase 2 RBAC)
         INSERT INTO users (username, email, password, role, full_name)
         VALUES 
           ('admin', 'admin@quranweb.id', 'admin123', 'admin', 'Administrator QuranWeb'),
+          ('asatidz', 'asatidz@quranweb.id', 'asatidz123', 'asatidz', 'Ustadz DR. Ahmad Mu''allim, Lc.'),
+          ('editor', 'editor@quranweb.id', 'editor123', 'editor', 'Siti Maryam, S.Pd.I (Tim Redaksi)'),
           ('fulan', 'user@quranweb.id', 'user123', 'user', 'Ahmad Fulan Al-Hafidz')
         ON CONFLICT (username) DO NOTHING;
 
@@ -459,7 +479,8 @@ const server = http.createServer(async (req, res) => {
       );
     }
 
-    if (user && (user.password === password || password === 'admin123' || password === 'user123')) {
+    const validDemoPasswords = ['admin123', 'asatidz123', 'editor123', 'user123'];
+    if (user && (user.password === password || validDemoPasswords.includes(password))) {
       const safeUser = {
         id: user.id,
         username: user.username,
@@ -476,7 +497,7 @@ const server = http.createServer(async (req, res) => {
 
     return sendJson(res, 401, {
       success: false,
-      message: 'Username atau password tidak sesuai. Coba admin/admin123 atau fulan/user123',
+      message: 'Username atau password tidak sesuai. Coba admin/admin123, asatidz/asatidz123, editor/editor123, atau fulan/user123',
     });
   }
 

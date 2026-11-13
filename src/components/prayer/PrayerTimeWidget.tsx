@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
-import { Clock, MapPin, Navigation, Calendar, AlertCircle, X, Bell } from 'lucide-react';
+import { Clock, MapPin, Navigation, Calendar, AlertCircle, X, Bell, Compass } from 'lucide-react';
 import { usePrayerTimes, INDONESIA_CITIES } from '../../hooks/usePrayerTimes';
 
-export const PrayerTimeWidget: React.FC = () => {
+interface PrayerTimeWidgetProps {
+  onOpenKhatamPlanner?: () => void;
+  onOpenQibla?: () => void;
+}
+
+export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
+  onOpenKhatamPlanner,
+  onOpenQibla,
+}) => {
   const {
     city,
     setCity,
@@ -135,6 +143,52 @@ export const PrayerTimeWidget: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* Khatam Planner Gentle Shortcut */}
+            {onOpenKhatamPlanner && (
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  onOpenKhatamPlanner();
+                }}
+                className="mt-3 flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all hover:opacity-95 cursor-pointer shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-accent-soft)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-accent)',
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <Compass className="h-4 w-4 text-emerald-500" />
+                  <span>Rencana Khatam &apos;Ain Ba&apos;da Shalat</span>
+                </div>
+                <span>Buka ➔</span>
+              </button>
+            )}
+
+            {/* Qibla Compass Shortcut */}
+            {onOpenQibla && (
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  onOpenQibla();
+                }}
+                className="mt-2 flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all hover:opacity-95 cursor-pointer shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-muted)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-primary)',
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <Navigation className="h-4 w-4 text-emerald-500" />
+                  <span>Kompas Arah Kiblat Adaptif</span>
+                </div>
+                <span>Buka ➔</span>
+              </button>
+            )}
 
             {/* City Selection & GPS */}
             <div className="mt-3 border-t pt-3 space-y-2" style={{ borderColor: 'var(--border-color)' }}>

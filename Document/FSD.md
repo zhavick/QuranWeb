@@ -162,10 +162,12 @@ Dokumen ini menjabarkan spesifikasi fungsional aplikasi **Quran Web** berdasarka
 
 ## 7. Status Implementasi & Keterkaitan Dokumen
 
-Seluruh kebutuhan fungsional di atas telah berhasil diimplementasikan:
-- **Dokumen Perencanaan Arsitektur:** [MasterPlan.md](file:///Users/mac/Projects/2026/QuranWeb/Initial/MasterPlan.md)
-- **Spesifikasi Teknis & Kode:** [TSD.md](file:///Users/mac/Projects/2026/QuranWeb/Document/TSD.md)
-- **Urutan & Riwayat Tahapan Selesai:** [DEV_STEP.md](file:///Users/mac/Projects/2026/QuranWeb/Initial/DEV_STEP.md) (Step 1 s.d. Step 8 telah berstatus **Selesai**)
-- **Buku Panduan Pengguna:** [USER_MANUAL.md](file:///Users/mac/Projects/2026/QuranWeb/Document/USER_MANUAL.md) (15 bab komprehensif, mencakup panduan baca, audio, jadwal shalat, serta portal `/admin` dan `/user`)
-- **Kontainerisasi Deployment:** [Dockerfile](file:///Users/mac/Projects/2026/QuranWeb/Dockerfile) & [docker-compose.yml](file:///Users/mac/Projects/2026/QuranWeb/docker-compose.yml) pada port `3382`.
+Seluruh kebutuhan fungsional Fase 1 telah berhasil diimplementasikan, dan fondasi konseptual Fase 2 telah dirumuskan secara terstruktur:
+- **Dokumen Perencanaan Arsitektur Fase 1:** [MasterPlan.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan.md)
+- **Cetak Biru Ekosistem & Brainstorming Fase 2:** [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md) (Modul Kisah 25 Rasul, Jurnal Blog, Standarisasi Akun RBAC, Logout Halaman Depan, Rencana Khatam 'Ain, Doa & Tasbih Haptic, Kompas Kiblat, dan Peta Masjid OpenStreetMap)
+- **Spesifikasi Teknis & Kode:** [TSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/TSD.md)
+- **Urutan Tahapan Fase 1 (Selesai):** [DEV_STEP.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP.md) (Step 1 s.d. Step 8 telah berstatus **Selesai**)
+- **Urutan Tahapan Fase 2 (Ready to Develop):** [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) (Panduan eksekusi bertahap Step 9 s.d. Step 17)
+- **Buku Panduan Pengguna:** [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md) (15 bab komprehensif, mencakup panduan baca, audio, jadwal shalat, serta portal `/admin` dan `/user`)
+- **Kontainerisasi Deployment:** [Dockerfile](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Dockerfile) & [docker-compose.yml](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/docker-compose.yml) pada port `3382`.
 

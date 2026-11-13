@@ -1,0 +1,2038 @@
+[
+  {
+    "id": 1,
+    "slug": "adam",
+    "name": "Adam AS",
+    "arabicName": "آدَمُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Abul Basyar (Bapak Umat Manusia)",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": false,
+    "period": "Awal Penciptaan Manusia",
+    "region": "Surga lalu Turun ke Bumi",
+    "people": "Umat Manusia Pertama",
+    "mentionsInQuran": 25,
+    "summary": "Nabi Adam AS adalah manusia pertama yang diciptakan Allah SWT dari tanah dan ditiupkan ruh ke dalamnya. Beliau diajarkan nama-nama seluruh benda, dimuliakan di hadapan malaikat, dan menjadi teladan pertaubatan yang tulus usai khilaf mendekati pohon terlarang.",
+    "relatedSurahIds": [
+      2,
+      7,
+      20
+    ],
+    "timeline": [
+      {
+        "phase": "Penciptaan & Pemuliaan",
+        "title": "Diciptakan dari Tanah & Pengetahuan Hakiki",
+        "description": "Allah SWT mengabarkan kepada para malaikat tentang penciptaan khalifah di bumi. Adam AS diajarkan asma-asma (nama seluruh benda), membuktikan keunggulan ilmu yang dianugerahkan Sang Maha Pencipta.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Ujian di Surga",
+        "title": "Bisikan Iblis & Buah Larangan",
+        "description": "Adam dan Hawa tinggal di surga dengan kenikmatan melimpah, namun diperintahkan untuk tidak mendekati pohon tertentu. Godaan Iblis yang bersumpah palsu membuat keduanya tergelincir mencicipi buah tersebut.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Taubat Nasuha & Khilafah di Bumi",
+        "title": "Doa Penyesalan Abadi & Memulai Peradaban",
+        "description": "Menyadari kekhilafan, Adam AS dan Hawa segera bersujud memohon ampun dengan kalimat taubat yang diajarkan Allah. Allah mengampuni mereka dan menetapkan bumi sebagai tempat ujian, ibadah, dan kelangsungan hidup anak cucunya.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Kemuliaan Manusia Terletak pada Ilmu",
+        "lesson": "Penghormatan malaikat kepada Adam bukan karena fisik, melainkan karena ilmu pengetahuan yang diajarkan langsung oleh Allah SWT."
+      },
+      {
+        "title": "Segera Bertaubat Tanpa Mencari Kambing Hitam",
+        "lesson": "Berbeda dengan Iblis yang sombong dan menyalahkan takdir, Adam AS segera mengakui kesalahan dirinya sendiri dan memohon rahmat Ilahi."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-adam-1",
+        "title": "Doa Pengakuan Dosa & Permohonan Ampun",
+        "arabic": "رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَٰسِرِينَ",
+        "latin": "Rabbanaa zhalamnaa anfusanaa wa illam taghfir lanaa wa tarhamnaa lanakuunanna minal khaasiriin.",
+        "translation": "Ya Tuhan kami, kami telah menzalimi diri kami sendiri. Jika Engkau tidak mengampuni kami dan memberi rahmat kepada kami, niscaya pastilah kami termasuk orang-orang yang rugi.",
+        "surahId": 7,
+        "ayahNumber": 23,
+        "reference": "QS. Al-A'raf [7]: 23"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 2,
+        "surahName": "Al-Baqarah",
+        "ayahStart": 30,
+        "ayahEnd": 39,
+        "topic": "Penciptaan Adam, dialog dengan malaikat, dan peristiwa surga"
+      },
+      {
+        "surahId": 7,
+        "surahName": "Al-A'raf",
+        "ayahStart": 19,
+        "ayahEnd": 25,
+        "topic": "Godaan Iblis, kalimat taubat, dan perintah turun ke bumi"
+      },
+      {
+        "surahId": 20,
+        "surahName": "Thaha",
+        "ayahStart": 115,
+        "ayahEnd": 124,
+        "topic": "Lupa akan perjanjian dan petunjuk hidayah bagi anak cucu Adam"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "idris",
+    "name": "Idris AS",
+    "arabicName": "إِدْرِيسُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Ash-Shiddiqul 'Aliyy (Pencinta Kebenaran Berkedudukan Tinggi)",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": false,
+    "period": "Generasi Keturunan Adam",
+    "region": "Babilonia (Irak) & Mesir",
+    "people": "Keturunan Qabil yang Melenceng",
+    "mentionsInQuran": 2,
+    "summary": "Nabi Idris AS adalah nabi yang dianugerahi kepandaian luar biasa: pelopor menulis dengan qalam (pena), menjahit pakaian dari kain, ilmu perbintangan/hitung, serta keteguhan ibadah yang mengangkat derajatnya ke martabat yang amat tinggi di sisi Allah SWT.",
+    "relatedSurahIds": [
+      19,
+      21
+    ],
+    "timeline": [
+      {
+        "phase": "Fajar Literasi & Keterampilan",
+        "title": "Mengenalkan Pena & Pakaian Teratur",
+        "description": "Sebelum masa Idris, manusia berpakaian dari kulit binatang kasar. Idris AS mengajari kaumnya memintal kain, menjahit pakaian yang santun, serta mencatat wahyu dan hikmah menggunakan pena.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Dakwah Kebijaksanaan",
+        "title": "Menyeru Kaum yang Mulai Terlena",
+        "description": "Idris AS berdakwah di tengah masyarakat yang mulai melupakan ajaran tauhid. Beliau menekankan pentingnya zuhud, menjaga lisan, dan keikhlasan beribadah.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Diangkat ke Kedudukan Luhur",
+        "title": "Pujian Al-Qur'an untuk Orang yang Sabar",
+        "description": "Allah memuji Idris AS sebagai orang yang sangat jujur, sabar, dan mengangkatnya ke tempat yang tinggi (makaanun 'aliyya) sebagai tanda kemuliaan spiritualnya.",
+        "readingMinutes": 3
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Menuntut Ilmu & Berkarya Nyata Adalah Ibadah",
+        "lesson": "Keahlian menulis dan keterampilan hidup yang diajarkan Nabi Idris menjadi bukti bahwa Islam mendorong kemajuan sains dan peradaban yang beradab."
+      },
+      {
+        "title": "Kesabaran Membuka Derajat Tertinggi",
+        "lesson": "Kedudukan tinggi di mata Allah diraih melalui ketekunan ibadah, kejujuran lisan, dan kesabaran menghadapi cobaan."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-idris-1",
+        "title": "Doa Permohonan Keselamatan dan Rahmat Orang Beriman",
+        "arabic": "وَإِسْمَٰعِيلَ وَإِدْرِيسَ وَذَا ٱلْكِفْلِ ۖ كُلٌّ مِّنَ ٱلصَّٰبِرِينَ وَأَدْخَلْنَٰهُمْ فِى رَحْمَتِنَآ ۖ إِنَّهُم مِّنَ ٱلصَّٰلِحِينَ",
+        "latin": "Wa ismaa'iila wa idriisa wa dzal-kifli, kullum minash-shaabiriin. Wa adkhalnaahum fii rahmatinaa innahum minash-shaalihiin.",
+        "translation": "Dan (ingatlah kisah) Ismail, Idris dan Zulkifli. Semua mereka termasuk orang-orang yang sabar. Kami telah memasukkan mereka kedalam rahmat Kami. Sesungguhnya mereka termasuk orang-orang yang saleh.",
+        "surahId": 21,
+        "ayahNumber": 85,
+        "reference": "QS. Al-Anbiya' [21]: 85-86"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 19,
+        "surahName": "Maryam",
+        "ayahStart": 56,
+        "ayahEnd": 57,
+        "topic": "Pujian sebagai nabi yang shiddiq dan diangkat ke tempat yang tinggi"
+      },
+      {
+        "surahId": 21,
+        "surahName": "Al-Anbiya'",
+        "ayahStart": 85,
+        "ayahEnd": 86,
+        "topic": "Keteladanan kesabaran dan naungan rahmat orang-orang saleh"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "nuh",
+    "name": "Nuh AS",
+    "arabicName": "نُوحٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Syaikhul Anbiya' & Ulul Azmi (Bapak Kedua Manusia)",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": true,
+    "period": "~3900 - 2900 SM",
+    "region": "Mesopotamia Selatan (Irak Kuno)",
+    "people": "Kaum Penyembah Berhala Wadd, Suwa', Yaghuts, Ya'uq, Nasr",
+    "mentionsInQuran": 43,
+    "summary": "Nabi Nuh AS berdakwah selama 950 tahun dengan kesabaran tak berbatas di hadapan kaumnya yang congkak. Beliau diperintahkan membuat Bahtera agung di atas daratan sebagai sarana penyelamatan bagi orang-orang beriman saat air bah melanda bumi.",
+    "relatedSurahIds": [
+      11,
+      71,
+      23,
+      26
+    ],
+    "timeline": [
+      {
+        "phase": "Dakwah 950 Tahun yang Penuh Ketabahan",
+        "title": "Menyeru Malam dan Siang Tanpa Henti",
+        "description": "Nuh berdakwah secara terang-terangan maupun rahasia, menjanjikan ampunan Allah dan keberkahan hujan lebat serta rezeki berlimpah. Namun kaumnya menutup telinga dan menyombongkan diri.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Pembuatan Bahtera di Bukit",
+        "title": "Cemoohan Pembesar & Perintah Ilahi",
+        "description": "Atas wahyu Allah, Nuh memotong kayu dan merakit kapal raksasa di perbukitan yang jauh dari laut. Para pembesar kaumnya mengejek dan menertawakannya, namun Nuh tetap teguh bekerja dengan tawakkal penuh.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Air Bah & Puncak Ujian Keluarga",
+        "title": "Tenggelamnya Sang Putra Kan'an",
+        "description": "Tatkala tanur memancarkan air dan langit menumpahkan hujan deras, orang-orang beriman beserta pasangan hewan naik ke bahtera. Kesedihan mendalam menyelimuti hati Nuh saat putranya menolak naik ke kapal dan tenggelam tersapu gelombang.",
+        "readingMinutes": 5
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Hasil Akhir di Tangan Allah, Tugas Kita Berikhtiar",
+        "lesson": "Meskipun berdakwah hampir satu milenium dengan pengikut sedikit, Nuh AS tetap menjadi salah satu rasul teragung (Ulul Azmi) karena keteguhan prosesnya."
+      },
+      {
+        "title": "Hidayah Bersifat Personal & Hak Prerogatif Ilahi",
+        "lesson": "Kedudukan seorang ayah sebagai nabi agung tidak menjamin iman sang anak tanpa adanya ketulusan hati untuk menerima kebenaran."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-nuh-1",
+        "title": "Doa Permohonan Pertolongan Saat Merasa Lemah",
+        "arabic": "فَدَعَا رَبَّهُۥٓ أَنِّى مَغْلُوبٌ فَٱنتَصِرْ",
+        "latin": "Fa da'aa rabbahuu annii maghluubun fantasir.",
+        "translation": "Maka dia (Nuh) mengadu kepada Tuhannya: 'Sesungguhnya aku telah dikalahkan (oleh kaumku), maka tolonglah (aku)!'",
+        "surahId": 54,
+        "ayahNumber": 10,
+        "reference": "QS. Al-Qamar [54]: 10"
+      },
+      {
+        "id": "dua-nuh-2",
+        "title": "Doa Berlabuh dengan Penuh Berkah",
+        "arabic": "وَقُل رَّبِّ أَنزِلْنِى مُنزَلًا مُّبَارَكًا وَأَنتَ خَيْرُ ٱلْمُنزِلِينَ",
+        "latin": "Wa qur-rabbi anzilnii munzalam mubaarakaw wa Anta khairul munziliin.",
+        "translation": "Dan berdoalah: 'Ya Tuhanku, tempatkanlah aku pada tempat yang diberkahi, dan Engkau adalah sebaik-baik pemberi tempat.'",
+        "surahId": 23,
+        "ayahNumber": 29,
+        "reference": "QS. Al-Mu'minun [23]: 29"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 71,
+        "surahName": "Nuh",
+        "ayahStart": 1,
+        "ayahEnd": 28,
+        "topic": "Strategi dakwah Nuh, keutamaan istighfar, dan doa permohonan ampun"
+      },
+      {
+        "surahId": 11,
+        "surahName": "Hud",
+        "ayahStart": 25,
+        "ayahEnd": 49,
+        "topic": "Proses pembuatan bahtera, gelombang air bah, dan dialog Nuh dengan putranya"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "hud",
+    "name": "Hud AS",
+    "arabicName": "هُودٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Pembela Tauhid Kaum Peradaban Raksasa",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": false,
+    "period": "~2400 SM",
+    "region": "Al-Ahqaf (Bukit Pasir Yaman & Oman)",
+    "people": "Kaum 'Ad (Penduduk Kota Iram dengan Pilar Megah)",
+    "mentionsInQuran": 7,
+    "summary": "Nabi Hud AS diutus kepada Kaum 'Ad, bangsa berperawakan perkasa dan arsitektur menara megah di Al-Ahqaf. Beliau memperingatkan mereka agar tidak sombong dan kembali bersyukur kepada Allah, hingga azab angin dingin dahsyat memusnahkan mereka yang mendustakan.",
+    "relatedSurahIds": [
+      11,
+      26,
+      46
+    ],
+    "timeline": [
+      {
+        "phase": "Keangkuhan Kaum 'Ad",
+        "title": "Kekuatan Fisik & Kota Menara Iram",
+        "description": "Kaum 'Ad membangun istana-istana megah di perbukitan pasir dan membanggakan keperkasaannya dengan berkata: 'Siapakah yang lebih kuat kekuatannya dari kami?'.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Seruan Hud yang Santun",
+        "title": "Nasihat Tulus Tanpa Meminta Upah",
+        "description": "Hud mengingatkan nikmat-nikmat Allah dan mengajak mereka beristighfar agar ditambahkan kekuatan di atas kekuatan mereka. Kaumnya justru menuduh Hud gila dan terkena kutukan sesembahan mereka.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Angin Dingin yang Membinasakan",
+        "title": "Awan Hitam yang Dikirakan Rahmat Hujan",
+        "description": "Ketika kemarau melanda, tampak awan hitam membentang. Kaum 'Ad bersorak mengira hujan akan turun, padahal itu adalah angin topan yang berhembus 7 malam 8 hari tanpa henti, memporak-porandakan mereka seperti pohon kurma yang tumbang.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Kemajuan Fisik & Teknologi Bukan Jaminan Kekal",
+        "lesson": "Kehebatan arsitektur dan otot perkasa Kaum 'Ad sirna dalam sekejap tatkala mereka menyombongkan diri dan kufur nikmat."
+      },
+      {
+        "title": "Istighfar Melipatgandakan Rezeki & Kekuatan",
+        "lesson": "Sebagaimana nasihat Nabi Hud, memohon ampun kepada Allah secara jujur mendatangkan limpahan rahmat dan ketenteraman batin."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-hud-1",
+        "title": "Doa Tawakkal Penuh Menghadapi Ancaman Musuh",
+        "arabic": "إِنِّى تَوَكَّلْتُ عَلَى ٱللَّهِ رَبِّى وَرَبِّكُم ۚ مَّا مِن دَآبَّةٍ إِلَّا هُوَ ءَاخِذٌۢ بِنَاصِيَتِهَآ ۚ إِنَّ رَبِّى عَلَىٰ صِرَٰطٍۢ مُّسْتَقِيمٍۢ",
+        "latin": "Innii tawakkaltu 'alallaahi Rabbii wa Rabbikum, maa min daabbatin illaa Huwa aakhidzum binaasiyatihaa. Inna Rabbii 'alaa shiraathim mustaqiim.",
+        "translation": "Sesungguhnya aku bertawakkal kepada Allah Tuhanku dan Tuhanmu. Tidak ada suatu binatang melatapun melainkan Dialah yang memegang ubun-ubunnya. Sesungguhnya Tuhanku di atas jalan yang lurus.",
+        "surahId": 11,
+        "ayahNumber": 56,
+        "reference": "QS. Hud [11]: 56"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 11,
+        "surahName": "Hud",
+        "ayahStart": 50,
+        "ayahEnd": 60,
+        "topic": "Dialog dakwah Hud, tuduhan kaumnya, dan kepastian perlindungan Allah"
+      },
+      {
+        "surahId": 46,
+        "surahName": "Al-Ahqaf",
+        "ayahStart": 21,
+        "ayahEnd": 26,
+        "topic": "Peringatan di bukit-bukit pasir dan hembusan angin azab yang membinasakan"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "shalih",
+    "name": "Shalih AS",
+    "arabicName": "صَٰلِحٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Nabi Pemilik Mukjizat Unta Betina yang Dimuliakan",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": false,
+    "period": "~2000 SM",
+    "region": "Al-Hijr (Mada'in Saleh, Arab Saudi)",
+    "people": "Kaum Tsamud (Pemahat Gunung Batu Cadas)",
+    "mentionsInQuran": 9,
+    "summary": "Nabi Shalih AS diutus kepada Kaum Tsamud yang mahir memahat bukit-bukit cadas menjadi hunian yang aman. Allah memberikan mukjizat berupa seekor unta betina bunting dari balik batu besar sebagai ujian pembagian air, namun kaum yang membangkang tega menyembelihnya.",
+    "relatedSurahIds": [
+      7,
+      11,
+      26,
+      91
+    ],
+    "timeline": [
+      {
+        "phase": "Keahlian Memahat Gunung",
+        "title": "Kehidupan Kaum Tsamud di Al-Hijr",
+        "description": "Kaum Tsamud hidup makmur dengan mata air subur dan keahlian memahat gunung batu menjadi istana megah. Mereka hidup aman dari bencana alam tetapi lupa kepada Yang Menciptakan batu cadas tersebut.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Unta Betina Mukjizat",
+        "title": "Tanda Nyata & Giliran Minum Air",
+        "description": "Kaum Tsamud menuntut tanda nyata: seekor unta betina keluar dari batu. Allah mengabulkannya dengan syarat unta tersebut tidak boleh diganggu dan mendapat giliran minum air sumur bergantian dengan penduduk.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Penyembelihan & Suara Menggelegar",
+        "title": "Kebinasaan dalam Tiga Hari",
+        "description": "Sembilan orang durjana bersekongkol menyembelih unta tersebut. Shalih mengabarkan bahwa ajal mereka tinggal 3 hari. Pada hari yang dijanjikan, gempa dahsyat dan suara menggelegar menghancurkan mereka di rumah-rumahnya.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Menjaga Keseimbangan Hak Makhluk & Alam",
+        "lesson": "Kisah unta Kaum Tsamud mengajarkan amanah keadilan ekologis dan larangan merusak sumber daya alam serta hak makhluk lain."
+      },
+      {
+        "title": "Jangan Diam Terhadap Kejahatan Segelintir Orang",
+        "lesson": "Sembilan perusak yang menyembelih unta mendatangkan azab bagi seluruh negeri karena mayoritas penduduk menyetujui dan membiarkan kemungkaran."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-shalih-1",
+        "title": "Doa Pasrah Saat Kaumnya Berpaling dari Nasihat",
+        "arabic": "فَتَوَلَّىٰ عَنْهُمْ وَقَالَ يَٰقَوْمِ لَقَدْ أَبْلَغْتُكُمْ رِسَالَةَ رَبِّى وَنَصَحْتُ لَكُمْ وَلَٰكِن لَّا تُحِبُّونَ ٱلنَّٰصِحِينَ",
+        "latin": "Fa tawallaa 'anhum wa qaala yaa qawmi laqad ablaghtukum risaalata Rabbii wa nashahtu lakum wa laakil laa tuhibbuunan-naasihiin.",
+        "translation": "Maka Shaleh meninggalkan mereka seraya berkata: 'Hai kaumku, sesungguhnya aku telah menyampaikan kepadamu amanat Tuhanku, dan aku telah memberi nasihat kepadamu, tetapi kamu tidak menyukai orang-orang yang memberi nasihat.'",
+        "surahId": 7,
+        "ayahNumber": 79,
+        "reference": "QS. Al-A'raf [7]: 79"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 7,
+        "surahName": "Al-A'raf",
+        "ayahStart": 73,
+        "ayahEnd": 79,
+        "topic": "Perjanjian unta mukjizat, pelanggaran kaum Tsamud, dan gempa pemusnah"
+      },
+      {
+        "surahId": 91,
+        "surahName": "Asy-Syams",
+        "ayahStart": 11,
+        "ayahEnd": 15,
+        "topic": "Kedurhakaan yang memuncak saat unta disembelih dan azab yang meratakan mereka"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "ibrahim",
+    "name": "Ibrahim AS",
+    "arabicName": "إِبْرَٰهِيمُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Khalilullah, Abul Anbiya' & Ulul Azmi",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": true,
+    "period": "~1900 SM",
+    "region": "Ur (Irak), Babilonia, Syam, Mesir, Hijaz (Makkah)",
+    "people": "Raja Namrud & Bangsa Penyembah Bintang/Patung",
+    "mentionsInQuran": 69,
+    "summary": "Nabi Ibrahim AS adalah bapak para nabi (Abul Anbiya') dan kekasih Allah (Khalilullah). Beliau memecahkan berhala-berhala kaumnya, diselamatkan dari kobaran api raksasa, mengorbankan kesenangannya demi perintah Allah, serta bersama putranya Ismail meninggikan pondasi Ka'bah.",
+    "relatedSurahIds": [
+      14,
+      2,
+      6,
+      21,
+      37
+    ],
+    "timeline": [
+      {
+        "phase": "Pencarian Tauhid & Hancurnya Berhala",
+        "title": "Merenungi Bintang, Bulan, Matahari & Memecah Patung",
+        "description": "Dengan akal jernih, Ibrahim menolak penyembahan benda langit. Beliau menghancurkan patung-patung berhala dan menyisakan yang paling besar untuk menyadarkan kaumnya dengan argumentasi tajam.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Mukjizat Api Dingin & Hijrah",
+        "title": "Kobaran Api Menjadi Kesejukan",
+        "description": "Raja Namrud melemparkan Ibrahim ke dalam api membara. Allah berfirman: 'Wahai api, jadilah dingin dan penyelamat bagi Ibrahim'. Beliau keluar tanpa terbakar sehelai rambut pun lalu berhijrah ke Syam dan Mesir.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Ujian Penyembelihan & Pembangunan Ka'bah",
+        "title": "Ketaatan Mutlak & Berdirinya Baitullah",
+        "description": "Ibrahim diuji untuk menyembelih putra terkasihnya, Ismail. Keduanya ikhlas pasrah kepada Allah sebelum akhirnya digantikan dengan sembelihan domba besar. Keduanya kemudian meninggikan pondasi Ka'bah di lembah tandus Makkah.",
+        "readingMinutes": 5
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Ketulusan Menyerahkan Segalanya kepada Allah",
+        "lesson": "Gelar Khalilullah diraih karena hati Ibrahim tidak pernah menduakan cinta Allah dengan harta, tanah air, bahkan anak kandungnya."
+      },
+      {
+        "title": "Kekuatan Doa Memakmurkan Generasi Mendatang",
+        "lesson": "Kota Makkah yang tandus menjadi pusat keberkahan dan ibadah jutaan manusia berkat doa tulus Nabi Ibrahim ribuan tahun silam."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-ibrahim-1",
+        "title": "Doa Permohonan Menjadikan Anak Keturunan Pendiri Shalat",
+        "arabic": "رَبِّ ٱجْعَلْنِى مُقِيمَ ٱلصَّلَوٰةِ وَمِن ذُرِّيَّتِى ۚ رَبَّنَا وَتَقَبَّلْ دُعَآءِ ۝ رَبَّنَا ٱغْفِرْ لِى وَلِوَٰلِدَىَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ ٱلْحِسَابُ",
+        "latin": "Rabbij'alnii muqiimash-shalaati wa min dzurriyyatii, Rabbanaa wa taqabbal du'aa'. Rabbanagh-fir lii wa liwaalidayya wa lil-mu'miniina yawma yaquumul hisaab.",
+        "translation": "Ya Tuhanku, jadikanlah aku dan anak cucuku orang-orang yang tetap mendirikan shalat, ya Tuhan kami, perkenankanlah doaku. Ya Tuhan kami, beri ampunlah aku dan kedua ibu bapakku dan sekalian orang-orang mukmin pada hari terjadinya hisab (hari kiamat).",
+        "surahId": 14,
+        "ayahNumber": 40,
+        "reference": "QS. Ibrahim [14]: 40-41"
+      },
+      {
+        "id": "dua-ibrahim-2",
+        "title": "Doa Saat Membangun Ka'bah Bersama Ismail",
+        "arabic": "رَبَّنَا تَقَبَّلْ مِنَّآ ۖ إِنَّكَ أَنتَ ٱلسَّمِيعُ ٱلْعَلِيمُ",
+        "latin": "Rabbanaa taqabbal minnaa, innaka Antas-Samii'ul 'Aliim.",
+        "translation": "Ya Tuhan kami terimalah daripada kami (amalan kami), sesungguhnya Engkaulah Yang Maha Mendengar lagi Maha Mengetahui.",
+        "surahId": 2,
+        "ayahNumber": 127,
+        "reference": "QS. Al-Baqarah [2]: 127"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 14,
+        "surahName": "Ibrahim",
+        "ayahStart": 35,
+        "ayahEnd": 41,
+        "topic": "Doa Ibrahim untuk keamanan kota Makkah dan keturunan yang mendirikan shalat"
+      },
+      {
+        "surahId": 21,
+        "surahName": "Al-Anbiya'",
+        "ayahStart": 51,
+        "ayahEnd": 71,
+        "topic": "Penghancuran berhala, perdebatan logika, dan penyelamatan dari api Namrud"
+      },
+      {
+        "surahId": 37,
+        "surahName": "Ash-Shaffat",
+        "ayahStart": 99,
+        "ayahEnd": 111,
+        "topic": "Peristiwa mimpi penyembelihan Ismail dan ujian kepatuhan tingkat tertinggi"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "slug": "luth",
+    "name": "Luth AS",
+    "arabicName": "لُوطٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Penentang Kemungkaran Kaum Sodom",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1900 SM",
+    "region": "Sodom & Gomorrah (Sekitar Laut Mati, Yordania)",
+    "people": "Penduduk Kota Sodom Pelaku Perbuatan Menyimpang",
+    "mentionsInQuran": 27,
+    "summary": "Nabi Luth AS (keponakan Nabi Ibrahim) diutus membimbing kaum Sodom yang melakukan perbuatan keji melampaui batas yang belum pernah dikerjakan umat terdahulu. Beliau gigih mempertahankan fitrah kesucian manusia hingga azab batu belerang membalikkan kota mereka.",
+    "relatedSurahIds": [
+      11,
+      15,
+      26,
+      29
+    ],
+    "timeline": [
+      {
+        "phase": "Dakwah Moral & Fitrah Manusia",
+        "title": "Menolak Perilaku Menyimpang Kaum Sodom",
+        "description": "Luth berdakwah sendirian di tengah masyarakat yang membudayakan perbuatan asusila sesama jenis dan perampokan musafir di jalanan.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Tamu-Tamu Malaikat yang Menyamar",
+        "title": "Kekhawatiran Luth & Keberanian Melindungi Tamu",
+        "description": "Malaikat berwujud pemuda rupawan datang sebagai tamu Luth. Kaum Sodom berbondong-bondong hendak menodai mereka, namun malaikat membutakan pandangan para pelaku kejahatan.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Hujan Batu & Kota yang Dijungkirbalikkan",
+        "title": "Perjalanan Keluar Sebelum Fajar",
+        "description": "Malaikat memerintahkan Luth membawa keluarganya keluar sebelum subuh tiba tanpa menoleh ke belakang. Istri Luth yang berkhianat tertinggal dan terkena azab batu belerang yang membalikkan negeri tersebut.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Mempertahankan Kebenaran Meski Sendirian",
+        "lesson": "Tekanan sosial masyarakat yang serempak berbuat maksiat tidak boleh menggoyahkan prinsip ketaatan kita kepada syariat Allah."
+      },
+      {
+        "title": "Kesalehan Suami Tidak Menyelamatkan Istri yang Berkhianat",
+        "lesson": "Pertanggungjawaban iman bersifat pribadi; kedekatan keluarga dengan orang saleh tidak berguna bila hati sendiri menentang kebenaran."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-luth-1",
+        "title": "Doa Memohon Keselamatan dari Perbuatan Jahat Kaum Perusak",
+        "arabic": "رَبِّ نَجِّنِى وَأَهْلِى مِمَّا يَعْمَلُونَ ۝ رَبِّ ٱنصُرْنِى عَلَى ٱلْقَوْمِ ٱلْمُفْسِدِينَ",
+        "latin": "Rabbi najjinii wa ahlii mimmaa ya'maluun. Rabbinsurnii 'alal-qawmil mufsidiin.",
+        "translation": "Ya Tuhanku selamatkanlah aku beserta keluargaku dari (akibat) perbuatan yang mereka kerjakan. Ya Tuhanku, tolonglah aku (dengan menimpakan azab) atas kaum yang berbuat kerusakan itu.",
+        "surahId": 26,
+        "ayahNumber": 169,
+        "reference": "QS. Asy-Syu'ara [26]: 169 & QS. Al-'Ankabut [29]: 30"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 11,
+        "surahName": "Hud",
+        "ayahStart": 77,
+        "ayahEnd": 83,
+        "topic": "Kedatangan malaikat, kepasrahan Luth, dan gempa azab terbitnya fajar"
+      },
+      {
+        "surahId": 26,
+        "surahName": "Asy-Syu'ara'",
+        "ayahStart": 160,
+        "ayahEnd": 175,
+        "topic": "Nasihat Luth tentang kesucian keluarga dan fitrah pernikahan manusia"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "ismail",
+    "name": "Ismail AS",
+    "arabicName": "إِسْمَٰعِيلُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Adz-Dzabih & Shadiqu Al-Wa'di (Teladan Ikhlas & Pemegang Janji)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1800 SM",
+    "region": "Lembah Bakkah (Makkah Al-Mukarramah)",
+    "people": "Suku Jurhum & Penduduk Makkah",
+    "mentionsInQuran": 12,
+    "summary": "Nabi Ismail AS adalah putra sulung Nabi Ibrahim dan Sayyidah Hajar. Beliau adalah sumber memancarnya air zamzam saat masih bayi, pemuda berhati lapang yang rela dikurbankan demi ketaatan, serta pembangun Ka'bah yang darinya lahir Baginda Nabi Muhammad SAW.",
+    "relatedSurahIds": [
+      2,
+      19,
+      37
+    ],
+    "timeline": [
+      {
+        "phase": "Mata Air Zamzam di Lembah Sunyi",
+        "title": "Hentakan Kaki Bayi & Tawakkal Sang Ibu Hajar",
+        "description": "Ditinggalkan di lembah Makkah yang tandus tanpa pepohonan dan air, Hajar berlari antara bukit Shafa dan Marwah. Malaikat Jibril menghentak tanah hingga memancar air zamzam yang melimpah ruah.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Kepasrahan Ujian Penyembelihan",
+        "title": "\"Wahai Ayahku, Kerjakanlah Apa yang Diperintahkan\"",
+        "description": "Tatkala menginjak usia remaja, sang ayah menceritakan mimpinya. Ismail dengan tenang dan ikhlas menjawab: 'Wahai ayahku, laksanakanlah apa yang diperintahkan kepadamu; niscaya engkau akan mendapatiku termasuk orang-orang yang sabar'.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Membangun Ka'bah & Dakwah Tauhid",
+        "title": "Mengangkat Pondasi Baitullah Bersama Ibrahim",
+        "description": "Ismail membantu ayahnya mengangkat batu-batu pondasi Ka'bah seraya berdoa agar amalan mereka diterima Allah. Beliau diangkat menjadi nabi bagi kabilah Jurhum dan memelihara kesucian tanah haram.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Bakti Terbaik Anak kepada Orang Tua",
+        "lesson": "Ketulusan Ismail menaati perintah Ilahi melalui ayahnya menjadi puncak teladan birrul walidain sepanjang sejarah."
+      },
+      {
+        "title": "Setia Pada Janji & Menjaga Ibadah Shalat",
+        "lesson": "Al-Qur'an secara khusus memuji Ismail sebagai orang yang benar janjinya (shadiqal wa'di) dan selalu memerintahkan keluarganya untuk shalat dan zakat."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-ismail-1",
+        "title": "Doa Permohonan Menjadi Hamba yang Berserah Diri & Melahirkan Umat Muslim",
+        "arabic": "رَبَّنَا وَٱجْعَلْنَا مُسْلِمَيْنِ لَكَ وَمِن ذُرِّيَّتِنَآ أُمَّةًۭ مُّسْلِمَةًۭ لَّكَ وَأَرِنَا مَنَاسِكَنَا وَتُبْ عَلَيْنَآ ۖ إِنَّكَ أَنتَ ٱلتَّوَّابُ ٱلرَّحِيمُ",
+        "latin": "Rabbanaa waj'alnaa muslimaini laka wa min dzurriyyatinaa ummatam muslimatal laka wa arinaa manaasikanaa wa tub 'alainaa, innaka Antat-Tawwaabur-Rahiim.",
+        "translation": "Ya Tuhan kami, jadikanlah kami berdua orang yang tunduk patuh kepada Engkau dan (jadikanlah) diantara anak cucu kami umat yang tunduk patuh kepada Engkau dan tunjukkanlah kepada kami cara-cara dan tempat-tempat ibadat haji kami, dan terimalah taubat kami. Sesungguhnya Engkaulah Yang Maha Penerima taubat lagi Maha Penyayang.",
+        "surahId": 2,
+        "ayahNumber": 128,
+        "reference": "QS. Al-Baqarah [2]: 128"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 2,
+        "surahName": "Al-Baqarah",
+        "ayahStart": 125,
+        "ayahEnd": 129,
+        "topic": "Pembersihan Baitullah, peninggian fondasi, dan doa lahirnya Rasul penutup"
+      },
+      {
+        "surahId": 19,
+        "surahName": "Maryam",
+        "ayahStart": 54,
+        "ayahEnd": 55,
+        "topic": "Pujian atas kejujuran janji dan kedisiplinan mengajak keluarga shalat & zakat"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "slug": "ishaq",
+    "name": "Ishaq AS",
+    "arabicName": "إِسْحَٰقُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Anak Kabar Gembira & Leluhur Para Nabi Bani Israil",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1750 SM",
+    "region": "Kan'an (Palestina)",
+    "people": "Penduduk Kan'an & Syam",
+    "mentionsInQuran": 17,
+    "summary": "Nabi Ishaq AS dilahirkan sebagai mukjizat kabar gembira dari malaikat kepada Ibunda Sarah di usia yang sangat senja. Dari keturunan beliau lahirlah nabi-nabi agung Bani Israil termasuk Ya'qub, Yusuf, Musa, Daud, Sulaiman, hingga Isa AS.",
+    "relatedSurahIds": [
+      11,
+      21,
+      37
+    ],
+    "timeline": [
+      {
+        "phase": "Kabar Gembira Para Malaikat",
+        "title": "Tawa Haru Ibunda Sarah di Usia Lanjut",
+        "description": "Malaikat singgah di rumah Ibrahim menyampaikan kabar kelahiran seorang putra yang berilmu. Sarah tersenyum takjub mengingat usianya yang sudah amat lanjut dan mandul, namun kekuasaan Allah melampaui logika manusia.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Melanjutkan Risalah Tauhid di Syam",
+        "title": "Dakwah Kebaikan & Kedamaian",
+        "description": "Ishaq mewarisi keluhuran budi pekerti Nabi Ibrahim, berdakwah di tanah Kan'an dengan penuh kearifan, menegakkan keadilan dan kebajikan di antara sesama manusia.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Pewarisan Kenabian",
+        "title": "Lahirnya Ya'qub & Kelanjutan Cahaya Kenabian",
+        "description": "Allah menganugerahi Ishaq seorang putra bernama Ya'qub yang memperkokoh rantai kenabian dan keturunan saleh pemegang amanah wahyu.",
+        "readingMinutes": 3
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Tiada yang Mustahil Bagi Kekuasaan Allah",
+        "lesson": "Kelahiran Ishaq membuktikan bahwa doa yang dipanjatkan bertahun-tahun pasti dijawab oleh Allah pada waktu yang paling indah."
+      },
+      {
+        "title": "Pentingnya Kesalehan dalam Melahirkan Generasi Hebat",
+        "lesson": "Kemuliaan keluarga Ibrahim dan Ishaq terpelihara karena fondasi rumah tangga dibangun di atas tauhid, ilmu, dan keikhlasan beramal."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-ishaq-1",
+        "title": "Doa Permohonan Pemimpin Kebaikan Berdasarkan Perintah Allah",
+        "arabic": "وَوَهَبْنَا لَهُۥٓ إِسْحَٰقَ وَيَعْقُوبَ نَافِلَةًۭ ۖ وَكُلًّۭ جَعَلْنَا صَٰلِحِينَ ۝ وَجَعَلْنَٰهُمْ أَئِمَّةًۭ يَهْدُونَ بِأَمْرِنَا وَأَوْحَيْنَآ إِلَيْهِمْ فِعْلَ ٱلْخَيْرَٰتِ وَإِقَامَ ٱلصَّلَوٰةِ وَإِيتَآءَ ٱلزَّكَوٰةِ ۖ وَكَانُوا۟ لَنَا عَٰبِدِينَ",
+        "latin": "Wa wahabnaa lahuu is-haaqa wa ya'quuba naafilah, wa kullan ja'alnaa shaalihiin. Wa ja'alnaahum a-immatay yahduuna bi-amrinaa wa aw-haynaa ilaihim fi'lal khairaati wa iqaamash-shalaati wa iitaa-az-zakaah, wa kaanuu lanaa 'aabidiin.",
+        "translation": "Dan Kami telah memberikan kepada-nya (Ibrahim) lshak dan Ya'qub, sebagai suatu anugerah (daripada Kami). Dan masing-masingnya Kami jadikan orang-orang yang saleh. Kami telah menjadikan mereka itu sebagai pemimpin-pemimpin yang memberi petunjuk dengan perintah Kami dan telah Kami wahyukan kepada, mereka mengerjakan kebajikan, mendirikan sembahyang, menunaikan zakat, dan hanya kepada Kamilah mereka selalu menyembah.",
+        "surahId": 21,
+        "ayahNumber": 72,
+        "reference": "QS. Al-Anbiya' [21]: 72-73"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 11,
+        "surahName": "Hud",
+        "ayahStart": 69,
+        "ayahEnd": 74,
+        "topic": "Kabar gembira malaikat tentang kelahiran Ishaq dan Ya'qub di masa senja"
+      },
+      {
+        "surahId": 37,
+        "surahName": "Ash-Shaffat",
+        "ayahStart": 112,
+        "ayahEnd": 113,
+        "topic": "Pujian Allah atas kenabian Ishaq dan keberkahan bagi keturunannya"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "slug": "yaqub",
+    "name": "Ya'qub AS",
+    "arabicName": "يَعْقُوبُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Israil (Hamba Allah yang Bersabar dalam Kesedihan)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1700 SM",
+    "region": "Kan'an (Palestina) & Mesir",
+    "people": "Bani Israil (Keluarga 12 Putra)",
+    "mentionsInQuran": 16,
+    "summary": "Nabi Ya'qub AS (bergelar Israil) adalah teladan kesabaran seorang ayah menghadapi cobaan perpisahan dengan putra-putranya. Matanya memutih karena kesedihan mendalam atas hilangnya Yusuf, namun lisannya tidak pernah mengeluh selain hanya mengadukan duka kepada Allah SWT.",
+    "relatedSurahIds": [
+      12,
+      2,
+      3
+    ],
+    "timeline": [
+      {
+        "phase": "Firasat Kasih Sayang Ayah",
+        "title": "Mendengar Mimpi Sebelas Bintang Yusuf",
+        "description": "Ya'qub memahami makna kenabian saat Yusuf kecil menceritakan mimpinya melihat matahari, bulan, dan sebelas bintang bersujud. Beliau berpesan agar mimpi itu dirahasiakan dari saudara-saudaranya demi mencegah kedengkian.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Duka Baju Berlumur Darah Palsu",
+        "title": "Kesabaran yang Indah (Sabrun Jamiil)",
+        "description": "Ketika anak-anaknya membawa baju Yusuf berlumur darah palsu dan mengaku ia dimakan serigala, Ya'qub menahan amarah dan berkata: 'Kesabaran yang baik itulah kesabaranku, dan Allah sajalah tempat memohon pertolongan'.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Pertemuan Haru di Istana Mesir",
+        "title": "Mencium Aroma Gamis Yusuf & Pulihnya Penglihatan",
+        "description": "Setelah puluhan tahun dalam keyakinan teguh bahwa Yusuf masih hidup, baju Yusuf diusapkan ke wajahnya hingga penglihatannya pulih terang. Seluruh keluarga sujud syukur berkumpul di Mesir.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Mengadukan Kesedihan Hanya kepada Allah",
+        "lesson": "Puncak ketauhidan Ya'qub tampak saat beliau menolak mengeluh kepada manusia dan hanya menumpahkan air mata kepedihan di hadapan Rabb semesta alam."
+      },
+      {
+        "title": "Wasiat Akidah Menjelang Ajal",
+        "lesson": "Di akhir hayatnya, kekhawatiran terbesar Ya'qub bukanlah warisan materi, melainkan memastikan anak-anaknya tetap menyembah Tuhan Yang Maha Esa."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-yaqub-1",
+        "title": "Doa Mengadukan Kesedihan dan Ratapan Hati Hanya Kepada Allah",
+        "arabic": "قَالَ إِنَّمَآ أَشْكُوا۟ بَثِّى وَحُزْنِىٓ إِلَى ٱللَّهِ وَأَعْلَمُ مِنَ ٱللَّهِ مَا لَا تَعْلَمُونَ",
+        "latin": "Qaala innamaa asykuu batstsii wa huznii ilallaahi wa a'lamu minallaahi maa laa ta'lamuun.",
+        "translation": "Ya'qub menjawab: 'Sesungguhnya hanyalah kepada Allah aku mengadukan kesusahan dan kesedihanku, dan aku mengetahui dari Allah apa yang kamu tiada mengetahuinya.'",
+        "surahId": 12,
+        "ayahNumber": 86,
+        "reference": "QS. Yusuf [12]: 86"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 12,
+        "surahName": "Yusuf",
+        "ayahStart": 4,
+        "ayahEnd": 18,
+        "topic": "Firasat mimpi Yusuf, tipu daya saudara, dan ucapan Sabrun Jamiil"
+      },
+      {
+        "surahId": 2,
+        "surahName": "Al-Baqarah",
+        "ayahStart": 132,
+        "ayahEnd": 133,
+        "topic": "Wasiat tauhid Nabi Ya'qub kepada putra-putranya menjelang wafat"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "slug": "yusuf",
+    "name": "Yusuf AS",
+    "arabicName": "يُوسُفُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Ash-Shiddiq & Ahsanul Qashash (Kisah Terbaik Penuh Hikmah)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1650 SM",
+    "region": "Kan'an lalu Menjadi Bendahara Mesir",
+    "people": "Masyarakat Mesir & Dinasti Hyksos",
+    "mentionsInQuran": 27,
+    "summary": "Nabi Yusuf AS adalah putra Nabi Ya'qub yang dianugerahi separuh ketampanan dunia, keteguhan menjaga kehormatan diri dari godaan syahwat, kepandaian menakwil mimpi, serta kemuliaan memaafkan saudara-saudaranya yang dahulu membuangnya ke dalam sumur tua.",
+    "relatedSurahIds": [
+      12
+    ],
+    "timeline": [
+      {
+        "phase": "Dibuang ke Dalam Sumur Kering",
+        "title": "Kedengkian Saudara & Kafilah Musafir",
+        "description": "Dengki terhadap kasih sayang ayah, saudara-saudara Yusuf bersekongkol melemparnya ke dalam sumur gelap. Sebuah kafilah dagang menemukannya dan menjualnya sebagai budak di pasar Mesir.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Godaan Istana & Ujian Penjara",
+        "title": "Lebih Memilih Penjara Demi Menjaga Kesucian",
+        "description": "Istri Al-Aziz (Zulaikha) merayu Yusuf di dalam kamar terkunci. Yusuf berlari menolak dan memilih dipenjara bertahun-tahun daripada terjerumus maksiat yang dimurkai Allah.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Menakwil Mimpi Raja & Menjadi Penguasa",
+        "title": "Manajemen Krisis Pangan & Pemaafan Tanpa Dendam",
+        "description": "Yusuf berhasil menakwilkan mimpi Raja tentang 7 sapi kurus memakan 7 sapi gemuk. Beliau diangkat menjadi bendahara agung Mesir, menyelamatkan kawasan dari paceklik, dan memeluk saudara-saudaranya dengan ucapan pemaafan agung.",
+        "readingMinutes": 5
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Integritas Menjaga Kehormatan di Tempat Sepi",
+        "lesson": "Yusuf membuktikan bahwa rasa takut kepada Allah mampu mengalahkan godaan syahwat kekuasaan dan kecantikan wanita."
+      },
+      {
+        "title": "Pemaafan yang Melampaui Balas Dendam",
+        "lesson": "Saat berada di puncak kekuasaan di hadapan orang-orang yang dahulu menzaliminya, Yusuf berkata: 'Tidak ada cercaan terhadap kamu hari ini, mudah-mudahan Allah mengampunimu'."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-yusuf-1",
+        "title": "Doa Memohon Perlindungan dari Tipu Daya Godaan Syahwat",
+        "arabic": "قَالَ رَبِّ ٱلسِّجْنُ أَحَبُّ إِلَىَّ مِمَّا يَدْعُونَنِىٓ إِلَيْهِ ۖ وَإِلَّا تَصْرِفْ عَنِّى كَيْدَهُنَّ أَصْبُ إِلَيْهِنَّ وَأَكُن مِّنَ ٱلْجَٰهِلِينَ",
+        "latin": "Qaala rabbis-sijnu ahabbu ilayya mimmaa yad'uunanii ilaih, wa illaa tashrif 'annii kaidahunna ashbu ilaihinna wa akum minal jaahiliin.",
+        "translation": "Yusuf berkata: 'Wahai Tuhanku, penjara lebih aku sukai daripada memenuhi ajakan mereka kepadaku. Dan jika tidak Engkau hindarkan daripadaku tipu daya mereka, tentu aku akan cenderung untuk (memenuhi keinginan mereka) dan tentulah aku termasuk orang-orang yang bodoh.'",
+        "surahId": 12,
+        "ayahNumber": 33,
+        "reference": "QS. Yusuf [12]: 33"
+      },
+      {
+        "id": "dua-yusuf-2",
+        "title": "Doa Syukur atas Nikmat Kekuasaan dan Wafat dalam Keadaan Muslim",
+        "arabic": "فَاطِرَ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ أَنتَ وَلِىِّۦ فِى ٱلدُّنْيَا وَٱلْءَاخِرَةِ ۖ تَوَفَّنِى مُسْلِمًۭا وَأَلْحِقْنِى بِٱلصَّٰلِحِينَ",
+        "latin": "Faathiras-samaawaati wal ardhi Anta waliyyii fid-dunyaa wal aakhirah, tawaffanii muslimaw wa al-hiqnii bish-shaalihiin.",
+        "translation": "(Ya Allah) Pencipta langit dan bumi. Engkaulah Pelindungku di dunia dan di akhirat, wafatkanlah aku dalam keadaan Islam dan gabungkanlah aku dengan orang-orang yang saleh.",
+        "surahId": 12,
+        "ayahNumber": 101,
+        "reference": "QS. Yusuf [12]: 101"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 12,
+        "surahName": "Yusuf",
+        "ayahStart": 1,
+        "ayahEnd": 111,
+        "topic": "Keseluruhan surat menceritakan perjalanan hidup Yusuf dari sumur hingga istana"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "slug": "ayyub",
+    "name": "Ayyub AS",
+    "arabicName": "أَيُّوبُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Sayyidush-Shaabiriin (Pemimpin Ketabahan Menghadapi Sakit)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1600 SM",
+    "region": "Hauran (Perbatasan Syam & Yordania)",
+    "people": "Penduduk Daerah Syam",
+    "mentionsInQuran": 4,
+    "summary": "Nabi Ayyub AS diuji dengan lenyapnya seluruh harta kekayaan, meninggalnya anak-anak tercinta, dan penyakit kulit parah selama belasan tahun. Di tengah cobaan berat tersebut, lidah beliau tidak pernah berhenti bertasbih hingga Allah menyembuhkannya melalui hentakan air sejuk.",
+    "relatedSurahIds": [
+      21,
+      38
+    ],
+    "timeline": [
+      {
+        "phase": "Kehidupan Kaya Raya & Dermawan",
+        "title": "Harta Melimpah yang Digunakan untuk Kebaikan",
+        "description": "Ayyub adalah hamba yang sangat kaya, memiliki tanah luas, ternak banyak, serta keluarga bahagia. Beliau dikenal sangat santun kepada fakir miskin dan memuliakan anak yatim.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Penyakit Parah & Ditinggalkan Kaumnya",
+        "title": "Kesabaran Menghadapi Ujian Fisik Belasan Tahun",
+        "description": "Allah menguji Ayyub dengan hilangnya seluruh harta, wafatnya anak-anak, dan penyakit kulit berat yang membuat orang-orang menjauh darinya, kecuali istrinya yang setia merawatnya.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Doa Santun & Mukjizat Air Sejuk",
+        "title": "Kesembuhan Total & Berlipat Ganda Karunia",
+        "description": "Ayyub memohon kepada Allah dengan kalimat yang sangat santun: 'Sesungguhnya aku telah ditimpa penyakit dan Engkau adalah Yang Maha Penyayang'. Allah memerintahkannya menghentakkan kaki ke bumi; memancarlah air sejuk untuk mandi dan minum hingga sembuh total.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Adab Berdoa Saat Diterpa Penyakit",
+        "lesson": "Ayyub tidak menuntut kesembuhan secara memaksa, melainkan hanya memuji sifat kasih sayang Allah (Arhamur Rahimin), mengajarkan keikhlasan adab berdoa tingkat tinggi."
+      },
+      {
+        "title": "Ujian Adalah Tanda Kasih Sayang & Penggugur Dosa",
+        "lesson": "Bahkan nabi yang paling dicintai Allah pun diuji dengan rasa sakit, membuktikan bahwa sakit bukanlah tanda kehinaan melainkan tangga kemuliaan derajat."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-ayyub-1",
+        "title": "Doa Permohonan Kesembuhan Penyakit yang Lembut & Mustajab",
+        "arabic": "أَنِّى مَسَّنِىَ ٱلضُّرُّ وَأَنتَ أَرْحَمُ ٱلرَّٰحِمِينَ",
+        "latin": "Annii massaniyadh-dhurru wa Anta Arhamur-Raahimiin.",
+        "translation": "(Ya Tuhanku), sesungguhnya aku telah ditimpa penyakit dan Engkau adalah Tuhan Yang Maha Penyayang di antara semua penyayang.",
+        "surahId": 21,
+        "ayahNumber": 83,
+        "reference": "QS. Al-Anbiya' [21]: 83"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 21,
+        "surahName": "Al-Anbiya'",
+        "ayahStart": 83,
+        "ayahEnd": 84,
+        "topic": "Doa kesembuhan Ayyub dan kembalinya keluarga serta nikmat berlipat ganda"
+      },
+      {
+        "surahId": 38,
+        "surahName": "Shad",
+        "ayahStart": 41,
+        "ayahEnd": 44,
+        "topic": "Perintah menghentak kaki ke bumi memancarkan air sejuk untuk mandi dan minum"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "slug": "syuaib",
+    "name": "Syu'aib AS",
+    "arabicName": "شُعَيْبٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Khatibul Anbiya' (Juru Bicara Para Nabi Penegak Kejujuran Timbangan)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1550 SM",
+    "region": "Madyan & Aikah (Jazirah Arab Barat Laut)",
+    "people": "Penduduk Madyan Pemilik Hutan Rindang (Ashabul Aikah)",
+    "mentionsInQuran": 11,
+    "summary": "Nabi Syu'aib AS dijuluki juru bicara para nabi karena argumentasi dakwahnya yang sangat fasih dan logis. Beliau memperingatkan Kaum Madyan yang curang dalam takaran dan timbangan serta merampok di jalanan, hingga azab naungan awan panas dan gempa menghancurkan mereka.",
+    "relatedSurahIds": [
+      7,
+      11,
+      26,
+      29
+    ],
+    "timeline": [
+      {
+        "phase": "Kecurangan Ekonomi Kaum Madyan",
+        "title": "Mengurangi Timbangan & Merusak Transaksi",
+        "description": "Penduduk Madyan adalah pedagang yang terbiasa memotong takaran saat menjual dan meminta lebihan saat membeli, serta menyembah pohon rindang (Aikah).",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Seruan Fashahah Nabi Syu'aib",
+        "title": "Mencari Rezeki Halal yang Penuh Berkah",
+        "description": "Syu'aib menegaskan: 'Sisa yang halal dari Allah adalah lebih baik bagimu jika kamu orang beriman'. Kaumnya mengejek dengan berkata: 'Apakah shalatmu yang menyuruh kami meninggalkan apa yang disembah nenek moyang kami?'.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Azab Hari yang Menaungi (Yaumuzh Zhullah)",
+        "title": "Awan Tebal Pembawa Panas Membara",
+        "description": "Setelah mendustakan peringatan, udara menjadi sangat panas membakar. Muncul awan hitam teduh yang mereka kira pelindung, namun dari awan itu turun hujan percikan api disertai gempa hebat yang meratakan perkemahan mereka.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Keadilan Muamalah & Kejujuran Berdagang",
+        "lesson": "Agama Islam tidak memisahkan ibadah ritual dengan kejujuran transaksi ekonomi; menipu takaran adalah dosa besar yang merusak peradaban."
+      },
+      {
+        "title": "Tujuan Dakwah Adalah Melakukan Perbaikan (Ishlah)",
+        "lesson": "Sebagaimana prinsip Nabi Syu'aib: 'Aku tidak bermaksud kecuali mendatangkan perbaikan selama aku sanggup'."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-syuaib-1",
+        "title": "Doa Berserah Diri Demi Menghadirkan Perbaikan",
+        "arabic": "إِنْ أُرِيدُ إِلَّا ٱلْإِصْلَٰحَ مَا ٱسْتَطَعْتُ ۚ وَمَا تَوْفِيقِىٓ إِلَّا بِٱللَّهِ ۚ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ أُنِيبُ",
+        "latin": "In uriidu illal-ishlaaha mastatha'tu, wa maa taufiiqii illaa billaah, 'alaihi tawakkaltu wa ilaihi uniib.",
+        "translation": "Aku tidak bermaksud kecuali (mendatangkan) perbaikan selama aku masih berkesanggupan. Dan tidak ada taufik bagiku melainkan dengan (pertolongan) Allah. Hanya kepada Allah aku bertawakkal dan hanya kepada-Nya-lah aku kembali.",
+        "surahId": 11,
+        "ayahNumber": 88,
+        "reference": "QS. Hud [11]: 88"
+      },
+      {
+        "id": "dua-syuaib-2",
+        "title": "Doa Memohon Keputusan Keadilan antara Kebenaran dan Kebatilan",
+        "arabic": "رَبَّنَا ٱفْتَحْ بَيْنَنَا وَبَيْنَ قَوْمِنَا بِٱلْحَقِّ وَأَنتَ خَيْرُ ٱلْفَٰتِحِينَ",
+        "latin": "Rabbanāftah bainanaa wa baina qawminaa bil-haqqi wa Anta khairul faatihiin.",
+        "translation": "Ya Tuhan kami, berilah keputusan antara kami dan kaum kami dengan hak (adil) dan Engkaulah Pemberi keputusan yang sebaik-baiknya.",
+        "surahId": 7,
+        "ayahNumber": 89,
+        "reference": "QS. Al-A'raf [7]: 89"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 7,
+        "surahName": "Al-A'raf",
+        "ayahStart": 85,
+        "ayahEnd": 93,
+        "topic": "Larangan mengurangi timbangan dan peringatan gempa bagi pembangkang"
+      },
+      {
+        "surahId": 11,
+        "surahName": "Hud",
+        "ayahStart": 84,
+        "ayahEnd": 95,
+        "topic": "Dialog mendalam tentang etika bisnis, taufik Allah, dan azab Yaumuzh Zhullah"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "slug": "musa",
+    "name": "Musa AS",
+    "arabicName": "مُوسَىٰ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Kalimullah & Ulul Azmi (Pembebas Bani Israil dari Tirani Fir'aun)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": true,
+    "period": "~1500 SM",
+    "region": "Mesir Kuno, Bukit Thursina, Padang Tiih",
+    "people": "Fir'aun, Haman, Qarun, dan Kaum Bani Israil",
+    "mentionsInQuran": 136,
+    "summary": "Nabi Musa AS adalah nabi yang paling banyak dikisahkan dalam Al-Qur'an. Dihanyutkan di Sungai Nil saat bayi, diasuh di istana Fir'aun, berbicara langsung dengan Allah di Lembah Thuwa, membelah Laut Merah dengan tongkatnya, dan menerima Kitab Taurat di Thursina.",
+    "relatedSurahIds": [
+      20,
+      28,
+      7,
+      26,
+      2
+    ],
+    "timeline": [
+      {
+        "phase": "Bayi dalam Peti di Sungai Nil",
+        "title": "Tawakkal Sang Ibu & Pengasuhan Istana",
+        "description": "Di tengah maklumat Fir'aun membunuh setiap bayi lelaki Bani Israil, ibu Musa menghanyutkannya di Sungai Nil. Peti tersebut diambil oleh Asiyah, istri Fir'aun yang beriman, dan Musa dikembalikan ke pangkuan ibunya untuk disusui.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Panggilan Lembah Suci Thuwa",
+        "title": "Api di Bukit Thursina & Amanah Menghadapi Diktator",
+        "description": "Sepulang dari Madyan, Musa melihat api di lembah Thursina. Allah berfirman langsung kepadanya, memberkahi tongkat mukjizatnya, dan memerintahkannya mendatangi Fir'aun yang melampaui batas.",
+        "readingMinutes": 5
+      },
+      {
+        "phase": "Terbelahnya Laut Merah & Taurat",
+        "title": "Tenggelamnya Pasukan Fir'aun & Ujian Padang Tiih",
+        "description": "Terkepung antara laut dan pasukan Fir'aun, Musa memukulkan tongkatnya hingga laut terbelah menjadi dinding air kokoh. Bani Israil selamat sementara Fir'aun tenggelam. Musa kemudian bermunajat 40 malam menerima lembaran Taurat.",
+        "readingMinutes": 5
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Keberanian Menyuarakan Kebenaran di Depan Tirani",
+        "lesson": "Musa berhadapan dengan penguasa paling kejam bersenjatakan doa kelapangan dada dan keyakinan bahwa Allah selalu bersamanya."
+      },
+      {
+        "title": "Pertolongan Allah Datang di Saat Paling Kritis",
+        "lesson": "Ketika kaumnya panik mengira akan tertangkap di tepi laut, Musa menegaskan: 'Sekali-kali tidak! Sesungguhnya Tuhanku bersamaku, Dia akan memberi petunjuk kepadaku'."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-musa-1",
+        "title": "Doa Kelapangan Dada, Kemudahan Urusan & Kelancaran Lisan",
+        "arabic": "رَبِّ ٱشْرَحْ لِى صَدْرِى ۝ وَيَسِّرْ لِىٓ أَمْرِى ۝ وَٱحْلُلْ عُقْدَةًۭ مِّن لِّسَانِى ۝ يَفْقَهُوا۟ قَوْلِى",
+        "latin": "Rabbisy-rah lii shadrii, wa yassir lii amrii, wahlul 'uqdatam mil-lisaanii, yafqahuu qawlii.",
+        "translation": "Ya Tuhanku, lapangkanlah untukku dadaku, dan mudahkanlah untukku urusanku, dan lepaskanlah kekakuan dari lidahku, supaya mereka mengerti perkataanku.",
+        "surahId": 20,
+        "ayahNumber": 25,
+        "reference": "QS. Thaha [20]: 25-28"
+      },
+      {
+        "id": "dua-musa-2",
+        "title": "Doa Pengakuan Kebutuhan Mutlak Terhadap Kebaikan dari Allah",
+        "arabic": "رَبِّ إِنِّى لِمَآ أَنزَلْتَ إِلَىَّ مِنْ خَيْرٍۢ فَقِيرٌۭ",
+        "latin": "Rabbi innii limaa anzalta ilayya min khairin faqiir.",
+        "translation": "Ya Tuhanku sesungguhnya aku sangat memerlukan sesuatu kebaikan yang Engkau turunkan kepadaku.",
+        "surahId": 28,
+        "ayahNumber": 24,
+        "reference": "QS. Al-Qashash [28]: 24"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 20,
+        "surahName": "Thaha",
+        "ayahStart": 9,
+        "ayahEnd": 98,
+        "topic": "Panggilan bukit Thursina, mukjizat tongkat, dan pertarungan melawan penyihir Fir'aun"
+      },
+      {
+        "surahId": 28,
+        "surahName": "Al-Qashash",
+        "ayahStart": 3,
+        "ayahEnd": 43,
+        "topic": "Kisah masa kecil Musa, hijrah ke Madyan, dan kemenangan atas Fir'aun"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "slug": "harun",
+    "name": "Harun AS",
+    "arabicName": "هَٰرُونُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Wazirun Naashih (Pendamping Kalimullah yang Fasih & Lembut)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1500 SM",
+    "region": "Mesir & Semenanjung Sinai",
+    "people": "Bani Israil & Fir'aun",
+    "mentionsInQuran": 20,
+    "summary": "Nabi Harun AS adalah kakak kandung Nabi Musa yang diangkat menjadi nabi atas permohonan Musa sendiri. Beliau dikaruniai kelancaran lisan yang fasih, kelembutan tutur kata dalam melunakkan hati Fir'aun, serta kesabaran menjaga Bani Israil saat Musa bermunajat di Bukit Sinai.",
+    "relatedSurahIds": [
+      20,
+      26,
+      28,
+      7
+    ],
+    "timeline": [
+      {
+        "phase": "Diangkat Menjadi Mitra Dakwah",
+        "title": "Permohonan Musa di Hadapan Allah",
+        "description": "Musa memohon kepada Allah agar Harun dijadikan wazir (pendamping) karena kefasihan lisannya untuk memperkuat dakwah menghadapi Fir'aun.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Menyampaikan Seruan kepada Fir'aun",
+        "title": "Perkataan yang Lemah Lembut (Qawlan Layyina)",
+        "description": "Musa dan Harun bersama-sama mendatangi istana Fir'aun membawa titah Allah dengan adab tutur kata santun agar Fir'aun tergerak untuk ingat atau merasa takut.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Menghadapi Fitnah Patung Samiri",
+        "title": "Mencegah Perpecahan Kaum",
+        "description": "Saat Musa naik ke bukit Thursina, Samiri membuat patung anak sapi emas. Harun berupaya keras mencegah kaumnya menyembah patung tersebut seraya menjaga agar umat tidak terbelah berkeping-keping.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Pentingnya Kerjasama & Saling Menguatkan dalam Kebaikan",
+        "lesson": "Dakwah besar membutuhkan sinergi dan mitra yang saling melengkapi kekurangan, sebagaimana Musa dan Harun."
+      },
+      {
+        "title": "Menjaga Persatuan Umat dari Perpecahan",
+        "lesson": "Sikap bijak Harun mengutamakan keutuhan persaudaraan menunjukkan betapa mahalnya nilai persatuan umat di hadapan fitnah."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-harun-1",
+        "title": "Doa Permohonan Ampun untuk Diri dan Saudara Kandung",
+        "arabic": "قَالَ رَبِّ ٱغْفِرْ لِى وَلِأَخِى وَأَدْخِلْنَا فِى رَحْمَتِكَ ۖ وَأَنتَ أَرْحَمُ ٱلرَّٰحِمِينَ",
+        "latin": "Qaala Rabbigh-fir lii wa li-akhii wa adkhilnaa fii rahmatika wa Anta Arhamur-Raahimiin.",
+        "translation": "Musa berdoa: 'Ya Tuhanku, ampunilah aku dan saudaraku dan masukkanlah kami ke dalam rahmat Engkau, dan Engkau adalah Maha Penyayang di antara semua penyayang.'",
+        "surahId": 7,
+        "ayahNumber": 151,
+        "reference": "QS. Al-A'raf [7]: 151"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 20,
+        "surahName": "Thaha",
+        "ayahStart": 29,
+        "ayahEnd": 36,
+        "topic": "Pengangkatan Harun sebagai nabi dan mitra dakwah Nabi Musa"
+      },
+      {
+        "surahId": 7,
+        "surahName": "Al-A'raf",
+        "ayahStart": 142,
+        "ayahEnd": 151,
+        "topic": "Amanah kepemimpinan Harun dan penolakan terhadap penyembahan anak sapi"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "slug": "dzulkifli",
+    "name": "Dzulkifli AS",
+    "arabicName": "ذُو ٱلْكِفْلِ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Penepati Janji Adil & Hakim yang Sabar",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1400 SM",
+    "region": "Damaskus & Syam",
+    "people": "Masyarakat Syam & Bani Israil",
+    "mentionsInQuran": 2,
+    "summary": "Nabi Dzulkifli AS dikenal sebagai hamba Allah yang sanggup memenuhi janji berat: berpuasa di siang hari, beribadah sepanjang malam, dan memutuskan perkara rakyat dengan adil tanpa pernah marah. Beliau dipuji Al-Qur'an bersama orang-orang yang teguh bersabar.",
+    "relatedSurahIds": [
+      21,
+      38
+    ],
+    "timeline": [
+      {
+        "phase": "Kesanggupan Memikul Amanah Kepemimpinan",
+        "title": "Syarat Ketat Menjadi Pengganti Raja",
+        "description": "Seorang raja saleh mencari pengganti dengan syarat sanggup puasa siang hari, shalat malam, dan menahan amarah saat mengadili perkara. Dzulkifli satu-satunya yang menyanggupi amanah tersebut.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Ujian Godaan Menahan Emosi",
+        "title": "Godaan Iblis yang Menyamar Jadi Pengadu",
+        "description": "Iblis mencoba memancing amarah Dzulkifli dengan bolak-balik mengadu perkara sepele di saat beliau hendak istirahat. Namun Dzulkifli tetap menyambutnya dengan senyum tenang dan memutuskan perkaranya.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Pujian Kehormatan di Sisi Allah",
+        "title": "Termasuk Orang-Orang Pilihan Terbaik (Al-Akhyar)",
+        "description": "Allah mengabadikan nama Dzulkifli di dalam Al-Qur'an sebagai insan yang sabar, saleh, dan termasuk hamba-hamba terbaik pilihan-Nya.",
+        "readingMinutes": 3
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Kekuatan Mengendalikan Diri dari Amarah",
+        "lesson": "Puncak kekuatan pemimpin sejati bukan terletak pada kekuasaan atau senjata, melainkan pada kemampuannya menahan hawa nafsu dan amarah."
+      },
+      {
+        "title": "Menepati Komitmen Integritas",
+        "lesson": "Dzulkifli membuktikan bahwa janji kepemimpinan yang telah diucapkan harus ditunaikan hingga akhir tanpa kompromi keadilan."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-dzulkifli-1",
+        "title": "Doa Memohon Naungan Rahmat Golongan Orang Saleh",
+        "arabic": "وَٱذْكُرْ إِسْمَٰعِيلَ وَٱلْيَسَعَ وَذَا ٱلْكِفْلِ ۖ وَكُلٌّۭ مِّنَ ٱلْأَخْيَارِ",
+        "latin": "Wadzkur ismaa'iila wal-yasa'a wa dzal-kifli, wa kullum minal akhyaar.",
+        "translation": "Dan ingatlah akan Ismail, Ilyasa' dan Zulkifli. Semuanya termasuk orang-orang yang paling baik.",
+        "surahId": 38,
+        "ayahNumber": 48,
+        "reference": "QS. Shad [38]: 48"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 21,
+        "surahName": "Al-Anbiya'",
+        "ayahStart": 85,
+        "ayahEnd": 86,
+        "topic": "Keteladanan kesabaran Dzulkifli dan naungan rahmat orang saleh"
+      },
+      {
+        "surahId": 38,
+        "surahName": "Shad",
+        "ayahStart": 48,
+        "ayahEnd": 48,
+        "topic": "Pujian sebagai salah satu hamba terbaik di sisi Allah"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "slug": "daud",
+    "name": "Daud AS",
+    "arabicName": "دَاوُۥدُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Raja Berhati Lembut Penerima Kitab Zabur & Penakluk Jalut",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1000 SM",
+    "region": "Baitul Maqdis (Yerusalem, Palestina)",
+    "people": "Bani Israil & Pasukan Jalut",
+    "mentionsInQuran": 16,
+    "summary": "Nabi Daud AS adalah pemuda pemberani yang menumbangkan raksasa Jalut, diangkat menjadi raja adil Bani Israil, dan diturunkan kepadanya Kitab Zabur. Allah menundukkan gunung dan burung untuk bertasbih bersamanya, serta melunakkan besi cadas di tangannya.",
+    "relatedSurahIds": [
+      2,
+      38,
+      34,
+      21
+    ],
+    "timeline": [
+      {
+        "phase": "Keberanian Melawan Jalut",
+        "title": "Batu Ketapel Menumbangkan Sang Raksasa",
+        "description": "Tatkala pasukan Thalut gentar melihat keganasan Jalut, Daud muda maju dengan bekal keimanan dan melontarkan batu ketapel yang tepat menumbangkan Jalut.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Suara Merdu Zabur & Tasbih Alam",
+        "title": "Gunung & Burung Ikut Bertasbih",
+        "description": "Allah menganugerahi Daud suara terindah. Ketika beliau membaca Zabur, gunung-gunung dan burung-burung di angkasa berhenti terbang untuk ikut bertasbih bersama suaranya.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Mukjizat Melunakkan Besi & Baju Zirah",
+        "title": "Kemandirian Bekerja dari Hasil Keringat Sendiri",
+        "description": "Allah melunakkan besi bagi Daud tanpa perlu api tempaan. Beliau membuat baju besi pelindung dan membiayai kehidupannya dari hasil kerajinan tangannya sendiri tanpa mengambil kas negara.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Ibadah Shalat & Puasa Paling Dicintai Allah",
+        "lesson": "Rasulullah SAW memuji puasa Daud (sehari puasa, sehari tidak) dan shalat malamnya sebagai ritme ibadah yang paling adil bagi hak tubuh dan jiwa."
+      },
+      {
+        "title": "Kemandirian Harta Pemimpin",
+        "lesson": "Meskipun seorang raja agung, Daud tetap makan dari hasil kerja tangannya sendiri, mencontohkan etos kerja mulia."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-daud-1",
+        "title": "Doa Memohon Ketabahan dan Kemenangan Melawan Tirani",
+        "arabic": "رَبَّنَآ أَفْرِغْ عَلَيْنَا صَبْرًۭا وَثَبِّتْ أَقْدَامَنَا وَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ",
+        "latin": "Rabbanaa afrigh 'alainaa shabraw wa tsabbit aqdaamanaa wansurnaa 'alal-qawmil kaafiriin.",
+        "translation": "Ya Tuhan kami, tuangkanlah kesabaran atas diri kami, dan kokohkanlah pendirian kami dan tolonglah kami terhadap orang-orang kafir.",
+        "surahId": 2,
+        "ayahNumber": 250,
+        "reference": "QS. Al-Baqarah [2]: 250"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 2,
+        "surahName": "Al-Baqarah",
+        "ayahStart": 249,
+        "ayahEnd": 251,
+        "topic": "Kemenangan Daud membunuh Jalut dan penganugerahan kerajaan serta hikmah"
+      },
+      {
+        "surahId": 34,
+        "surahName": "Saba'",
+        "ayahStart": 10,
+        "ayahEnd": 11,
+        "topic": "Penundukan gunung dan pelunakan besi untuk membuat baju zirah"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "slug": "sulaiman",
+    "name": "Sulaiman AS",
+    "arabicName": "سُلَيْمَٰنُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Raja Teragung Penakluk Angin & Bangsa Jin",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~950 SM",
+    "region": "Yerusalem (Palestina) & Yaman",
+    "people": "Bani Israil & Ratu Bilqis (Kerajaan Saba')",
+    "mentionsInQuran": 17,
+    "summary": "Nabi Sulaiman AS adalah putra Nabi Daud yang mewarisi kerajaan tak tertandingi sepanjang sejarah. Beliau memahami bahasa binatang, menundukkan angin kencang sebagai kendaraan, memimpin pasukan manusia, jin, dan burung, namun senantiasa tunduk bersyukur di hadapan Allah SWT.",
+    "relatedSurahIds": [
+      27,
+      34,
+      38,
+      21
+    ],
+    "timeline": [
+      {
+        "phase": "Kebijaksanaan Memutuskan Perkara",
+        "title": "Warisan Hikmah dari Sang Ayah Daud",
+        "description": "Sejak muda Sulaiman menunjukkan kecerdasan luar biasa dalam memutuskan sengketa tanaman yang dirusak ternak dan perselisihan bayi antara dua ibu.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Menundukkan Jin, Angin & Bahasa Semut",
+        "title": "Mendengar Percakapan Ratu Semut",
+        "description": "Saat melintasi lembah semut, Sulaiman tersenyum mendengar peringatan ratu semut kepada kawanannya agar masuk ke sarang supaya tidak terinjak. Beliau langsung berdoa memohon dijadikan hamba yang bersyukur.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Surat Dakwah kepada Ratu Bilqis",
+        "title": "Memindahkan Singgasana Saba' dalam Sekejap Mata",
+        "description": "Burung Hud-hud mengabarkan negeri Saba' penyembah matahari. Sulaiman mengirim surat dakwah diawali Bismillah, dan memindahkan singgasana Bilqis sebelum matanya berkedip, hingga sang ratu memeluk Islam.",
+        "readingMinutes": 5
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Kekayaan Melimpah Tak Melalaikan dari Rasa Syukur",
+        "lesson": "Pernyataan masyhur Sulaiman: 'Ini adalah karunia Tuhanku untuk mengujiku apakah aku bersyukur atau kufur', menjadi obat penawar kesombongan materi."
+      },
+      {
+        "title": "Kasih Sayang Terhadap Makhluk Terkecil",
+        "lesson": "Raja terhebat di dunia rela menghentikan langkah bala tentaranya demi menyelamatkan rombongan semut kecil di atas tanah."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-sulaiman-1",
+        "title": "Doa Syukur Mendalam atas Nikmat & Memohon Dimasukkan Golongan Hamba Saleh",
+        "arabic": "رَبِّ أَوْزِعْنِىٓ أَنْ أَشْكُرَ نِعْمَتَكَ ٱلَّتِىٓ أَنْعَمْتَ عَلَىَّ وَعَلَىٰ وَٰلِدَىَّ وَأَنْ أَعْمَلَ صَٰلِحًۭا تَرْضَىٰهُ وَأَدْخِلْنِى بِرَحْمَتِكَ فِى عِبَادِكَ ٱلصَّٰلِحِينَ",
+        "latin": "Rabbi awzi'nii an asykura ni'matakal-latii an'amta 'alayya wa 'alaa waalidayya wa an a'mala shaalihan tardhaahu wa adkhilnii birahmatika fii 'ibaadikash-shaalihiin.",
+        "translation": "Ya Tuhanku berilah aku ilham untuk tetap mensyukuri nikmat Mu yang telah Engkau anugerahkan kepadaku dan kepada dua orang ibu bapakku dan untuk mengerjakan amal saleh yang Engkau ridhai; dan masukkanlah aku dengan rahmat-Mu ke dalam golongan hamba-hamba-Mu yang saleh.",
+        "surahId": 27,
+        "ayahNumber": 19,
+        "reference": "QS. An-Naml [27]: 19"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 27,
+        "surahName": "An-Naml",
+        "ayahStart": 15,
+        "ayahEnd": 44,
+        "topic": "Lembah semut, laporan burung Hud-hud, dan keislaman Ratu Bilqis"
+      },
+      {
+        "surahId": 38,
+        "surahName": "Shad",
+        "ayahStart": 30,
+        "ayahEnd": 40,
+        "topic": "Pemeriksaan kuda perang, doa kerajaan tak tertandingi, dan angin penakluk"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "slug": "ilyas",
+    "name": "Ilyas AS",
+    "arabicName": "إِلْيَاسُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Penentang Berhala Ba'al yang Pemberani",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~850 SM",
+    "region": "Ba'albek (Lebanon & Palestina)",
+    "people": "Penduduk Ba'albek Penyembah Berhala Ba'al",
+    "mentionsInQuran": 2,
+    "summary": "Nabi Ilyas AS diutus membimbing kaumnya yang terbuai menyembah patung berhala emas bernama Ba'al. Beliau memperingatkan mereka tentang Hari Pembalasan dan bahaya meninggalkan Sang Pencipta yang sebaik-baiknya.",
+    "relatedSurahIds": [
+      37,
+      6
+    ],
+    "timeline": [
+      {
+        "phase": "Penyembahan Berhala Ba'al",
+        "title": "Meninggalkan Sang Pencipta Sejati",
+        "description": "Kaum Ba'albek membangun patung emas setinggi puluhan meter. Ilyas menegur mereka: 'Patutkah kamu menyembah Ba'al dan meninggalkan sebaik-baik Pencipta?'.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Kemarau Panjang & Bukti Doa",
+        "title": "Azab Kekeringan Menyadarkan Hati",
+        "description": "Akibat penolakan kaumnya, kekeringan melanda negeri tersebut selama bertahun-tahun hingga mereka memohon doa Ilyas untuk menurunkan hujan yang menyuburkan kembali bumi.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Pemberian Salam Kehormatan dari Langit",
+        "title": "Salamun 'Alaa Il-Yaasiin",
+        "description": "Allah mengabadikan pujian bagi Nabi Ilyas di dalam Al-Qur'an dengan ucapan salam sejahtera bagi hamba-hamba-Nya yang beriman dan berbuat ihsan.",
+        "readingMinutes": 3
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Ketegasan Memurnikan Akidah dari Syirik",
+        "lesson": "Ilyas mengajarkan bahwa kemewahan materi dan tradisi nenek moyang tidak boleh dijadikan pembenaran untuk menyembah selain Allah SWT."
+      },
+      {
+        "title": "Pahala Orang-Orang Muhsinin Bersifat Abadi",
+        "lesson": "Pujian Allah 'Salamun 'ala Il-Yaasiin' menjadi bukti bahwa kebaikan orang saleh akan selalu dikenang dan didoakan melintasi zaman."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-ilyas-1",
+        "title": "Doa Memurnikan Ibadah Hanya Kepada Allah Penguasa Semesta",
+        "arabic": "أَتَدْعُونَ بَعْلًۭا وَتَذَرُونَ أَحْسَنَ ٱلْخَٰلِقِينَ ۝ ٱللَّهَ رَبَّكُمْ وَرَبَّ ءَابَآئِكُمُ ٱلْأَوَّلِينَ",
+        "latin": "Atad'uuna ba'law wa tadzaruuna ahsanal khaaliqiin. Allaaha Rabbakum wa Rabba aabaaa-ikumul awwaliin.",
+        "translation": "Patutkah kamu menyembah Ba'al dan kamu tinggalkan sebaik-baik Pencipta? (Yaitu) Allah Tuhanmu dan Tuhan bapak-bapakmu yang terdahulu.",
+        "surahId": 37,
+        "ayahNumber": 125,
+        "reference": "QS. Ash-Shaffat [37]: 125-126"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 37,
+        "surahName": "Ash-Shaffat",
+        "ayahStart": 123,
+        "ayahEnd": 132,
+        "topic": "Teguran terhadap penyembahan berhala Ba'al dan salam sejahtera bagi keluarga Ilyasin"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "slug": "ilyasa",
+    "name": "Ilyasa' AS",
+    "arabicName": "ٱلْيَسَعُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Penerus Cahaya Kenabian yang Saleh & Istiqamah",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~800 SM",
+    "region": "Syam & Palestina",
+    "people": "Bani Israil Pasca-Ilyas",
+    "mentionsInQuran": 2,
+    "summary": "Nabi Ilyasa' AS adalah murid setia sekaligus penerus perjuangan Nabi Ilyas AS. Beliau melanjutkan dakwah tauhid kepada Bani Israil dengan kesabaran, kezuhudan, dan kepemimpinan moral yang kokoh.",
+    "relatedSurahIds": [
+      6,
+      38
+    ],
+    "timeline": [
+      {
+        "phase": "Menemani Dakwah Nabi Ilyas",
+        "title": "Murid Setia dalam Suka dan Duka",
+        "description": "Ilyasa' muda menderita sakit lalu disembuhkan berkat doa Nabi Ilyas. Sejak saat itu beliau mendampingi sang guru menyebarkan ajaran tauhid ke berbagai pelosok Syam.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Melanjutkan Kepemimpinan Rohani",
+        "title": "Menjaga Bani Israil Tetap di Jalan Taurat",
+        "description": "Sepeninggal Ilyas, Ilyasa' memegang tampuk kepemimpinan spiritual Bani Israil, membimbing mereka agar tidak kembali terperosok ke dalam pemujaan berhala.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Pujian Al-Qur'an",
+        "title": "Dimuliakan di Atas Umat pada Zamannya",
+        "description": "Allah menyebut nama Ilyasa' di dalam Al-Qur'an sebagai insan yang diutamakan derajatnya bersama hamba-hamba saleh pilihan-Nya.",
+        "readingMinutes": 3
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Estafet Kebaikan & Loyalitas pada Guru",
+        "lesson": "Keberhasilan Ilyasa' melanjutkan dakwah mengajarkan pentingnya regenerasi dan ketekunan menyerap ilmu dari ulama dan guru yang berilmu."
+      },
+      {
+        "title": "Keutamaan Sikap Rendah Hati & Zuhud",
+        "lesson": "Walaupun memiliki pengaruh besar di tengah masyarakat, Ilyasa' senantiasa bersikap sederhana dan menjaga hatinya hanya untuk Allah."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-ilyasa-1",
+        "title": "Doa Permohonan Dimasukkan Golongan Hamba yang Beruntung",
+        "arabic": "وَإِسْمَٰعِيلَ وَٱلْيَسَعَ وَيُونُسَ وَلُوطًۭا ۚ وَكُلًّۭا فَضَّلْنَا عَلَى ٱلْعَٰلَمِينَ",
+        "latin": "Wa ismaa'iila wal-yasa'a wa yoonusa wa luuthaa, wa kullan fadh-dhalnaa 'alal 'aalamiin.",
+        "translation": "Dan Ismail, Alyasa', Yunus dan Luth. Masing-masing Kami lebihkan derajatnya di atas umat (pada masanya).",
+        "surahId": 6,
+        "ayahNumber": 86,
+        "reference": "QS. Al-An'am [6]: 86"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 6,
+        "surahName": "Al-An'am",
+        "ayahStart": 86,
+        "ayahEnd": 87,
+        "topic": "Penyebutan Ilyasa' di antara para nabi yang diutamakan derajatnya"
+      },
+      {
+        "surahId": 38,
+        "surahName": "Shad",
+        "ayahStart": 48,
+        "ayahEnd": 48,
+        "topic": "Pujian sebagai salah satu hamba pilihan yang paling baik"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "slug": "yunus",
+    "name": "Yunus AS",
+    "arabicName": "يُونُسُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Dzun Nun & Shahibul Huut (Pemilik Doa Mustajab di Perut Ikan)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~750 SM",
+    "region": "Ninawa (Mosul, Irak Utara) & Laut Tengah",
+    "people": "Penduduk Negeri Ninawa (~100.000 jiwa)",
+    "mentionsInQuran": 5,
+    "summary": "Nabi Yunus AS (Dzun Nun) diutus kepada penduduk Ninawa. Sempat beranjak meninggalkan kaumnya karena kesal dakwahnya ditolak, beliau dilempar dari kapal di tengah badai dan ditelan ikan nun besar. Di dalam tiga kegelapan, doa taubatnya yang tulus menggetarkan Arasy hingga Allah menyelamatkannya.",
+    "relatedSurahIds": [
+      21,
+      37,
+      10,
+      68
+    ],
+    "timeline": [
+      {
+        "phase": "Kepergian dari Ninawa",
+        "title": "Rasa Kecewa & Menumpang Kapal Sarat Muatan",
+        "description": "Setelah puluhan tahun berdakwah tanpa hasil banyak, Yunus pergi dengan rasa sesak dada. Kapal yang ditumpanginya oleng dihempas ombak badai dan undian jatuh pada namanya untuk melompat ke laut.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Di Dalam Tiga Kegelapan",
+        "title": "Malam, Lautan Dalam, dan Perut Ikan Nun",
+        "description": "Seekor paus besar menelannya tanpa melukai tulangnya. Di tengah kegelapan total, Yunus mendengar kerikil laut bertasbih. Beliau tersungkur mengucap doa agung: 'Laa ilaaha illaa Anta subhaanaka inni kuntu minazh-zhaalimiin'.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Terdampar di Pantai & Tumbuhnya Pohon Yaqthin",
+        "title": "Kembalinya 100.000 Kaum yang Bertaubat",
+        "description": "Allah memerintahkan ikan memuntahkan Yunus di pantai tandus. Allah menumbuhkan pohon labu (Yaqthin) untuk memayunginya. Sepulangnya ke Ninawa, kaumnya telah bertaubat serempak dan beriman kepada Allah.",
+        "readingMinutes": 5
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Kekuatan Pengakuan Dosa & Tahlil di Saat Kritis",
+        "lesson": "Rasulullah SAW bersabda bahwa tidak ada seorang muslim pun yang tertimpa kesulitan lalu berdoa dengan doa Nabi Yunus melainkan Allah pasti mengabulkannya."
+      },
+      {
+        "title": "Jangan Tergesa-gesa Putus Asa dalam Berbuat Baik",
+        "lesson": "Yunus belajar bahwa kesabaran mengemban amanah tidak boleh dihentikan hanya karena kelelahan emosional sebelum ada izin dari Allah."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-yunus-1",
+        "title": "Doa Dzun Nun di Dalam Kegelapan Perut Ikan (Pelepas Segala Kesempitan)",
+        "arabic": "لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبْحَٰنَكَ إِنِّى كُنتُ مِنَ ٱلظَّٰلِمِينَ",
+        "latin": "Laa ilaaha illaa Anta, subhaanaka innii kuntu minazh-zhaalimiin.",
+        "translation": "Tidak ada Tuhan selain Engkau. Maha Suci Engkau, sesungguhnya aku adalah termasuk orang-orang yang zalim.",
+        "surahId": 21,
+        "ayahNumber": 87,
+        "reference": "QS. Al-Anbiya' [21]: 87"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 21,
+        "surahName": "Al-Anbiya'",
+        "ayahStart": 87,
+        "ayahEnd": 88,
+        "topic": "Doa dalam perut ikan dan janji penyelamatan bagi orang-orang beriman"
+      },
+      {
+        "surahId": 37,
+        "surahName": "Ash-Shaffat",
+        "ayahStart": 139,
+        "ayahEnd": 148,
+        "topic": "Peristiwa undian di kapal, ditelan ikan, dan tumbuhnya pohon Yaqthin"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "slug": "zakariya",
+    "name": "Zakariya AS",
+    "arabicName": "زَكَرِيَّآءُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Pelindung Mihrab & Pemohon Keturunan Suci di Usia Senja",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~100 SM",
+    "region": "Baitul Maqdis (Yerusalem, Palestina)",
+    "people": "Bani Israil & Para Pengurus Haikal",
+    "mentionsInQuran": 7,
+    "summary": "Nabi Zakariya AS adalah nabi dan ulama penjaga Baitul Maqdis serta pemelihara Sayyidah Maryam. Di usianya yang telah sangat uzur dengan rambut memutih dan tulang rapuh, beliau memanjatkan doa bisikan lembut memohon pewaris agama, hingga Allah menganugerahkan Nabi Yahya AS.",
+    "relatedSurahIds": [
+      19,
+      3,
+      21
+    ],
+    "timeline": [
+      {
+        "phase": "Merawat Maryam di Mihrab",
+        "title": "Menyaksikan Rezeki Buah di Luar Musim",
+        "description": "Setiap kali Zakariya masuk ke mihrab Maryam, beliau menemukan buah-buahan musim dingin di musim panas. Maryam menjawab: 'Ini dari sisi Allah'. Hal ini membangkitkan harapan Zakariya untuk memohon keturunan.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Bisikan Doa Santun di Keheningan Malam",
+        "title": "Tulang Rapuh & Kepala Dipenuhi Uban",
+        "description": "Zakariya berdoa lirih agar dikaruniai putra yang melanjutkan risalah tauhid keluarga Ya'qub. Malaikat datang membawa kabar gembira tentang lahirnya seorang putra bernama Yahya, nama yang belum pernah ada sebelumnya.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Tanda Tiga Hari Berisyarat",
+        "title": "Memperbanyak Tasbih Pagi dan Petang",
+        "description": "Sebagai tanda kehamilan istrinya yang mandul, Zakariya tidak dapat berbicara kepada manusia selama tiga hari selain dengan isyarat tangan, dan diperintahkan terus bertasbih mengagungkan Allah.",
+        "readingMinutes": 3
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Tiada Batas Usia untuk Berharap pada Rahmat Allah",
+        "lesson": "Kondisi fisik lansia dan kemandulan medis bukanlah penghalang bagi terkabulnya doa jika Allah menghendaki mukjizat terjadi."
+      },
+      {
+        "title": "Niat Memiliki Anak Demi Melanjutkan Agama",
+        "lesson": "Permohonan keturunan Zakariya bukan untuk prestise dunia, melainkan melahirkan generasi yang mewarisi perjuangan iman dan dakwah."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-zakariya-1",
+        "title": "Doa Lembut Memohon Keturunan yang Saleh & Pewaris Dakwah",
+        "arabic": "رَبِّ إِنِّى وَهَنَ ٱلْعَظْمُ مِنِّى وَٱشْتَعَلَ ٱلرَّأْسُ شَيْبًۭا وَلَمْ أَكُنۢ بِدُعَآئِكَ رَبِّ شَقِيًّۭا ۝ فَهَبْ لِى مِن لَّدُنكَ وَلِيًّۭا",
+        "latin": "Rabbi innii wahanal-'azhmu minnii wasyta'alar-ra'su syaibaw wa lam akum bidu'aa-ika Rabbi syaqiyyaa. Fahab lii mil ladunka waliyyaa.",
+        "translation": "Ya Tuhanku, sesungguhnya tulangku telah lemah dan kepalaku telah ditumbuhi uban, dan aku belum pernah kecewa dalam berdoa kepada Engkau, ya Tuhanku... maka anugerahilah aku dari sisi Engkau seorang putera yang akan mewarisi aku.",
+        "surahId": 19,
+        "ayahNumber": 4,
+        "reference": "QS. Maryam [19]: 4-5"
+      },
+      {
+        "id": "dua-zakariya-2",
+        "title": "Doa Permohonan Agar Tidak Dibiarkan Hidup Sebatang Kara",
+        "arabic": "رَبِّ لَا تَذَرْنِى فَرْدًۭا وَأَنتَ خَيْرُ ٱلْوَٰرِثِينَ",
+        "latin": "Rabbi laa tadzarnii fardaw wa Anta khairul waaritsiin.",
+        "translation": "Ya Tuhanku janganlah Engkau membiarkan aku hidup seorang diri dan Engkaulah Waris Yang Paling Baik.",
+        "surahId": 21,
+        "ayahNumber": 89,
+        "reference": "QS. Al-Anbiya' [21]: 89"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 19,
+        "surahName": "Maryam",
+        "ayahStart": 1,
+        "ayahEnd": 11,
+        "topic": "Doa rahasia Zakariya di usia senja dan kabar gembira kelahiran Yahya"
+      },
+      {
+        "surahId": 3,
+        "surahName": "Ali 'Imran",
+        "ayahStart": 37,
+        "ayahEnd": 41,
+        "topic": "Mihrab Maryam dan doa permohonan keturunan yang baik"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "slug": "yahya",
+    "name": "Yahya AS",
+    "arabicName": "يَحْيَىٰ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Al-Hanuun Al-Basyir (Nabi Penuh Kasih, Lembut & Berbakti)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1 Masehi",
+    "region": "Palestina & Lembah Yordan",
+    "people": "Bani Israil & Raja Herodes",
+    "mentionsInQuran": 5,
+    "summary": "Nabi Yahya AS adalah putra Nabi Zakariya yang dianugerahi hikmah kenabian sejak masih kanak-kanak. Beliau hidup zuhud, memiliki rasa kasih sayang mendalam terhadap satwa dan fakir miskin, berbakti kepada orang tua, serta syahid mempertahankan hukum syariat dari kemungkaran penguasa zalim.",
+    "relatedSurahIds": [
+      19,
+      3,
+      21
+    ],
+    "timeline": [
+      {
+        "phase": "Hikmah di Usia Belia",
+        "title": "Memegang Teguh Kitabullah Sejak Kecil",
+        "description": "Ketika diajak anak-anak sebayanya bermain, Yahya kecil menjawab dengan bijak: 'Bukan untuk bermain-main kita diciptakan'. Allah menganugerahkannya pemahaman Taurat sejak dini.",
+        "readingMinutes": 3
+      },
+      {
+        "phase": "Kelembutan Hati & Berbakti pada Orang Tua",
+        "title": "Kasih Sayang Terhadap Seluruh Makhluk",
+        "description": "Yahya dikenal sangat lembut hatinya, sering menangis karena takut kepada Allah, membagikan makanannya kepada hewan liar di gurun, dan tidak pernah berlaku sombong atau durhaka kepada kedua orang tuanya.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Keteguhan Moral & Kesyahidan",
+        "title": "Menentang Pernikahan Terlarang Sang Raja",
+        "description": "Raja Herodes hendak menikahi keponakannya sendiri (Herodias) yang melanggar hukum Taurat. Yahya dengan berani menegur sang raja hingga konspirasi jahat berujung pada penangkapannya dan gugur syahid.",
+        "readingMinutes": 4
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Kedewasaan Spiritual Tidak Ditentukan oleh Usia",
+        "lesson": "Kisah Yahya membuktikan bahwa anak-anak yang dididik dengan Al-Qur'an dan teladan saleh mampu memiliki kematangan berpikir dan integritas di atas rata-rata."
+      },
+      {
+        "title": "Keseimbangan Antara Kelembutan & Ketegasan Hukum",
+        "lesson": "Yahya adalah insan yang sangat berbelas kasih kepada makhluk, namun tak gentar menyuarakan kebenaran saat syariat Allah diinjak-injak penguasa."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-yahya-1",
+        "title": "Salam Keselamatan Tiga Fase Kehidupan Manusia",
+        "arabic": "وَسَلَٰمٌ عَلَيْهِ يَوْمَ وُلِدَ وَيَوْمَ يَمُوتُ وَيَوْمَ يُبْعَثُ حَيًّۭا",
+        "latin": "Wa salaamun 'alaihi yawma wulida wa yawma yamuutu wa yawma yub'atsu hayyaa.",
+        "translation": "Kesejahteraan atas dirinya pada hari ia dilahirkan dan pada hari ia meninggal dan pada hari ia dibangkitkan hidup kembali.",
+        "surahId": 19,
+        "ayahNumber": 15,
+        "reference": "QS. Maryam [19]: 15"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 19,
+        "surahName": "Maryam",
+        "ayahStart": 12,
+        "ayahEnd": 15,
+        "topic": "Perintah memegang teguh Kitab dan karakter kasih sayang, kesucian, serta bakti Yahya"
+      },
+      {
+        "surahId": 3,
+        "surahName": "Ali 'Imran",
+        "ayahStart": 39,
+        "ayahEnd": 39,
+        "topic": "Karakter membenarkan firman Allah, menjadi anutan, dan menjaga diri dari hawa nafsu"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "slug": "isa",
+    "name": "Isa AS",
+    "arabicName": "عِيسَىٰ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Ruhullah, Kalimatullah & Ulul Azmi",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": true,
+    "period": "~1 - 33 Masehi",
+    "region": "Baitul Lahm (Betlehem), Nazaret, Yerusalem",
+    "people": "Bani Israil & Kaum Hawariyyun",
+    "mentionsInQuran": 25,
+    "summary": "Nabi Isa AS adalah putra Sayyidah Maryam yang dilahirkan tanpa perantara ayah sebagai mukjizat agung kekuasaan Allah. Beliau dapat berbicara saat masih di buaian bayi, menyembuhkan orang buta sejak lahir, menghidupkan orang mati dengan izin Allah, membawa Kitab Injil, dan diangkat hidup-hidup ke langit.",
+    "relatedSurahIds": [
+      19,
+      3,
+      5,
+      43
+    ],
+    "timeline": [
+      {
+        "phase": "Kelahiran Mukjizat dari Maryam",
+        "title": "Pohon Kurma & Bayi yang Berbicara di Buaian",
+        "description": "Jibril meniupkan ruh ciptaan Allah ke rahim Maryam yang suci. Di bawah pohon kurma, Maryam melahirkan Isa. Ketika kaumnya menuduh, Isa bayi berbicara membela kesucian ibunya dan menyatakan dirinya hamba Allah yang diberi Kitab Injil.",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Mukjizat Penyembuhan & Hidangan Langit (Al-Ma'idah)",
+        "title": "Menyembuhkan Kusta & Burung dari Tanah Liat",
+        "description": "Dengan izin Allah, Isa meniup burung dari tanah liat hingga hidup, menyembuhkan penyakit sopak, dan menurunkan hidangan makanan dari langit atas permohonan kaum Hawariyyun sebagai hari raya dan tanda kebesaran Ilahi.",
+        "readingMinutes": 5
+      },
+      {
+        "phase": "Kabar Gembira Nabi Ahmad & Diangkat ke Langit",
+        "title": "Bukan Disalib Melainkan Diserupakan & Diangkat Allah",
+        "description": "Isa mengabarkan kedatangan Rasul penutup bernama Ahmad (Muhammad SAW). Ketika orang-orang kafir berencana membunuhnya, Allah menyerupakan Yudas Iskariot dan mengangkat Isa AS hidup-hidup ke hadirat-Nya hingga akhir zaman.",
+        "readingMinutes": 5
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Perumpamaan Penciptaan Isa Seperti Adam",
+        "lesson": "Al-Qur'an menegaskan bahwa menciptakan Isa tanpa ayah sama mudahnya bagi Allah seperti menciptakan Adam tanpa ayah maupun ibu: cukup berfirman 'Kun fa yakun'."
+      },
+      {
+        "title": "Keteguhan Mengakui Kehambaan di Hadapan Allah",
+        "lesson": "Isa AS tidak pernah mengaku sebagai tuhan; perkataan pertamanya di buaian adalah 'Inni 'abdullah' (Sesungguhnya aku adalah hamba Allah)."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-isa-1",
+        "title": "Doa Permohonan Hidangan Berkah dari Langit (Al-Ma'idah)",
+        "arabic": "قَالَ عِيسَى ٱبْنُ مَرْيَمَ ٱللَّهُمَّ رَبَّنَآ أَنزِلْ عَلَيْنَا مَآئِدَةًۭ مِّنَ ٱلسَّمَآءِ تَكُونُ لَنَا عِيدًۭا لِّأَوَّلِنَا وَءَاخِرِنَا وَءَايَةًۭ مِّنكَ ۖ وَٱرْزُقْنَا وَأَنتَ خَيْرُ ٱلرَّٰزِقِينَ",
+        "latin": "Qaala 'Iisab-nu Maryamal-laahumma Rabbanaa anzil 'alainaa maaa-idatam minas-samaaa-i takuunu lanaa 'iidal li-awwalinaa wa aakhirinaa wa aayatam minka warzuqnaa wa Anta khairur-raaziqiin.",
+        "translation": "Isa putera Maryam berdoa: 'Ya Tuhan kami turunkanlah kiranya kepada kami suatu hidangan dari langit (yang hari turunnya) akan menjadi hari raya bagi kami yaitu orang-orang yang bersama kami dan yang datang sesudah kami, dan menjadi tanda bagi kekuasaan Engkau; beri rezekilah kami, dan Engkaulah pemberi rezeki Yang Paling Utama'.",
+        "surahId": 5,
+        "ayahNumber": 114,
+        "reference": "QS. Al-Ma'idah [5]: 114"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 19,
+        "surahName": "Maryam",
+        "ayahStart": 16,
+        "ayahEnd": 36,
+        "topic": "Kisah kehamilan Maryam, kelahiran Isa, dan pernyataan tauhid di buaian bayi"
+      },
+      {
+        "surahId": 5,
+        "surahName": "Al-Ma'idah",
+        "ayahStart": 110,
+        "ayahEnd": 120,
+        "topic": "Daftar mukjizat Nabi Isa dan dialog di hadapan Allah tentang ketauhidan hakiki"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "slug": "muhammad",
+    "name": "Muhammad SAW",
+    "arabicName": "مُحَمَّدٌ صَلَّى ٱللَّهُ عَلَيْهِ وَسَلَّمَ",
+    "title": "Khatamun Nabiyyin, Sayyidul Mursalin & Rahmatan lil 'Alamin",
+    "era": "penutup",
+    "eraLabel": "Era Penutup Kenabian",
+    "isUlulAzmi": true,
+    "period": "571 - 632 Masehi (12 Rabi'ul Awwal)",
+    "region": "Makkah Al-Mukarramah & Madinah Al-Munawwarah",
+    "people": "Seluruh Umat Manusia & Jin (Kaffatan lin-Naas)",
+    "mentionsInQuran": 4,
+    "summary": "Baginda Nabi Muhammad SAW adalah penutup para nabi, rasul teragung, dan rahmat bagi seluruh alam semesta. Lahir sebagai yatim yang terpercaya (Al-Amin), menerima wahyu agung Al-Qur'an di Gua Hira, memimpin hijrah pembangun peradaban Madinah, dan menyempurnakan akhlak mulia kemanusiaan.",
+    "relatedSurahIds": [
+      96,
+      93,
+      94,
+      33,
+      48,
+      47
+    ],
+    "timeline": [
+      {
+        "phase": "Masa Yatim & Gelar Al-Amin",
+        "title": "Masa Kecil di Makkah & Berniaga dengan Kejujuran",
+        "description": "Lahir pada Tahun Gajah dalam keadaan yatim, diasuh kakeknya Abdul Muthalib lalu pamannya Abu Thalib. Kejujuran dan kebersahajaannya membuat masyarakat Makkah menyematkan gelar Al-Amin (Yang Terpercaya).",
+        "readingMinutes": 4
+      },
+      {
+        "phase": "Wahyu Pertama di Gua Hira & Dakwah Sabar",
+        "title": "Iqra' dan Penderitaan Boikot Tiga Tahun",
+        "description": "Usia 40 tahun menerima wahyu pertama 'Iqra' bismi Rabbika' di Gua Hira melalui Malaikat Jibril. Beliau berdakwah mengajak kaumnya meninggalkan berhala, mengalami boikot ekonomi kejam, hingga diperjalankan dalam Isra' Mi'raj menerima perintah shalat 5 waktu.",
+        "readingMinutes": 5
+      },
+      {
+        "phase": "Hijrah, Piagam Madinah & Fathu Makkah",
+        "title": "Membangun Peradaban Kasih Sayang & Haji Wada'",
+        "description": "Mempersaudarakan Muhajirin dan Anshar, menyusun konstitusi toleransi Piagam Madinah. Membebaskan kota Makkah (Fathu Makkah) tanpa pertumpahan darah dengan memberi maaf massal, serta menyampaikan khutbah perpisahan (Haji Wada') yang mengukuhkan kesetaraan umat manusia.",
+        "readingMinutes": 5
+      }
+    ],
+    "wisdoms": [
+      {
+        "title": "Puncak Kemuliaan Adalah Akhlak Al-Qur'an",
+        "lesson": "Ketika Ibunda Aisyah RA ditanya tentang perangai Rasulullah SAW, beliau menjawab: 'Akhlak beliau adalah Al-Qur'an'. Meneladani beliau berarti mengamalkan Al-Qur'an dalam kehidupan nyata."
+      },
+      {
+        "title": "Kasih Sayang Terhadap Kaum Lemah, Wanita & Lansia",
+        "lesson": "Rasulullah SAW selalu menegaskan penghormatan kepada orang tua: 'Bukan termasuk golongan kami orang yang tidak menyayangi yang muda dan tidak menghormati yang tua'."
+      }
+    ],
+    "duas": [
+      {
+        "id": "dua-muhammad-1",
+        "title": "Doa Permohonan Tambahan Ilmu yang Bermanfaat",
+        "arabic": "وَقُل رَّبِّ زِدْنِى عِلْمًۭا",
+        "latin": "Wa qur-Rabbi zidnii 'ilmaa.",
+        "translation": "Dan katakanlah: 'Ya Tuhanku, tambahkanlah kepadaku ilmu pengetahuan.'",
+        "surahId": 20,
+        "ayahNumber": 114,
+        "reference": "QS. Thaha [20]: 114"
+      },
+      {
+        "id": "dua-muhammad-2",
+        "title": "Doa Sapujagat: Memohon Kebaikan Dunia, Akhirat & Perlindungan Api Neraka",
+        "arabic": "رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا حَسَنَةًۭ وَفِى ٱلْءَاخِرَةِ حَسَنَةًۭ وَقِنَا عَذَابَ ٱلنَّارِ",
+        "latin": "Rabbanaa aatinaa fid-dunyaa hasanataw wa fil-aakhirati hasanataw wa qinaa 'adzaaban-naar.",
+        "translation": "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat dan peliharalah kami dari siksa neraka.",
+        "surahId": 2,
+        "ayahNumber": 201,
+        "reference": "QS. Al-Baqarah [2]: 201"
+      }
+    ],
+    "quranReferences": [
+      {
+        "surahId": 33,
+        "surahName": "Al-Ahzab",
+        "ayahStart": 21,
+        "ayahEnd": 21,
+        "topic": "Rasulullah sebagai uswatun hasanah (teladan terbaik) bagi orang yang mengharap ridha Allah"
+      },
+      {
+        "surahId": 21,
+        "surahName": "Al-Anbiya'",
+        "ayahStart": 107,
+        "ayahEnd": 107,
+        "topic": "Pengutusan Rasulullah sebagai rahmatan lil 'alamin bagi seluruh alam semesta"
+      },
+      {
+        "surahId": 48,
+        "surahName": "Al-Fath",
+        "ayahStart": 28,
+        "ayahEnd": 29,
+        "topic": "Kemenangan nyata dan sifat mulia para sahabat yang menyertai Rasulullah"
+      }
+    ]
+  }
+]

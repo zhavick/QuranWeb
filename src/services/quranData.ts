@@ -34,6 +34,14 @@ export async function cacheAllSurahsOffline(
   const batchSize = 10;
   let loaded = 0;
 
+  // Pre-fetch dataset kisah nabi
+  try {
+    fetch('/data/prophets_meta.json');
+    fetch('/data/prophets_data.json');
+  } catch {
+    // Ignore offline error
+  }
+
   for (let start = 1; start <= total; start += batchSize) {
     const batch: Promise<SurahData>[] = [];
     for (let id = start; id < start + batchSize && id <= total; id++) {

@@ -421,7 +421,7 @@ volumes:
 
 ## 9. Status Pelaksanaan & Keterkaitan Dokumen
 
-Implementasi teknis mengacu pada tahapan bertahap yang telah diselesaikan pada [DEV_STEP.md](file:///Users/mac/Projects/2026/QuranWeb/Initial/DEV_STEP.md):
+Implementasi teknis mengacu pada tahapan bertahap yang telah diselesaikan pada [DEV_STEP.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP.md) untuk Fase 1, serta cetak biru teknis Fase 2 pada [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md):
 - **Step 1 (Fondasi & Dataset):** Dataset mandiri 114 Surat (`meta.json` & `surahs/*.json`), 6.236 Ayat, 30 Juz, 556 'Ain, font self-hosted `amiri-quran.woff2`.
 - **Step 2 (Quran Reader):** Komponen `AyahCard`, `TajweedRenderer`, arah baca RTL, penanda akhir 'Ain (`ع`), dan terjemahan resmi Kemenag RI.
 - **Step 3 (Navigasi & Tata Letak):** Split-view desktop, Fullscreen Zen Mode (F), 1-kolom mobile proporsional + safe-area.
@@ -433,5 +433,6 @@ Implementasi teknis mengacu pada tahapan bertahap yang telah diselesaikan pada [
   - **Portal Administrator (`/admin`):** Kredensial `admin` / `admin123`, dashboard statistik & chart geolokasi IP, modul Audit Trail penuh dengan filter & ekspor JSON, serta modul konfigurasi identitas situs (logo, nama, lisensi, copyright, broadcast pengumuman).
   - **Portal Pengguna (`/user`):** Kredensial `fulan` / `user123`, dashboard card bookmark pribadi, modul arsip pencarian terjemahan (*search archive*), dan sinkronisasi bacaan.
   - **PWA & Kontainerisasi:** Service worker `sw.js`, `manifest.webmanifest`, `Dockerfile` & `docker-compose.yml` (PostgreSQL 16 + API + Web) pada port `3382`.
-- **Panduan Pengoperasian:** Rincian cara penggunaan lengkap didokumentasikan di [USER_MANUAL.md](file:///Users/mac/Projects/2026/QuranWeb/Document/USER_MANUAL.md) (15 bab komprehensif).
+- **Panduan Pengoperasian:** Rincian cara penggunaan lengkap didokumentasikan di [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md) (15 bab komprehensif).
+- **Cetak Biru Arsitektur Fase 2:** [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md) dan tahapan eksekusi teknis [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) (Step 9 s.d. Step 17: RBAC & Logout Halaman Depan, Kisah Rasul, Jurnal Blog, Rencana Khatam 'Ain, Doa & Tasbih Haptic, Kompas Kiblat Adaptif, Peta Masjid OpenStreetMap, dan Asbabun Nuzul).
 

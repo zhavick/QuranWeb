@@ -13,8 +13,21 @@ import {
   ExternalLink,
   Lock,
   AlertCircle,
+  Clock,
+  BookOpenCheck,
+  Newspaper,
+  BookText,
+  Compass,
 } from 'lucide-react';
 import { getStoredUser, loginUser, logoutUser, type AuthUser } from '../../services/auth';
+import {
+  getReadLaterList,
+  toggleReadLater,
+  getUserReflections,
+  saveUserReflection,
+  fetchBlogArticles,
+} from '../../services/blog';
+import type { BlogArticle, UserReflection } from '../../types/blog';
 
 interface UserBookmarkItem {
   id: number;
@@ -38,20 +51,27 @@ interface UserPortalProps {
   onBackToApp: () => void;
   onNavigateToAyah: (surahId: number, ayahNumber: number) => void;
   onPerformSearch: (query: string) => void;
+  onOpenBlogArticle?: (slug?: string) => void;
+  onOpenKhatamPlanner?: () => void;
 }
 
 export const UserPortal: React.FC<UserPortalProps> = ({
   onBackToApp,
   onNavigateToAyah,
   onPerformSearch,
+  onOpenBlogArticle,
+  onOpenKhatamPlanner,
 }) => {
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(getStoredUser());
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [loginError, setLoginError] = useState<string | null>(null);
 
+  const [activeTab, setActiveTab] = useState<'bookmarks' | 'searches' | 'readLater' | 'reflections'>('bookmarks');
   const [bookmarks, setBookmarks] = useState<UserBookmarkItem[]>([]);
   const [savedSearches, setSavedSearches] = useState<SavedSearchItem[]>([]);
+  const [readLaterArticles, setReadLaterArticles] = useState<BlogArticle[]>([]);
+  const [reflections, setReflections] = useState<UserReflection[]>([]);
   const [newSearchQuery, setNewSearchQuery] = useState('');
   const [newSearchNote, setNewSearchNote] = useState('');
   const [toastMsg, setToastMsg] = useState<string | null>(null);
@@ -62,6 +82,17 @@ export const UserPortal: React.FC<UserPortalProps> = ({
   };
 
   const loadUserData = async (username: string) => {
+    // 1. Load Blog Read Later and Reflections
+    try {
+      const rlSlugs = getReadLaterList();
+      const allArticles = await fetchBlogArticles();
+      const matched = allArticles.filter((a) => rlSlugs.includes(a.slug));
+      setReadLaterArticles(matched);
+      setReflections(getUserReflections());
+    } catch (e) {
+      console.warn('Failed loading blog user data:', e);
+    }
+
     try {
       const res = await fetch(`/api/user/data?username=${encodeURIComponent(username)}`);
       const data = await res.json();
@@ -196,6 +227,18 @@ export const UserPortal: React.FC<UserPortalProps> = ({
   const handleDeleteBookmark = (id: number) => {
     setBookmarks(bookmarks.filter((b) => b.id !== id));
     showToast('Bookmark berhasil dihapus.');
+  };
+
+  const handleRemoveReadLater = (slug: string) => {
+    toggleReadLater(slug);
+    setReadLaterArticles((prev) => prev.filter((a) => a.slug !== slug));
+    showToast('Artikel dihapus dari daftar baca nanti.');
+  };
+
+  const handleDeleteReflection = (articleId: string) => {
+    saveUserReflection(articleId, '', '');
+    setReflections((prev) => prev.filter((r) => r.articleId !== articleId));
+    showToast('Catatan tadabbur dihapus.');
   };
 
   // ==========================================
@@ -417,18 +460,36 @@ export const UserPortal: React.FC<UserPortalProps> = ({
                 </p>
               </div>
 
-              <button
-                type="button"
-                onClick={() => onNavigateToAyah(2, 255)}
-                className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-transform active:scale-95 cursor-pointer"
-                style={{
-                  backgroundColor: 'var(--bg-accent)',
-                  color: 'var(--text-on-accent)',
-                }}
-              >
-                <BookMarked className="h-4 w-4" />
-                <span>Lanjutkan Bacaan Terakhir</span>
-              </button>
+              <div className="flex flex-wrap items-center gap-2">
+                {onOpenKhatamPlanner && (
+                  <button
+                    type="button"
+                    onClick={onOpenKhatamPlanner}
+                    className="inline-flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-xs font-bold transition-all hover:opacity-90 cursor-pointer shadow-xs"
+                    style={{
+                      backgroundColor: 'var(--bg-accent-soft)',
+                      borderColor: 'var(--border-color)',
+                      color: 'var(--text-accent)',
+                    }}
+                  >
+                    <Compass className="h-4 w-4 text-emerald-500" />
+                    <span>Rencana Khatam Sakinah</span>
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => onNavigateToAyah(2, 255)}
+                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-transform active:scale-95 cursor-pointer"
+                  style={{
+                    backgroundColor: 'var(--bg-accent)',
+                    color: 'var(--text-on-accent)',
+                  }}
+                >
+                  <BookMarked className="h-4 w-4" />
+                  <span>Lanjutkan Bacaan Terakhir</span>
+                </button>
+              </div>
             </div>
 
             {/* Metric Pills */}
@@ -442,17 +503,89 @@ export const UserPortal: React.FC<UserPortalProps> = ({
                 <div className="text-xl font-black mt-0.5" style={{ color: 'var(--text-primary)' }}>{savedSearches.length}</div>
               </div>
               <div>
-                <div className="text-[11px]" style={{ color: 'var(--text-secondary)' }}>Juz Target</div>
-                <div className="text-xl font-black mt-0.5" style={{ color: 'var(--text-accent)' }}>Juz 1 &amp; Juz 15</div>
+                <div className="text-[11px]" style={{ color: 'var(--text-secondary)' }}>Daftar Baca Nanti</div>
+                <div className="text-xl font-black mt-0.5" style={{ color: 'var(--text-accent)' }}>{readLaterArticles.length}</div>
               </div>
               <div>
-                <div className="text-[11px]" style={{ color: 'var(--text-secondary)' }}>Sinkronisasi</div>
-                <div className="text-xl font-black mt-0.5 text-emerald-600 dark:text-emerald-400">Aktif</div>
+                <div className="text-[11px]" style={{ color: 'var(--text-secondary)' }}>Catatan Tadabbur</div>
+                <div className="text-xl font-black mt-0.5 text-emerald-600 dark:text-emerald-400">{reflections.length}</div>
               </div>
             </div>
           </div>
 
+          {/* Navigation Tab Switcher */}
+          <div className="flex flex-wrap items-center gap-2 border-b pb-2" style={{ borderColor: 'var(--border-color)' }}>
+            <button
+              type="button"
+              onClick={() => setActiveTab('bookmarks')}
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all cursor-pointer"
+              style={{
+                backgroundColor: activeTab === 'bookmarks' ? 'var(--bg-accent)' : 'var(--bg-card)',
+                color: activeTab === 'bookmarks' ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+                border: `1px solid ${activeTab === 'bookmarks' ? 'transparent' : 'var(--border-color)'}`,
+              }}
+            >
+              <Bookmark className="h-4 w-4" />
+              <span>Bookmark Ayat</span>
+              <span className="rounded-full px-1.5 py-0.5 text-[10px] bg-black/15 dark:bg-white/15 font-bold">
+                {bookmarks.length}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab('searches')}
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all cursor-pointer"
+              style={{
+                backgroundColor: activeTab === 'searches' ? 'var(--bg-accent)' : 'var(--bg-card)',
+                color: activeTab === 'searches' ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+                border: `1px solid ${activeTab === 'searches' ? 'transparent' : 'var(--border-color)'}`,
+              }}
+            >
+              <Search className="h-4 w-4" />
+              <span>Arsip Pencarian</span>
+              <span className="rounded-full px-1.5 py-0.5 text-[10px] bg-black/15 dark:bg-white/15 font-bold">
+                {savedSearches.length}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab('readLater')}
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all cursor-pointer"
+              style={{
+                backgroundColor: activeTab === 'readLater' ? 'var(--bg-accent)' : 'var(--bg-card)',
+                color: activeTab === 'readLater' ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+                border: `1px solid ${activeTab === 'readLater' ? 'transparent' : 'var(--border-color)'}`,
+              }}
+            >
+              <Clock className="h-4 w-4" />
+              <span>Daftar Baca Nanti</span>
+              <span className="rounded-full px-1.5 py-0.5 text-[10px] bg-black/15 dark:bg-white/15 font-bold">
+                {readLaterArticles.length}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab('reflections')}
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all cursor-pointer"
+              style={{
+                backgroundColor: activeTab === 'reflections' ? 'var(--bg-accent)' : 'var(--bg-card)',
+                color: activeTab === 'reflections' ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+                border: `1px solid ${activeTab === 'reflections' ? 'transparent' : 'var(--border-color)'}`,
+              }}
+            >
+              <BookOpenCheck className="h-4 w-4" />
+              <span>Catatan Tadabbur</span>
+              <span className="rounded-full px-1.5 py-0.5 text-[10px] bg-black/15 dark:bg-white/15 font-bold">
+                {reflections.length}
+              </span>
+            </button>
+          </div>
+
           {/* SECTION 1: CARD BOOKMARK PRIBADI */}
+          {activeTab === 'bookmarks' && (
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -539,8 +672,10 @@ export const UserPortal: React.FC<UserPortalProps> = ({
               </div>
             )}
           </section>
+          )}
 
           {/* SECTION 2: HASIL PENCARIAN YANG DIARSIPKAN */}
+          {activeTab === 'searches' && (
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -661,6 +796,193 @@ export const UserPortal: React.FC<UserPortalProps> = ({
               ))}
             </div>
           </section>
+          )}
+
+          {/* SECTION 3: DAFTAR BACA NANTI (BLOG ARTICLES) */}
+          {activeTab === 'readLater' && (
+            <section className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Clock className="h-5 w-5" style={{ color: 'var(--text-accent)' }} />
+                  <h3 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>
+                    Daftar Baca Nanti ({readLaterArticles.length})
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => onOpenBlogArticle?.()}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline cursor-pointer"
+                  style={{ color: 'var(--text-accent)' }}
+                >
+                  <Newspaper className="h-3.5 w-3.5" />
+                  <span>Jelajahi Jurnal Blog</span>
+                </button>
+              </div>
+
+              {readLaterArticles.length === 0 ? (
+                <div
+                  className="rounded-2xl border p-8 text-center text-xs space-y-3"
+                  style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
+                >
+                  <p>Belum ada artikel yang ditandai untuk dibaca nanti.</p>
+                  <button
+                    type="button"
+                    onClick={() => onOpenBlogArticle?.()}
+                    className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold shadow-xs cursor-pointer"
+                    style={{ backgroundColor: 'var(--bg-accent)', color: 'var(--text-on-accent)' }}
+                  >
+                    <BookText className="h-3.5 w-3.5" />
+                    <span>Buka Katalog Jurnal Blog</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {readLaterArticles.map((art) => (
+                    <div
+                      key={art.slug}
+                      className="flex flex-col justify-between rounded-2xl border p-4 shadow-sm hover:shadow-md transition-all"
+                      style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <span
+                            className="rounded-lg px-2.5 py-1 text-[10px] font-bold"
+                            style={{ backgroundColor: 'var(--bg-accent-soft)', color: 'var(--text-accent)' }}
+                          >
+                            {art.pillarLabel}
+                          </span>
+                          <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>
+                            ⏱ {art.readingTimeMinutes} mnt
+                          </span>
+                        </div>
+
+                        <h4 className="text-sm font-bold line-clamp-2" style={{ color: 'var(--text-primary)' }}>
+                          {art.title}
+                        </h4>
+                        <p className="mt-1 text-xs line-clamp-2 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                          {art.excerpt}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 flex items-center justify-between border-t pt-3" style={{ borderColor: 'var(--border-color)' }}>
+                        <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>
+                          Oleh {art.author.name}
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => onOpenBlogArticle?.(art.slug)}
+                            className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-bold cursor-pointer"
+                            style={{ backgroundColor: 'var(--bg-accent)', color: 'var(--text-on-accent)' }}
+                          >
+                            <ExternalLink className="h-3 w-3" />
+                            <span>Baca</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveReadLater(art.slug)}
+                            className="p-1 rounded-lg text-red-500 hover:bg-red-500/10 cursor-pointer"
+                            title="Hapus dari Daftar Baca Nanti"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+          )}
+
+          {/* SECTION 4: CATATAN TADABBUR PRIBADI */}
+          {activeTab === 'reflections' && (
+            <section className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <BookOpenCheck className="h-5 w-5" style={{ color: 'var(--text-accent)' }} />
+                  <h3 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>
+                    Catatan Tadabbur Pribadi ({reflections.length})
+                  </h3>
+                </div>
+                <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>
+                  Refleksi hikmah pada artikel Jurnal Blog
+                </span>
+              </div>
+
+              {reflections.length === 0 ? (
+                <div
+                  className="rounded-2xl border p-8 text-center text-xs space-y-3"
+                  style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
+                >
+                  <p>Belum ada catatan tadabbur pribadi yang ditulis.</p>
+                  <p className="text-[11px]" style={{ color: 'var(--text-secondary)' }}>
+                    Buka artikel jurnal blog mana pun dan tulis refleksi hati Anda pada kotak &ldquo;Catatan Tadabbur Saya&rdquo; di bagian bawah artikel.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => onOpenBlogArticle?.()}
+                    className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold shadow-xs cursor-pointer"
+                    style={{ backgroundColor: 'var(--bg-accent)', color: 'var(--text-on-accent)' }}
+                  >
+                    <BookText className="h-3.5 w-3.5" />
+                    <span>Mulai Menjelajah Artikel</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {reflections.map((ref) => (
+                    <div
+                      key={ref.articleId}
+                      className="flex flex-col justify-between rounded-2xl border p-4 shadow-sm"
+                      style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
+                          <span className="font-bold text-xs truncate max-w-[200px]" style={{ color: 'var(--text-accent)' }}>
+                            {ref.articleTitle || ref.articleId}
+                          </span>
+                          <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>
+                            {new Date(ref.updatedAt).toLocaleDateString('id-ID')}
+                          </span>
+                        </div>
+                        <p
+                          className="text-xs leading-relaxed italic border-l-2 pl-3 py-1 mt-2"
+                          style={{
+                            borderColor: 'var(--text-accent)',
+                            color: 'var(--text-primary)',
+                            backgroundColor: 'var(--bg-muted)',
+                          }}
+                        >
+                          &ldquo;{ref.note}&rdquo;
+                        </p>
+                      </div>
+
+                      <div className="mt-4 flex items-center justify-end gap-2 border-t pt-2.5" style={{ borderColor: 'var(--border-color)' }}>
+                        <button
+                          type="button"
+                          onClick={() => onOpenBlogArticle?.(ref.articleId)}
+                          className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-bold cursor-pointer"
+                          style={{ backgroundColor: 'var(--bg-accent-soft)', color: 'var(--text-accent)' }}
+                        >
+                          <ExternalLink className="h-3 w-3" />
+                          <span>Buka Artikel</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteReflection(ref.articleId)}
+                          className="p-1 rounded-lg text-red-500 hover:bg-red-500/10 cursor-pointer"
+                          title="Hapus Catatan"
+                        >
+                          <Trash2 className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+          )}
         </div>
       </main>
 

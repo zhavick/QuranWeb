@@ -101,8 +101,10 @@ QuranWeb/
 │   ├── TSD.md                # Technical Specification Document (15 Bab)
 │   └── USER_MANUAL.md        # Panduan Lengkap Pengguna & Administrator
 ├── Initial/                  # Perencanaan & Kontrol Kualitas
-│   ├── MasterPlan.md         # Master Plan & Brainstorming Awal
-│   ├── DEV_STEP.md           # Urutan Pengembangan Aplikasi (Step 1 s.d. Step 8)
+│   ├── MasterPlan.md         # Master Plan & Brainstorming Awal (Fase 1)
+│   ├── MasterPlan-2.md       # Cetak Biru Ekosistem Pembelajaran & Ibadah (Fase 2)
+│   ├── DEV_STEP.md           # Urutan Pengembangan Fase 1 (Step 1 s.d. Step 8)
+│   ├── DEV_STEP_2.md         # Urutan Pengembangan Fase 2 (Step 9 s.d. Step 17)
 │   └── QualityAssurance.md   # Test Cases & Hasil Pengujian Mutu (54 Kasus Uji)
 ├── public/                   # Aset Statis Publik
 │   ├── data/                 # Dataset Mandiri Al-Qur'an (meta.json & surahs/*.json)
@@ -187,21 +189,35 @@ docker compose down
 
 ---
 
+## 🗺️ Rencana Pengembangan Tahap 2 (Phase 2 Ecosystem)
+
+QuranWeb sedang dipersiapkan untuk melangkah ke **Tahap 2** sebagai ekosistem pembelajaran dan ibadah holistik yang terdokumentasi lengkap pada [Initial/MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md) dan [Initial/DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md):
+
+1. **Standarisasi Akun (RBAC) & Logout Halaman Depan (Step 9):** Pemisahan peran Super Admin, Dewan Asatidz, Editor, Jamaah, dan Tamu; dilengkapi tombol Logout cepat langsung di header tilawah dengan modal santun ramah lansia.
+2. **Kisah 25 Rasulullah (Qashashul Anbiya' - Step 10):** Naskah sirah nabawi terverifikasi, taut silang dua arah ke lembar mushaf & audio murottal, dan kurasi doa mustajab para nabi.
+3. **Jurnal Literasi & Blog Tadabbur (Step 11):** 5 pilar konten, kartu kutipan ayat interaktif ber-audio, antarmuka CMS di `/admin`, dan catatan tadabbur pribadi di `/user`.
+4. **Rencana Khatam Ramah Lansia (Step 12):** Ritme Sakinah berbasis 'Ain (1 'Ain usai shalat fardhu / khatam ~111 hari tanpa rasa lelah) dengan pelacak cincin progres yang tenang.
+5. **Kompilasi 40 Doa Rabbana & Tasbih Haptic (Step 13):** Kompilasi doa mustajab Al-Qur'an dan tasbih digital getar layar penuh tanpa perlu memelototi angka di layar HP.
+6. **Arah Kiblat Adaptif (Step 14):** Kompas putar dinamis + haptic di smartphone vs panduan sudut azimuth & jam matahari di laptop, beroperasi 100% offline.
+7. **Peta Masjid Terdekat OpenStreetMap (Step 15):** Menu navbar baru `/masjid`, peta Leaflet.js lokal, integrasi izin lokasi jadwal shalat, estimasi jarak jalan santai lansia, dan panduan rute navigasi suara 1-klik.
+8. **Asbabun Nuzul, Glosarium Mufradat & Audio Narasi (Step 16):** Konteks sejarah turunnya ayat, kamus kosakata Al-Qur'an, dan rekaman audio cerita bertutur 3 menit untuk mata lelah.
+
+---
+
 ## 🔑 Kredensial Akses Bawaan (Default Credentials)
 
 Aplikasi telah dilengkapi dengan akun bawaan untuk mempermudah evaluasi dan pengujian fitur:
 
 ### 1. Portal Administrator (`/admin`)
 - **URL Akses:** [http://localhost:3382/admin](http://localhost:3382/admin)
-- **Username:** `admin`
-- **Password:** `admin123`
-- **Fitur Utama:** Statistik ringkasan, grafik chart geolokasi negara asal pengunjung, riwayat audit trail lengkap dengan ekspor file JSON, serta modul konfigurasi identitas dan pengumuman siaran.
+- **Super Administrator:** Username `admin`, Password `admin123` (Konfigurasi situs, geolokasi IP, dan audit trail).
+- **Dewan Asatidz & Verifikator:** Username `asatidz`, Password `asatidz123` (Kurasi naskah sirah nabawi & doa).
+- **Editor & Tim Redaksi:** Username `editor`, Password `editor123` (Penyusunan draf artikel jurnal tadabbur).
 
 ### 2. Portal Pengguna Terdaftar (`/user`)
 - **URL Akses:** [http://localhost:3382/user](http://localhost:3382/user)
-- **Username:** `fulan` *(atau email: `user@quranweb.id`)*
-- **Password:** `user123`
-- **Fitur Utama:** Kartu-kartu bookmark pribadi dengan catatan tadabbur (1-klik langsung baca di ayat tujuan), daftar tema pencarian yang diarsipkan, serta profil pengguna.
+- **Anggota Demo (Jamaah):** Username `fulan` *(atau email: `user@quranweb.id`)*, Password `user123`
+- **Fitur Utama:** Kartu bookmark pribadi dengan catatan tadabbur, arsip pencarian tersimpan, daftar baca nanti (*Read Later*), dan sinkronisasi tilawah.
 
 *(Tersedia tombol satu-klik "Isi Kredensial Demo" di masing-masing halaman login untuk kenyamanan pengujian)*.
 
@@ -211,12 +227,14 @@ Aplikasi telah dilengkapi dengan akun bawaan untuk mempermudah evaluasi dan peng
 
 Informasi teknis dan panduan operasional mendalam tersedia pada direktori dokumentasi:
 
-- 📋 [Initial/MasterPlan.md](file:///Users/mac/Projects/2026/QuranWeb/Initial/MasterPlan.md) — Konsep arsitektur, visi produk, dan analisis sumber dataset Al-Qur'an.
-- 🛣️ [Initial/DEV_STEP.md](file:///Users/mac/Projects/2026/QuranWeb/Initial/DEV_STEP.md) — Rincian pembagian urutan pengerjaan Step 1 hingga Step 8.
-- 🧪 [Initial/QualityAssurance.md](file:///Users/mac/Projects/2026/QuranWeb/Initial/QualityAssurance.md) — Matriks 54 kasus uji mutu aplikasi beserta hasil verifikasinya.
-- 📑 [Document/FSD.md](file:///Users/mac/Projects/2026/QuranWeb/Document/FSD.md) — Dokumen Spesifikasi Fungsional (FSD) lengkap 15 Bab.
-- ⚙️ [Document/TSD.md](file:///Users/mac/Projects/2026/QuranWeb/Document/TSD.md) — Dokumen Spesifikasi Teknis (TSD) skema database, API, dan performa.
-- 📖 [Document/USER_MANUAL.md](file:///Users/mac/Projects/2026/QuranWeb/Document/USER_MANUAL.md) — Buku Manual Panduan Pengguna dan Administrator.
+- 📋 [Initial/MasterPlan.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan.md) — Konsep arsitektur, visi produk, dan analisis sumber dataset Al-Qur'an (Fase 1).
+- 📜 [Initial/MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md) — Cetak biru ekosistem pembelajaran, ibadah harian, dan navigasi masjid (Fase 2).
+- 🛣️ [Initial/DEV_STEP.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP.md) — Rincian pembagian urutan pengerjaan Step 1 hingga Step 8 (Fase 1 - Selesai).
+- 🧭 [Initial/DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) — Panduan tahapan pengerjaan bertahap Step 9 hingga Step 17 (Fase 2).
+- 🧪 [Initial/QualityAssurance.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/QualityAssurance.md) — Matriks 54 kasus uji mutu aplikasi beserta hasil verifikasinya.
+- 📑 [Document/FSD.md](file:///c:/TEMP/VSCODE/QuranWeb/Document/FSD.md) — Dokumen Spesifikasi Fungsional (FSD) lengkap 15 Bab.
+- ⚙️ [Document/TSD.md](file:///c:/TEMP/VSCODE/QuranWeb/Document/TSD.md) — Dokumen Spesifikasi Teknis (TSD) skema database, API, dan performa.
+- 📖 [Document/USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/Document/USER_MANUAL.md) — Buku Manual Panduan Pengguna dan Administrator.
 
 ---
 

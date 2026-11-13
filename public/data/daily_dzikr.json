@@ -1,0 +1,151 @@
+[
+  {
+    "id": "bada-1",
+    "time": "bada_shalat",
+    "title": "Istighfar Permulaan",
+    "arabic": "أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ",
+    "latin": "Astaghfirullahal-'adzim",
+    "translation": "Aku memohon ampun kepada Allah Yang Maha Agung.",
+    "targetCount": 3,
+    "note": "Dibaca 3 kali seusai salam shalat fardhu.",
+    "source": "HR. Muslim no. 591"
+  },
+  {
+    "id": "bada-2",
+    "time": "bada_shalat",
+    "title": "Doa Keselamatan & Keberkahan",
+    "arabic": "اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ",
+    "latin": "Allahumma antas-salamu wa minkas-salam, tabarakta ya dzal-jalali wal-ikram",
+    "translation": "Ya Allah, Engkaulah Dzat Yang Maha Memberi Keselamatan dan dari-Mulah keselamatan itu datang. Maha Berkah Engkau wahai Pemilik Keagungan dan Kemuliaan.",
+    "targetCount": 1,
+    "source": "HR. Muslim no. 592"
+  },
+  {
+    "id": "bada-3",
+    "time": "bada_shalat",
+    "title": "Kalimat Tauhid & Kepasrahan Taqdir",
+    "arabic": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، اللَّهُمَّ لَا مَانِعَ لِمَا أَعْطَيْتَ، وَلَا مُعْطِيَ لِمَا مَنَعْتَ، وَلَا يَنْفَعُ ذَا الْجَدِّ مِنْكَ الْجَدُّ",
+    "latin": "La ilaha illallahu wahdahu la syarika lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli syai'in qadir. Allahumma la mani'a lima a'thaita, wa la mu'thiya lima mana'ta, wa la yanfa'u dzal-jaddi minkal-jadd",
+    "translation": "Tiada sesembahan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya. Bagi-Nya kerajaan dan bagi-Nya segala pujian, dan Dia Maha Kuasa atas segala sesuatu. Ya Allah, tidak ada yang dapat menghalangi apa yang Engkau berikan, dan tidak ada yang dapat memberi apa yang Engkau halangi, serta tidak berguna kekayaan bagi orang yang memilikinya dari siksa-Mu.",
+    "targetCount": 1,
+    "source": "HR. Bukhari no. 844 & Muslim no. 593"
+  },
+  {
+    "id": "bada-4",
+    "time": "bada_shalat",
+    "title": "Ayat Kursi (Pelindung Antara Dua Shalat)",
+    "arabic": "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ",
+    "latin": "Allahu la ilaha illa huwal-hayyul-qayyum, la ta'khudzuhu sinatuw-wa la naum...",
+    "translation": "Allah, tidak ada Tuhan (yang berhak disembah) melainkan Dia Yang Hidup kekal lagi terus menerus mengurus (makhluk-Nya)...",
+    "targetCount": 1,
+    "note": "Barangsiapa membaca Ayat Kursi setiap selesai shalat fardhu, tidak ada yang menghalanginya masuk surga selain kematian.",
+    "source": "HR. An-Nasa'i & Ath-Thabrani"
+  },
+  {
+    "id": "bada-5",
+    "time": "bada_shalat",
+    "title": "Tasbih (Menyucikan Asma Allah)",
+    "arabic": "سُبْحَانَ اللَّهِ",
+    "latin": "Subhanallah",
+    "translation": "Maha Suci Allah.",
+    "targetCount": 33,
+    "source": "HR. Muslim no. 597"
+  },
+  {
+    "id": "bada-6",
+    "time": "bada_shalat",
+    "title": "Tahmid (Pujian Syukur kepada Allah)",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "latin": "Alhamdulillah",
+    "translation": "Segala puji bagi Allah.",
+    "targetCount": 33,
+    "source": "HR. Muslim no. 597"
+  },
+  {
+    "id": "bada-7",
+    "time": "bada_shalat",
+    "title": "Takbir (Mengagungkan Kebesaran Allah)",
+    "arabic": "اللَّهُ أَكْبَرُ",
+    "latin": "Allahu Akbar",
+    "translation": "Allah Maha Besar.",
+    "targetCount": 33,
+    "source": "HR. Muslim no. 597"
+  },
+  {
+    "id": "bada-8",
+    "time": "bada_shalat",
+    "title": "Penyempurna Ke-100 Tasbih",
+    "arabic": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+    "latin": "La ilaha illallahu wahdahu la syarika lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli syai'in qadir",
+    "translation": "Tiada Tuhan selain Allah Yang Maha Esa, tiada sekutu bagi-Nya. Bagi-Nya kerajaan dan bagi-Nya segala puji dan Dia Maha Kuasa atas segala sesuatu.",
+    "targetCount": 1,
+    "note": "Dosa-dosanya diampuni meskipun sebanyak buih di lautan.",
+    "source": "HR. Muslim no. 597"
+  },
+  {
+    "id": "pagi-1",
+    "time": "pagi",
+    "title": "Sayyidul Istighfar (Raja Istighfar Pagi)",
+    "arabic": "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
+    "latin": "Allahumma anta rabbi la ilaha illa anta, khalaqtani wa ana 'abduka, wa ana 'ala 'ahdika wa wa'dika mastatha'tu, a'udzu bika min syarri ma shana'tu, abu'u laka bi-ni'matika 'alayya, wa abu'u bi-dzanbi faghfir li fa-innahu la yaghfirudz-dzunuba illa anta",
+    "translation": "Ya Allah, Engkaulah Tuhanku, tiada sesembahan yang berhak disembah selain Engkau. Engkau yang menciptakan aku dan aku adalah hamba-Mu. Aku senantiasa memegang janji-Mu semampuku. Aku berlindung kepada-Mu dari keburukan perbuatanku. Aku mengakui nikmat-Mu kepadaku dan aku mengakui dosaku kepada-Mu, maka ampunilah aku karena sesungguhnya tidak ada yang mengampuni dosa selain Engkau.",
+    "targetCount": 1,
+    "note": "Barangsiapa membacanya di pagi hari dengan penuh keyakinan lalu meninggal sebelum sore hari, ia termasuk penghuni surga.",
+    "source": "HR. Bukhari no. 6306"
+  },
+  {
+    "id": "pagi-2",
+    "time": "pagi",
+    "title": "Keridhaan Iman & Keislaman",
+    "arabic": "رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا",
+    "latin": "Radhitu billahi rabba, wa bil-islami dina, wa bi-muhammadin shallallahu 'alaihi wa sallama nabiyya",
+    "translation": "Aku ridha Allah sebagai Tuhanku, Islam sebagai agamaku, dan Muhammad shallallahu 'alaihi wa sallam sebagai Nabiku.",
+    "targetCount": 3,
+    "note": "Barangsiapa membacanya 3 kali di pagi dan petang, wajib bagi Allah untuk meridhoinya pada hari kiamat.",
+    "source": "HR. Abu Dawud & Tirmidzi"
+  },
+  {
+    "id": "pagi-3",
+    "time": "pagi",
+    "title": "Perlindungan Total dari Bahaya Bumi & Langit",
+    "arabic": "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
+    "latin": "Bismillahilladzi la yadhurru ma'asmihi syai'un fil-ardhi wa la fis-sama'i wa huwas-sami'ul-'alim",
+    "translation": "Dengan nama Allah yang bersama nama-Nya tiada sesuatu pun di bumi dan di langit yang dapat mencelakai, dan Dia Maha Mendengar lagi Maha Mengetahui.",
+    "targetCount": 3,
+    "note": "Barangsiapa membacanya 3 kali pagi dan petang, tidak ada bahaya yang memudharatkannya hingga waktu berganti.",
+    "source": "HR. Abu Dawud & Tirmidzi"
+  },
+  {
+    "id": "petang-1",
+    "time": "petang",
+    "title": "Dzikir Memasuki Waktu Petang (Sore)",
+    "arabic": "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+    "latin": "Amsaina wa amsal-mulku lillah, wal-hamdu lillah, la ilaha illallahu wahdahu la syarika lah, lahul-mulku wa lahul-hamdu wa huwa 'ala kulli syai'in qadir",
+    "translation": "Kami telah memasuki waktu petang dan kerajaan hanya milik Allah. Segala puji bagi Allah, tiada sesembahan selain Allah semata, tiada sekutu bagi-Nya. Milik-Nya kerajaan dan bagi-Nya pujian, dan Dia Maha Kuasa atas segala sesuatu.",
+    "targetCount": 1,
+    "source": "HR. Muslim no. 2723"
+  },
+  {
+    "id": "petang-2",
+    "time": "petang",
+    "title": "Perlindungan Kalimat Allah yang Sempurna",
+    "arabic": "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+    "latin": "A'udzu bi-kalimatillahit-tammati min syarri ma khalaq",
+    "translation": "Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan makhluk yang Dia ciptakan.",
+    "targetCount": 3,
+    "note": "Melindungi dari gigitan kalajengking, binatang berbisa, dan kejahatan makhluk di malam hari.",
+    "source": "HR. Muslim no. 2709"
+  },
+  {
+    "id": "petang-3",
+    "time": "petang",
+    "title": "Tasbih Penghapus Dosa Petang",
+    "arabic": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+    "latin": "Subhanallahi wa bihamdih",
+    "translation": "Maha Suci Allah dan segala puji bagi-Nya.",
+    "targetCount": 100,
+    "note": "Dibaca 100 kali. Tidak ada seorang pun di hari kiamat yang datang membawa amalan lebih baik selain yang membaca semisalnya atau lebih.",
+    "source": "HR. Muslim no. 2692"
+  }
+]
+

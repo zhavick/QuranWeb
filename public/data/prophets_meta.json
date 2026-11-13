@@ -1,0 +1,511 @@
+[
+  {
+    "id": 1,
+    "slug": "adam",
+    "name": "Adam AS",
+    "arabicName": "آدَمُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Abul Basyar (Bapak Umat Manusia)",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": false,
+    "period": "Awal Penciptaan Manusia",
+    "region": "Surga lalu Turun ke Bumi",
+    "people": "Umat Manusia Pertama",
+    "mentionsInQuran": 25,
+    "summary": "Nabi Adam AS adalah manusia pertama yang diciptakan Allah SWT dari tanah dan ditiupkan ruh ke dalamnya. Beliau diajarkan nama-nama seluruh benda, dimuliakan di hadapan malaikat, dan menjadi teladan pertaubatan yang tulus usai khilaf mendekati pohon terlarang.",
+    "relatedSurahIds": [
+      2,
+      7,
+      20
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "idris",
+    "name": "Idris AS",
+    "arabicName": "إِدْرِيسُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Ash-Shiddiqul 'Aliyy (Pencinta Kebenaran Berkedudukan Tinggi)",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": false,
+    "period": "Generasi Keturunan Adam",
+    "region": "Babilonia (Irak) & Mesir",
+    "people": "Keturunan Qabil yang Melenceng",
+    "mentionsInQuran": 2,
+    "summary": "Nabi Idris AS adalah nabi yang dianugerahi kepandaian luar biasa: pelopor menulis dengan qalam (pena), menjahit pakaian dari kain, ilmu perbintangan/hitung, serta keteguhan ibadah yang mengangkat derajatnya ke martabat yang amat tinggi di sisi Allah SWT.",
+    "relatedSurahIds": [
+      19,
+      21
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "nuh",
+    "name": "Nuh AS",
+    "arabicName": "نُوحٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Syaikhul Anbiya' & Ulul Azmi (Bapak Kedua Manusia)",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": true,
+    "period": "~3900 - 2900 SM",
+    "region": "Mesopotamia Selatan (Irak Kuno)",
+    "people": "Kaum Penyembah Berhala Wadd, Suwa', Yaghuts, Ya'uq, Nasr",
+    "mentionsInQuran": 43,
+    "summary": "Nabi Nuh AS berdakwah selama 950 tahun dengan kesabaran tak berbatas di hadapan kaumnya yang congkak. Beliau diperintahkan membuat Bahtera agung di atas daratan sebagai sarana penyelamatan bagi orang-orang beriman saat air bah melanda bumi.",
+    "relatedSurahIds": [
+      11,
+      71,
+      23,
+      26
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "hud",
+    "name": "Hud AS",
+    "arabicName": "هُودٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Pembela Tauhid Kaum Peradaban Raksasa",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": false,
+    "period": "~2400 SM",
+    "region": "Al-Ahqaf (Bukit Pasir Yaman & Oman)",
+    "people": "Kaum 'Ad (Penduduk Kota Iram dengan Pilar Megah)",
+    "mentionsInQuran": 7,
+    "summary": "Nabi Hud AS diutus kepada Kaum 'Ad, bangsa berperawakan perkasa dan arsitektur menara megah di Al-Ahqaf. Beliau memperingatkan mereka agar tidak sombong dan kembali bersyukur kepada Allah, hingga azab angin dingin dahsyat memusnahkan mereka yang mendustakan.",
+    "relatedSurahIds": [
+      11,
+      26,
+      46
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "shalih",
+    "name": "Shalih AS",
+    "arabicName": "صَٰلِحٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Nabi Pemilik Mukjizat Unta Betina yang Dimuliakan",
+    "era": "permulaan",
+    "eraLabel": "Era Permulaan",
+    "isUlulAzmi": false,
+    "period": "~2000 SM",
+    "region": "Al-Hijr (Mada'in Saleh, Arab Saudi)",
+    "people": "Kaum Tsamud (Pemahat Gunung Batu Cadas)",
+    "mentionsInQuran": 9,
+    "summary": "Nabi Shalih AS diutus kepada Kaum Tsamud yang mahir memahat bukit-bukit cadas menjadi hunian yang aman. Allah memberikan mukjizat berupa seekor unta betina bunting dari balik batu besar sebagai ujian pembagian air, namun kaum yang membangkang tega menyembelihnya.",
+    "relatedSurahIds": [
+      7,
+      11,
+      26,
+      91
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "ibrahim",
+    "name": "Ibrahim AS",
+    "arabicName": "إِبْرَٰهِيمُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Khalilullah, Abul Anbiya' & Ulul Azmi",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": true,
+    "period": "~1900 SM",
+    "region": "Ur (Irak), Babilonia, Syam, Mesir, Hijaz (Makkah)",
+    "people": "Raja Namrud & Bangsa Penyembah Bintang/Patung",
+    "mentionsInQuran": 69,
+    "summary": "Nabi Ibrahim AS adalah bapak para nabi (Abul Anbiya') dan kekasih Allah (Khalilullah). Beliau memecahkan berhala-berhala kaumnya, diselamatkan dari kobaran api raksasa, mengorbankan kesenangannya demi perintah Allah, serta bersama putranya Ismail meninggikan pondasi Ka'bah.",
+    "relatedSurahIds": [
+      14,
+      2,
+      6,
+      21,
+      37
+    ]
+  },
+  {
+    "id": 7,
+    "slug": "luth",
+    "name": "Luth AS",
+    "arabicName": "لُوطٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Penentang Kemungkaran Kaum Sodom",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1900 SM",
+    "region": "Sodom & Gomorrah (Sekitar Laut Mati, Yordania)",
+    "people": "Penduduk Kota Sodom Pelaku Perbuatan Menyimpang",
+    "mentionsInQuran": 27,
+    "summary": "Nabi Luth AS (keponakan Nabi Ibrahim) diutus membimbing kaum Sodom yang melakukan perbuatan keji melampaui batas yang belum pernah dikerjakan umat terdahulu. Beliau gigih mempertahankan fitrah kesucian manusia hingga azab batu belerang membalikkan kota mereka.",
+    "relatedSurahIds": [
+      11,
+      15,
+      26,
+      29
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "ismail",
+    "name": "Ismail AS",
+    "arabicName": "إِسْمَٰعِيلُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Adz-Dzabih & Shadiqu Al-Wa'di (Teladan Ikhlas & Pemegang Janji)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1800 SM",
+    "region": "Lembah Bakkah (Makkah Al-Mukarramah)",
+    "people": "Suku Jurhum & Penduduk Makkah",
+    "mentionsInQuran": 12,
+    "summary": "Nabi Ismail AS adalah putra sulung Nabi Ibrahim dan Sayyidah Hajar. Beliau adalah sumber memancarnya air zamzam saat masih bayi, pemuda berhati lapang yang rela dikurbankan demi ketaatan, serta pembangun Ka'bah yang darinya lahir Baginda Nabi Muhammad SAW.",
+    "relatedSurahIds": [
+      2,
+      19,
+      37
+    ]
+  },
+  {
+    "id": 9,
+    "slug": "ishaq",
+    "name": "Ishaq AS",
+    "arabicName": "إِسْحَٰقُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Anak Kabar Gembira & Leluhur Para Nabi Bani Israil",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1750 SM",
+    "region": "Kan'an (Palestina)",
+    "people": "Penduduk Kan'an & Syam",
+    "mentionsInQuran": 17,
+    "summary": "Nabi Ishaq AS dilahirkan sebagai mukjizat kabar gembira dari malaikat kepada Ibunda Sarah di usia yang sangat senja. Dari keturunan beliau lahirlah nabi-nabi agung Bani Israil termasuk Ya'qub, Yusuf, Musa, Daud, Sulaiman, hingga Isa AS.",
+    "relatedSurahIds": [
+      11,
+      21,
+      37
+    ]
+  },
+  {
+    "id": 10,
+    "slug": "yaqub",
+    "name": "Ya'qub AS",
+    "arabicName": "يَعْقُوبُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Israil (Hamba Allah yang Bersabar dalam Kesedihan)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1700 SM",
+    "region": "Kan'an (Palestina) & Mesir",
+    "people": "Bani Israil (Keluarga 12 Putra)",
+    "mentionsInQuran": 16,
+    "summary": "Nabi Ya'qub AS (bergelar Israil) adalah teladan kesabaran seorang ayah menghadapi cobaan perpisahan dengan putra-putranya. Matanya memutih karena kesedihan mendalam atas hilangnya Yusuf, namun lisannya tidak pernah mengeluh selain hanya mengadukan duka kepada Allah SWT.",
+    "relatedSurahIds": [
+      12,
+      2,
+      3
+    ]
+  },
+  {
+    "id": 11,
+    "slug": "yusuf",
+    "name": "Yusuf AS",
+    "arabicName": "يُوسُفُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Ash-Shiddiq & Ahsanul Qashash (Kisah Terbaik Penuh Hikmah)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1650 SM",
+    "region": "Kan'an lalu Menjadi Bendahara Mesir",
+    "people": "Masyarakat Mesir & Dinasti Hyksos",
+    "mentionsInQuran": 27,
+    "summary": "Nabi Yusuf AS adalah putra Nabi Ya'qub yang dianugerahi separuh ketampanan dunia, keteguhan menjaga kehormatan diri dari godaan syahwat, kepandaian menakwil mimpi, serta kemuliaan memaafkan saudara-saudaranya yang dahulu membuangnya ke dalam sumur tua.",
+    "relatedSurahIds": [
+      12
+    ]
+  },
+  {
+    "id": 12,
+    "slug": "ayyub",
+    "name": "Ayyub AS",
+    "arabicName": "أَيُّوبُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Sayyidush-Shaabiriin (Pemimpin Ketabahan Menghadapi Sakit)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1600 SM",
+    "region": "Hauran (Perbatasan Syam & Yordania)",
+    "people": "Penduduk Daerah Syam",
+    "mentionsInQuran": 4,
+    "summary": "Nabi Ayyub AS diuji dengan lenyapnya seluruh harta kekayaan, meninggalnya anak-anak tercinta, dan penyakit kulit parah selama belasan tahun. Di tengah cobaan berat tersebut, lidah beliau tidak pernah berhenti bertasbih hingga Allah menyembuhkannya melalui hentakan air sejuk.",
+    "relatedSurahIds": [
+      21,
+      38
+    ]
+  },
+  {
+    "id": 13,
+    "slug": "syuaib",
+    "name": "Syu'aib AS",
+    "arabicName": "شُعَيْبٌ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Khatibul Anbiya' (Juru Bicara Para Nabi Penegak Kejujuran Timbangan)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1550 SM",
+    "region": "Madyan & Aikah (Jazirah Arab Barat Laut)",
+    "people": "Penduduk Madyan Pemilik Hutan Rindang (Ashabul Aikah)",
+    "mentionsInQuran": 11,
+    "summary": "Nabi Syu'aib AS dijuluki juru bicara para nabi karena argumentasi dakwahnya yang sangat fasih dan logis. Beliau memperingatkan Kaum Madyan yang curang dalam takaran dan timbangan serta merampok di jalanan, hingga azab naungan awan panas dan gempa menghancurkan mereka.",
+    "relatedSurahIds": [
+      7,
+      11,
+      26,
+      29
+    ]
+  },
+  {
+    "id": 14,
+    "slug": "musa",
+    "name": "Musa AS",
+    "arabicName": "مُوسَىٰ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Kalimullah & Ulul Azmi (Pembebas Bani Israil dari Tirani Fir'aun)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": true,
+    "period": "~1500 SM",
+    "region": "Mesir Kuno, Bukit Thursina, Padang Tiih",
+    "people": "Fir'aun, Haman, Qarun, dan Kaum Bani Israil",
+    "mentionsInQuran": 136,
+    "summary": "Nabi Musa AS adalah nabi yang paling banyak dikisahkan dalam Al-Qur'an. Dihanyutkan di Sungai Nil saat bayi, diasuh di istana Fir'aun, berbicara langsung dengan Allah di Lembah Thuwa, membelah Laut Merah dengan tongkatnya, dan menerima Kitab Taurat di Thursina.",
+    "relatedSurahIds": [
+      20,
+      28,
+      7,
+      26,
+      2
+    ]
+  },
+  {
+    "id": 15,
+    "slug": "harun",
+    "name": "Harun AS",
+    "arabicName": "هَٰرُونُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Wazirun Naashih (Pendamping Kalimullah yang Fasih & Lembut)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1500 SM",
+    "region": "Mesir & Semenanjung Sinai",
+    "people": "Bani Israil & Fir'aun",
+    "mentionsInQuran": 20,
+    "summary": "Nabi Harun AS adalah kakak kandung Nabi Musa yang diangkat menjadi nabi atas permohonan Musa sendiri. Beliau dikaruniai kelancaran lisan yang fasih, kelembutan tutur kata dalam melunakkan hati Fir'aun, serta kesabaran menjaga Bani Israil saat Musa bermunajat di Bukit Sinai.",
+    "relatedSurahIds": [
+      20,
+      26,
+      28,
+      7
+    ]
+  },
+  {
+    "id": 16,
+    "slug": "dzulkifli",
+    "name": "Dzulkifli AS",
+    "arabicName": "ذُو ٱلْكِفْلِ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Penepati Janji Adil & Hakim yang Sabar",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1400 SM",
+    "region": "Damaskus & Syam",
+    "people": "Masyarakat Syam & Bani Israil",
+    "mentionsInQuran": 2,
+    "summary": "Nabi Dzulkifli AS dikenal sebagai hamba Allah yang sanggup memenuhi janji berat: berpuasa di siang hari, beribadah sepanjang malam, dan memutuskan perkara rakyat dengan adil tanpa pernah marah. Beliau dipuji Al-Qur'an bersama orang-orang yang teguh bersabar.",
+    "relatedSurahIds": [
+      21,
+      38
+    ]
+  },
+  {
+    "id": 17,
+    "slug": "daud",
+    "name": "Daud AS",
+    "arabicName": "دَاوُۥدُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Raja Berhati Lembut Penerima Kitab Zabur & Penakluk Jalut",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1000 SM",
+    "region": "Baitul Maqdis (Yerusalem, Palestina)",
+    "people": "Bani Israil & Pasukan Jalut",
+    "mentionsInQuran": 16,
+    "summary": "Nabi Daud AS adalah pemuda pemberani yang menumbangkan raksasa Jalut, diangkat menjadi raja adil Bani Israil, dan diturunkan kepadanya Kitab Zabur. Allah menundukkan gunung dan burung untuk bertasbih bersamanya, serta melunakkan besi cadas di tangannya.",
+    "relatedSurahIds": [
+      2,
+      38,
+      34,
+      21
+    ]
+  },
+  {
+    "id": 18,
+    "slug": "sulaiman",
+    "name": "Sulaiman AS",
+    "arabicName": "سُلَيْمَٰنُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Raja Teragung Penakluk Angin & Bangsa Jin",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~950 SM",
+    "region": "Yerusalem (Palestina) & Yaman",
+    "people": "Bani Israil & Ratu Bilqis (Kerajaan Saba')",
+    "mentionsInQuran": 17,
+    "summary": "Nabi Sulaiman AS adalah putra Nabi Daud yang mewarisi kerajaan tak tertandingi sepanjang sejarah. Beliau memahami bahasa binatang, menundukkan angin kencang sebagai kendaraan, memimpin pasukan manusia, jin, dan burung, namun senantiasa tunduk bersyukur di hadapan Allah SWT.",
+    "relatedSurahIds": [
+      27,
+      34,
+      38,
+      21
+    ]
+  },
+  {
+    "id": 19,
+    "slug": "ilyas",
+    "name": "Ilyas AS",
+    "arabicName": "إِلْيَاسُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Penentang Berhala Ba'al yang Pemberani",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~850 SM",
+    "region": "Ba'albek (Lebanon & Palestina)",
+    "people": "Penduduk Ba'albek Penyembah Berhala Ba'al",
+    "mentionsInQuran": 2,
+    "summary": "Nabi Ilyas AS diutus membimbing kaumnya yang terbuai menyembah patung berhala emas bernama Ba'al. Beliau memperingatkan mereka tentang Hari Pembalasan dan bahaya meninggalkan Sang Pencipta yang sebaik-baiknya.",
+    "relatedSurahIds": [
+      37,
+      6
+    ]
+  },
+  {
+    "id": 20,
+    "slug": "ilyasa",
+    "name": "Ilyasa' AS",
+    "arabicName": "ٱلْيَسَعُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Penerus Cahaya Kenabian yang Saleh & Istiqamah",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~800 SM",
+    "region": "Syam & Palestina",
+    "people": "Bani Israil Pasca-Ilyas",
+    "mentionsInQuran": 2,
+    "summary": "Nabi Ilyasa' AS adalah murid setia sekaligus penerus perjuangan Nabi Ilyas AS. Beliau melanjutkan dakwah tauhid kepada Bani Israil dengan kesabaran, kezuhudan, dan kepemimpinan moral yang kokoh.",
+    "relatedSurahIds": [
+      6,
+      38
+    ]
+  },
+  {
+    "id": 21,
+    "slug": "yunus",
+    "name": "Yunus AS",
+    "arabicName": "يُونُسُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Dzun Nun & Shahibul Huut (Pemilik Doa Mustajab di Perut Ikan)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~750 SM",
+    "region": "Ninawa (Mosul, Irak Utara) & Laut Tengah",
+    "people": "Penduduk Negeri Ninawa (~100.000 jiwa)",
+    "mentionsInQuran": 5,
+    "summary": "Nabi Yunus AS (Dzun Nun) diutus kepada penduduk Ninawa. Sempat beranjak meninggalkan kaumnya karena kesal dakwahnya ditolak, beliau dilempar dari kapal di tengah badai dan ditelan ikan nun besar. Di dalam tiga kegelapan, doa taubatnya yang tulus menggetarkan Arasy hingga Allah menyelamatkannya.",
+    "relatedSurahIds": [
+      21,
+      37,
+      10,
+      68
+    ]
+  },
+  {
+    "id": 22,
+    "slug": "zakariya",
+    "name": "Zakariya AS",
+    "arabicName": "زَكَرِيَّآءُ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Pelindung Mihrab & Pemohon Keturunan Suci di Usia Senja",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~100 SM",
+    "region": "Baitul Maqdis (Yerusalem, Palestina)",
+    "people": "Bani Israil & Para Pengurus Haikal",
+    "mentionsInQuran": 7,
+    "summary": "Nabi Zakariya AS adalah nabi dan ulama penjaga Baitul Maqdis serta pemelihara Sayyidah Maryam. Di usianya yang telah sangat uzur dengan rambut memutih dan tulang rapuh, beliau memanjatkan doa bisikan lembut memohon pewaris agama, hingga Allah menganugerahkan Nabi Yahya AS.",
+    "relatedSurahIds": [
+      19,
+      3,
+      21
+    ]
+  },
+  {
+    "id": 23,
+    "slug": "yahya",
+    "name": "Yahya AS",
+    "arabicName": "يَحْيَىٰ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Al-Hanuun Al-Basyir (Nabi Penuh Kasih, Lembut & Berbakti)",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": false,
+    "period": "~1 Masehi",
+    "region": "Palestina & Lembah Yordan",
+    "people": "Bani Israil & Raja Herodes",
+    "mentionsInQuran": 5,
+    "summary": "Nabi Yahya AS adalah putra Nabi Zakariya yang dianugerahi hikmah kenabian sejak masih kanak-kanak. Beliau hidup zuhud, memiliki rasa kasih sayang mendalam terhadap satwa dan fakir miskin, berbakti kepada orang tua, serta syahid mempertahankan hukum syariat dari kemungkaran penguasa zalim.",
+    "relatedSurahIds": [
+      19,
+      3,
+      21
+    ]
+  },
+  {
+    "id": 24,
+    "slug": "isa",
+    "name": "Isa AS",
+    "arabicName": "عِيسَىٰ عَلَيْهِ ٱلسَّلَامُ",
+    "title": "Ruhullah, Kalimatullah & Ulul Azmi",
+    "era": "israil",
+    "eraLabel": "Era Kebangkitan Tauhid & Bani Israil",
+    "isUlulAzmi": true,
+    "period": "~1 - 33 Masehi",
+    "region": "Baitul Lahm (Betlehem), Nazaret, Yerusalem",
+    "people": "Bani Israil & Kaum Hawariyyun",
+    "mentionsInQuran": 25,
+    "summary": "Nabi Isa AS adalah putra Sayyidah Maryam yang dilahirkan tanpa perantara ayah sebagai mukjizat agung kekuasaan Allah. Beliau dapat berbicara saat masih di buaian bayi, menyembuhkan orang buta sejak lahir, menghidupkan orang mati dengan izin Allah, membawa Kitab Injil, dan diangkat hidup-hidup ke langit.",
+    "relatedSurahIds": [
+      19,
+      3,
+      5,
+      43
+    ]
+  },
+  {
+    "id": 25,
+    "slug": "muhammad",
+    "name": "Muhammad SAW",
+    "arabicName": "مُحَمَّدٌ صَلَّى ٱللَّهُ عَلَيْهِ وَسَلَّمَ",
+    "title": "Khatamun Nabiyyin, Sayyidul Mursalin & Rahmatan lil 'Alamin",
+    "era": "penutup",
+    "eraLabel": "Era Penutup Kenabian",
+    "isUlulAzmi": true,
+    "period": "571 - 632 Masehi (12 Rabi'ul Awwal)",
+    "region": "Makkah Al-Mukarramah & Madinah Al-Munawwarah",
+    "people": "Seluruh Umat Manusia & Jin (Kaffatan lin-Naas)",
+    "mentionsInQuran": 4,
+    "summary": "Baginda Nabi Muhammad SAW adalah penutup para nabi, rasul teragung, dan rahmat bagi seluruh alam semesta. Lahir sebagai yatim yang terpercaya (Al-Amin), menerima wahyu agung Al-Qur'an di Gua Hira, memimpin hijrah pembangun peradaban Madinah, dan menyempurnakan akhlak mulia kemanusiaan.",
+    "relatedSurahIds": [
+      96,
+      93,
+      94,
+      33,
+      48,
+      47
+    ]
+  }
+]

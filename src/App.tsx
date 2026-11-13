@@ -16,6 +16,10 @@ import {
   Play,
   Pause,
   User,
+  LogOut,
+  Newspaper,
+  Sparkles,
+  Navigation,
 } from 'lucide-react';
 import type {
   QuranMeta,
@@ -37,8 +41,16 @@ import { SettingsModal } from './components/settings/SettingsModal';
 import { TajweedMakhrajModal } from './components/settings/TajweedMakhrajModal';
 import { AudioMiniPlayer } from './components/audio/AudioMiniPlayer';
 import { JoinPromptModal } from './components/auth/JoinPromptModal';
+import { LogoutConfirmModal } from './components/auth/LogoutConfirmModal';
 import { AdminPortal } from './components/admin/AdminPortal';
 import { UserPortal } from './components/user/UserPortal';
+import { ProphetsCatalog } from './components/prophets/ProphetsCatalog';
+import { ProphetLanternBanner } from './components/prophets/ProphetLanternBanner';
+import { BlogCatalog } from './components/blog/BlogCatalog';
+import { PrayersCatalog } from './components/prayers/PrayersCatalog';
+import { QiblaCompass } from './components/qibla/QiblaCompass';
+import { KhatamPlannerModal } from './components/khatam/KhatamPlannerModal';
+import { getStoredUser, logoutUser, type AuthUser } from './services/auth';
 import { fetchAppConfig, type AppConfig, DEFAULT_APP_CONFIG } from './services/admin';
 import {
   logVisitorAccess,
@@ -61,10 +73,16 @@ const DEFAULT_SETTINGS: ReaderSettings = {
 };
 
 export const App: React.FC = () => {
-  const [currentRoute, setCurrentRoute] = useState<'reader' | 'admin' | 'user'>(() => {
+  const [currentRoute, setCurrentRoute] = useState<
+    'reader' | 'admin' | 'user' | 'prophets' | 'blog' | 'prayers' | 'kiblat'
+  >(() => {
     const p = window.location.pathname.toLowerCase();
     if (p === '/admin' || p.startsWith('/admin/')) return 'admin';
     if (p === '/user' || p.startsWith('/user/')) return 'user';
+    if (p === '/kisah' || p.startsWith('/kisah/')) return 'prophets';
+    if (p === '/blog' || p.startsWith('/blog/')) return 'blog';
+    if (p === '/doa' || p.startsWith('/doa/')) return 'prayers';
+    if (p === '/kiblat' || p.startsWith('/kiblat/')) return 'kiblat';
     return 'reader';
   });
 
@@ -74,19 +92,35 @@ export const App: React.FC = () => {
     fetchAppConfig().then((cfg) => setAppConfig(cfg));
   }, []);
 
-  const navigateTo = useCallback((route: 'reader' | 'admin' | 'user') => {
-    setCurrentRoute(route);
-    const path = route === 'reader' ? '/' : `/${route}`;
-    if (window.location.pathname !== path) {
-      window.history.pushState({}, '', path);
-    }
-  }, []);
+  const navigateTo = useCallback(
+    (route: 'reader' | 'admin' | 'user' | 'prophets' | 'blog' | 'prayers' | 'kiblat') => {
+      setCurrentRoute(route);
+      const path =
+        route === 'reader'
+          ? '/'
+          : route === 'prophets'
+          ? '/kisah'
+          : route === 'prayers'
+          ? '/doa'
+          : route === 'kiblat'
+          ? '/kiblat'
+          : `/${route}`;
+      if (window.location.pathname !== path) {
+        window.history.pushState({}, '', path);
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     const handlePopState = () => {
       const p = window.location.pathname.toLowerCase();
       if (p === '/admin' || p.startsWith('/admin/')) setCurrentRoute('admin');
       else if (p === '/user' || p.startsWith('/user/')) setCurrentRoute('user');
+      else if (p === '/kisah' || p.startsWith('/kisah/')) setCurrentRoute('prophets');
+      else if (p === '/blog' || p.startsWith('/blog/')) setCurrentRoute('blog');
+      else if (p === '/doa' || p.startsWith('/doa/')) setCurrentRoute('prayers');
+      else if (p === '/kiblat' || p.startsWith('/kiblat/')) setCurrentRoute('kiblat');
       else setCurrentRoute('reader');
     };
     window.addEventListener('popstate', handlePopState);
@@ -108,9 +142,25 @@ export const App: React.FC = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [tajweedGuideOpen, setTajweedGuideOpen] = useState(false);
+  const [khatamPlannerOpen, setKhatamPlannerOpen] = useState(false);
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [focusedAyahId, setFocusedAyahId] = useState<number | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(() => getStoredUser());
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleAuthChange = () => {
+      setCurrentUser(getStoredUser());
+    };
+    window.addEventListener('quranweb_auth_changed', handleAuthChange);
+    window.addEventListener('storage', handleAuthChange);
+    return () => {
+      window.removeEventListener('quranweb_auth_changed', handleAuthChange);
+      window.removeEventListener('storage', handleAuthChange);
+    };
+  }, []);
 
   const [settings, setSettings] = useLocalStorage<ReaderSettings>(
     'quranweb_settings',
@@ -135,6 +185,13 @@ export const App: React.FC = () => {
     setToast(msg);
     setTimeout(() => setToast(null), 2500);
   }, []);
+
+  const handleConfirmLogout = useCallback(() => {
+    logoutUser();
+    setCurrentUser(null);
+    setLogoutModalOpen(false);
+    showToast('Anda telah berhasil keluar dari akun dengan aman. Selamat melanjutkan tilawah.');
+  }, [showToast]);
 
   // Sync theme attribute to <html>
   useEffect(() => {
@@ -377,12 +434,14 @@ export const App: React.FC = () => {
         syncStagingSettings(settings, next, lastRead);
         logActivity('ADD_BOOKMARK', { surahId: ayah.surahId, ayahNumber: ayah.ayahNumber });
         showToast('Ayat disimpan ke Bookmark');
-        // Trigger CTA join prompt
-        setTimeout(() => setJoinModalOpen(true), 600);
+        // Trigger CTA join prompt only for guest without active session
+        if (!currentUser) {
+          setTimeout(() => setJoinModalOpen(true), 600);
+        }
         return next;
       });
     },
-    [setBookmarks, settings, lastRead, showToast]
+    [setBookmarks, settings, lastRead, showToast, currentUser]
   );
 
   const handleDeleteBookmark = useCallback(
@@ -519,6 +578,65 @@ export const App: React.FC = () => {
           navigateTo('reader');
           showToast(`Mencari: ${query}`);
         }}
+        onOpenBlogArticle={(slug) => {
+          navigateTo('blog');
+          if (slug) {
+            window.history.pushState({}, '', `/blog/${slug}`);
+          }
+        }}
+        onOpenKhatamPlanner={() => setKhatamPlannerOpen(true)}
+      />
+    );
+  }
+
+  if (currentRoute === 'prophets') {
+    return (
+      <ProphetsCatalog
+        onBackToMushaf={() => navigateTo('reader')}
+        onNavigateToAyah={(surahId, ayahNumber) => {
+          handleJumpToAyah(surahId, ayahNumber);
+          navigateTo('reader');
+        }}
+      />
+    );
+  }
+
+  if (currentRoute === 'blog') {
+    return (
+      <BlogCatalog
+        onBackToMushaf={() => navigateTo('reader')}
+        onNavigateToAyah={(surahId, ayahNumber) => {
+          handleJumpToAyah(surahId, ayahNumber);
+          navigateTo('reader');
+        }}
+        onOpenProphetStory={() => navigateTo('prophets')}
+      />
+    );
+  }
+
+  if (currentRoute === 'prayers') {
+    if (!currentUser) {
+      setJoinModalOpen(true);
+      navigateTo('reader');
+      return null;
+    }
+    return (
+      <PrayersCatalog
+        onBackToMushaf={() => navigateTo('reader')}
+        onNavigateToAyah={(surahId, ayahNumber) => {
+          handleJumpToAyah(surahId, ayahNumber);
+          navigateTo('reader');
+        }}
+        elderMode={settings.elderMode}
+      />
+    );
+  }
+
+  if (currentRoute === 'kiblat') {
+    return (
+      <QiblaCompass
+        onBackToMushaf={() => navigateTo('reader')}
+        elderMode={settings.elderMode}
       />
     );
   }
@@ -596,22 +714,174 @@ export const App: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <PrayerTimeWidget />
+            <PrayerTimeWidget
+              onOpenKhatamPlanner={currentUser ? () => setKhatamPlannerOpen(true) : undefined}
+              onOpenQibla={() => navigateTo('kiblat')}
+            />
 
+            {/* Adaptive User Session / Quick Logout */}
+            {currentUser ? (
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (currentUser.role === 'admin' || currentUser.role === 'asatidz' || currentUser.role === 'editor') {
+                      navigateTo('admin');
+                    } else {
+                      navigateTo('user');
+                    }
+                  }}
+                  aria-label={`Profil ${currentUser.full_name} (${currentUser.role})`}
+                  title={`Masuk sebagai ${currentUser.full_name} (${currentUser.role}) — Klik untuk buka portal`}
+                  className="inline-flex h-9 items-center gap-2 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-all hover:opacity-95"
+                  style={{
+                    backgroundColor: 'var(--bg-accent-soft)',
+                    borderColor: 'var(--border-color)',
+                    color: 'var(--text-primary)',
+                  }}
+                >
+                  <span
+                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white uppercase shadow-xs"
+                    style={{ backgroundColor: 'var(--bg-accent)' }}
+                  >
+                    {currentUser.username.charAt(0) || 'U'}
+                  </span>
+                  <span className="max-w-[70px] sm:max-w-[110px] truncate hidden xs:inline">
+                    {currentUser.username}
+                  </span>
+                  <span
+                    className="rounded-md px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider hidden md:inline"
+                    style={{
+                      backgroundColor: 'var(--bg-muted)',
+                      color: 'var(--text-accent)',
+                    }}
+                  >
+                    {currentUser.role}
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setLogoutModalOpen(true)}
+                  aria-label="Keluar dari Akun (Logout)"
+                  title="Keluar dari Akun (Logout)"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl border cursor-pointer transition-all hover:bg-red-500/10 hover:border-red-500/30 text-red-500"
+                  style={{
+                    backgroundColor: 'var(--bg-muted)',
+                    borderColor: 'var(--border-color)',
+                  }}
+                >
+                  <LogOut className="h-4 w-4" />
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => navigateTo('user')}
+                aria-label="Masuk ke Akun / Dashboard"
+                title="Masuk / Dashboard Pengguna (/user)"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border cursor-pointer transition-colors"
+                style={{
+                  backgroundColor: 'var(--bg-muted)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-primary)',
+                }}
+              >
+                <User className="h-4 w-4" />
+              </button>
+            )}
+
+            {/* Tombol Akses Cepat Kisah Para Rasulullah */}
             <button
               type="button"
-              onClick={() => navigateTo('user')}
-              aria-label="Dashboard Pengguna"
-              title="Dashboard Pengguna (/user)"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-xl border cursor-pointer"
+              onClick={() => navigateTo('prophets')}
+              aria-label="Kisah Para Rasulullah (25 Nabi)"
+              title="Kisah Para Rasulullah (Qashashul Anbiya' — 25 Nabi)"
+              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
               style={{
                 backgroundColor: 'var(--bg-muted)',
                 borderColor: 'var(--border-color)',
                 color: 'var(--text-primary)',
               }}
             >
-              <User className="h-4 w-4" />
+              <Compass className="h-4 w-4 text-amber-500" />
+              <span className="hidden sm:inline">Kisah Rasul</span>
             </button>
+
+            {/* Tombol Akses Cepat Jurnal Blog & Tadabbur */}
+            <button
+              type="button"
+              onClick={() => navigateTo('blog')}
+              aria-label="Jurnal Literasi & Blog Tadabbur"
+              title="Jurnal Literasi & Blog Tadabbur Qur'ani (/blog)"
+              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
+              style={{
+                backgroundColor: 'var(--bg-muted)',
+                borderColor: 'var(--border-color)',
+                color: 'var(--text-primary)',
+              }}
+            >
+              <Newspaper className="h-4 w-4 text-emerald-500" />
+              <span className="hidden sm:inline">Jurnal Blog</span>
+            </button>
+
+            {/* Tombol Akses Cepat Kompas Arah Kiblat */}
+            <button
+              type="button"
+              onClick={() => navigateTo('kiblat')}
+              aria-label="Kompas Arah Kiblat"
+              title="Kompas Arah Kiblat Adaptif (/kiblat)"
+              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
+              style={{
+                backgroundColor: 'var(--bg-muted)',
+                borderColor: 'var(--border-color)',
+                color: 'var(--text-primary)',
+              }}
+            >
+              <Navigation className="h-4 w-4 text-emerald-500" />
+              <span className="hidden sm:inline">Arah Kiblat</span>
+            </button>
+
+            {/* Tombol Akses Cepat Doa Qur'ani & Dzikir (Hanya ditampilkan jika memiliki akun) */}
+            {currentUser && (
+              <button
+                type="button"
+                onClick={() => navigateTo('prayers')}
+                aria-label="Kumpulan Doa Qur'ani & Dzikir"
+                title="Kumpulan Doa Qur'ani (40 Rabbana) & Tasbih Haptic (/doa)"
+                className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-muted)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-primary)',
+                }}
+              >
+                <Sparkles className="h-4 w-4 text-emerald-500" />
+                <span className="hidden sm:inline">Doa &amp; Dzikir</span>
+              </button>
+            )}
+
+            {/* Tombol Akses Cepat Rencana Khatam Sakinah (Hanya ditampilkan jika memiliki akun) */}
+            {currentUser && (
+              <button
+                type="button"
+                onClick={() => {
+                  setKhatamPlannerOpen(true);
+                  logActivity('OPEN_KHATAM_PLANNER');
+                }}
+                aria-label="Rencana Khatam Sakinah Berbasis 'Ain"
+                title="Rencana Khatam Sakinah (Khatam Planner Berbasis 'Ain)"
+                className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-muted)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-primary)',
+                }}
+              >
+                <Compass className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                <span className="hidden sm:inline">Rencana Khatam</span>
+              </button>
+            )}
 
             <button
               type="button"
@@ -700,6 +970,7 @@ export const App: React.FC = () => {
               onJumpToAyah={handleJumpToAyah}
               onDeleteBookmark={handleDeleteBookmark}
               onUpdateBookmarkNote={handleUpdateBookmarkNote}
+              onOpenKhatamPlanner={currentUser ? () => setKhatamPlannerOpen(true) : undefined}
             />
           </aside>
         )}
@@ -937,6 +1208,16 @@ export const App: React.FC = () => {
               )}
             </div>
 
+            {/* Prophet Lantern Banner (Bi-Directional Linking dari Mushaf ke Kisah Nabi) */}
+            {viewMode === 'surah' && currentSurahMeta && (
+              <ProphetLanternBanner
+                surahId={selectedSurahId}
+                surahName={currentSurahMeta.nameLatin}
+                onNavigateToAyah={handleJumpToAyah}
+                onOpenProphetsCatalog={() => navigateTo('prophets')}
+              />
+            )}
+
             {/* Ayah List */}
             <div className="space-y-4">
               {ayahs.map((ayah, idx) => {
@@ -1090,6 +1371,117 @@ export const App: React.FC = () => {
                 <X className="h-5 w-5" />
               </button>
             </div>
+
+            {/* Mobile Drawer Quick Links: Kisah Rasul & Jurnal Blog */}
+            <div className="p-3 border-b space-y-2" style={{ borderColor: 'var(--border-color)' }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  navigateTo('prophets');
+                }}
+                className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-accent-soft)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-accent)',
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <Compass className="h-4 w-4 text-amber-500" />
+                  <span>Kisah Para Rasulullah (25 Nabi)</span>
+                </div>
+                <span>Buka →</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  navigateTo('blog');
+                }}
+                className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-accent-soft)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-accent)',
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <Newspaper className="h-4 w-4 text-emerald-500" />
+                  <span>Jurnal &amp; Blog Tadabbur</span>
+                </div>
+                <span>Buka →</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  navigateTo('kiblat');
+                }}
+                className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-accent-soft)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-accent)',
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <Navigation className="h-4 w-4 text-emerald-500" />
+                  <span>Kompas Arah Kiblat Adaptif</span>
+                </div>
+                <span>Buka →</span>
+              </button>
+
+              {/* Tombol Akses Cepat Doa Qur'ani & Dzikir (Hanya saat login) */}
+              {currentUser && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileDrawerOpen(false);
+                    navigateTo('prayers');
+                  }}
+                  className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+                  style={{
+                    backgroundColor: 'var(--bg-accent-soft)',
+                    borderColor: 'var(--border-color)',
+                    color: 'var(--text-accent)',
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-emerald-500" />
+                    <span>Doa Qur&apos;ani &amp; Tasbih Haptic</span>
+                  </div>
+                  <span>Buka →</span>
+                </button>
+              )}
+
+              {/* Tombol Akses Cepat Rencana Khatam Sakinah (Hanya saat login) */}
+              {currentUser && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileDrawerOpen(false);
+                    setKhatamPlannerOpen(true);
+                    logActivity('OPEN_KHATAM_PLANNER');
+                  }}
+                  className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+                  style={{
+                    backgroundColor: 'var(--bg-accent-soft)',
+                    borderColor: 'var(--border-color)',
+                    color: 'var(--text-accent)',
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    <Compass className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                    <span>Rencana Khatam Sakinah (&apos;Ain)</span>
+                  </div>
+                  <span>Buka →</span>
+                </button>
+              )}
+            </div>
+
             <div className="flex-1 overflow-hidden">
               <NavigationPanel
                 meta={meta}
@@ -1119,6 +1511,14 @@ export const App: React.FC = () => {
                 onJumpToAyah={handleJumpToAyah}
                 onDeleteBookmark={handleDeleteBookmark}
                 onUpdateBookmarkNote={handleUpdateBookmarkNote}
+                onOpenKhatamPlanner={
+                  currentUser
+                    ? () => {
+                        setMobileDrawerOpen(false);
+                        setKhatamPlannerOpen(true);
+                      }
+                    : undefined
+                }
               />
             </div>
           </div>
@@ -1181,7 +1581,11 @@ export const App: React.FC = () => {
         onOpenTajweedGuide={() => setTajweedGuideOpen(true)}
         onSyncDatabase={() => {
           syncStagingSettings(settings, bookmarks, lastRead);
-          setJoinModalOpen(true);
+          if (currentUser) {
+            showToast('Pengaturan & bookmark tersinkronisasi ke akun Anda');
+          } else {
+            setJoinModalOpen(true);
+          }
         }}
         onOpenUserPortal={() => navigateTo('user')}
         onOpenAdminPortal={() => navigateTo('admin')}
@@ -1198,6 +1602,33 @@ export const App: React.FC = () => {
         onClose={() => setJoinModalOpen(false)}
         onSuccess={(msg) => showToast(msg)}
       />
+
+      {/* Logout Confirmation Modal */}
+      <LogoutConfirmModal
+        open={logoutModalOpen}
+        onClose={() => setLogoutModalOpen(false)}
+        onConfirm={handleConfirmLogout}
+        user={currentUser}
+      />
+
+      {/* Khatam Planner Modal (Step 12) - Hanya jika user telah memiliki akun */}
+      {currentUser && (
+        <KhatamPlannerModal
+          isOpen={khatamPlannerOpen}
+          onClose={() => setKhatamPlannerOpen(false)}
+          meta={meta}
+          onNavigateToAin={(ainNumber) => {
+            setViewMode('ain');
+            setSelectedAin(ainNumber);
+            setMobileDrawerOpen(false);
+            setKhatamPlannerOpen(false);
+            if (currentRoute !== 'reader') {
+              navigateTo('reader');
+            }
+          }}
+          elderMode={settings.elderMode}
+        />
+      )}
 
       {/* Toast Notification */}
       {toast && (

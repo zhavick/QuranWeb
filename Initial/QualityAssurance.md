@@ -439,3 +439,108 @@ Pengujian mencakup seluruh siklus pengembangan dari **Step 1 hingga Step 8** sec
    - Keamanan data dan pencatatan audit trail di PostgreSQL berjalan transparan dan terisolasi.
 4. **Status Kelayakan:** **Aplikasi QuranWeb dinyatakan SIAP PRODUKSI (PRODUCTION READY).**
 
+---
+
+## 5. Rencana & Matriks Kasus Uji Pengembangan Fase 2 (Step 9 s.d. Step 17 Preview)
+
+Sebagai persiapan memasuki fase implementasi teknis berikutnya (mengacu pada [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md)), berikut adalah pemetaan kasus uji mutu yang telah dirumuskan untuk diuji pada setiap tahapan Fase 2:
+
+| Kode Tahap | Modul Rencana Pengujian | Cakupan Kasus Uji (Test Scenarios) | Kriteria Sukses QA | Status Pelaksanaan |
+| :--- | :--- | :--- | :--- | :---: |
+| **TC-ST09** | **Standarisasi Akun (RBAC) & Logout Halaman Depan** | - Verifikasi login akun `admin`, `asatidz`, `editor`, `fulan`<br>- Verifikasi visibilitas tombol logout cepat di header depan saat login<br>- Uji modal konfirmasi santun ramah lansia<br>- Uji penghapusan sesi `localStorage` tanpa page reload / posisi tilawah tetap utuh | Header adaptif, logout instan 1-klik, sesi terisolasi. | **PASS (Selesai)** |
+| **TC-ST10** | **Modul Kisah 25 Rasulullah & Grafik Line Chart Audit** | - Verifikasi kelengkapan naskah 25 nabi & linimasa babak kehidupan<br>- Uji taut silang dua arah (Kisah ➔ Ayat Mushaf ➔ Audio Murottal)<br>- Uji grafik garis (Line Chart) tren aktivitas Audit Trail di Admin (series CRUD vs View)<br>- Uji keterbacaan tipografi lansia (line-height 1.8x, 4 tema warna) | Navigasi ayat presisi, mutiara doa nabi lengkap, grafik garis audit trail interaktif. | **PASS (Selesai)** |
+| **TC-ST11** | **Jurnal Literasi & Blog Tadabbur** | - Uji katalog 5 pilar konten dan estimasi waktu baca<br>- Uji widget kutipan ayat interaktif ber-audio mini di dalam artikel<br>- Uji CMS draf artikel di `/admin` & personal reading list di `/user` | Format artikel bersih bebas iklan, audio ayat aktif, personalisasi catatan & baca nanti berfungsi optimal. | **PASS (Selesai)** |
+| **TC-ST12** | **Rencana Khatam Ramah Lansia** | - Uji pemilihan 3 ritme tilawah (Sakinah 1 'Ain, Istiqamah, 30 Hari, Kustom)<br>- Uji pencatatan progres 'Ain aktif & Cincin Sakinah di storage peramban/cloud<br>- Uji integrasi pengingat santun ba'da shalat fardhu & tautan langsung ke mushaf | Progres cincin tersimpan stabil tanpa gamifikasi kompetitif, navigasi 'Ain presisi. | **PASS (Selesai)** |
+| **TC-ST13** | **40 Doa Rabbana, Tasbih Haptic & Guard Sesi Akun** | - Uji kelengkapan 40 Doa Rabbana beserta murottal & tautan mushaf<br>- Uji getaran haptic tasbih layar penuh (1x ketuk, 2x di 33, ritmis di 100)<br>- Uji supresi popup `JoinPromptModal` saat user ber-sesi menyimpan data di pengaturan / bookmark<br>- Uji isolasi visibilitas tombol & modul Rencana Khatam khusus akun terdaftar (tidak muncul pada publik/guest) | Haptic counter bergetar akurat pada perangkat bergerak, supresi popup dan proteksi modul khatam berjalan tepat. | **PASS (Selesai)** |
+| **TC-ST14** | **CMS Blog Lifecycle, Session Guard Doa, Chart.js Audit & Kiblat Adaptif** | - Uji penambahan naskah artikel blog & kategorisasi 5 pilar konten<br>- Uji siklus status artikel (Diterbitkan, Draf, Diarsipkan, Dihapus) di Admin CMS<br>- Uji pembatasan sesi pada modul Doa & Dzikir (sembunyikan menu di navbar untuk tamu, popup pendaftaran saat akses `/doa`)<br>- Uji Chart.js visualisasi audit trail dual-series (CRUD vs View)<br>- Uji algoritma arah kiblat adaptif (smartphone dinamis vs desktop azimuth) | CMS artikel lengkap, akses Doa & Dzikir terlindungi sesi akun, grafik Chart.js audit trail proporsional & responsif, kiblat presisi. | **PASS (Selesai)** |
+| **TC-ST15** | **Peta Masjid OpenStreetMap** | - Uji rendering peta Leaflet.js lokal (ringan, hemat kuota, 4 tema visual)<br>- Uji penggunaan ulang izin GPS jadwal shalat (*seamless reuse*)<br>- Uji kartu jarak jalan santai lansia (±3 km/jam) & deep-link navigasi suara | Peta OSM cepat, data POI akurat, fallback kota manual aktif. | Rencana |
+| **TC-ST16** | **Asbabun Nuzul & Audio Narasi** | - Uji tooltip riwayat Asbabun Nuzul shahih per ayat<br>- Uji kamus mufradat kata sukar (*Gharibul Qur'an*)<br>- Uji pemutar rekaman audio narasi bertutur 3 menit + sleep timer | Tooltip responsif, audio narasi santun dan jelas. | Rencana |
+| **TC-ST17** | **Audit Aksesibilitas & Docker Build** | - Uji kepatuhan tap target ≥44px dan kontras WCAG AAA<br>- Verifikasi offline PWA Service Worker untuk modul baru<br>- Uji coba containerization Docker Compose pada port 3382 | Build sukses 100%, performa mulus, dokumentasi sinkron. | Rencana |
+
+---
+
+## 6. Laporan Hasil Eksekusi Uji Step 10 (Verification Evidence)
+
+| ID Uji | Skenario Pengujian | Hasil Pengujian Aktual | Status |
+| :--- | :--- | :--- | :---: |
+| **TC-ST10-01** | Dataset Mandiri 25 Nabi & Rasul (`prophets_data.json` & `prophets_meta.json`) | 25 Nabi termuat lengkap dengan hierarki 3 era (Permulaan, Bani Israil, Penutup), profil, linimasa babak, doa nabawi Arab/Latin/Arti, mutiara hikmah, dan referensi ayat. | **PASS** |
+| **TC-ST10-02** | Halaman Katalog Kisah (`/kisah` / `ProphetsCatalog.tsx`) | Menampilkan kartu 25 nabi responsif, filter teks pencarian instan, filter tab era, toggle filter 5 Rasul Ulul Azmi, dan tombol kembali ke mushaf. | **PASS** |
+| **TC-ST10-03** | Lembar Baca Kisah Ramah Lansia (`ProphetDetailModal.tsx`) | Pengatur ukuran font (A, A+, A++), *line-height* lega, 4 tab terstruktur (Linimasa, Doa Nabawi, Hikmah, Rujukan Mushaf), fitur salin doa, dan navigasi nabi sebelumnya/berikutnya. | **PASS** |
+| **TC-ST10-04** | Taut Silang Dua Arah (*Bi-Directional Linking*): Kisah ➔ Mushaf | Klik tombol "Buka Ayat di Mushaf & Audio" pada doa atau rujukan ayat langsung menutup modal dan men-scroll pembaca ke ayat bersangkutan secara presisi. | **PASS** |
+| **TC-ST10-05** | Penanda Lentera Kisah (*Prophet Lantern*) di Mushaf | Banner lentera kisah muncul otomatis pada surat yang berkaitan erat (misal QS. Yusuf, Nuh, Maryam, Ibrahim, dll.) dengan tombol 1-klik membuka latar belakang kisah nabi bersangkutan. | **PASS** |
+| **TC-ST10-06** | Grafik Garis Tren Audit Trail Admin (`AdminPortal.tsx`) | Grafik SVG responsif (viewBox 0 0 600 220) dengan dual-series kurva (CRUD warna Amber & View warna Emerald), gradient area, 4 ringkasan metrik, dan tooltip interaktif. | **PASS** |
+| **TC-ST10-07** | Dukungan Offline PWA Cache Service Worker (`sw.js`) | Precache `/data/prophets_meta.json` dan `/data/prophets_data.json` terdaftar pada cache v2, siap dibaca luring tanpa koneksi internet. | **PASS** |
+| **TC-ST10-08** | Verifikasi Kompilasi TypeScript (`tsc -b`) | Kompilasi seluruh kode TypeScript berjalan mulus dengan exit code 0 tanpa error. | **PASS** |
+
+---
+
+## 7. Laporan Hasil Eksekusi Uji Step 11 (Verification Evidence)
+
+| ID Uji | Skenario Pengujian | Hasil Pengujian Aktual | Status |
+| :--- | :--- | :--- | :---: |
+| **TC-ST11-01** | Dataset Mandiri 5 Pilar Artikel (`public/data/blog_articles.json`) | 5 artikel berbobot tinggi terkurasi tanpa iklan komersial/kontroversi (Tafsir Maudhu'i, Elder Care, Ulumul Qur'an, Tazkiyatun Nafs, Warta QuranWeb) lengkap dengan tag, estimasi waktu baca, dan rujukan nabi terkait. | **PASS** |
+| **TC-ST11-02** | Halaman Katalog Jurnal Blog (`/blog` / `BlogCatalog.tsx`) | Halaman katalog menyajikan filter 5 pilar konten, pencarian instan kata kunci, penanda *Daftar Baca Nanti*, dan kartu artikel dengan metrik waktu baca ramah lansia. | **PASS** |
+| **TC-ST11-03** | Lembar Baca Editorial & Progress Bar (`BlogDetailView.tsx`) | Format membaca editorial nyaman (max-width ~720px, line-height 1.8x), reading progress bar di posisi atas, pengatur ukuran font (A, A+, A++), dan kotak catatan tadabbur pribadi. | **PASS** |
+| **TC-ST11-04** | Widget Kutipan Ayat Interaktif (`EmbeddedAyahWidget.tsx`) | Komponen shortcode `[ayah surah=X ayah=Y]` merender otomatis teks Arab Utsmani, terjemahan Kemenag RI, pemutar audio murottal EveryAyah Alafasy, tombol salin ayat, dan tautan langsung ke mushaf. | **PASS** |
+| **TC-ST11-05** | Taut Silang Cerdas ke Kisah Nabi (*Cross-Linking*) | Artikel yang membahas kisah rasulullah menyediakan kartu rujukan interaktif yang langsung membuka rute `/kisah` secara seamless. | **PASS** |
+| **TC-ST11-06** | Panel CMS Artikel pada Portal Admin (`/admin` / `AdminPortal.tsx`) | Tab artikel baru di portal admin memungkinkan peran `admin`, `asatidz`, dan `editor` membuat artikel baru, menyisipkan shortcode ayat secara instan, dan menghapus artikel kustom. | **PASS** |
+| **TC-ST11-07** | Personalisasi Pengguna (`/user` / `UserPortal.tsx`) | Tab *Daftar Baca Nanti* dan *Catatan Tadabbur Pribadi* berfungsi persisten, terhubung ke katalog blog, dan dapat dikelola secara mandiri oleh jamaah. | **PASS** |
+| **TC-ST11-08** | Offline PWA Caching Service Worker (`sw.js`) | Precache `/data/blog_articles.json` terdaftar pada cache v3, memastikan artikel blog dapat dibaca luring tanpa koneksi internet. | **PASS** |
+| **TC-ST11-09** | Verifikasi Kompilasi TypeScript (`tsc -b`) | Kompilasi seluruh kode TypeScript berjalan mulus dengan exit code 0 tanpa error tipe (`TS error = 0`). | **PASS** |
+
+---
+
+## 8. Laporan Hasil Eksekusi Uji Step 12 (Verification Evidence)
+
+| ID Uji | Skenario Pengujian | Hasil Pengujian Aktual | Status |
+| :--- | :--- | :--- | :---: |
+| **TC-ST12-01** | Logika Perhitungan Ritme Tilawah (`src/services/khatam.ts`) | Algoritma memetakan 556 'Ain secara akurat dengan 4 pilihan ritme: Ritme Sakinah (5 'Ain/hari ~ 111 hari), Ritme Istiqamah (10 'Ain/hari ~ 56 hari), Ritme 30 Hari (19 'Ain/hari ~ 30 hari), dan Ritme Mandiri (1–30 'Ain/hari). | **PASS** |
+| **TC-ST12-02** | Visualisasi Cincin Sakinah (*Gentle Progress Ring* / `SakinahRing.tsx`) | Komponen SVG melingkar menyajikan persentase progres, nomor 'Ain aktif, nama surat, dan total 556 'Ain dengan nuansa gradasi zamrud ke emas sepia, bersih dari gamifikasi stres/kompetisi. | **PASS** |
+| **TC-ST12-03** | Modal Dashboard Rencana Khatam (`KhatamPlannerModal.tsx`) | Menghadirkan antarmuka 3 tab ramah lansia: (1) Progres Hari Ini & Jadwal Shalat Fardhu, (2) Pengatur Ritme Tilawah & Opsi Pengingat, (3) Katalog Penelusuran 556 'Ain lengkap dengan tombol 1-klik buka mushaf. | **PASS** |
+| **TC-ST12-04** | Jadwal Tilawah Ba'da Shalat Fardhu | Memetakan 'Ain berikutnya ke 5 waktu shalat fardhu (Subuh, Dzuhur, Ashar, Maghrib, Isya) dengan status checklist checklist langsung dan tombol baca per 'Ain. | **PASS** |
+| **TC-ST12-05** | Integrasi Jadwal Shalat (*PrayerTimeWidget.tsx*) | Tombol pintas "Rencana Khatam 'Ain Ba'da Shalat" hadir di dropdown jadwal shalat, memfasilitasi kebiasaan membaca 1 'Ain penyejuk hati saat waktu shalat tiba. | **PASS** |
+| **TC-ST12-06** | Integrasi Bilah Navigasi Mushaf (*NavigationPanel.tsx*) | Tab 'Ain di bilah samping menyajikan banner tombol akses cepat Rencana Khatam Sakinah di atas daftar 'Ain Al-Qur'an. | **PASS** |
+| **TC-ST12-07** | Integrasi Dashboard Pengguna (*UserPortal.tsx*) | Tombol Rencana Khatam Sakinah disematkan di banner sambutan portal pengguna, melengkapi opsi membaca terakhir. | **PASS** |
+| **TC-ST12-08** | Navigasi Terpadu & Tombol Akses Cepat (*App.tsx*) | Tombol "Rencana Khatam" berikon `Compass` hadir di header desktop dan menu slide-over mobile, langsung melompatkan pembaca ke 'Ain yang ditargetkan di lembar tilawah mushaf. | **PASS** |
+| **TC-ST12-09** | Verifikasi Kompilasi TypeScript (`tsc -b`) | Kompilasi seluruh kode TypeScript berjalan lancar dengan exit code 0 tanpa error tipe (`TS error = 0`). | **PASS** |
+
+---
+
+## 9. Laporan Hasil Eksekusi Uji Step 13 (Verification Evidence)
+
+| ID Uji | Skenario Pengujian | Hasil Pengujian Aktual | Status |
+| :--- | :--- | :--- | :---: |
+| **TC-ST13-01** | Dataset Mandiri 40 Doa Rabbana (`public/data/rabbana_duas.json`) | 40 Doa Rabbana & Rabbi terkurasi lengkap dengan teks Arab Utsmani, transliterasi Latin, terjemahan resmi Kemenag RI, tema, kategori, dan faedah/aspek doa. | **PASS** |
+| **TC-ST13-02** | Dataset Dzikir Harian Shahih (`public/data/daily_dzikr.json`) | Dzikir Ba'da Shalat Fardhu, Dzikir Pagi, dan Dzikir Petang terhimpun lengkap beserta target hitungan dan rujukan hadits shahih (Bukhari, Muslim, Abu Dawud, dll). | **PASS** |
+| **TC-ST13-03** | Halaman Portal Doa & Dzikir (`/doa` / `PrayersCatalog.tsx`) | Halaman menyajikan 3 tab interaktif: 40 Doa Rabbana, Dzikir Harian, dan Tasbih Haptic, dilengkapi pengatur ukuran font (A, A+, A++) ramah lansia. | **PASS** |
+| **TC-ST13-04** | Pemutar Audio Murottal Doa & Salin Teks | Pemutar murottal EveryAyah Alafasy aktif per doa, tombol salin doa berfungsi cepat, dan tombol "Buka Mushaf" langsung menavigasi ke ayat bersangkutan. | **PASS** |
+| **TC-ST13-05** | Tasbih Digital Haptic Layar Penuh (`TasbihHapticWidget.tsx`) | Area sentuh fleksibel di seluruh piringan, angka hitungan ekstra besar, pemilihan target (33x, 100x, bebas), dan pilihan lafadz dzikir. | **PASS** |
+| **TC-ST13-06** | Uji Respon Getaran Haptic (`navigator.vibrate`) | Memberikan getaran halus 1x pada tiap ketukan, 2x getaran panjang pada 33x, dan getaran ritmis saat mencapai target/100x, disertai opsi toggle suara klik sintetis Web Audio API. | **PASS** |
+| **TC-ST13-07** | Supresi Popup `JoinPromptModal` Saat User Memiliki Sesi | Pengguna yang sedang login (`currentUser !== null`) yang menyimpan data di modal pengaturan atau menambah bookmark tidak memicu popup ajakan bergabung; notifikasi toast konfirmasi sinkronisasi tampil langsung. | **PASS** |
+| **TC-ST13-08** | Isolasi Visibilitas Modul Rencana Khatam Sakinah | Tombol dan dialog modal Rencana Khatam Sakinah disembunyikan sepenuhnya dari pengunjung publik/tamu (Header, Mobile Drawer, Navigasi 'Ain, dan Jadwal Shalat), dan hanya tampil bagi user yang telah login. | **PASS** |
+| **TC-ST13-09** | Offline PWA Cache Service Worker (`sw.js`) | Precache `/data/rabbana_duas.json` dan `/data/daily_dzikr.json` terdaftar pada cache v4 untuk akses luring tanpa internet. | **PASS** |
+| **TC-ST13-10** | Verifikasi Kompilasi TypeScript (`tsc -b`) | Kompilasi seluruh kode TypeScript berjalan lancar dengan exit code 0 tanpa error tipe (`TS error = 0`). | **PASS** |
+
+---
+
+## 10. Laporan Hasil Eksekusi Uji Step 14 (Verification Evidence)
+
+| ID Uji | Skenario Pengujian | Hasil Pengujian Aktual | Status |
+| :--- | :--- | :--- | :---: |
+| **TC-ST14-01** | CMS Artikel Admin - Penambahan Naskah & Kategorisasi 5 Pilar | Administrator (`admin`, `asatidz`, `editor`) dapat membuat artikel jurnal baru, memilih pilar (Tafsir, Lansia, Ulumul Qur'an, Tazkiyah, Warta), menyisipkan shortcode ayat Al-Qur'an otomatis, dan menentukan status awal (Diterbitkan segera / Draf). | **PASS** |
+| **TC-ST14-02** | CMS Artikel Admin - Pengelolaan Siklus Status (Diterbitkan, Draf, Arsip) | Filter tab status (Semua, Diterbitkan, Draf, Diarsipkan) menampilkan kuantitas artikel akurat. Pemilihan status via dropdown baris tabel langsung memperbarui status artikel dan tersimpan persisten. | **PASS** |
+| **TC-ST14-03** | CMS Artikel Admin - Penghapusan Artikel (Custom & Base Overrides) | Tombol hapus (Trash) menghapus artikel kustom dari storage atau menyembunyikan artikel bawaan melalui status override persisten sehingga tidak lagi muncul di publik maupun admin. | **PASS** |
+| **TC-ST14-04** | Session Guard Modul Doa & Dzikir - Proteksi Rute `/doa` | Pengunjung tanpa akun (*guest*) yang menavigasi ke rute `/doa` otomatis diblokir, dialihkan kembali ke mushaf (`reader`), dan dipicu dialog ajakan mendaftar (*JoinPromptModal*). | **PASS** |
+| **TC-ST14-05** | Visibilitas Dinamis Menu Navbar "Doa & Dzikir" | Tombol "Doa & Dzikir" pada Header desktop dan bilah drawer seluler disembunyikan jika `!currentUser`. Begitu pengguna login, tombol tersebut langsung muncul dan aktif. | **PASS** |
+| **TC-ST14-06** | Visualisasi Audit Trail Modern Menggunakan Chart.js | Visualisasi SVG manual lama digantikan oleh pustaka *Chart.js* (Canvas API) dengan kurva halus (*cubic tension 0.35*), dual-series warna elegan (CRUD warna Amber & View warna Emerald), pengelompokan indeks tooltip, dan tata letak proporsional responsif. | **PASS** |
+| **TC-ST14-07** | Algoritma Great Circle Ka'bah Offline (`src/services/qibla.ts`) | Perhitungan sudut kiblat azimuth (misal Jakarta 295.15° WNW) dan jarak Ka'bah (7.918 km) dihitung 100% luring (offline) menggunakan trigonometri speris akurat setara Kemenag RI. | **PASS** |
+| **TC-ST14-08** | Kompas Dinamis Smartphone & Haptic Alignment (`QiblaCompass.tsx`) | Piringan kompas berputar mulus mengikuti orientasi fisik HP (`DeviceOrientationEvent` iOS & Android), jarum Ka'bah emas menunjuk presisi, dan getaran haptic `navigator.vibrate` aktif saat posisi tepat menghadap kiblat (toleransi ±1.5°). | **PASS** |
+| **TC-ST14-09** | Antarmuka Adaptif Laptop, QR Code & Rasydul Qiblah | Mendeteksi ketiadaan sensor magnetik di laptop/desktop, menyajikan sudut azimuth presisi, QR Code dinamis untuk scan cepat ke HP, serta modal panduan kalibrasi bayangan matahari Rasydul Qiblah (Istiwa A'zham 27-28 Mei & 15-16 Juli). | **PASS** |
+| **TC-ST14-10** | Integrasi Rute `/kiblat`, Header Navbar, Drawer & Jadwal Shalat | Rute `/kiblat` aktif, tombol "Arah Kiblat" hadir di Header desktop dan Mobile Drawer, serta pintasan langsung hadir di widget jadwal shalat (`PrayerTimeWidget`). | **PASS** |
+| **TC-ST14-11** | Verifikasi Kompilasi TypeScript (`tsc -b`) | Seluruh berkas TypeScript dikompilasi dengan exit code 0 tanpa error tipe atau peringatan variabel tak terpakai (`TS error = 0`). | **PASS** |
+
+
+
+
+
+

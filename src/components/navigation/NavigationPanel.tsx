@@ -38,6 +38,7 @@ interface NavigationPanelProps {
   onJumpToAyah: (surahId: number, ayahNumber: number) => void;
   onDeleteBookmark: (id: string) => void;
   onUpdateBookmarkNote: (id: string, note: string) => void;
+  onOpenKhatamPlanner?: () => void;
 }
 
 export const NavigationPanel: React.FC<NavigationPanelProps> = ({
@@ -56,6 +57,7 @@ export const NavigationPanel: React.FC<NavigationPanelProps> = ({
   onJumpToAyah,
   onDeleteBookmark,
   onUpdateBookmarkNote,
+  onOpenKhatamPlanner,
 }) => {
   const [query, setQuery] = useState('');
   const [ainSurahFilter, setAinSurahFilter] = useState<number>(0); // 0 = all
@@ -296,6 +298,28 @@ export const NavigationPanel: React.FC<NavigationPanelProps> = ({
               </option>
             ))}
           </select>
+        </div>
+      )}
+
+      {/* Khatam Planner Shortcut in 'Ain Tab */}
+      {activeTab === 'ain' && searchMode !== 'translation' && onOpenKhatamPlanner && (
+        <div className="px-3 pb-2">
+          <button
+            type="button"
+            onClick={onOpenKhatamPlanner}
+            className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs cursor-pointer hover:opacity-95"
+            style={{
+              backgroundColor: 'var(--bg-accent-soft)',
+              borderColor: 'var(--border-color)',
+              color: 'var(--text-accent)',
+            }}
+          >
+            <div className="flex items-center gap-2">
+              <Compass className="h-4 w-4 text-emerald-500" />
+              <span>Rencana Khatam Sakinah</span>
+            </div>
+            <span className="text-[11px] font-semibold">Buka ➔</span>
+          </button>
         </div>
       )}
 

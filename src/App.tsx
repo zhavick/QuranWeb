@@ -20,6 +20,8 @@ import {
   Newspaper,
   Sparkles,
   Navigation,
+  MapPin,
+  Headphones,
 } from 'lucide-react';
 import type {
   QuranMeta,
@@ -49,7 +51,18 @@ import { ProphetLanternBanner } from './components/prophets/ProphetLanternBanner
 import { BlogCatalog } from './components/blog/BlogCatalog';
 import { PrayersCatalog } from './components/prayers/PrayersCatalog';
 import { QiblaCompass } from './components/qibla/QiblaCompass';
+import { MosqueMap } from './components/mosque/MosqueMap';
 import { KhatamPlannerModal } from './components/khatam/KhatamPlannerModal';
+import { AsbabunNuzulModal } from './components/literacy/AsbabunNuzulModal';
+import { GharibulQuranModal } from './components/literacy/GharibulQuranModal';
+import { AudioCapsuleModal } from './components/audio/AudioCapsuleModal';
+import {
+  fetchAsbabunNuzulList,
+  fetchGharibulQuranList,
+  getAsbabunNuzulForAyah,
+  getGharibWordsForAyah,
+} from './services/literacy';
+import type { AsbabunNuzulItem, GharibulQuranWord } from './types/literacy';
 import { getStoredUser, logoutUser, type AuthUser } from './services/auth';
 import { fetchAppConfig, type AppConfig, DEFAULT_APP_CONFIG } from './services/admin';
 import {
@@ -74,7 +87,7 @@ const DEFAULT_SETTINGS: ReaderSettings = {
 
 export const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<
-    'reader' | 'admin' | 'user' | 'prophets' | 'blog' | 'prayers' | 'kiblat'
+    'reader' | 'admin' | 'user' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid'
   >(() => {
     const p = window.location.pathname.toLowerCase();
     if (p === '/admin' || p.startsWith('/admin/')) return 'admin';
@@ -83,6 +96,7 @@ export const App: React.FC = () => {
     if (p === '/blog' || p.startsWith('/blog/')) return 'blog';
     if (p === '/doa' || p.startsWith('/doa/')) return 'prayers';
     if (p === '/kiblat' || p.startsWith('/kiblat/')) return 'kiblat';
+    if (p === '/masjid' || p.startsWith('/masjid/')) return 'masjid';
     return 'reader';
   });
 
@@ -93,7 +107,7 @@ export const App: React.FC = () => {
   }, []);
 
   const navigateTo = useCallback(
-    (route: 'reader' | 'admin' | 'user' | 'prophets' | 'blog' | 'prayers' | 'kiblat') => {
+    (route: 'reader' | 'admin' | 'user' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid') => {
       setCurrentRoute(route);
       const path =
         route === 'reader'
@@ -104,6 +118,8 @@ export const App: React.FC = () => {
           ? '/doa'
           : route === 'kiblat'
           ? '/kiblat'
+          : route === 'masjid'
+          ? '/masjid'
           : `/${route}`;
       if (window.location.pathname !== path) {
         window.history.pushState({}, '', path);
@@ -121,6 +137,7 @@ export const App: React.FC = () => {
       else if (p === '/blog' || p.startsWith('/blog/')) setCurrentRoute('blog');
       else if (p === '/doa' || p.startsWith('/doa/')) setCurrentRoute('prayers');
       else if (p === '/kiblat' || p.startsWith('/kiblat/')) setCurrentRoute('kiblat');
+      else if (p === '/masjid' || p.startsWith('/masjid/')) setCurrentRoute('masjid');
       else setCurrentRoute('reader');
     };
     window.addEventListener('popstate', handlePopState);
@@ -149,6 +166,38 @@ export const App: React.FC = () => {
 
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(() => getStoredUser());
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+
+  // Step 16 Literacy State (Asbabun Nuzul, Gharibul Qur'an, Audiobook)
+  const [asbabKeys, setAsbabKeys] = useState<Set<string>>(new Set());
+  const [gharibKeys, setGharibKeys] = useState<Set<string>>(new Set());
+  const [selectedAsbab, setSelectedAsbab] = useState<AsbabunNuzulItem | null>(null);
+  const [selectedGharibWords, setSelectedGharibWords] = useState<GharibulQuranWord[]>([]);
+  const [audioCapsuleOpen, setAudioCapsuleOpen] = useState(false);
+
+  useEffect(() => {
+    fetchAsbabunNuzulList().then((list) => {
+      const keys = new Set(list.map((item) => `${item.surahId}:${item.ayahNumber}`));
+      setAsbabKeys(keys);
+    });
+    fetchGharibulQuranList().then((list) => {
+      const keys = new Set(list.map((item) => `${item.surahId}:${item.ayahNumber}`));
+      setGharibKeys(keys);
+    });
+  }, []);
+
+  const handleOpenAsbabunNuzul = useCallback(async (ayah: Ayah) => {
+    const item = await getAsbabunNuzulForAyah(ayah.surahId, ayah.ayahNumber);
+    if (item) {
+      setSelectedAsbab(item);
+    }
+  }, []);
+
+  const handleOpenGharibWords = useCallback(async (ayah: Ayah) => {
+    const words = await getGharibWordsForAyah(ayah.surahId, ayah.ayahNumber);
+    if (words.length > 0) {
+      setSelectedGharibWords(words);
+    }
+  }, []);
 
   useEffect(() => {
     const handleAuthChange = () => {
@@ -641,6 +690,21 @@ export const App: React.FC = () => {
     );
   }
 
+  if (currentRoute === 'masjid') {
+    if (!currentUser) {
+      setJoinModalOpen(true);
+      navigateTo('reader');
+      return null;
+    }
+    return (
+      <MosqueMap
+        onBackToMushaf={() => navigateTo('reader')}
+        elderMode={settings.elderMode}
+        theme={settings.theme}
+      />
+    );
+  }
+
   if (loading) {
     return (
       <div className="flex h-[100dvh] items-center justify-center text-sm font-medium">
@@ -717,6 +781,13 @@ export const App: React.FC = () => {
             <PrayerTimeWidget
               onOpenKhatamPlanner={currentUser ? () => setKhatamPlannerOpen(true) : undefined}
               onOpenQibla={() => navigateTo('kiblat')}
+              onOpenMosqueMap={() => {
+                if (!currentUser) {
+                  setJoinModalOpen(true);
+                } else {
+                  navigateTo('masjid');
+                }
+              }}
             />
 
             {/* Adaptive User Session / Quick Logout */}
@@ -842,6 +913,25 @@ export const App: React.FC = () => {
               <span className="hidden sm:inline">Arah Kiblat</span>
             </button>
 
+            {/* Tombol Akses Cepat Peta Masjid Terdekat (Hanya ditampilkan jika memiliki akun) */}
+            {currentUser && (
+              <button
+                type="button"
+                onClick={() => navigateTo('masjid')}
+                aria-label="Peta Masjid Terdekat"
+                title="Peta Masjid Terdekat OpenStreetMap (/masjid)"
+                className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-muted)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-primary)',
+                }}
+              >
+                <MapPin className="h-4 w-4 text-emerald-500" />
+                <span className="hidden md:inline">Peta Masjid</span>
+              </button>
+            )}
+
             {/* Tombol Akses Cepat Doa Qur'ani & Dzikir (Hanya ditampilkan jika memiliki akun) */}
             {currentUser && (
               <button
@@ -860,6 +950,26 @@ export const App: React.FC = () => {
                 <span className="hidden sm:inline">Doa &amp; Dzikir</span>
               </button>
             )}
+
+            {/* Tombol Audio Capsule / Audiobook 3 Menit (Step 16) */}
+            <button
+              type="button"
+              onClick={() => {
+                setAudioCapsuleOpen(true);
+                logActivity('OPEN_AUDIO_CAPSULE');
+              }}
+              aria-label="Audiobook Tadabbur 3 Menit"
+              title="Dengarkan Audio Narasi Tadabbur & Kisah Ringkas 3 Menit (Audiobook)"
+              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
+              style={{
+                backgroundColor: 'var(--bg-muted)',
+                borderColor: 'var(--border-color)',
+                color: 'var(--text-primary)',
+              }}
+            >
+              <Headphones className="h-4 w-4 text-amber-500" />
+              <span className="hidden xl:inline">Audiobook 3 Mnt</span>
+            </button>
 
             {/* Tombol Akses Cepat Rencana Khatam Sakinah (Hanya ditampilkan jika memiliki akun) */}
             {currentUser && (
@@ -1235,6 +1345,9 @@ export const App: React.FC = () => {
                   settings.spotlightEnabled &&
                   focusedAyahId !== null &&
                   focusedAyahId !== ayah.id;
+                const ayahKey = `${ayah.surahId}:${ayah.ayahNumber}`;
+                const hasAsbab = asbabKeys.has(ayahKey);
+                const hasGharib = gharibKeys.has(ayahKey);
 
                 return (
                   <AyahCard
@@ -1248,6 +1361,8 @@ export const App: React.FC = () => {
                     isFocused={isFocused}
                     isDimmed={isDimmed}
                     showJuzHeader={showJuzHeader}
+                    hasAsbabunNuzul={hasAsbab}
+                    hasGharibWords={hasGharib}
                     onToggleBookmark={handleToggleBookmark}
                     onSetLastRead={handleSetLastRead}
                     onPlayAudio={(a) => {
@@ -1261,6 +1376,8 @@ export const App: React.FC = () => {
                     onFocusAyah={(id) =>
                       setFocusedAyahId((prevId) => (prevId === id ? null : id))
                     }
+                    onOpenAsbabunNuzul={handleOpenAsbabunNuzul}
+                    onOpenGharibWords={handleOpenGharibWords}
                   />
                 );
               })}
@@ -1434,6 +1551,29 @@ export const App: React.FC = () => {
                 <span>Buka →</span>
               </button>
 
+              {/* Tombol Akses Cepat Peta Masjid Terdekat (Hanya saat login) */}
+              {currentUser && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileDrawerOpen(false);
+                    navigateTo('masjid');
+                  }}
+                  className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+                  style={{
+                    backgroundColor: 'var(--bg-accent-soft)',
+                    borderColor: 'var(--border-color)',
+                    color: 'var(--text-accent)',
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-emerald-500" />
+                    <span>Peta Masjid Terdekat (OpenStreetMap)</span>
+                  </div>
+                  <span>Buka →</span>
+                </button>
+              )}
+
               {/* Tombol Akses Cepat Doa Qur'ani & Dzikir (Hanya saat login) */}
               {currentUser && (
                 <button
@@ -1456,6 +1596,28 @@ export const App: React.FC = () => {
                   <span>Buka →</span>
                 </button>
               )}
+
+              {/* Tombol Akses Cepat Audiobook 3 Menit (Step 16) */}
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  setAudioCapsuleOpen(true);
+                  logActivity('OPEN_AUDIO_CAPSULE');
+                }}
+                className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-accent-soft)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-accent)',
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <Headphones className="h-4 w-4 text-amber-500" />
+                  <span>Audiobook Tadabbur &amp; Kisah (3 Mnt)</span>
+                </div>
+                <span>Dengar →</span>
+              </button>
 
               {/* Tombol Akses Cepat Rencana Khatam Sakinah (Hanya saat login) */}
               {currentUser && (
@@ -1629,6 +1791,25 @@ export const App: React.FC = () => {
           elderMode={settings.elderMode}
         />
       )}
+
+      {/* Asbabun Nuzul Modal (Step 16) */}
+      <AsbabunNuzulModal
+        item={selectedAsbab}
+        onClose={() => setSelectedAsbab(null)}
+      />
+
+      {/* Gharibul Qur'an Modal (Step 16) */}
+      <GharibulQuranModal
+        isOpen={selectedGharibWords.length > 0}
+        words={selectedGharibWords}
+        onClose={() => setSelectedGharibWords([])}
+      />
+
+      {/* Audio Capsule Audiobook Modal (Step 16) */}
+      <AudioCapsuleModal
+        isOpen={audioCapsuleOpen}
+        onClose={() => setAudioCapsuleOpen(false)}
+      />
 
       {/* Toast Notification */}
       {toast && (

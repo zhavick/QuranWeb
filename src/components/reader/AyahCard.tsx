@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bookmark, Play, Pause, Check, Share2, BookMarked } from 'lucide-react';
+import { Bookmark, Play, Pause, Check, Share2, BookMarked, BookOpen, Languages } from 'lucide-react';
 import type { Ayah, ReaderSettings } from '../../types/quran';
 import { TajweedRenderer } from './TajweedRenderer';
 
@@ -13,11 +13,15 @@ interface AyahCardProps {
   isFocused: boolean;
   isDimmed: boolean;
   showJuzHeader?: boolean;
+  hasAsbabunNuzul?: boolean;
+  hasGharibWords?: boolean;
   onToggleBookmark: (ayah: Ayah) => void;
   onSetLastRead: (ayah: Ayah) => void;
   onPlayAudio: (ayah: Ayah) => void;
   onShareLink: (ayah: Ayah) => void;
   onFocusAyah: (ayahId: number) => void;
+  onOpenAsbabunNuzul?: (ayah: Ayah) => void;
+  onOpenGharibWords?: (ayah: Ayah) => void;
 }
 
 function toArabicDigits(num: number): string {
@@ -38,11 +42,15 @@ export const AyahCard: React.FC<AyahCardProps> = ({
   isFocused,
   isDimmed,
   showJuzHeader,
+  hasAsbabunNuzul,
+  hasGharibWords,
   onToggleBookmark,
   onSetLastRead,
   onPlayAudio,
   onShareLink,
   onFocusAyah,
+  onOpenAsbabunNuzul,
+  onOpenGharibWords,
 }) => {
   const fontClass = `font-arabic-${settings.arabicFont}`;
   const effectiveTajweed =
@@ -215,6 +223,48 @@ export const AyahCard: React.FC<AyahCardProps> = ({
           >
             {ayah.translationId}
           </p>
+        )}
+
+        {/* Asbabun Nuzul & Gharib Mufradat Badges */}
+        {(hasAsbabunNuzul || hasGharibWords) && (
+          <div
+            className="mt-3.5 flex flex-wrap items-center gap-2 pt-2 border-t border-dashed"
+            style={{ borderColor: 'var(--border-color)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {hasAsbabunNuzul && (
+              <button
+                type="button"
+                onClick={() => onOpenAsbabunNuzul?.(ayah)}
+                className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition-all hover:opacity-90 active:scale-95 shadow-xs cursor-pointer"
+                style={{
+                  backgroundColor: 'rgba(217, 119, 6, 0.12)',
+                  color: '#d97706',
+                  border: '1px solid rgba(217, 119, 6, 0.3)',
+                }}
+                title="Buka Penjelasan Asbabun Nuzul (Sebab & Konteks Turunnya Ayat)"
+              >
+                <BookOpen className="h-3.5 w-3.5" />
+                <span>Asbabun Nuzul</span>
+              </button>
+            )}
+            {hasGharibWords && (
+              <button
+                type="button"
+                onClick={() => onOpenGharibWords?.(ayah)}
+                className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition-all hover:opacity-90 active:scale-95 shadow-xs cursor-pointer"
+                style={{
+                  backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                  color: '#10b981',
+                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                }}
+                title="Buka Kamus Kata Langka / Sulit (Gharibul Qur'an & Balaghah)"
+              >
+                <Languages className="h-3.5 w-3.5" />
+                <span>Mufradat Gharib</span>
+              </button>
+            )}
+          </div>
         )}
       </article>
 

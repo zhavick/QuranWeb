@@ -5,11 +5,13 @@ import { usePrayerTimes, INDONESIA_CITIES } from '../../hooks/usePrayerTimes';
 interface PrayerTimeWidgetProps {
   onOpenKhatamPlanner?: () => void;
   onOpenQibla?: () => void;
+  onOpenMosqueMap?: () => void;
 }
 
 export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
   onOpenKhatamPlanner,
   onOpenQibla,
+  onOpenMosqueMap,
 }) => {
   const {
     city,
@@ -185,6 +187,29 @@ export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
                 <div className="flex items-center gap-2">
                   <Navigation className="h-4 w-4 text-emerald-500" />
                   <span>Kompas Arah Kiblat Adaptif</span>
+                </div>
+                <span>Buka ➔</span>
+              </button>
+            )}
+
+            {/* Nearby Mosque Map Shortcut */}
+            {onOpenMosqueMap && (
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  onOpenMosqueMap();
+                }}
+                className="mt-2 flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all hover:opacity-95 cursor-pointer shadow-xs"
+                style={{
+                  backgroundColor: 'var(--bg-muted)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-primary)',
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-emerald-500" />
+                  <span>Peta Masjid Terdekat (OpenStreetMap)</span>
                 </div>
                 <span>Buka ➔</span>
               </button>

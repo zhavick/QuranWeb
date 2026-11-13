@@ -123,17 +123,61 @@ Dokumen ini menjabarkan spesifikasi fungsional aplikasi **Quran Web** berdasarka
   > *"Apakah Anda ingin bergabung dengan kami? Daftar sekarang"*
   Pengguna dapat memilih mendaftar atau melanjutkan membaca tanpa terganggu.
 
-### FR-11: Portal Administrator & Dashboard Audit Trail (`/admin`) *(Step 8)*
-- **FR-11.1 (Akses URL `/admin` & Otentikasi):** Rute `/admin` pada domain web yang sama mengarah ke portal login administrator dengan username dan password terotentikasi (Default demo: `admin` / `admin123`).
-- **FR-11.2 (Dashboard Statistik & Chart Visual):** Menampilkan ringkasan metrik utama (Total Pembaca IP unik, Rata-rata durasi sesi baca, Total interaksi tercatat, Pendaftar baru), dilengkapi chart grafik batang geolokasi IP berdasarkan negara asal (Indonesia, Malaysia, Singapura, Arab Saudi, dll.) dan tren kunjungan harian.
-- **FR-11.3 (Modul Audit Trail Penuh):** Menampilkan riwayat log aktivitas secara komprehensif dari database PostgreSQL, lengkap dengan filter jenis kegiatan, pencarian berbasis IP/kata kunci, grafik frekuensi aktivitas, serta tombol ekspor ke format JSON.
+### FR-11: Portal Administrator & Dashboard Audit Trail (`/admin`) *(Step 8 & Step 14)*
+- **FR-11.1 (Akses URL `/admin` & Otentikasi):** Rute `/admin` pada domain web yang sama mengarah ke portal login administrator dengan username dan password terotentikasi (Default: `admin` / `admin123`, `asatidz` / `asatidz123`, `editor` / `editor123`).
+- **FR-11.2 (Dashboard Statistik & Chart Visual):** Menampilkan ringkasan metrik utama (Total Pembaca IP unik, Rata-rata durasi sesi baca, Total interaksi tercatat, Pendaftar baru), dilengkapi chart grafik batang geolokasi IP dan tren kunjungan harian.
+- **FR-11.3 (Visualisasi Audit Trail Modern Chart.js):** Menggunakan pustaka *Chart.js* (Canvas API) dengan kurva halus (*cubic tension 0.35*), visualisasi garis ganda (*dual-series*) membedakan aktivitas CRUD (warna Amber) dan View (warna Emerald), filter rentang waktu, serta tombol ekspor ke format JSON.
 - **FR-11.4 (Konfigurasi Identitas Situs & Pengumuman):** Modul interaktif untuk mengubah nama aplikasi, logo/simbol kaligrafi, teks hak cipta (copyright), lisensi aplikasi, dan banner pengumuman (broadcast announcement) kepada seluruh pengguna.
+- **FR-11.5 (CMS Pengelolaan Jurnal & Blog):** Panel manajemen konten artikel jurnal tadabbur di `/admin`: tambah artikel baru, edit, kategorisasi 5 pilar konten, manajemen status (Diterbitkan, Draf, Diarsipkan), dan penghapusan artikel.
 
 ### FR-12: Portal Pengguna & Dashboard Pribadi (`/user`) *(Step 8)*
-- **FR-12.1 (Akses URL `/user` & Otentikasi Pengguna):** Rute `/user` menyediakan antarmuka login dan registrasi anggota dengan contoh kredensial demo (Username: `fulan` atau `user@quranweb.id`, Password: `user123`).
+- **FR-12.1 (Akses URL `/user` & Otentikasi Pengguna):** Rute `/user` menyediakan antarmuka login dan registrasi anggota dengan contoh kredensial demo (Username: `fulan`, Password: `user123`).
 - **FR-12.2 (Dashboard Card Bookmark Pribadi):** Menampilkan kartu-kartu ayat yang ditandai oleh pengguna beserta nama surat, nomor ayat, 'Ain, catatan tadabbur pribadi, dan tombol 1-klik untuk langsung membuka ayat di lembar baca.
 - **FR-12.3 (Hasil Pencarian yang Diarsipkan):** Menyediakan fitur arsip kata kunci dan tema pencarian (misal: "sabar", "surga", "rezeki") lengkap dengan catatan konteks, jumlah temuan ayat, dan pintasan 1-klik untuk membuka hasil pencarian tersebut di Al-Qur'an.
 - **FR-12.4 (Sinkronisasi Tilawah & Terakhir Dibaca):** Menyimpan posisi terakhir dibaca secara persisten dan menyinkronkan preferensi bacaan lintas perangkat.
+
+### FR-13: Standarisasi Akun (RBAC) & Quick Logout Halaman Depan *(Step 9)*
+- **FR-13.1 (Role-Based Access Control):** Standarisasi 5 tingkatan peran: Super Admin (`admin`), Dewan Asatidz (`asatidz`), Editor Redaksi (`editor`), Jamaah Terdaftar (`user`), dan Pengunjung Publik (`guest`).
+- **FR-13.2 (Tombol Logout Cepat di Header):** Tombol keluar akun (ikon LogOut merah) hadir di sudut kanan atas Header navigasi tilawah saat pengguna ber-sesi login.
+- **FR-13.3 (Modal Konfirmasi Logout Santun):** Klik tombol logout memunculkan modal dialog ramah lansia dengan nama pengguna, ucapan doa perpisahan, dan tombol konfirmasi keluar yang membersihkan sesi instan tanpa reload halaman penuh.
+
+### FR-14: Modul Kisah 25 Rasulullah (Qashashul Anbiya') *(Step 10 & Step 16)*
+- **FR-14.1 (Rute Khusus `/kisah`):** Halaman komprehensif menampilkan katalog 25 nabi dan rasul dari Adam AS hingga Muhammad SAW dengan filter era (Permulaan, Kebangkitan Tauhid/Bani Israil, Penutup) dan pencarian instan.
+- **FR-14.2 (Narasi Mendalam & Linimasa Lengkap):** Setiap nabi dilengkapi ikhtisar mendalam dan 3–4 babak kisah berparagraf rinci (1.400–2.300 karakter per babak), menyajikan latar belakang peradaban kaum, argumentasi tauhid, mukjizat samawi, dan rincian ujian keimanan.
+- **FR-14.3 (Bi-Directional Quran Linking):** Menautkan kisah nabi ke ayat-ayat Al-Qur'an terkait dan sebaliknya (ikon lentera kisah di kartu ayat mushaf).
+- **FR-14.4 (Kompilasi Doa Nabawi & Mutiara Hikmah):** Tab khusus doa-doa para nabi beserta teks Arab, transliterasi, arti, tombol salin, dan pelajaran hikmah kehidupan.
+
+### FR-15: Modul Jurnal Literasi & Blog Tadabbur Qur'ani *(Step 11 & Step 14)*
+- **FR-15.1 (Rute Khusus `/blog`):** Katalog artikel tadabbur berbasis 5 pilar konten: *Tafsir Tematik*, *Inspirasi Lansia & Sakinah*, *Ulumul Qur'an & Sejarah*, *Tazkiyatun Nufus*, dan *Warta & Kabar QuranWeb*.
+- **FR-15.2 (Widget Kutipan Ayat Interaktif):** Artikel mengintegrasikan kotak ayat Al-Qur'an dengan teks Arab Utsmani, terjemahan, dan pemutar audio mini 1-klik langsung di dalam badan tulisan.
+- **FR-15.3 (Siklus Hidup Konten CMS):** Pengelolaan status artikel (Diterbitkan, Draf, Diarsipkan, Dihapus) secara persisten di portal admin.
+
+### FR-16: Modul Rencana Khatam Ramah Lansia (Khatam Planner 'Ain) *(Step 12 & Step 13)*
+- **FR-16.1 (Ritme Khatam Sakinah):** Perencanaan khatam tanpa tekanan kompetitif berbasis 'Ain (Ruku' tematik): target 1 'Ain usai shalat fardhu (~111 hari khatam 556 'Ain).
+- **FR-16.2 (Pelacak Progres Cincin Melingkar):** Visualisasi progres tilawah dengan cincin persentase melingkar, konfeti selebrasi saat khatam, dan tombol pintasan lanjut ke 'Ain berikutnya.
+- **FR-16.3 (Isolasi Sesi Akun):** Modul rencana khatam hanya dimunculkan bagi pengguna yang telah memiliki akun terdaftar; disembunyikan sepenuhnya dari pengunjung publik/tamu.
+
+### FR-17: Modul 40 Doa Rabbana, Dzikir Harian & Tasbih Haptic *(Step 13 & Step 14)*
+- **FR-17.1 (Rute Khusus `/doa` & Session Guard):** Halaman doa dan dzikir khusus bagi pengguna terdaftar. Pengunjung tamu yang mengakses `/doa` dicegat dan diarahkan ke modal pendaftaran.
+- **FR-17.2 (40 Doa Rabbana):** Kompilasi 40 doa agung berawalan *Rabbana* dari Al-Qur'an lengkap dengan audio pelafalan dan tautan ke mushaf.
+- **FR-17.3 (Dzikir Pagi, Petang & Ba'da Shalat):** Rangkaian wirid ma'tsur dilengkapi teks Arab besar dan terjemahan.
+- **FR-17.4 (Tasbih Layar Penuh Bergetar):** Mode tasbih sentuh bebas tatap layar dengan getaran haptic (`navigator.vibrate`): 1x getar tiap hitungan, 2x getar di angka 33, dan getar ritmis panjang di angka 100.
+
+### FR-18: Modul Kompas Arah Kiblat Adaptif (Offline Compass) *(Step 14)*
+- **FR-18.1 (Rute Khusus `/kiblat`):** Penunjuk arah kiblat 100% offline menggunakan rumus trigonometri speris *Great Circle Ka'bah* (21.4225° N, 39.8262° E).
+- **FR-18.2 (Deteksi Perangkat Dinamis):** Pada smartphone, kompas berputar mulus mengikuti gerakan orientasi fisik perangkat (`DeviceOrientationEvent`) dan bergetar saat posisi lurus menghadap Ka'bah (toleransi ±1.5°).
+- **FR-18.3 (Mode Laptop/Desktop):** Menampilkan sudut azimuth statis, jarum kompas arah kiblat, QR Code dinamis untuk scan cepat ke ponsel, serta panduan kalibrasi bayangan matahari *Rasydul Qiblah* (Istiwa A'zham).
+
+### FR-19: Modul Peta Masjid Terdekat (OpenStreetMap + Google Maps) *(Step 15 & Step 16)*
+- **FR-19.1 (Rute Khusus `/masjid` & Session Guard):** Menu peta masjid di Header, Mobile Drawer, dan rute `/masjid` dilindungi *session guard* khusus pengguna terdaftar (tamu diarahkan ke modal pendaftaran).
+- **FR-19.2 (Peta Leaflet.js & Tile OpenStreetMap Lokal):** Peta interaktif ringan tanpa biaya API komersial, mendukung 4 tema visual adaptif (Light, Dark OLED, Sepia, High Contrast).
+- **FR-19.3 (Estimasi Jalan Santai Lansia):** Perhitungan waktu tempuh jalan kaki khusus lansia (kecepatan ±3 km/jam ~ 50 meter/menit) dari posisi GPS pengguna ke masjid tujuan.
+- **FR-19.4 (Filter Fasilitas Ramah Lansia & Navigasi 1-Klik):** Filter tombol chip: Wudhu Lantai Dasar, Kursi Shalat, Tanjakan Kursi Roda, AC, Parkir, dan Toilet Duduk. Dilengkapi tombol 1-klik navigasi suara belokan ke Google Maps, Waze, dan Apple Maps.
+
+### FR-20: Modul Asbabun Nuzul, Glosarium Mufradat & Audio Capsule 3 Menit *(Step 16)*
+- **FR-20.1 (Badge & Dialog Asbabun Nuzul):** Tombol badge amber pada kartu ayat untuk membuka riwayat shahih sebab turunnya ayat dari kitab *Lubabun Nuqul* (As-Suyuthi) dan *Asbabun Nuzul* (Al-Wahidi), dilengkapi pengatur ukuran font.
+- **FR-20.2 (Kamus Mufradat Kosakata Sukar / Gharibul Qur'an):** Tombol badge zamrud pada kartu ayat untuk membuka glosarium kosakata sastra tinggi, akar kata (*jadzr*), makna leksikal dasar, dan rahasia balaghah.
+- **FR-20.3 (Audio Capsule / Audiobook Tadabbur 3 Menit):** Pemutar audio bertutur suara hangat di Header dan Drawer, dilengkapi pengatur kecepatan lansia (`0.75x`), *Sleep Timer* (15, 30, 45, 60 menit) dengan hitung mundur otomatis, serta pembaca transkrip naskah huruf besar.
 
 ---
 
@@ -162,12 +206,13 @@ Dokumen ini menjabarkan spesifikasi fungsional aplikasi **Quran Web** berdasarka
 
 ## 7. Status Implementasi & Keterkaitan Dokumen
 
-Seluruh kebutuhan fungsional Fase 1 telah berhasil diimplementasikan, dan fondasi konseptual Fase 2 telah dirumuskan secara terstruktur:
+Seluruh kebutuhan fungsional Fase 1 (Step 1 s.d. Step 8) dan mayoritas modul Fase 2 (Step 9 s.d. Step 16) telah berhasil diimplementasikan dan tervalidasi 100%:
 - **Dokumen Perencanaan Arsitektur Fase 1:** [MasterPlan.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan.md)
-- **Cetak Biru Ekosistem & Brainstorming Fase 2:** [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md) (Modul Kisah 25 Rasul, Jurnal Blog, Standarisasi Akun RBAC, Logout Halaman Depan, Rencana Khatam 'Ain, Doa & Tasbih Haptic, Kompas Kiblat, dan Peta Masjid OpenStreetMap)
+- **Cetak Biru Ekosistem & Brainstorming Fase 2:** [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md)
 - **Spesifikasi Teknis & Kode:** [TSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/TSD.md)
-- **Urutan Tahapan Fase 1 (Selesai):** [DEV_STEP.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP.md) (Step 1 s.d. Step 8 telah berstatus **Selesai**)
-- **Urutan Tahapan Fase 2 (Ready to Develop):** [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) (Panduan eksekusi bertahap Step 9 s.d. Step 17)
-- **Buku Panduan Pengguna:** [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md) (15 bab komprehensif, mencakup panduan baca, audio, jadwal shalat, serta portal `/admin` dan `/user`)
+- **Urutan Tahapan Fase 1 (Selesai):** [DEV_STEP.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP.md) (Step 1 s.d. Step 8: **Selesai**)
+- **Urutan Tahapan Fase 2:** [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) (Step 9 s.d. Step 16: **Selesai**, Step 17: Rencana Rilis Akhir)
+- **Laporan Pengujian Mutu (QA):** [QualityAssurance.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/QualityAssurance.md) (TC-ST01 s.d. TC-ST16: **PASS 100%**)
+- **Buku Panduan Pengguna:** [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md) (Panduan lengkap mencakup seluruh modul tilawah, kisah nabi, blog, doa, kiblat, peta masjid, dan audio narasi)
 - **Kontainerisasi Deployment:** [Dockerfile](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Dockerfile) & [docker-compose.yml](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/docker-compose.yml) pada port `3382`.
 

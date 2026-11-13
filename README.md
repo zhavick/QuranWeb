@@ -87,8 +87,17 @@ Aplikasi ini memiliki keunggulan utama dalam sistem pembagian navigasi Al-Qur'an
   - **Kartu Bookmark Pribadi:** Tampilan bookmark dengan catatan tadabbur dan 1-klik buka ayat di pembaca.
   - **Arsip Pencarian yang Disimpan:** Menyimpan riwayat pencarian tema Al-Qur'an dengan 1-klik tilawah.
 
-### 10. PWA Offline First
-- *Service Worker* mandiri untuk *pre-caching* aplikasi, font, dan dataset statis sehingga Al-Qur'an dapat dibaca kapan pun tanpa sambungan internet.
+### 10. Modul Ekosistem Fase 2 (Kisah Nabi, Blog, Doa, Khatam, Kiblat, Masjid & Literasi)
+- **Kisah 25 Rasulullah (`/kisah`):** Ensiklopedia sirah 25 nabi lengkap berbobot (209 KB), *bi-directional linking* ke mushaf & audio, serta kompilasi Do'a Al-Anbiya'.
+- **Jurnal Literasi & Blog Tadabbur (`/blog`):** 5 pilar konten, widget kutipan ayat interaktif ber-audio, dan panel CMS di `/admin` dengan manajemen status artikel.
+- **Rencana Khatam Sakinah ('Ain):** Pelacak tilawah ramah lansia berbasis 556 'Ain tematik tanpa tekanan kompetitif, cincin progres, dan konfeti.
+- **Kumpulan 40 Doa Rabbana & Tasbih Haptic (`/doa`):** 40 doa mustajab Al-Qur'an, dzikir pagi-petang, dan tasbih getar layar penuh (`navigator.vibrate`) khusus anggota.
+- **Kompas Arah Kiblat Adaptif (`/kiblat`):** 100% offline, kompas gerak ponsel bergetar saat menghadap Ka'bah, sudut azimuth laptop & panduan bayangan matahari.
+- **Peta Masjid Terdekat OpenStreetMap (`/masjid`):** Peta Leaflet.js lokal 4 tema, integrasi izin GPS jadwal shalat, estimasi jalan santai lansia, dan navigasi suara belokan.
+- **Asbabun Nuzul, Gharibul Qur'an & Audiobook 3 Menit:** Badge riwayat sebab turunnya ayat (*Lubabun Nuqul* & *Al-Wahidi*), kamus kosakata sastra tinggi & balaghah, serta pemutar audiobook suara hangat dengan Sleep Timer dan tempo lansia `0.75x`.
+
+### 11. PWA Offline First
+- *Service Worker* mandiri (`sw.js` v7) untuk *pre-caching* aplikasi, font, dan dataset statis sehingga Al-Qur'an dan seluruh modul edukasi dapat diakses kapan pun tanpa sambungan internet.
 
 ---
 
@@ -189,18 +198,19 @@ docker compose down
 
 ---
 
-## 🗺️ Rencana Pengembangan Tahap 2 (Phase 2 Ecosystem)
+## 🗺️ Status Modul Pengembangan Tahap 2 (Phase 2 Ecosystem)
 
-QuranWeb sedang dipersiapkan untuk melangkah ke **Tahap 2** sebagai ekosistem pembelajaran dan ibadah holistik yang terdokumentasi lengkap pada [Initial/MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md) dan [Initial/DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md):
+Modul-modul **Tahap 2** telah berhasil diimplementasikan dan tervalidasi 100%, terdokumentasi lengkap pada [Initial/MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md) dan [Initial/DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md):
 
-1. **Standarisasi Akun (RBAC) & Logout Halaman Depan (Step 9):** Pemisahan peran Super Admin, Dewan Asatidz, Editor, Jamaah, dan Tamu; dilengkapi tombol Logout cepat langsung di header tilawah dengan modal santun ramah lansia.
-2. **Kisah 25 Rasulullah (Qashashul Anbiya' - Step 10):** Naskah sirah nabawi terverifikasi, taut silang dua arah ke lembar mushaf & audio murottal, dan kurasi doa mustajab para nabi.
-3. **Jurnal Literasi & Blog Tadabbur (Step 11):** 5 pilar konten, kartu kutipan ayat interaktif ber-audio, antarmuka CMS di `/admin`, dan catatan tadabbur pribadi di `/user`.
-4. **Rencana Khatam Ramah Lansia (Step 12):** Ritme Sakinah berbasis 'Ain (1 'Ain usai shalat fardhu / khatam ~111 hari tanpa rasa lelah) dengan pelacak cincin progres yang tenang.
-5. **Kompilasi 40 Doa Rabbana & Tasbih Haptic (Step 13):** Kompilasi doa mustajab Al-Qur'an dan tasbih digital getar layar penuh tanpa perlu memelototi angka di layar HP.
-6. **Arah Kiblat Adaptif (Step 14):** Kompas putar dinamis + haptic di smartphone vs panduan sudut azimuth & jam matahari di laptop, beroperasi 100% offline.
-7. **Peta Masjid Terdekat OpenStreetMap (Step 15):** Menu navbar baru `/masjid`, peta Leaflet.js lokal, integrasi izin lokasi jadwal shalat, estimasi jarak jalan santai lansia, dan panduan rute navigasi suara 1-klik.
-8. **Asbabun Nuzul, Glosarium Mufradat & Audio Narasi (Step 16):** Konteks sejarah turunnya ayat, kamus kosakata Al-Qur'an, dan rekaman audio cerita bertutur 3 menit untuk mata lelah.
+1. **Standarisasi Akun (RBAC) & Logout Halaman Depan (Step 9 - Selesai):** Pemisahan peran Super Admin, Dewan Asatidz, Editor, Jamaah, dan Tamu; dilengkapi tombol Logout cepat langsung di header tilawah dengan modal santun ramah lansia.
+2. **Kisah 25 Rasulullah Lengkap Berbobot (Step 10 & 16 - Selesai):** Naskah sirah nabawi terverifikasi mendalam (209 KB), taut silang dua arah ke lembar mushaf & audio murottal, dan kurasi doa mustajab para nabi.
+3. **Jurnal Literasi & Blog Tadabbur (Step 11 & 14 - Selesai):** 5 pilar konten, kartu kutipan ayat interaktif ber-audio, antarmuka CMS di `/admin`, dan catatan tadabbur pribadi di `/user`.
+4. **Rencana Khatam Ramah Lansia (Step 12 & 13 - Selesai):** Ritme Sakinah berbasis 'Ain (1 'Ain usai shalat fardhu / khatam ~111 hari tanpa rasa lelah) dengan pelacak cincin progres yang tenang dan isolasi akun.
+5. **Kompilasi 40 Doa Rabbana & Tasbih Haptic (Step 13 & 14 - Selesai):** Kompilasi doa mustajab Al-Qur'an, dzikir pagi-petang, dan tasbih digital getar layar penuh tanpa perlu memelototi angka di layar HP khusus anggota.
+6. **Arah Kiblat Adaptif (Step 14 - Selesai):** Kompas putar dinamis + haptic di smartphone vs panduan sudut azimuth & jam matahari di laptop, beroperasi 100% offline.
+7. **Peta Masjid Terdekat OpenStreetMap (Step 15 & 16 - Selesai):** Menu navbar baru `/masjid`, peta Leaflet.js lokal, integrasi izin lokasi jadwal shalat, estimasi jarak jalan santai lansia, panduan rute navigasi suara 1-klik, dan proteksi sesi akun.
+8. **Asbabun Nuzul, Glosarium Mufradat & Audio Narasi (Step 16 - Selesai):** Konteks sejarah turunnya ayat, kamus kosakata Al-Qur'an & balaghah, dan rekaman audio cerita bertutur 3 menit untuk mata lelah dengan Sleep Timer.
+9. **Audit Aksesibilitas WCAG & Kontainerisasi Rilis (Step 17 - Rencana Rilis Akhir):** Standarisasi tap target ≥44px, uji 4 tema kontras, verifikasi Docker port 3382.
 
 ---
 

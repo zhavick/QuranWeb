@@ -48,6 +48,9 @@ Aplikasi dirancang menggunakan pendekatan **Static-First Client-Side Web App (SP
 | **Jadwal Shalat** | **`adhan` (Adhan.js)** | Kalkulasi astronomi murni di sisi klien (0 network request, mendukung parameter Kemenag RI). |
 | **PWA & Offline** | **`vite-plugin-pwa` (Workbox)** | Otomatisasi *pre-caching* app shell, font Arab, dan *runtime caching* dataset JSON. |
 | **Ikonografi** | **`lucide-react`** | Tree-shakable, ringan, dan konsisten. |
+| **Peta Interaktif** | **`leaflet` & `@types/leaflet`** | Pemetaan OpenStreetMap mandiri, ringan (~42 KB), bebas lisensi komersial & tanpa script pelacak iklan. |
+| **Visualisasi Grafik** | **`chart.js`** | Grafik modern berbasis Canvas API untuk visualisasi audit trail dual-series (CRUD vs View). |
+| **Animasi & Interaksi** | **`canvas-confetti`** | Efek selebrasi visual ringan saat pengguna menyelesaikan target khatam 556 'Ain. |
 | **Font Arab (Self-Hosted)** | **`Amiri Quran`**, **`Amiri`**, **`Scheherazade New`** (`.woff2`) + fallback **`LPMQ`** | Disimpan mandiri di `public/fonts/` agar teks Arab tampil konsisten di semua OS dan tetap terbaca saat *offline*. |
 | **Backend API** | **Node.js (Express / HTTP)** | Menghandle endpoint telemetri IP, activity log, dan sinkronisasi staging setting ke PostgreSQL. |
 | **Database Server** | **PostgreSQL 16 (`pg`)** | Menyimpan `visitor_logs`, `activity_logs`, dan tabel staging setting sementara per IP address (`temp_ip_settings`). |
@@ -100,6 +103,63 @@ export interface Ayah {
   textUthmani: string;       // Teks Arab standar
   textTajweed?: string;      // Teks Arab bertag tajwid terkurasi (opsional)
   translationId: string;     // Terjemahan Kemenag RI
+}
+// 4. Skema Modul Kisah Nabi (src/types/prophet.ts)
+export interface ProphetTimelineItem {
+  phase: string;
+  title: string;
+  description: string;
+  readingMinutes: number;
+}
+export interface ProphetDetail extends ProphetMeta {
+  timeline: ProphetTimelineItem[];
+  wisdoms: { title: string; lesson: string }[];
+  duas: { id: string; title: string; arabic: string; translation: string; surahId: number; ayahNumber: number }[];
+  quranReferences: { surahId: number; surahName: string; ayahStart: number; ayahEnd: number; topic: string }[];
+}
+
+// 5. Skema Modul Literasi & Audio Capsule (src/types/literacy.ts)
+export interface AsbabunNuzulItem {
+  id: string;
+  surahId: number;
+  ayahNumber: number;
+  narrator: string;
+  sourceBook: string;
+  historicalContext: string;
+  wisdomTadabbur: string;
+}
+export interface GharibulQuranWord {
+  id: string;
+  surahId: number;
+  ayahNumber: number;
+  wordArabic: string;
+  transliteration: string;
+  rootArabic: string;
+  literalMeaning: string;
+  balaghahExplanation: string;
+}
+export interface AudioCapsuleItem {
+  id: string;
+  title: string;
+  narrator: string;
+  durationMinutes: number;
+  audioUrl: string;
+  transcript: string;
+  category: 'prophet' | 'tadabbur' | 'ayah';
+}
+
+// 6. Skema Modul Peta Masjid (src/types/mosque.ts)
+export interface MosquePOI {
+  id: string;
+  name: string;
+  arabicName?: string;
+  category: 'masjid_raya' | 'masjid_agung' | 'masjid_jami' | 'mushalla';
+  lat: number;
+  lng: number;
+  address: string;
+  city: string;
+  facilities: string[];
+  elderFriendlyRating: number;
 }
 ```
 
@@ -220,6 +280,32 @@ CREATE TABLE IF NOT EXISTS user_bookmarks (
   note TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+-- 8. Tabel Cache Masjid Terdekat (Step 15)
+CREATE TABLE IF NOT EXISTS nearby_mosques_cache (
+  id VARCHAR(100) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  lat DOUBLE PRECISION NOT NULL,
+  lng DOUBLE PRECISION NOT NULL,
+  address TEXT NOT NULL,
+  city VARCHAR(100) NOT NULL,
+  facilities JSONB DEFAULT '[]'::jsonb,
+  elder_rating INT DEFAULT 5,
+  is_verified BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_mosques_coords ON nearby_mosques_cache(lat, lng);
+
+-- 9. Tabel Artikel Jurnal Literasi & Blog CMS (Step 11 & Step 14)
+CREATE TABLE IF NOT EXISTS blog_articles (
+  id VARCHAR(100) PRIMARY KEY,
+  slug VARCHAR(255) UNIQUE NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  pillar VARCHAR(50) NOT NULL,
+  author VARCHAR(100) NOT NULL,
+  status VARCHAR(20) DEFAULT 'published', -- 'published' | 'draft' | 'archived'
+  content TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
 ```
 
 ---
@@ -230,14 +316,21 @@ CREATE TABLE IF NOT EXISTS user_bookmarks (
 src/
 ├── assets/               # Logo, ornamen nomor ayat SVG
 ├── components/
-│   ├── admin/            # AdminPortal.tsx (Dashboard, Charts, Audit Trail, Config)
-│   ├── user/             # UserPortal.tsx (Dashboard, Card Bookmark, Search Archive)
-│   ├── auth/             # JoinPromptModal.tsx (Popup CTA Registrasi)
+│   ├── admin/            # AdminPortal.tsx (Dashboard, Charts, Audit Trail, Config, Blog CMS)
+│   ├── user/             # UserPortal.tsx (Dashboard, Card Bookmark, Search Archive, Tilawah)
+│   ├── auth/             # JoinPromptModal.tsx (Popup CTA), LogoutConfirmModal.tsx
 │   ├── layout/           # Header, Sidebar (Desktop), BottomNav (Mobile), ZenModeWrapper
 │   ├── navigation/       # NavigationPanel, SurahList, JuzList, AinList, QuickSearch
-│   ├── reader/           # AyahCard, AinDivider, JuzDivider, TajweedRenderer
-│   ├── audio/            # AudioMiniPlayer, QariSelector
+│   ├── reader/           # AyahCard (Badges Asbab & Mufradat), AinDivider, JuzDivider, TajweedRenderer
+│   ├── audio/            # AudioMiniPlayer, QariSelector, AudioCapsuleModal (Audiobook 3 Mnt)
 │   ├── prayer/           # PrayerTimeWidget, CitySelectorModal
+│   ├── prophets/         # ProphetsCatalog.tsx, ProphetDetailModal.tsx, ProphetLanternBanner.tsx
+│   ├── blog/             # BlogCatalog.tsx, BlogDetailModal.tsx
+│   ├── prayers/          # PrayersCatalog.tsx, HapticTasbihModal.tsx
+│   ├── khatam/           # KhatamPlannerModal.tsx (Khatam Sakinah 'Ain Tracker)
+│   ├── qibla/            # QiblaCompass.tsx (Smartphone Dynamic & Laptop Azimuth/QR Code)
+│   ├── mosque/           # MosqueMap.tsx (Leaflet.js + OSM + 4 Tema Adaptif)
+│   ├── literacy/         # AsbabunNuzulModal.tsx, GharibulQuranModal.tsx
 │   └── settings/         # SettingsModal, AccessibilityControls, TajweedMakhrajModal
 ├── hooks/
 │   ├── useFullscreen.ts  # Wrapper Fullscreen API + deteksi Esc
@@ -247,25 +340,45 @@ src/
 │   └── useAudioPlayer.ts # Kontrol HTML5 Audio + 5 Qari + Repeat + Speed + Scrubber
 ├── services/
 │   ├── quranData.ts      # Loader & in-memory cache untuk meta.json & surahs/*.json
-│   ├── auth.ts           # Manajemen otentikasi login admin & user
+│   ├── auth.ts           # Manajemen otentikasi login admin, asatidz, editor, user & session guard
 │   ├── admin.ts          # Layanan statistik, audit log query & update config
 │   ├── telemetry.ts      # Client telemetry (visitor IP, activity logger, staging sync)
-│   └── offlineCache.ts   # Helper Cache API untuk unduh audio/surat offline
+│   ├── prophets.ts       # Loader katalog meta & rincian narasi 25 nabi
+│   ├── blog.ts           # Loader artikel jurnal & state override CRUD CMS
+│   ├── prayers.ts        # Loader 40 Doa Rabbana & wirid dzikir harian
+│   ├── qibla.ts          # Algoritma Great Circle Ka'bah offline
+│   ├── mosques.ts        # Data provider masjid & filter fasilitas lansia
+│   └── literacy.ts       # Loader Asbabun Nuzul, Gharibul Qur'an & Audio Capsule
 ├── styles/
 │   ├── themes.css        # Variabel CSS untuk Light, Dark, High-Contrast, Sepia
 │   └── arabic.css        # Aturan RTL, unicode-bidi, dan font-face
 └── types/
-    └── quran.ts          # Definisi seluruh interface TypeScript
+    ├── quran.ts          # Definisi core mushaf & settings
+    ├── prophet.ts        # Definisi data kisah nabi
+    ├── blog.ts           # Definisi artikel jurnal
+    ├── prayer.ts         # Definisi doa & dzikir
+    ├── qibla.ts          # Definisi kompas kiblat
+    ├── mosque.ts         # Definisi POI masjid
+    └── literacy.ts       # Definisi asbabun nuzul, gharib & audio capsule
 server/
 ├── index.js              # Server Node.js API (PostgreSQL pool, migrations, endpoints)
 public/
 ├── data/
 │   ├── meta.json
 │   ├── translation_index.json
+│   ├── prophets_meta.json
+│   ├── prophets_data.json (209 KB, 25 kisah lengkap berbobot)
+│   ├── blog_articles.json
+│   ├── rabbana_duas.json
+│   ├── daily_dzikr.json
+│   ├── mosques_seed.json
+│   ├── asbabun_nuzul.json
+│   ├── gharibul_quran.json
+│   ├── audio_capsules.json
 │   └── surahs/           # 1.json s.d. 114.json
 ├── fonts/                # amiri-quran.woff2, amiri.woff2, scheherazade.woff2
 ├── manifest.webmanifest
-└── sw.js
+└── sw.js                 # PWA Cache v7 (Offline First)
 ```
 
 ---
@@ -430,9 +543,17 @@ Implementasi teknis mengacu pada tahapan bertahap yang telah diselesaikan pada [
 - **Step 6 (Jadwal Shalat):** `PrayerTimeWidget` berbasis `adhan` parameter Kemenag RI (Fajr 20°, Isha 18°), countdown, daftar kota & GPS.
 - **Step 7 (Edukasi & Audio):** `TajweedRenderer` (1-klik saklar cepat), `TajweedMakhrajModal` (3 tab interaktif: 11 kaidah tajwid, 5 makhraj, 7 waqaf), dan `AudioMiniPlayer` mutakhir (5 Qari mu'tabar, pengatur kecepatan 0.75x–1.5x, linimasa scrubber, volume/mute, continuous section play, dan *Ayah-Sync*).
 - **Step 8 (Admin & User Portals, PWA Offline & Docker):**
-  - **Portal Administrator (`/admin`):** Kredensial `admin` / `admin123`, dashboard statistik & chart geolokasi IP, modul Audit Trail penuh dengan filter & ekspor JSON, serta modul konfigurasi identitas situs (logo, nama, lisensi, copyright, broadcast pengumuman).
+  - **Portal Administrator (`/admin`):** Kredensial `admin` / `admin123`, dashboard statistik & chart geolokasi IP, modul Audit Trail penuh dengan filter & ekspor JSON, serta modul konfigurasi identitas situs.
   - **Portal Pengguna (`/user`):** Kredensial `fulan` / `user123`, dashboard card bookmark pribadi, modul arsip pencarian terjemahan (*search archive*), dan sinkronisasi bacaan.
   - **PWA & Kontainerisasi:** Service worker `sw.js`, `manifest.webmanifest`, `Dockerfile` & `docker-compose.yml` (PostgreSQL 16 + API + Web) pada port `3382`.
-- **Panduan Pengoperasian:** Rincian cara penggunaan lengkap didokumentasikan di [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md) (15 bab komprehensif).
-- **Cetak Biru Arsitektur Fase 2:** [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md) dan tahapan eksekusi teknis [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) (Step 9 s.d. Step 17: RBAC & Logout Halaman Depan, Kisah Rasul, Jurnal Blog, Rencana Khatam 'Ain, Doa & Tasbih Haptic, Kompas Kiblat Adaptif, Peta Masjid OpenStreetMap, dan Asbabun Nuzul).
+- **Step 9 (Standarisasi Akun RBAC & Logout Cepat):** 5 peran terstandarisasi (`admin`, `asatidz`, `editor`, `user`, `guest`), tombol logout cepat di Header Halaman Depan dengan modal konfirmasi santun tanpa reload halaman.
+- **Step 10 & 16 (Kisah 25 Rasulullah Lengkap):** Rute `/kisah`, linimasa mendalam 25 nabi berparagraf rinci (209 KB dataset), *bi-directional linking* ke mushaf & audio, serta kompilasi Do'a Al-Anbiya'.
+- **Step 11 & 14 (Jurnal Literasi, Blog & CMS Admin):** Rute `/blog`, 5 pilar konten, kutipan ayat terintegrasi audio, dan panel CMS di `/admin` dengan siklus hidup artikel (Diterbitkan, Draf, Arsip, Hapus).
+- **Step 12 & 13 (Rencana Khatam Sakinah 'Ain):** Pelacak tilawah berbasis 556 'Ain tanpa tekanan kompetitif, cincin progres melingkar, konfeti, dan isolasi modul khusus pengguna login.
+- **Step 13 & 14 (40 Doa Rabbana & Tasbih Haptic):** Rute `/doa`, 40 doa mustajab, dzikir pagi-petang, tasbih getar layar penuh (`navigator.vibrate`), dan proteksi sesi akun.
+- **Step 14 (Kompas Arah Kiblat Adaptif & Chart.js Audit):** Rute `/kiblat`, kompas dinamis smartphone (haptic lock ±1.5°), laptop azimuth/QR Code & panduan bayangan matahari, serta visualisasi garis ganda Chart.js (CRUD vs View) di portal admin.
+- **Step 15 & 16 (Peta Masjid OpenStreetMap & Session Guard):** Rute `/masjid`, Leaflet.js lokal 4 tema, integrasi izin GPS jadwal shalat, kartu jalan santai lansia (50m/menit), navigasi suara belokan, dan proteksi sesi akun.
+- **Step 16 (Asbabun Nuzul, Gharibul Qur'an & Audiobook 3 Menit):** Badge riwayat turunnya ayat (*Lubabun Nuqul* & *Al-Wahidi*), kamus kosakata sastra tinggi & balaghah, serta pemutar audiobook suara hangat dengan Sleep Timer dan tempo lansia `0.75x`.
+- **Panduan Pengoperasian:** Rincian cara penggunaan lengkap didokumentasikan di [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md).
+- **Laporan Jaminan Kualitas:** [QualityAssurance.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/QualityAssurance.md) (TC-ST01 s.d. TC-ST16: **PASS 100%**).
 

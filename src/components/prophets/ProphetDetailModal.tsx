@@ -304,7 +304,7 @@ export const ProphetDetailModal: React.FC<ProphetDetailModalProps> = ({
                 <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--text-accent)' }}>
                   Ikhtisar Perjalanan Kenabian
                 </h4>
-                <p className={`${getFontSizeClass()}`} style={{ color: 'var(--text-primary)' }}>
+                <p className={`${getFontSizeClass()} whitespace-pre-line`} style={{ color: 'var(--text-primary)' }}>
                   {prophet.summary}
                 </p>
               </div>
@@ -340,7 +340,7 @@ export const ProphetDetailModal: React.FC<ProphetDetailModalProps> = ({
                       {item.title}
                     </h3>
 
-                    <p className={`${getFontSizeClass()}`} style={{ color: 'var(--text-secondary)' }}>
+                    <p className={`${getFontSizeClass()} whitespace-pre-line`} style={{ color: 'var(--text-secondary)' }}>
                       {item.description}
                     </p>
                   </div>

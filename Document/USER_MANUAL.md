@@ -21,7 +21,15 @@ Aplikasi ini memiliki keunggulan navigasi berdasarkan **Surat**, **Juz**, dan **
 12. [Integrasi Database PostgreSQL, Staging per IP & Ajakan Bergabung](#12-integrasi-database-postgresql-staging-per-ip--ajakan-bergabung)
 13. [Portal Administrator (/admin)](#13-portal-administrator-admin)
 14. [Portal Pengguna & Anggota (/user)](#14-portal-pengguna--anggota-user)
-15. [Pertanyaan yang Sering Diajukan (FAQ)](#15-pertanyaan-yang-sering-diajukan-faq)
+15. [Standarisasi Akun (RBAC) & Logout Cepat di Halaman Depan](#15-standarisasi-akun-rbac--logout-cepat-di-halaman-depan)
+16. [Modul Kisah 25 Rasulullah (/kisah) Lengkap Berbobot](#16-modul-kisah-25-rasulullah-kisah-lengkap-berbobot)
+17. [Modul Jurnal Literasi & Blog Tadabbur Qur'ani (/blog)](#17-modul-jurnal-literasi--blog-tadabbur-qurani-blog)
+18. [Modul Rencana Khatam Ramah Lansia (Khatam Sakinah 'Ain)](#18-modul-rencana-khatam-ramah-lansia-khatam-sakinah-ain)
+19. [Modul Kumpulan 40 Doa Rabbana & Tasbih Haptic Layar Penuh (/doa)](#19-modul-kumpulan-40-doa-rabbana--tasbih-haptic-layar-penuh-doa)
+20. [Modul Kompas Arah Kiblat Adaptif (/kiblat)](#20-modul-kompas-arah-kiblat-adaptif-kiblat)
+21. [Modul Peta Masjid Terdekat OpenStreetMap (/masjid)](#21-modul-peta-masjid-terdekat-openstreetmap-masjid)
+22. [Asbabun Nuzul, Kamus Mufradat Gharib & Audiobook 3 Menit](#22-asbabun-nuzul-kamus-mufradat-gharib--audiobook-3-menit)
+23. [Pertanyaan yang Sering Diajukan (FAQ)](#23-pertanyaan-yang-sering-diajukan-faq)
 
 ---
 
@@ -315,7 +323,94 @@ Untuk pembaca yang ingin menikmati pengalaman tilawah yang terpersonalisasi, Qur
 
 ---
 
-## 15. Pertanyaan yang Sering Diajukan (FAQ)
+## 15. Standarisasi Akun (RBAC) & Logout Cepat di Halaman Depan
+
+QuranWeb menerapkan 5 tingkatan peran akses (Role-Based Access Control) yang terstandarisasi:
+1. **Super Admin (`admin` / `admin123`):** Akses penuh dashboard audit trail, konfigurasi branding, broadcast pengumuman, dan CMS artikel.
+2. **Dewan Asatidz (`asatidz` / `asatidz123`):** Akses kurasi naskah tadabbur, validasi doa, dan moderasi konten.
+3. **Editor Redaksi (`editor` / `editor123`):** Akses penulisan dan penyuntingan artikel jurnal literasi.
+4. **Jamaah Terdaftar (`fulan` / `user123`):** Akses penuh fitur anggota (Rencana Khatam, Doa & Tasbih Haptic, Peta Masjid Terdekat, Cloud Bookmark, dan supresi popup ajakan mendaftar).
+5. **Pengunjung Publik (*Guest*):** Akses tilawah mushaf, audio murottal, dan jadwal shalat tanpa kewajiban mendaftar.
+
+### Tombol Logout Cepat di Header
+Saat pengguna sedang login, ikon pintu keluar merah (**LogOut**) akan selalu tampil di sudut kanan atas Header. Menekan tombol ini akan memunculkan dialog santun dengan nama akun dan tombol konfirmasi keluar yang membersihkan sesi seketika tanpa perlu memuat ulang (*reload*) halaman.
+
+---
+
+## 16. Modul Kisah 25 Rasulullah (`/kisah`) Lengkap Berbobot
+
+Akses rute `/kisah` (atau klik tombol **"Kisah 25 Nabi"** di Header/Drawer) untuk menjelajahi ensiklopedia sirah nabawi:
+- **Katalog 25 Nabi & Rasul:** Tersusun dari Nabi Adam AS hingga Nabi Muhammad SAW, dilengkapi filter era (*Permulaan*, *Bani Israil*, *Penutup*) dan status *Ulul Azmi*.
+- **Narasi Mendalam (Qashashul Anbiya'):** Setiap kisah disusun dalam 3–4 babak linimasa berparagraf rinci yang memuat latar belakang kaum, argumentasi tauhid, mukjizat, dan cobaan hidup.
+- **Doa-Doa Nabawi (*Du'a Al-Anbiya'*):** Dilengkapi teks Arab besar, transliterasi latin, terjemahan, dan tombol salin 1-klik.
+- **Bi-Directional Linking:** Tautan 1-klik menuju ayat Al-Qur'an terkait di lembar tilawah, dan sebaliknya (ikon lentera kisah di kartu ayat mushaf).
+
+---
+
+## 17. Modul Jurnal Literasi & Blog Tadabbur Qur'ani (`/blog`)
+
+Akses rute `/blog` (atau klik tombol **"Jurnal Blog"** di Header/Drawer) untuk membaca ulasan tadabbur bernas:
+- **5 Pilar Konten:** Tafsir Tematik, Inspirasi Lansia & Sakinah, Ulumul Qur'an & Sejarah, Tazkiyatun Nufus, dan Warta QuranWeb.
+- **Widget Kutipan Ayat Interaktif:** Ayat Al-Qur'an di dalam badan artikel dapat langsung diputar audionya atau dibuka di mushaf.
+- **Manajemen Status CMS:** Penulis dan admin dapat mengelola draf, mempublikasikan, mengarsipkan, atau menghapus artikel di `/admin`.
+
+---
+
+## 18. Modul Rencana Khatam Ramah Lansia (Khatam Sakinah 'Ain)
+
+Fitur khusus bagi pengguna terdaftar (klik tombol kompas **"Rencana Khatam"**):
+- **Ritme Sakinah (556 'Ain):** Pola santai 1 'Ain usai shalat fardhu (5 'Ain/hari) yang menuntaskan khatam dalam ~111 hari tanpa rasa lelah mata atau beban kompetisi.
+- **Pelacak Progres Cincin Melingkar:** Menampilkan persentase pencapaian dan sisa 'Ain.
+- **Konfeti Selebrasi & Lanjut Tilawah:** Saat target khatam tercapai, layar merayakan dengan semburan konfeti visual yang menyenangkan, serta tombol 1-klik langsung melompat ke 'Ain berikutnya di mushaf.
+
+---
+
+## 19. Modul Kumpulan 40 Doa Rabbana & Tasbih Haptic Layar Penuh (`/doa`)
+
+Akses rute `/doa` (khusus pengguna yang telah login):
+- **40 Doa Rabbana:** Himpunan doa-doa mustajab berawalan *Rabbana* dari Al-Qur'an dilengkapi tombol putar audio dan rujukan ayat.
+- **Dzikir Harian:** Wirid pagi, petang, dan ba'da shalat fardhu.
+- **Tasbih Layar Penuh Bergetar (*Haptic Counter*):** Sentuh di mana saja pada layar ponsel tanpa perlu menatap layar:
+  - Bergetar 1x setiap 1 kali ketukan.
+  - Bergetar 2x saat mencapai hitungan ke-33.
+  - Bergetar ritmis panjang saat mencapai hitungan ke-100.
+
+---
+
+## 20. Modul Kompas Arah Kiblat Adaptif (`/kiblat`)
+
+Akses rute `/kiblat` (atau klik tombol **"Arah Kiblat"**):
+- **100% Offline Great Circle Formula:** Menghitung sudut kiblat presisi ke Ka'bah (21.4225° N, 39.8262° E) tanpa ketergantungan API pihak ketiga.
+- **Kompas Smartphone Bergetar:** Piringan kompas berputar halus mengikuti gerakan ponsel dan bergetar saat posisi tepat lurus menghadap Ka'bah (toleransi ±1.5°).
+- **Mode Laptop & QR Code:** Menampilkan sudut derajat azimuth, panduan bayangan matahari *Rasydul Qiblah*, dan QR Code dinamis untuk beralih instan ke ponsel.
+
+---
+
+## 21. Modul Peta Masjid Terdekat OpenStreetMap (`/masjid`)
+
+Akses rute `/masjid` (khusus pengguna yang telah login):
+- **Peta Leaflet.js & OpenStreetMap:** Peta interaktif lokal yang hemat kuota dan menyesuaikan dengan 4 tema warna QuranWeb.
+- **Estimasi Jalan Santai Lansia:** Menampilkan jarak dan perkiraan menit jalan kaki santai (±3 km/jam ~ 50 meter/menit).
+- **Filter Fasilitas Lansia:** Filter 1-klik untuk masjid dengan wudhu lantai dasar, kursi shalat, tanjakan kursi roda, ruang ber-AC, dan toilet duduk.
+- **Navigasi Suara Belokan:** Tombol 1-klik membuka rute arah perjalanan langsung di Google Maps, Waze, atau Apple Maps.
+
+---
+
+## 22. Asbabun Nuzul, Kamus Mufradat Gharib & Audiobook 3 Menit
+
+1. **Asbabun Nuzul per Ayat:**
+   - Ayat-ayat pilihan pada lembar tilawah menampilkan badge amber **"Asbabun Nuzul"**.
+   - Klik untuk membuka dialog riwayat sebab turunnya ayat dari kitab *Lubabun Nuqul* (As-Suyuthi) dan *Asbabun Nuzul* (Al-Wahidi), dilengkapi intisari hikmah dan pengatur ukuran huruf (A, A+, A++).
+2. **Kamus Mufradat Kosakata Sukar (*Gharibul Qur'an*):**
+   - Ayat dengan kosakata sastra tinggi menampilkan badge zamrud **"Mufradat Gharib"**.
+   - Menampilkan kaligrafi Arab besar, akar kata (*jadzr*), makna leksikal dasar, serta rahasia balaghah dan keindahan sastra Al-Qur'an.
+3. **Audiobook Tadabbur 3 Menit (*Audio Capsule*):**
+   - Klik tombol **"Audiobook 3 Mnt"** di Header atau Drawer untuk mendengarkan rekaman narasi suara hangat kisah dan tadabbur ringkas 3–5 menit.
+   - Dilengkapi pengatur kecepatan santai lansia (`0.75x`), *Sleep Timer* (15, 30, 45, 60 menit) dengan hitung mundur otomatis, dan pembaca naskah transkrip berhuruf besar.
+
+---
+
+## 23. Pertanyaan yang Sering Diajukan (FAQ)
 
 **Q: Apakah saya perlu mendaftar atau membuat akun?**  
 *A:* Tidak perlu. Seluruh fitur membaca, bookmark, terakhir dibaca, dan pengaturan tersimpan aman di peramban perangkat Anda sendiri (*zero sign-up*).

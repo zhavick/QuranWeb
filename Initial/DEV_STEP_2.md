@@ -27,9 +27,9 @@ Dokumen ini merupakan panduan tahapan pengembangan teknis (*development steps*) 
 | **Step 11** | Literasi & Ekosistem Artikel | **Modul Jurnal Literasi & Blog Tadabbur Qur'ani:** 5 pilar konten, widget kutipan ayat interaktif dengan audio mini, panel CMS di `/admin`, dan catatan tadabbur di `/user`. | Tinggi | **Selesai (Done)** | Halaman `/blog`, editor draf artikel, dan personal reading list. |
 | **Step 12** | Ibadah Harian Ramah Lansia | **Modul Rencana Khatam Ramah Lansia (*Khatam Planner 'Ain*):** Ritme Sakinah (1 'Ain usai shalat / ~111 hari), pelacak cincin progres melingkar, pengingat santun shalat. | Menengah | **Selesai (Done)** | Antarmuka pelacak tilawah berbasis 'Ain tanpa gamifikasi yang bising. |
 | **Step 13** | Kompilasi Doa & Dzikir Harian | **Modul 40 Doa Rabbana, Tasbih Haptic & Guard Sesi Akun:** Doa mustajab Al-Qur'an, dzikir pagi-petang, tasbih digital getar layar penuh, supresi popup ajakan bergabung bagi user ber-sesi, dan isolasi modul rencana khatam khusus akun terdaftar. | Menengah | **Selesai (Done)** | Antarmuka doa terhubung ayat, tasbih sentuh bebas tatap layar, pengalaman sesi bebas gangguan. |
-| **Step 14** | Orientasi Shalat Adaptif | **Modul Arah Kiblat Adaptif (*Offline Compass*):** Kompas gerak dinamis di smartphone vs sudut azimuth/jam matahari di laptop, getaran penanda arah tepat Ka'bah. | Menengah | Rencana | Penunjuk kiblat 100% offline dengan rumus trigonometri speris lokal. |
-| **Step 15** | Panduan Jamaah & Geografis | **Modul Peta Masjid Terdekat (OpenStreetMap + Google Maps):** Menu navbar baru `/masjid`, peta Leaflet.js lokal, integrasi izin GPS jadwal shalat, estimasi jalan santai lansia. | Lanjutan | Rencana | Peta OpenStreetMap interaktif, kartu masjid terdekat, rute navigasi suara 1-klik. |
-| **Step 16** | Pendalaman Makna & Inklusivitas | **Modul Asbabun Nuzul, Glosarium Mufradat & Audio Narasi:** Kartu riwayat turunnya ayat, kamus kosakata sukar (*Gharibul Qur'an*), rekaman audio cerita 3 menit. | Lanjutan | Rencana | Tooltip konteks sejarah ayat dan pemutar narasi kisah untuk lansia bermata lelah. |
+| **Step 14** | Orientasi Shalat Adaptif | **Modul Arah Kiblat Adaptif (*Offline Compass*):** Kompas gerak dinamis di smartphone vs sudut azimuth/jam matahari di laptop, getaran penanda arah tepat Ka'bah. | Menengah | **Selesai (Done)** | Penunjuk kiblat 100% offline dengan rumus trigonometri speris lokal. |
+| **Step 15** | Panduan Jamaah & Geografis | **Modul Peta Masjid Terdekat (OpenStreetMap + Google Maps):** Menu navbar baru `/masjid`, peta Leaflet.js lokal, integrasi izin GPS jadwal shalat, estimasi jalan santai lansia. | Lanjutan | **Selesai (Done)** | Peta OpenStreetMap interaktif, kartu masjid terdekat, rute navigasi suara 1-klik. |
+| **Step 16** | Pendalaman Makna & Inklusivitas | **Modul Asbabun Nuzul, Glosarium Mufradat & Audio Narasi (Audiobook 3 Menit) + Guard Akses Peta Masjid:** Kartu riwayat turunnya ayat, kamus kosakata sukar (*Gharibul Qur'an*), rekaman audio cerita 3 menit dengan Sleep Timer & 0.75x tempo lansia, serta proteksi menu peta masjid wajib memiliki akun. | Lanjutan | **Selesai (Done)** | Dialog Asbabun Nuzul & kamus mufradat di kartu ayat, pemutar audiobook tadabbur 3 menit dengan sleep timer & transkrip teks, serta guard sesi akun untuk menu peta masjid. |
 | **Step 17** | Integrasi Sistem & Rilis Fase 2 | **Audit Aksesibilitas WCAG, Pengujian Tema, PWA Cache & Deployment:** Sinkronisasi skema PostgreSQL baru, uji coba multi-perangkat (Mobile & Desktop), update panduan pengguna. | Akhir (Release) | Rencana | Sistem stabil 100%, PWA offline cache untuk modul baru, siap rilis produksi. |
 
 ---
@@ -159,6 +159,7 @@ Dokumen ini merupakan panduan tahapan pengembangan teknis (*development steps*) 
 ---
 
 ### Step 15: Modul Peta Masjid Terdekat (Navbar Menu & OpenStreetMap Lokal Terintegrasi Google Maps)
+* **Status:** **Selesai (Done) & Siap Dilanjutkan**
 * **Tujuan:** Memandu jamaah menemukan masjid terdekat untuk shalat berjamaah awal waktu dengan peta yang ringan, legal, bebas biaya langganan komersial, dan hemat kuota.
 * **Tugas Spesifik:**
   1. **Teknologi Peta: OpenStreetMap (OSM) & Leaflet.js:**
@@ -176,25 +177,38 @@ Dokumen ini merupakan panduan tahapan pengembangan teknis (*development steps*) 
      - *Fallback:* Pilihan manual nama kota jika GPS ditolak atau dimatikan.
   5. **Fitur Khusus Lansia:**
      - Kartu daftar masjid urut jarak terdekat.
-     - Estimasi "Jalan Santai Lansia" (±3 km/jam) agar jamaah sempat mengejar shalat sebelum iqamah.
-     - Label fasilitas ramah lansia (wudhu lantai dasar, kursi shalat, pendingin udara).
+     - Estimasi "Jalan Santai Lansia" (±3 km/jam ~ 50 m/menit) agar jamaah sempat mengejar shalat sebelum iqamah.
+     - Label fasilitas ramah lansia (wudhu lantai dasar, kursi shalat, pendingin udara, tanjakan kursi roda, parkir lapang, toilet duduk).
      - Tombol 1-klik navigasi suara belokan (*turn-by-turn navigation*) ke Google Maps / Waze / Apple Maps.
-* **Kriteria Selesai:** Menu navbar peta masjid tampil rapi, peta OpenStreetMap lokal termuat cepat dengan data POI masjid yang akurat, koordinat GPS terhubung mulus dengan jadwal shalat, dan tombol navigasi eksternal berfungsi.
+* **Kriteria Selesai:** Menu navbar peta masjid tampil rapi, peta OpenStreetMap lokal termuat cepat dengan data POI masjid yang akurat, koordinat GPS terhubung mulus dengan jadwal shalat, tombol navigasi eksternal berfungsi, dan kompilasi TypeScript lolos tanpa error.
 
 ---
 
-### Step 16: Modul Asbabun Nuzul, Glosarium Mufradat & Audio Narasi (Audiobook 3 Menit)
-* **Tujuan:** Memberikan pemahaman kontekstual sejarah turunnya ayat dan solusi bagi pembaca lansia yang mengalami kelelahan mata.
-* **Tugas Spesifik:**
-  1. **Kartu Konteks Asbabun Nuzul:**
-     - Menautkan riwayat shahih peristiwa turunnya ayat Al-Qur'an dari kitab *Lubabun Nuqul* (As-Suyuthi) dan *Asbabun Nuzul* (Al-Wahidi).
-     - Ditampilkan melalui ikon lentera sejarah di lembar tilawah.
-  2. **Kamus Mufradat Kosakata Sukar (*Gharibul Qur'an*):**
-     - Tooltip interaktif saat kata-kata berbobot sastra tinggi Al-Qur'an disentuh, menjelaskan akar kata dan makna balaghah secara ringkas.
-  3. **Audio Narasi Bertutur 3–5 Menit (*Audio Capsule*):**
-     - Integrasi rekaman narasi suara hangat untuk kisah nabi dan esai blog tadabbur pada pemutar audio mini.
-     - Fitur *Sleep Timer* (15/30 menit) dan perlambatan tempo suara (`0.75x`) bagi lansia.
-* **Kriteria Selesai:** Tooltip Asbabun Nuzul dan mufradat merespons cepat, serta audio narasi dapat diputar dengan kontrol kecepatan dan pengatur waktu tidur.
+### Step 16: Modul Asbabun Nuzul, Glosarium Mufradat & Audio Narasi (Audiobook 3 Menit) + Guard Akses Peta Masjid
+* **Status:** **Selesai (Done)**
+* **Tujuan:** Memberikan pemahaman kontekstual sejarah turunnya ayat Al-Qur'an, kamus akar kata (jadzr) & balaghah sastra, serta solusi ramah lansia yang mengalami kelelahan mata (*Audio Capsule* 3–5 menit dengan Sleep Timer & kecepatan lansia), ditambah proteksi menu peta masjid terdekat khusus pengguna terdaftar.
+* **Tugas Spesifik yang Diselesaikan:**
+  1. **Proteksi & Guard Akses Menu Peta Masjid (`src/App.tsx` & `PrayerTimeWidget.tsx`):**
+     - Menu "Peta Masjid" di Header dan Mobile Drawer disembunyikan jika pengunjung belum login (`!currentUser`).
+     - Akses langsung ke rute `/masjid` dicegat secara santun, memunculkan modal pendaftaran `JoinPromptModal` dan mengarahkan kembali ke halaman utama tilawah.
+     - Tombol "Lihat Peta Masjid Sekitar" pada widget jadwal shalat dicegat untuk menampilkan modal pendaftaran bagi tamu.
+  2. **Kartu Konteks Asbabun Nuzul (`src/components/literacy/AsbabunNuzulModal.tsx` & `src/services/literacy.ts`):**
+     - Database riwayat shahih Asbabun Nuzul dari kitab rujukan terpercaya *Lubabun Nuqul* (Imam As-Suyuthi) dan *Asbabun Nuzul* (Al-Wahidi) di `public/data/asbabun_nuzul.json`.
+     - Ditampilkan pada `AyahCard` dengan tombol badge "Asbabun Nuzul" berwarna amber lembut yang membuka dialog mendalam berisi sumber periwayatan, teks riwayat, intisari hikmah, dan pengatur ukuran teks (A, A+, A++).
+  3. **Kamus Mufradat Kosakata Sukar (*Gharibul Qur'an*) (`src/components/literacy/GharibulQuranModal.tsx`):**
+     - Database kosakata langka berbobot sastra tinggi di `public/data/gharibul_quran.json`.
+     - Ditampilkan pada `AyahCard` dengan tombol badge "Mufradat Gharib" berwarna zamrud lembut yang menampilkan tab kosakata, teks kaligrafi Arab, transliterasi, akar kata (*jadzr*), makna leksikal dasar, serta rahasia balaghah dan kedalaman makna sastra Qur'an.
+  4. **Audio Narasi Bertutur 3–5 Menit (*Audio Capsule / Audiobook 3 Menit*) (`src/components/audio/AudioCapsuleModal.tsx`):**
+     - Database narasi kisah dan tadabbur suara hangat di `public/data/audio_capsules.json`.
+     - Tombol akses cepat "Audiobook 3 Mnt" dengan ikon headphone di Header Navbar dan Mobile Drawer.
+     - Pemutar audio terintegrasi dengan playlist, visualizer bar animasi, pengatur kecepatan lansia (`0.75x`, `1.0x`, `1.25x`), *Sleep Timer* (15, 30, 45, 60 menit) dengan hitung mundur otomatis menghentikan pemutaran, serta pembaca transkrip naskah dengan kontrol pembesaran huruf ramah lansia.
+  5. **PWA Offline Precache v7 (`public/sw.js`):**
+     - Precache data offline untuk `asbabun_nuzul.json`, `gharibul_quran.json`, dan `audio_capsules.json`.
+  6. **Pengayaan Narasi Mendalam Kisah 25 Nabi & Rasul (`public/data/prophets_data.json` & `public/data/prophets_meta.json`):**
+     - Memperluas isi kisah seluruh 25 Nabi & Rasul secara komprehensif (ukuran dataset meningkat dari 98 KB menjadi 209 KB).
+     - Setiap nabi kini memiliki narasi babak linimasa yang kaya (3 hingga 4 babak per nabi, 1.400–2.300 karakter per babak), menyajikan latar belakang peradaban kaum, argumentasi tauhid, mukjizat samawi, rincian ujian keimanan, dan mutiara hikmah yang kontekstual.
+     - Penataan tampilan modal pada `ProphetDetailModal.tsx` menggunakan `whitespace-pre-line` untuk kenyamanan membaca berparagraf bagi pengguna lansia.
+* **Kriteria Selesai:** Dialog Asbabun Nuzul dan Gharibul Qur'an merespons instan dari ayat, audio narasi bertutur dapat diputar dengan sleep timer aktif, menu peta masjid terlindungi guard sesi akun secara konsisten, dan seluruh 25 kisah nabi tersaji dalam narasi mendalam yang lengkap. Tervalidasi 0 error pada kompilasi TypeScript (`tsc -b`).
 
 ---
 

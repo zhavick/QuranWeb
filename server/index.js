@@ -1,5 +1,7 @@
 import http from 'http';
 import pg from 'pg';
+import fs from 'fs';
+import path from 'path';
 
 const { Pool } = pg;
 
@@ -11,8 +13,20 @@ const DATABASE_URL =
 let pool = null;
 let dbConnected = false;
 
+// Muat data seed masjid untuk memori
+let initialMosques = [];
+try {
+  const seedPath = path.resolve('public', 'data', 'mosques_seed.json');
+  if (fs.existsSync(seedPath)) {
+    initialMosques = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+  }
+} catch (e) {
+  console.warn('Warning reading mosques_seed.json:', e.message);
+}
+
 // In-memory fallbacks when DB is warming up or standalone
 const memoryDb = {
+  nearby_mosques_cache: initialMosques,
   users: [
     {
       id: 1,
@@ -191,6 +205,23 @@ async function initDb() {
           note TEXT,
           created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
         );
+
+        -- 9. Nearby Mosques Cache (OpenStreetMap & Google Places POI Sync)
+        CREATE TABLE IF NOT EXISTS nearby_mosques_cache (
+          id VARCHAR(100) PRIMARY KEY,
+          name VARCHAR(255) NOT NULL,
+          arabic_name VARCHAR(255),
+          address TEXT,
+          city VARCHAR(100),
+          province VARCHAR(100),
+          lat NUMERIC(10, 7) NOT NULL,
+          lng NUMERIC(10, 7) NOT NULL,
+          facilities JSONB DEFAULT '[]'::jsonb,
+          is_verified BOOLEAN DEFAULT TRUE,
+          phone VARCHAR(50),
+          created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+        );
+        CREATE INDEX IF NOT EXISTS idx_mosques_coords ON nearby_mosques_cache(lat, lng);
 
         -- Seed Default Users (Fase 1 & Fase 2 RBAC)
         INSERT INTO users (username, email, password, role, full_name)
@@ -734,6 +765,41 @@ const server = http.createServer(async (req, res) => {
       }
       return sendJson(res, 200, { success: true, deletedId: id });
     }
+  }
+
+  // ==========================================
+  // 10. NEARBY MOSQUES API (OSM & GOOGLE PLACES CACHE)
+  // ==========================================
+  if (pathname === '/api/mosques' && req.method === 'GET') {
+    const lat = parseFloat(url.searchParams.get('lat')) || -6.2088;
+    const lng = parseFloat(url.searchParams.get('lng')) || 106.8456;
+    const radius = parseFloat(url.searchParams.get('radius')) || 25; // km
+
+    let list = memoryDb.nearby_mosques_cache || [];
+
+    if (pool && dbConnected) {
+      try {
+        const dbRes = await pool.query('SELECT * FROM nearby_mosques_cache');
+        if (dbRes.rows.length > 0) {
+          list = dbRes.rows.map((r) => ({
+            ...r,
+            lat: parseFloat(r.lat),
+            lng: parseFloat(r.lng),
+            facilities: typeof r.facilities === 'string' ? JSON.parse(r.facilities) : (r.facilities || []),
+          }));
+        }
+      } catch (err) {
+        console.error('Mosques query error:', err.message);
+      }
+    }
+
+    return sendJson(res, 200, {
+      success: true,
+      center: { lat, lng },
+      radiusKm: radius,
+      count: list.length,
+      mosques: list,
+    });
   }
 
   // Not Found

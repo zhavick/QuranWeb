@@ -199,9 +199,10 @@ Dokumen ini merupakan panduan tahapan pengembangan teknis (*development steps*) 
      - Database kosakata langka berbobot sastra tinggi di `public/data/gharibul_quran.json`.
      - Ditampilkan pada `AyahCard` dengan tombol badge "Mufradat Gharib" berwarna zamrud lembut yang menampilkan tab kosakata, teks kaligrafi Arab, transliterasi, akar kata (*jadzr*), makna leksikal dasar, serta rahasia balaghah dan kedalaman makna sastra Qur'an.
   4. **Audio Narasi Bertutur 3–5 Menit (*Audio Capsule / Audiobook 3 Menit*) (`src/components/audio/AudioCapsuleModal.tsx`):**
-     - Database narasi kisah dan tadabbur suara hangat di `public/data/audio_capsules.json`.
+     - Database 10 narasi kisah dan tadabbur bersuara hangat di `public/data/audio_capsules.json`.
      - Tombol akses cepat "Audiobook 3 Mnt" dengan ikon headphone di Header Navbar dan Mobile Drawer.
-     - Pemutar audio terintegrasi dengan playlist, visualizer bar animasi, pengatur kecepatan lansia (`0.75x`, `1.0x`, `1.25x`), *Sleep Timer* (15, 30, 45, 60 menit) dengan hitung mundur otomatis menghentikan pemutaran, serta pembaca transkrip naskah dengan kontrol pembesaran huruf ramah lansia.
+     - Pemutar audio terintegrasi dengan dual-engine: **Web Speech API (`window.speechSynthesis`) narasi lisan Bahasa Indonesia yang bekerja 100% offline tanpa kuota internet**, serta mode streaming audio qari CDN.
+     - Fitur pendukung lengkap: playlist, visualizer bar animasi, pengatur kecepatan suara khusus lansia (`0.75x`, `1.0x`, `1.25x`), *Sleep Timer* (15, 30, 45 menit) dengan hitung mundur otomatis yang mematikan audio/suara, serta pembaca transkrip naskah dengan kontrol pembesaran huruf ramah lansia.
   5. **PWA Offline Precache v7 (`public/sw.js`):**
      - Precache data offline untuk `asbabun_nuzul.json`, `gharibul_quran.json`, dan `audio_capsules.json`.
   6. **Pengayaan Narasi Mendalam Kisah 25 Nabi & Rasul (`public/data/prophets_data.json` & `public/data/prophets_meta.json`):**

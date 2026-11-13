@@ -42,7 +42,7 @@
     "id": "capsule-04",
     "title": "Malam-Malam Harapan Ad-Dhuha: Allah Tiada Pernah Meninggalkanmu",
     "narratorName": "Siti Maryam, S.Pd.I",
-    "durationMinutes": 4.0,
+    "durationMinutes": 4,
     "category": "tazkiyah",
     "categoryLabel": "Tadabbur Jiwa",
     "audioUrl": "https://cdn.alafasy.me/narration/ad_dhuha_harapan.mp3",
@@ -50,6 +50,83 @@
     "transcriptText": "Pernahkah Anda merasa seolah-olah doa Anda belum kunjung terjawab, atau masa-masa sulit terasa begitu panjang?\n\nKekasih Allah yang paling mulia, Nabi Muhammad ﷺ, pernah merasakan masa jeda wahyu di mana wahyu tidak kunjung turun beberapa waktu lamanya, hingga musuh-musuh beliau mengejek bahwa Rabb-nya telah meninggalkan beliau.\n\nMaka turunlah Surat Ad-Dhuha bagaikan gerimis sejuk di tengah sahara yang terik. Allah bersumpah: 'Demi waktu dhuha yang cerah, dan demi malam apabila telah sunyi senyap. Tuhanmu tiada pernah meninggalkanmu dan tiada pula membencimu.'\n\nPerhatikanlah sahabatku: setelah malam yang paling gelap sekalipun, fajar dhuha yang hangat selalu terbit tepat pada waktunya. Dan Allah menjanjikan: 'Wa lal-akhiratu khairun laka minal-ula' — Dan sungguh, masa depan dan akhiratmu jauh lebih baik daripada apa yang telah lalu. Jangan berputus asa, Allah senantiasa membersamai hamba-hamba-Nya yang bersabar.",
     "relatedSurahId": 93,
     "relatedAyahNumber": 3
+  },
+  {
+    "id": "capsule-05",
+    "title": "Nabi Yunus: Munajat Tasbih dari Tiga Lapis Kegelapan",
+    "narratorName": "Ustadz DR. Ahmad Mu'allim, Lc.",
+    "durationMinutes": 4.1,
+    "category": "prophet",
+    "categoryLabel": "Kisah Rasulullah",
+    "audioUrl": "https://cdn.alafasy.me/narration/yunus_tasbih.mp3",
+    "summary": "Kisah kepasrahan Nabi Yunus AS di dalam perut ikan paus dan dahsyatnya doa 'Laa ilaaha illaa Anta Subhaanaka inni kuntu minazh-zhaalimiin'.",
+    "transcriptText": "Bayangkanlah Anda berada di tengah malam yang gelap gulita, di dasar samudra yang dalam, dan di dalam rongga perut seekor ikan paus raksasa. Tiada sinyal, tiada pertolongan manusia, dan tiada celah udara.\n\nDalam kesunyian yang mencekam itulah, Nabi Yunus 'alaihissalam tersadar. Beliau tidak menyalahkan takdir, tidak mengutuk keadaan, melainkan bersujud di dalam perut ikan dan melantunkan doa yang paling tulus: 'La ilaha illa Anta, Subhanaka inni kuntu minazh-zhalimin' — Tidak ada Tuhan selain Engkau, Maha Suci Engkau, sungguh aku termasuk orang-orang yang zalim.\n\nPara malaikat di langit mendengar rintihan tasbih tersebut dan memohon kepada Allah: 'Wahai Tuhan kami, suara yang amat kami kenal dari tempat yang sangat asing!'. Allah pun mengabulkan doanya dan memerintahkan ikan paus memuntahkan beliau ke tepian pantai dengan selamat.\n\nSahabatku, sepekat apa pun masalah yang menghimpit dada Anda hari ini, tasbih tauhid Nabi Yunus akan selalu menjadi kunci pembuka pintu keluar dan keselamatan.",
+    "relatedSurahId": 21,
+    "relatedAyahNumber": 87
+  },
+  {
+    "id": "capsule-06",
+    "title": "Kelapangan Surah Al-Insyirah: Bersama Kesulitan Pasti Ada Kemudahan",
+    "narratorName": "Siti Maryam, S.Pd.I",
+    "durationMinutes": 3.6,
+    "category": "tazkiyah",
+    "categoryLabel": "Penyejuk Jiwa",
+    "audioUrl": "https://cdn.alafasy.me/narration/al_insyirah_lapang.mp3",
+    "summary": "Tadabbur rahasia kata 'Fa inna ma'al 'usri yusra': kemudahan tidak datang sesudah kesulitan, melainkan senantiasa menyertai di dalam kesulitan itu sendiri.",
+    "transcriptText": "Banyak orang mengira bahwa kemudahan baru akan datang setelah kesulitan selesai berlalu. Namun perhatikanlah bahasa Al-Qur'an dalam Surat Al-Insyirah: 'Fa inna ma'al-'usri yusra, inna ma'al-'usri yusra' — Maka sesungguhnya BERSAMA kesulitan itu ada kemudahan.\n\nKata 'Ma'a' dalam bahasa Arab berarti 'bersama-sama'. Artinya, di saat Allah menurunkan satu beban ujian, di saat yang sama Allah telah menyelipkan dua kemudahan dan kekuatan di dalam dada hamba-Nya.\n\nPara ulama salaf berkata: 'Satu kesulitan tidak akan pernah sanggup mengalahkan dua kemudahan.' Dan Allah berfirman: 'Alam nasyrah laka shadrak' — Bukankah Kami telah melapangkan dadamu?\n\nJika hari ini langkah kaki terasa berat atau nafas terasa sesak, mintalah kepada Allah agar melapangkan dada Anda. Karena jika dada kita dilapangkan oleh Allah, gunung beban seberat apa pun akan terasa ringan untuk dipikul.",
+    "relatedSurahId": 94,
+    "relatedAyahNumber": 5
+  },
+  {
+    "id": "capsule-07",
+    "title": "Nabi Yusuf: Keindahan Memaafkan di Puncak Kekuasaan",
+    "narratorName": "Tim Redaksi QuranWeb",
+    "durationMinutes": 4.5,
+    "category": "prophet",
+    "categoryLabel": "Kisah Rasulullah",
+    "audioUrl": "https://cdn.alafasy.me/narration/yusuf_memaafkan.mp3",
+    "summary": "Saat saudara-saudara yang membuangnya ke sumur berdiri gemetar di hadapannya, Nabi Yusuf memilih kalimat maaf terindah: 'Laa tatsriiba 'alaikumul yaum'.",
+    "transcriptText": "Setelah dibuang ke dalam sumur, dijual sebagai budak, difitnah, dan dipenjara bertahun-tahun, Nabi Yusuf 'alaihissalam akhirnya diangkat menjadi penguasa agung perbendaharaan Mesir.\n\nSuatu hari, saudara-saudara yang dahulu mencelakainya datang bersimpuh mengemis gandum karena bencana kelaparan. Ketika Yusuf menyingkapkan jati dirinya, mereka gemetar pucat pasi mengira Yusuf akan membalas dendam dengan hukuman mati.\n\nNamun dengarkanlah respon akhlak seorang nabi yang mulia: 'La tatsriba 'alaikumul-yaum, yaghfirullahu lakum wa Huwa Arhamur-Rahimin' — Tiada cercaan terhadap kalian pada hari ini. Mudah-mudahan Allah mengampuni kalian, dan Dia adalah Maha Penyayang di antara para penyayang.\n\nSahabatku, memaafkan saat kita lemah mungkin adalah keharusan, tetapi memaafkan di saat kita memiliki kekuasaan penuh untuk membalas dendam adalah puncak kemuliaan iman yang dicintai Allah SWT.",
+    "relatedSurahId": 12,
+    "relatedAyahNumber": 92
+  },
+  {
+    "id": "capsule-08",
+    "title": "Ashabul Kahfi: Menjaga Iman di Tengah Badai Zaman",
+    "narratorName": "Ustadz DR. Ahmad Mu'allim, Lc.",
+    "durationMinutes": 4.3,
+    "category": "tadabbur",
+    "categoryLabel": "Tadabbur Al-Qur'an",
+    "audioUrl": "https://cdn.alafasy.me/narration/ashabul_kahfi_iman.mp3",
+    "summary": "Kisah pemuda gua yang berlindung kepada Allah dari tirani kekufuran dan tertidur selama 309 tahun dalam penjagaan Ilahi yang sempurna.",
+    "transcriptText": "Sekelompok pemuda bangsawan di era Romawi kuno berdiri teguh di hadapan raja tiran Dikyanus: 'Rabbuna Rabbus-samawati wal-ardh, lan nad'uwa min dunihi ilaha' — Tuhan kami adalah Tuhan pencipta langit dan bumi, kami sekali-kali tidak akan menyembah tuhan selain Dia.\n\nDemi mempertahankan akidah dari ancaman pembunuhan, mereka meninggalkan kemewahan istana dan berlari ke sebuah gua sunyi di perbukitan. Mereka berdoa: 'Rabbana atina mil-ladunka rahmah, wa hayyi' lana min amrina rasyada' — Ya Tuhan kami, berikanlah rahmat kepada kami dari sisi-Mu dan sempurnakanlah petunjuk bagi kami dalam urusan kami.\n\nAllah menidurkan mereka selama 309 tahun matahari. Allah membolak-balikkan tubuh mereka ke kanan dan ke kiri agar tidak rusak dimakan tanah, dan matahari condong menyinari gua tanpa menyengat tubuh mereka. Ketika mereka terbangun, peradaban telah berganti menjadi negeri yang beriman.\n\nKisah ini mengajarkan kita bahwa siapa pun yang rela melepaskan sesuatu demi menjaga imannya kepada Allah, Allah pasti akan menjaga dan memuliakannya dengan cara yang tidak pernah terbayangkan.",
+    "relatedSurahId": 18,
+    "relatedAyahNumber": 10
+  },
+  {
+    "id": "capsule-09",
+    "title": "Surah Ar-Rahman: Nikmat Tuhanmu yang Manakah yang Engkau Dustakan?",
+    "narratorName": "Siti Maryam, S.Pd.I",
+    "durationMinutes": 3.8,
+    "category": "tazkiyah",
+    "categoryLabel": "Tadabbur Jiwa",
+    "audioUrl": "https://cdn.alafasy.me/narration/ar_rahman_nikmat.mp3",
+    "summary": "Tiga puluh satu kali pengulangan ayat 'Fabiayyi aalaa'i Rabbikuma tukadzdziban' sebagai terapi syukur atas nafas, kesehatan, dan hidayah Al-Qur'an.",
+    "transcriptText": "Di dalam Surat Ar-Rahman, Allah ﷻ mengulang satu pertanyaan yang sama sebanyak tiga puluh satu kali: 'Fabi-ayyi ala'i Rabbikuma tukadzdziban' — Maka nikmat Tuhanmu yang manakah yang kamu dustakan?\n\nMengapa diulang begitu banyak? Karena manusia adalah makhluk yang mudah lupa bersyukur. Kita sering kali hanya mengingat satu kesulitan kecil yang kita hadapi, tetapi melupakan ribuan nikmat sehat yang kita nikmati setiap detik.\n\nBerapa harga oksigen yang kita hirup hari ini? Berapa nilai detak jantung yang berdenyut teratur sejak puluhan tahun lalu tanpa pernah kita minta? Dan nikmat terbesar dari segalanya: nikmat iman dan hidayah mengenal firman-firman-Nya.\n\nPejamkanlah mata sejenak, hembuskan nafas dengan tenang, dan ucapkanlah dari lubuk hati yang paling dalam: Alhamdulillahirabbil 'Alamin.",
+    "relatedSurahId": 55,
+    "relatedAyahNumber": 13
+  },
+  {
+    "id": "capsule-10",
+    "title": "Nabi Musa di Tepi Laut Merah: Tuhanku Bersamaku!",
+    "narratorName": "Tim Redaksi QuranWeb",
+    "durationMinutes": 4,
+    "category": "prophet",
+    "categoryLabel": "Kisah Rasulullah",
+    "audioUrl": "https://cdn.alafasy.me/narration/musa_laut_merah.mp3",
+    "summary": "Saat jalan buntu di depan ombak Laut Merah dan musuh mengepung di belakang, keyakinan tauhid 'Kalla inna ma'iya Rabbi sayahdin' membuka jalan keselamatan.",
+    "transcriptText": "Bani Israil terjebak di tepi Laut Merah. Di depan mereka terbentang ombak lautan yang dalam, sementara di belakang debu derap pasukan berkuda Fir'aun semakin mendekat siap membantai.\n\nRakyat berteriak histeris dalam keputusasaan: 'Inna lamudraakun!' — Kita benar-benar akan tertangkap dan binasa!\n\nNamun di saat seluruh pintu logika manusia tertutup rapat, berdirilah Nabi Musa 'alaihissalam dengan keimanan membaja yang menggetarkan langit: 'Kalla! Inna ma'iya Rabbi sayahdin' — Sekali-kali tidak! Sesungguhnya Tuhanku bersamaku, Dia pasti akan memberi petunjuk kepadaku!\n\nAllah berfirman: Pukullah laut itu dengan tongkatmu! Seketika laut terbelah menjadi dua belas lorong kering yang aman. Fir'aun dan tentaranya tenggelam, sementara kaum beriman diselamatkan.\n\nSahabatku, jangan pernah berkata 'masalahku begitu besar'. Berbicaralah kepada masalahmu: 'Sesungguhnya Allah Tuhanku jauh lebih besar!'.",
+    "relatedSurahId": 26,
+    "relatedAyahNumber": 62
   }
 ]
-

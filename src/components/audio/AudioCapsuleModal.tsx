@@ -7,6 +7,8 @@ import {
   BookOpen,
   Volume2,
   Moon,
+  Mic,
+  Music,
 } from 'lucide-react';
 import type { AudioCapsuleItem } from '../../types/literacy';
 import { fetchAudioCapsules } from '../../services/literacy';
@@ -26,6 +28,7 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
   const [capsules, setCapsules] = useState<AudioCapsuleItem[]>([]);
   const [selectedCapsule, setSelectedCapsule] = useState<AudioCapsuleItem | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [useSpeechSynth, setUseSpeechSynth] = useState<boolean>(true);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(240); // default 4 mins
   const [playbackRate, setPlaybackRate] = useState<number>(elderMode ? 0.75 : 1.0);
@@ -35,6 +38,21 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const timerIntervalRef = useRef<any>(null);
+  const synthTimerRef = useRef<any>(null);
+
+  // Stop any active speech synthesis and audio
+  const stopAllPlayback = () => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    if (synthTimerRef.current) {
+      clearInterval(synthTimerRef.current);
+    }
+    setIsPlaying(false);
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -45,15 +63,67 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
         }
       });
       logActivity('OPEN_AUDIO_CAPSULE_MODAL');
+    } else {
+      stopAllPlayback();
     }
-  }, [isOpen, selectedCapsule]);
+    return () => {
+      stopAllPlayback();
+    };
+  }, [isOpen]);
 
-  // Audio Playback Rate & State Control
+  // Audio Playback Rate & Speech Rate Control
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.playbackRate = playbackRate;
     }
+    // If playing with speech synth, restart speaking with new rate
+    if (isPlaying && useSpeechSynth && selectedCapsule) {
+      speakTranscript(selectedCapsule.transcriptText, playbackRate);
+    }
   }, [playbackRate]);
+
+  // Speech Synthesis Speaker
+  const speakTranscript = (text: string, rate: number) => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+
+    // Clean text of quotes and extra formatting for smoother narration
+    const cleanText = text.replace(/[*#]/g, '').trim();
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.lang = 'id-ID';
+    utterance.rate = rate;
+    utterance.pitch = 0.95; // warm, comforting tone for storytelling
+
+    // Try finding Indonesian voice if available
+    const voices = window.speechSynthesis.getVoices();
+    const idVoice = voices.find((v) => v.lang.startsWith('id') || v.lang.includes('ID'));
+    if (idVoice) utterance.voice = idVoice;
+
+    utterance.onend = () => {
+      setIsPlaying(false);
+      setCurrentTime(0);
+      if (synthTimerRef.current) clearInterval(synthTimerRef.current);
+    };
+
+    utterance.onerror = () => {
+      setIsPlaying(false);
+      if (synthTimerRef.current) clearInterval(synthTimerRef.current);
+    };
+
+    window.speechSynthesis.speak(utterance);
+    setIsPlaying(true);
+
+    // Track simulated progress bar for speech synthesis
+    if (synthTimerRef.current) clearInterval(synthTimerRef.current);
+    synthTimerRef.current = setInterval(() => {
+      setCurrentTime((prev) => {
+        if (prev >= duration) {
+          return 0;
+        }
+        return prev + 1;
+      });
+    }, 1000);
+  };
 
   // Sleep Timer Countdown
   useEffect(() => {
@@ -69,10 +139,7 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
       setSleepTimerRemainingSeconds((prev) => {
         if (prev === null || prev <= 1) {
           clearInterval(timerIntervalRef.current);
-          if (audioRef.current) {
-            audioRef.current.pause();
-            setIsPlaying(false);
-          }
+          stopAllPlayback();
           setSleepTimerMinutes(null);
           return 0;
         }
@@ -88,27 +155,45 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
   if (!isOpen) return null;
 
   const togglePlay = () => {
-    if (!audioRef.current) return;
+    if (!selectedCapsule) return;
+
     if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
+      stopAllPlayback();
     } else {
+      if (useSpeechSynth) {
+        speakTranscript(selectedCapsule.transcriptText, playbackRate);
+      } else {
+        if (audioRef.current) {
+          audioRef.current.play().catch(() => {
+            // Fallback to speech synthesis if audio stream fails/offline
+            speakTranscript(selectedCapsule.transcriptText, playbackRate);
+          });
+          setIsPlaying(true);
+        }
+      }
+    }
+  };
+
+  const handleSelectCapsule = (item: AudioCapsuleItem) => {
+    stopAllPlayback();
+    setSelectedCapsule(item);
+    setCurrentTime(0);
+    setDuration(item.durationMinutes * 60);
+
+    if (useSpeechSynth) {
+      speakTranscript(item.transcriptText, playbackRate);
+    } else if (audioRef.current) {
+      audioRef.current.currentTime = 0;
       audioRef.current.play().catch(() => {
-        // Fallback simulate playback timer
-        setIsPlaying(true);
+        speakTranscript(item.transcriptText, playbackRate);
       });
       setIsPlaying(true);
     }
   };
 
-  const handleSelectCapsule = (item: AudioCapsuleItem) => {
-    setSelectedCapsule(item);
-    setCurrentTime(0);
-    setIsPlaying(true);
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(() => {});
-    }
+  const handleClose = () => {
+    stopAllPlayback();
+    onClose();
   };
 
   const formatTime = (secs: number) => {
@@ -142,7 +227,7 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
           ref={audioRef}
           src={selectedCapsule?.audioUrl}
           onTimeUpdate={() => {
-            if (audioRef.current) {
+            if (audioRef.current && !useSpeechSynth) {
               setCurrentTime(audioRef.current.currentTime);
               setDuration(audioRef.current.duration || 240);
             }
@@ -178,14 +263,14 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
                 </span>
               </div>
               <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-                Solusi tadabbur hangat saat kelelahan mata, dilengkapi pengatur waktu tidur (Sleep Timer)
+                Solusi tadabbur hangat saat kelelahan mata, dilengkapi suara bertutur otomatis & pengatur waktu tidur
               </p>
             </div>
           </div>
 
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="flex h-8 w-8 items-center justify-center rounded-xl border cursor-pointer hover:opacity-80"
             style={{ backgroundColor: 'var(--bg-muted)', borderColor: 'var(--border-color)' }}
             title="Tutup pemutar audiobook"
@@ -288,6 +373,44 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
                     </button>
                   </div>
 
+                  {/* Mode Suara: Web Speech vs Audio Stream */}
+                  <div className="flex items-center justify-between gap-2 p-2 rounded-xl border bg-black/5 dark:bg-white/5" style={{ borderColor: 'var(--border-color)' }}>
+                    <span className="text-[11px] font-semibold flex items-center gap-1" style={{ color: 'var(--text-secondary)' }}>
+                      <Volume2 className="h-3.5 w-3.5 text-emerald-500" />
+                      Mode Suara:
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          stopAllPlayback();
+                          setUseSpeechSynth(true);
+                        }}
+                        className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                          useSpeechSynth ? 'bg-emerald-600 text-white shadow-xs' : 'opacity-60 hover:opacity-100'
+                        }`}
+                        title="Membacakan naskah bahasa Indonesia dengan Web Speech API (100% Offline)"
+                      >
+                        <Mic className="h-3 w-3" />
+                        Narasi AI (Offline)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          stopAllPlayback();
+                          setUseSpeechSynth(false);
+                        }}
+                        className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                          !useSpeechSynth ? 'bg-emerald-600 text-white shadow-xs' : 'opacity-60 hover:opacity-100'
+                        }`}
+                        title="Streaming audio qari / narator dari server"
+                      >
+                        <Music className="h-3 w-3" />
+                        Audio Qari (CDN)
+                      </button>
+                    </div>
+                  </div>
+
                   {/* Progress Slider */}
                   <div className="space-y-1">
                     <input
@@ -298,7 +421,9 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
                       onChange={(e) => {
                         const val = Number(e.target.value);
                         setCurrentTime(val);
-                        if (audioRef.current) audioRef.current.currentTime = val;
+                        if (!useSpeechSynth && audioRef.current) {
+                          audioRef.current.currentTime = val;
+                        }
                       }}
                       className="w-full h-1.5 rounded-lg appearance-none cursor-pointer accent-emerald-500 bg-gray-300 dark:bg-gray-700"
                     />
@@ -412,7 +537,7 @@ export const AudioCapsuleModal: React.FC<AudioCapsuleModalProps> = ({
         <div className="p-4 border-t flex justify-end" style={{ borderColor: 'var(--border-color)' }}>
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="rounded-xl px-4 py-2 text-xs font-bold cursor-pointer"
             style={{
               backgroundColor: 'var(--bg-accent)',

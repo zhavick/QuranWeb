@@ -1,6 +1,6 @@
 # Technical Specification Document (TSD): Aplikasi Quran Web
 
-Dokumen ini menjabarkan spesifikasi teknis, arsitektur sistem, struktur data, dan detail implementasi untuk pengembangan aplikasi **Quran Web** berdasarkan kebutuhan pada [FSD.md](file:///Users/mac/Projects/2026/QuranWeb/Document/FSD.md) dan [MasterPlan.md](file:///Users/mac/Projects/2026/QuranWeb/Initial/MasterPlan.md).
+Dokumen ini menjabarkan spesifikasi teknis, arsitektur sistem, struktur data, dan detail implementasi untuk pengembangan aplikasi **Quran Web** berdasarkan kebutuhan pada [FSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/FSD.md), [MasterPlan.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan.md), dan [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md).
 
 ---
 
@@ -553,7 +553,7 @@ Implementasi teknis mengacu pada tahapan bertahap yang telah diselesaikan pada [
 - **Step 13 & 14 (40 Doa Rabbana & Tasbih Haptic):** Rute `/doa`, 40 doa mustajab, dzikir pagi-petang, tasbih getar layar penuh (`navigator.vibrate`), dan proteksi sesi akun.
 - **Step 14 (Kompas Arah Kiblat Adaptif & Chart.js Audit):** Rute `/kiblat`, kompas dinamis smartphone (haptic lock ±1.5°), laptop azimuth/QR Code & panduan bayangan matahari, serta visualisasi garis ganda Chart.js (CRUD vs View) di portal admin.
 - **Step 15 & 16 (Peta Masjid OpenStreetMap & Session Guard):** Rute `/masjid`, Leaflet.js lokal 4 tema, integrasi izin GPS jadwal shalat, kartu jalan santai lansia (50m/menit), navigasi suara belokan, dan proteksi sesi akun.
-- **Step 16 (Asbabun Nuzul, Gharibul Qur'an & Audiobook 3 Menit):** Badge riwayat turunnya ayat (*Lubabun Nuqul* & *Al-Wahidi*), kamus kosakata sastra tinggi & balaghah, serta pemutar audiobook suara hangat dengan Sleep Timer dan tempo lansia `0.75x`.
+- **Step 16 (Asbabun Nuzul, Gharibul Qur'an & Audiobook 3 Menit):** Badge riwayat turunnya ayat (29 riwayat shahih bersumber *Lubabun Nuqul* & *Al-Wahidi*), kamus 28 kosakata sastra tinggi & rahasia balaghah, pemutar 10 audiobook narasi bertutur suara hangat dengan dual-engine (Web Speech API suara Indonesia offline 100% & audio streaming qari CDN), Sleep Timer, dan tempo lansia `0.75x`.
 - **Panduan Pengoperasian:** Rincian cara penggunaan lengkap didokumentasikan di [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md).
 - **Laporan Jaminan Kualitas:** [QualityAssurance.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/QualityAssurance.md) (TC-ST01 s.d. TC-ST16: **PASS 100%**).
 

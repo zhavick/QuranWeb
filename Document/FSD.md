@@ -1,6 +1,6 @@
 # Functional Specification Document (FSD): Aplikasi Quran Web
 
-Dokumen ini menjabarkan spesifikasi fungsional aplikasi **Quran Web** berdasarkan hasil brainstorming pada [MasterPlan.md](file:///Users/mac/Projects/2026/QuranWeb/Initial/MasterPlan.md). Dokumen ini berfokus pada perilaku sistem, kebutuhan fungsional, dan arsitektur penyimpanan tanpa implementasi kode.
+Dokumen ini menjabarkan spesifikasi fungsional aplikasi **Quran Web** berdasarkan hasil brainstorming pada [MasterPlan.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan.md) dan [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md). Dokumen ini berfokus pada perilaku sistem, kebutuhan fungsional, dan arsitektur penyimpanan tanpa implementasi kode.
 
 ---
 
@@ -175,9 +175,9 @@ Dokumen ini menjabarkan spesifikasi fungsional aplikasi **Quran Web** berdasarka
 - **FR-19.4 (Filter Fasilitas Ramah Lansia & Navigasi 1-Klik):** Filter tombol chip: Wudhu Lantai Dasar, Kursi Shalat, Tanjakan Kursi Roda, AC, Parkir, dan Toilet Duduk. Dilengkapi tombol 1-klik navigasi suara belokan ke Google Maps, Waze, dan Apple Maps.
 
 ### FR-20: Modul Asbabun Nuzul, Glosarium Mufradat & Audio Capsule 3 Menit *(Step 16)*
-- **FR-20.1 (Badge & Dialog Asbabun Nuzul):** Tombol badge amber pada kartu ayat untuk membuka riwayat shahih sebab turunnya ayat dari kitab *Lubabun Nuqul* (As-Suyuthi) dan *Asbabun Nuzul* (Al-Wahidi), dilengkapi pengatur ukuran font.
-- **FR-20.2 (Kamus Mufradat Kosakata Sukar / Gharibul Qur'an):** Tombol badge zamrud pada kartu ayat untuk membuka glosarium kosakata sastra tinggi, akar kata (*jadzr*), makna leksikal dasar, dan rahasia balaghah.
-- **FR-20.3 (Audio Capsule / Audiobook Tadabbur 3 Menit):** Pemutar audio bertutur suara hangat di Header dan Drawer, dilengkapi pengatur kecepatan lansia (`0.75x`), *Sleep Timer* (15, 30, 45, 60 menit) dengan hitung mundur otomatis, serta pembaca transkrip naskah huruf besar.
+- **FR-20.1 (Badge & Dialog Asbabun Nuzul):** Tombol badge amber pada kartu ayat untuk membuka riwayat shahih sebab turunnya ayat dari 29 riwayat pilihan bersumber dari kitab *Lubabun Nuqul* (As-Suyuthi) dan *Asbabun Nuzul* (Al-Wahidi), dilengkapi intisari hikmah dan pengatur ukuran font ramah lansia.
+- **FR-20.2 (Kamus Mufradat Kosakata Sukar / Gharibul Qur'an):** Tombol badge zamrud pada kartu ayat untuk membuka glosarium 28 kosakata sastra tinggi, akar kata (*jadzr*), transliterasi, makna leksikal dasar, dan rahasia balaghah sastra Al-Qur'an.
+- **FR-20.3 (Audio Capsule / Audiobook Tadabbur 3 Menit):** Pemutar audio bertutur suara hangat di Header dan Drawer berisi 10 rekaman tematik kurasi, dilengkapi dual-engine suara (Web Speech API suara bahasa Indonesia yang berjalan 100% offline tanpa kuota & audio streaming qari CDN), pengatur kecepatan lansia (`0.75x`), *Sleep Timer* (15, 30, 45 menit) dengan hitung mundur otomatis, serta pembaca transkrip naskah huruf besar.
 
 ---
 

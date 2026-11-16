@@ -398,15 +398,16 @@ Akses rute `/masjid` (khusus pengguna yang telah login):
 
 ## 22. Asbabun Nuzul, Kamus Mufradat Gharib & Audiobook 3 Menit
 
-1. **Asbabun Nuzul per Ayat:**
+1. **Asbabun Nuzul per Ayat (29 Riwayat Shahih):**
    - Ayat-ayat pilihan pada lembar tilawah menampilkan badge amber **"Asbabun Nuzul"**.
-   - Klik untuk membuka dialog riwayat sebab turunnya ayat dari kitab *Lubabun Nuqul* (As-Suyuthi) dan *Asbabun Nuzul* (Al-Wahidi), dilengkapi intisari hikmah dan pengatur ukuran huruf (A, A+, A++).
-2. **Kamus Mufradat Kosakata Sukar (*Gharibul Qur'an*):**
+   - Klik untuk membuka dialog riwayat sebab turunnya ayat dari 29 riwayat shahih bersumber kitab *Lubabun Nuqul* (As-Suyuthi) dan *Asbabun Nuzul* (Al-Wahidi), dilengkapi perawi hadits, narasi sejarah, intisari hikmah, dan pengatur ukuran huruf ramah lansia (A, A+, A++).
+2. **Kamus Mufradat Kosakata Sukar (*Gharibul Qur'an* - 28 Entri):**
    - Ayat dengan kosakata sastra tinggi menampilkan badge zamrud **"Mufradat Gharib"**.
-   - Menampilkan kaligrafi Arab besar, akar kata (*jadzr*), makna leksikal dasar, serta rahasia balaghah dan keindahan sastra Al-Qur'an.
-3. **Audiobook Tadabbur 3 Menit (*Audio Capsule*):**
-   - Klik tombol **"Audiobook 3 Mnt"** di Header atau Drawer untuk mendengarkan rekaman narasi suara hangat kisah dan tadabbur ringkas 3–5 menit.
-   - Dilengkapi pengatur kecepatan santai lansia (`0.75x`), *Sleep Timer* (15, 30, 45, 60 menit) dengan hitung mundur otomatis, dan pembaca naskah transkrip berhuruf besar.
+   - Menampilkan kaligrafi Arab besar, transliterasi, akar kata (*jadzr*), makna leksikal dasar, serta rahasia balaghah dan keindahan sastra Al-Qur'an dengan pengatur ukuran font.
+3. **Audiobook Tadabbur 3 Menit (*Audio Capsule* - 10 Rekaman Kurasi):**
+   - Klik tombol **"Audiobook 3 Mnt"** di Header atau Drawer untuk mendengarkan 10 narasi kisah dan tadabbur ringkas 3–5 menit bersuara hangat.
+   - **Dual-Engine Suara:** Dilengkapi mode **Narasi AI (Web Speech API)** dalam Bahasa Indonesia yang berjalan **100% luring (offline) tanpa kuota**, serta mode streaming audio qari CDN.
+   - **Fitur Lansia & Istirahat:** Dilengkapi pengatur tempo suara santai lansia (`0.75x`), *Sleep Timer* (15, 30, 45 menit) dengan hitung mundur otomatis yang mematikan suara saat waktu tidur tiba, dan pembaca naskah transkrip berhuruf besar yang nyaman.
 
 ---
 

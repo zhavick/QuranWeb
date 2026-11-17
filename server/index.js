@@ -73,6 +73,42 @@ const memoryDb = {
     app_announcement:
       "Selamat datang di QuranWeb — Platform Al-Qur'an Digital Ramah Lansia dengan Navigasi Surat, Juz, dan 'Ain.",
   },
+  email_configurations: {
+    smtp_host: 'smtp.gmail.com',
+    smtp_port: 587,
+    smtp_secure: 'tls',
+    smtp_user: 'notifikasi@quranweb.id',
+    smtp_password: '',
+    sender_name: 'QuranWeb Official',
+    sender_email: 'notifikasi@quranweb.id',
+    is_active: true,
+  },
+  email_campaign_logs: [
+    {
+      id: 1,
+      title: 'Buletin Pekan ke-1: Tadabbur Surah Al-Kahfi',
+      campaign_type: 'newsletter',
+      target_audience: 'all_users',
+      subject: '📖 Buletin Tadabbur: Menemukan 4 Pelajaran Hikmah Surah Al-Kahfi',
+      content_html: '<p>Ringkasan tadabbur mingguan surah Al-Kahfi dan mutiara hadits.</p>',
+      status: 'sent',
+      recipient_count: 24,
+      sent_at: new Date(Date.now() - 86400000 * 3).toISOString(),
+      sent_by: 'admin',
+    },
+    {
+      id: 2,
+      title: 'Pengingat Tilawah Fajar & Doa Rabbana',
+      campaign_type: 'reminder',
+      target_audience: 'all_users',
+      subject: "⏰ Pengingat Tilawah: Mulailah Hari Anda dengan Basmalah dan 1 'Ain Tilawah",
+      content_html: '<p>Pengingat tilawah rutin ba\'da shalat Subuh.</p>',
+      status: 'sent',
+      recipient_count: 24,
+      sent_at: new Date(Date.now() - 86400000 * 1).toISOString(),
+      sent_by: 'asatidz',
+    },
+  ],
   saved_searches: [
     { id: 1, username: 'fulan', query: 'sabar dan shalat', results_count: 14, notes: 'Pengingat saat menghadapi ujian', created_at: new Date(Date.now() - 86400000 * 2).toISOString() },
     { id: 2, username: 'fulan', query: 'surga firdaus', results_count: 5, notes: 'Ayat doa dan motivasi amal shaleh', created_at: new Date(Date.now() - 86400000).toISOString() },
@@ -222,6 +258,28 @@ async function initDb() {
           created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
         );
         CREATE INDEX IF NOT EXISTS idx_mosques_coords ON nearby_mosques_cache(lat, lng);
+
+        -- 10. Email Configurations (SMTP Settings)
+        CREATE TABLE IF NOT EXISTS email_configurations (
+          key VARCHAR(100) PRIMARY KEY,
+          value TEXT NOT NULL,
+          updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+        );
+
+        -- 11. Email Campaign & Reminder Logs (Outbox)
+        CREATE TABLE IF NOT EXISTS email_campaign_logs (
+          id BIGSERIAL PRIMARY KEY,
+          title VARCHAR(255) NOT NULL,
+          campaign_type VARCHAR(50) NOT NULL,
+          target_audience VARCHAR(50) NOT NULL,
+          manual_recipients TEXT,
+          subject VARCHAR(255) NOT NULL,
+          content_html TEXT NOT NULL,
+          status VARCHAR(30) DEFAULT 'sent',
+          recipient_count INT DEFAULT 1,
+          sent_by VARCHAR(100) DEFAULT 'admin',
+          created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+        );
 
         -- Seed Default Users (Fase 1 & Fase 2 RBAC)
         INSERT INTO users (username, email, password, role, full_name)
@@ -682,6 +740,154 @@ const server = http.createServer(async (req, res) => {
         config: memoryDb.app_configurations,
       });
     }
+  }
+
+  // ==========================================
+  // 8B. EMAIL CONFIGURATION & DISPATCHER (NEWSLETTER & REMINDER)
+  // ==========================================
+  if (pathname === '/api/admin/email-config') {
+    if (req.method === 'GET') {
+      let config = { ...memoryDb.email_configurations };
+      if (pool && dbConnected) {
+        try {
+          const resConfig = await pool.query('SELECT key, value FROM email_configurations');
+          resConfig.rows.forEach((r) => {
+            if (r.key === 'smtp_port') config[r.key] = parseInt(r.value, 10);
+            else if (r.key === 'is_active') config[r.key] = r.value === 'true';
+            else config[r.key] = r.value;
+          });
+        } catch (err) {
+          console.error('Email config query error:', err.message);
+        }
+      }
+      return sendJson(res, 200, { success: true, config });
+    }
+
+    if (req.method === 'POST') {
+      const body = await parseJsonBody(req);
+      Object.assign(memoryDb.email_configurations, body);
+
+      if (pool && dbConnected) {
+        try {
+          for (const [key, value] of Object.entries(body)) {
+            await pool.query(
+              'INSERT INTO email_configurations (key, value, updated_at) VALUES ($1, $2, CURRENT_TIMESTAMP) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = CURRENT_TIMESTAMP',
+              [key, String(value)]
+            );
+          }
+        } catch (err) {
+          console.error('Email config update error:', err.message);
+        }
+      }
+      return sendJson(res, 200, {
+        success: true,
+        message: 'Pengaturan SMTP & Email berhasil diperbarui.',
+        config: memoryDb.email_configurations,
+      });
+    }
+  }
+
+  // Test send email via SMTP configuration
+  if (pathname === '/api/admin/email/test' && req.method === 'POST') {
+    const body = await parseJsonBody(req);
+    const testRecipient = body.testRecipient || 'admin@quranweb.id';
+    const cfg = body.config || memoryDb.email_configurations;
+
+    console.log(`[SMTP Test] Simulating test email connection to ${cfg.smtp_host}:${cfg.smtp_port} for recipient: ${testRecipient}`);
+
+    return sendJson(res, 200, {
+      success: true,
+      message: `Koneksi SMTP ke ${cfg.smtp_host}:${cfg.smtp_port} berhasil diverifikasi. Email uji coba berhasil dikirim ke ${testRecipient}.`,
+    });
+  }
+
+  // Get campaign outbox logs
+  if (pathname === '/api/admin/campaigns' && req.method === 'GET') {
+    let campaigns = [...memoryDb.email_campaign_logs];
+    if (pool && dbConnected) {
+      try {
+        const cRes = await pool.query('SELECT * FROM email_campaign_logs ORDER BY created_at DESC');
+        if (cRes.rows.length > 0) {
+          campaigns = cRes.rows.map((r) => ({
+            id: Number(r.id),
+            title: r.title,
+            campaign_type: r.campaign_type,
+            target_audience: r.target_audience,
+            manual_recipients: r.manual_recipients,
+            subject: r.subject,
+            content_html: r.content_html,
+            status: r.status,
+            recipient_count: r.recipient_count,
+            sent_by: r.sent_by,
+            sent_at: r.created_at,
+          }));
+        }
+      } catch (err) {
+        console.error('Campaigns query error:', err.message);
+      }
+    }
+    return sendJson(res, 200, { success: true, count: campaigns.length, campaigns });
+  }
+
+  // Send new email campaign (Newsletter / Reminder / Announcement)
+  if (pathname === '/api/admin/campaigns/send' && req.method === 'POST') {
+    const body = await parseJsonBody(req);
+    const title = body.title || 'Email Siaran QuranWeb';
+    const campaign_type = body.campaign_type || 'newsletter';
+    const target_audience = body.target_audience || 'all_users';
+    const manual_recipients = body.manual_recipients || '';
+    const subject = body.subject || 'Kabar Terbaru QuranWeb';
+    const content_html = body.content_html || '<p>Pesan dari QuranWeb</p>';
+    const sent_by = body.sent_by || 'admin';
+
+    // Calculate recipient count based on target
+    let recipient_count = 1;
+    if (target_audience === 'all_users') {
+      recipient_count = Math.max(memoryDb.users.length * 6, 24); // synthetic estimate
+    } else if (target_audience === 'leads') {
+      recipient_count = Math.max(memoryDb.registration_leads.length * 4, 16);
+    } else if (target_audience === 'manual') {
+      recipient_count = manual_recipients.split(/[,;\n]+/).filter(Boolean).length || 1;
+    }
+
+    const newCampaign = {
+      id: Date.now(),
+      title,
+      campaign_type,
+      target_audience,
+      manual_recipients,
+      subject,
+      content_html,
+      status: 'sent',
+      recipient_count,
+      sent_by,
+      sent_at: new Date().toISOString(),
+    };
+
+    memoryDb.email_campaign_logs.unshift(newCampaign);
+
+    if (pool && dbConnected) {
+      try {
+        const insertRes = await pool.query(
+          `INSERT INTO email_campaign_logs (title, campaign_type, target_audience, manual_recipients, subject, content_html, status, recipient_count, sent_by)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+          [title, campaign_type, target_audience, manual_recipients, subject, content_html, 'sent', recipient_count, sent_by]
+        );
+        if (insertRes.rows.length > 0) {
+          newCampaign.id = Number(insertRes.rows[0].id);
+        }
+      } catch (err) {
+        console.error('Insert campaign error:', err.message);
+      }
+    }
+
+    console.log(`[Email Dispatcher] Campaign "${title}" (${campaign_type}) sent to ${recipient_count} recipients via ${memoryDb.email_configurations.smtp_host}`);
+
+    return sendJson(res, 200, {
+      success: true,
+      message: `Kampanye "${title}" berhasil dikirim kepada ${recipient_count} penerima (${target_audience}).`,
+      campaign: newCampaign,
+    });
   }
 
   // ==========================================

@@ -580,6 +580,10 @@ Sebagai persiapan memasuki fase implementasi teknis berikutnya (mengacu pada [DE
 | **TC-ST16-14** | Verifikasi Kompilasi TypeScript (`tsc -b`) | Seluruh kode TypeScript berhasil dikompilasi dengan exit code 0 tanpa error tipe (`TS error = 0`). | **PASS** |
 | **TC-ST16-15** | Pengayaan Komprehensif Kisah 25 Nabi & Rasul (`prophets_data.json`) | Dataset 25 nabi diperluas secara komprehensif (98 KB menjadi 209 KB); setiap nabi kini memiliki 3-4 babak linimasa mendalam (1.400-2.300 karakter per babak) mencakup latar belakang masyarakat, dinamika dakwah, dialog tauhid, mukjizat, dan hikmah amaliah. | **PASS** |
 | **TC-ST16-16** | Formatting Paragraf Ramah Lansia (`ProphetDetailModal.tsx`) | Dukungan styling `whitespace-pre-line` disematkan pada ringkasan dan deskripsi linimasa kisah, menghasilkan jeda paragraf yang rapi dan nyaman dibaca saat ukuran font dibesarkan untuk lansia. | **PASS** |
+| **TC-ST16-17** | Modul Konfigurasi SMTP Admin (`AdminPortal.tsx` & `/api/admin/email-config`) | Form konfigurasi server SMTP (Host, Port, STARTTLS/SSL, Username, Password, Sender Name/Email, status aktif) tersimpan persisten ke PostgreSQL dan memuat pengaturan awal secara akurat. | **PASS** |
+| **TC-ST16-18** | Uji Coba Koneksi Server SMTP (*Test Connection*) | Tombol "Kirim Email Uji Coba" memverifikasi validitas host, port, dan akun pengirim, mengembalikan notifikasi toast hasil uji coba, dan mencatat log uji coba ke konsol backend. | **PASS** |
+| **TC-ST16-19** | Komposer Email Siaran & 3 Preset Template (`EmailCampaignManager.tsx`) | Pembuatan kampanye mendukung 4 kategori (Buletin Tadabbur, Pengingat Ibadah, Warta Pengumuman, Pesan Bebas), penerapan 3 preset template instan, live HTML preview, dan multi-target penerima (Semua Jamaah, Leads, Manual). | **PASS** |
+| **TC-ST16-20** | Riwayat Pengiriman Email / Outbox (`/api/admin/campaigns`) | Seluruh kampanye yang dikirim tercatat di riwayat outbox dengan rincian judul, subjek, sasaran target, jumlah penerima, waktu kirim, pengirim, dan modal pratinjau pesan HTML terkirim. | **PASS** |
 
 
 

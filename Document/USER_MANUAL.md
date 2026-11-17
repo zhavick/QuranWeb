@@ -294,11 +294,18 @@ Untuk pengelola dan administrator sistem, QuranWeb menyediakan portal khusus pad
 3. **Modul Audit Trail Penuh:**
    - Menampilkan seluruh rekaman log aktivitas pengguna dari database PostgreSQL secara lengkap (ID, Waktu, Alamat IP, Jenis Kegiatan, dan Detail Payload seperti Surat/Ayat/Setting).
    - Dilengkapi filter kategori aktivitas (*READ_SURAH, PLAY_AUDIO, TOGGLE_TAJWEED, ADD_BOOKMARK, ELDER_MODE, dll.*), pencarian instan berbasis IP/kata kunci, serta tombol **Ekspor JSON**.
-4. **Modul Konfigurasi Situs & Pengumuman:**
+4. **Modul Konfigurasi Situs & Pengaturan Server SMTP:**
    - Mengubah nama aplikasi secara dinamis (default: `QuranWeb`).
    - Mengubah logo/simbol kaligrafi aplikasi (default: `ق`).
    - Mengubah teks hak cipta (*copyright*) dan lisensi aplikasi (*Open Waqf License / MIT*).
    - Mengirim pesan pengumuman (*broadcast banner*) kepada seluruh pembaca Al-Qur'an secara langsung.
+   - **Pengaturan Server SMTP & Gateway Email:** Mengonfigurasi SMTP Host, Port (587 TLS / 465 SSL), Username, Password, Nama Pengirim (*Sender Name*), dan Email Pengirim (*Sender Email*), dilengkapi tombol uji coba koneksi server SMTP instan.
+5. **Modul Pengiriman Email & Buletin (Email Campaign & Reminder):**
+   - **Penyusunan Pesan:** Menyusun buletin mingguan tadabbur, pengingat tilawah rutin ba'da shalat, atau warta pengumuman sistem.
+   - **Preset Template Cepat:** Tersedia 3 template siap pakai (*Buletin Tadabbur Mingguan*, *Pengingat Tilawah Sakinah*, dan *Warta Pembaruan Fitur*) dengan format HTML elegan.
+   - **Sasaran Target Fleksibel:** Kirim ke seluruh jamaah terdaftar, pengunjung yang mendaftar di formulir CTA, atau daftar email manual.
+   - **Pratinjau & Uji Coba:** Pratinjau langsung naskah HTML (*live preview*) dan tombol kirim uji coba ke email admin sebelum siaran massal.
+   - **Riwayat Pengiriman (Outbox Log):** Memantau status pengiriman, jumlah penerima, waktu kirim, serta modal pratinjau pesan yang telah dikirimkan.
 
 ---
 

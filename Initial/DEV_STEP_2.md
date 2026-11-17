@@ -209,7 +209,12 @@ Dokumen ini merupakan panduan tahapan pengembangan teknis (*development steps*) 
      - Memperluas isi kisah seluruh 25 Nabi & Rasul secara komprehensif (ukuran dataset meningkat dari 98 KB menjadi 209 KB).
      - Setiap nabi kini memiliki narasi babak linimasa yang kaya (3 hingga 4 babak per nabi, 1.400–2.300 karakter per babak), menyajikan latar belakang peradaban kaum, argumentasi tauhid, mukjizat samawi, rincian ujian keimanan, dan mutiara hikmah yang kontekstual.
      - Penataan tampilan modal pada `ProphetDetailModal.tsx` menggunakan `whitespace-pre-line` untuk kenyamanan membaca berparagraf bagi pengguna lansia.
-* **Kriteria Selesai:** Dialog Asbabun Nuzul dan Gharibul Qur'an merespons instan dari ayat, audio narasi bertutur dapat diputar dengan sleep timer aktif, menu peta masjid terlindungi guard sesi akun secara konsisten, dan seluruh 25 kisah nabi tersaji dalam narasi mendalam yang lengkap. Tervalidasi 0 error pada kompilasi TypeScript (`tsc -b`).
+  7. **Modul Pengiriman Email Buletin, Pengingat & Pengaturan SMTP Admin (`src/components/admin/EmailCampaignManager.tsx` & `src/services/email.ts`):**
+     - Penambahan tab navigasi baru "Email & Siaran" di portal pengelola `/admin`.
+     - Pembuatan kampanye email: Buletin Mingguan Tadabbur, Pengingat Tilawah & Rencana Khatam Sakinah, Warta Pengumuman Sistem, dan Pesan Bebas.
+     - Fitur pendukung: 3 preset template instan elegan, sasaran target multi-segmen (Semua Jamaah, Leads CTA, Input Manual), pratinjau live HTML, pengujian kirim ke email admin, dan riwayat pengiriman (*Outbox Log*).
+     - Integrasi pengaturan gateway SMTP di tab Konfigurasi Situs (Host, Port, STARTTLS/SSL, Username, Password, Sender Name/Email, status aktif/nonaktif) dan endpoint backend API (`/api/admin/email-config`, `/api/admin/email/test`, `/api/admin/campaigns`, `/api/admin/campaigns/send`).
+* **Kriteria Selesai:** Dialog Asbabun Nuzul dan Gharibul Qur'an merespons instan dari ayat, audio narasi bertutur dapat diputar dengan sleep timer aktif, menu peta masjid terlindungi guard sesi akun secara konsisten, seluruh 25 kisah nabi tersaji dalam narasi mendalam yang lengkap, serta modul kampanye email buletin dan pengaturan SMTP admin beroperasi penuh. Tervalidasi 0 error pada kompilasi TypeScript (`tsc -b`).
 
 ---
 

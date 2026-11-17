@@ -26,6 +26,8 @@ import {
   X,
   Sparkles,
   Archive,
+  Mail,
+  Send,
 } from 'lucide-react';
 import {
   fetchAdminStats,
@@ -45,13 +47,23 @@ import {
 } from '../../services/blog';
 import type { BlogArticle, BlogPillar, BlogArticleStatus } from '../../types/blog';
 import { getStoredUser, loginUser, logoutUser, type AuthUser } from '../../services/auth';
+import { EmailCampaignManager } from './EmailCampaignManager';
+import {
+  fetchEmailConfig,
+  saveEmailConfig,
+  testSmtpConnection,
+} from '../../services/email';
+import {
+  type EmailConfig,
+  DEFAULT_EMAIL_CONFIG,
+} from '../../types/email';
 
 interface AdminPortalProps {
   onBackToApp: () => void;
   onConfigChange?: (config: AppConfig) => void;
 }
 
-type AdminTab = 'overview' | 'audit' | 'articles' | 'config';
+type AdminTab = 'overview' | 'audit' | 'articles' | 'campaigns' | 'config';
 
 export const AdminPortal: React.FC<AdminPortalProps> = ({
   onBackToApp,
@@ -71,6 +83,12 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
   const [savingConfig, setSavingConfig] = useState(false);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
   const [loadingAudit, setLoadingAudit] = useState(false);
+
+  // State Konfigurasi Email & SMTP
+  const [emailConfig, setEmailConfig] = useState<EmailConfig>(DEFAULT_EMAIL_CONFIG);
+  const [savingEmailConfig, setSavingEmailConfig] = useState(false);
+  const [testingSmtp, setTestingSmtp] = useState(false);
+  const [testEmailTarget, setTestEmailTarget] = useState('admin@quranweb.id');
 
   // Chart.js refs untuk Audit Trail
   const chartCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -110,6 +128,30 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
     const blogList = await fetchBlogArticles(true);
     setArticles(blogList);
     setLoadingArticles(false);
+    const mailCfg = await fetchEmailConfig();
+    setEmailConfig(mailCfg);
+    if (mailCfg.sender_email) {
+      setTestEmailTarget(mailCfg.sender_email);
+    }
+  };
+
+  const handleSaveEmailConfig = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavingEmailConfig(true);
+    const res = await saveEmailConfig(emailConfig);
+    setSavingEmailConfig(false);
+    showToast(res.message);
+  };
+
+  const handleTestSmtpConnection = async () => {
+    if (!testEmailTarget.trim()) {
+      showToast('Masukkan alamat email tujuan pengujian.');
+      return;
+    }
+    setTestingSmtp(true);
+    const res = await testSmtpConnection(testEmailTarget, emailConfig);
+    setTestingSmtp(false);
+    showToast(res.message);
   };
 
   const handleCreateArticle = async (e: React.FormEvent) => {
@@ -794,6 +836,23 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
           >
             <BookOpen className="h-4 w-4" />
             <span>Jurnal Artikel (CMS)</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('campaigns')}
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs sm:text-sm font-bold transition-colors ${
+              activeTab === 'campaigns'
+                ? 'shadow-xs'
+                : 'hover:bg-black/5 dark:hover:bg-white/5'
+            }`}
+            style={{
+              backgroundColor: activeTab === 'campaigns' ? 'var(--bg-accent)' : 'transparent',
+              color: activeTab === 'campaigns' ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+            }}
+          >
+            <Mail className="h-4 w-4" />
+            <span>Email &amp; Siaran</span>
           </button>
 
           <button
@@ -1759,170 +1818,428 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
             </div>
           )}
 
-          {/* TAB 4: SITE CONFIGURATION MODULE */}
+          {/* TAB 4: EMAIL CAMPAIGN & REMINDER DISPATCHER */}
+          {activeTab === 'campaigns' && (
+            <EmailCampaignManager
+              currentUsername={currentUser.username}
+              showToast={showToast}
+              onNavigateToConfig={() => setActiveTab('config')}
+            />
+          )}
+
+          {/* TAB 5: SITE & EMAIL CONFIGURATION MODULE */}
           {activeTab === 'config' && (
-            <div className="grid gap-6 lg:grid-cols-3">
-              {/* Form Input */}
-              <div
-                className="lg:col-span-2 rounded-2xl border p-6 shadow-sm"
-                style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
-              >
-                <div className="border-b pb-3 mb-5" style={{ borderColor: 'var(--border-color)' }}>
-                  <h3 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>
-                    Pengaturan Identitas &amp; Pengumuman Aplikasi
-                  </h3>
-                  <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-                    Perubahan konfigurasi disimpan ke database dan langsung aktif pada situs
-                  </p>
+            <div className="space-y-6">
+              {/* SECTION 1: IDENTITAS APLIKASI */}
+              <div className="grid gap-6 lg:grid-cols-3">
+                {/* Form Input */}
+                <div
+                  className="lg:col-span-2 rounded-2xl border p-6 shadow-sm"
+                  style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                >
+                  <div className="border-b pb-3 mb-5" style={{ borderColor: 'var(--border-color)' }}>
+                    <h3 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>
+                      Pengaturan Identitas &amp; Pengumuman Aplikasi
+                    </h3>
+                    <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
+                      Perubahan konfigurasi disimpan ke database dan langsung aktif pada situs
+                    </p>
+                  </div>
+
+                  <form onSubmit={handleSaveConfig} className="space-y-4">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                          Nama Aplikasi
+                        </label>
+                        <input
+                          type="text"
+                          value={appConfig.app_name}
+                          onChange={(e) => setAppConfig({ ...appConfig, app_name: e.target.value })}
+                          className="w-full rounded-xl border px-3.5 py-2 text-xs font-semibold outline-none"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                          Logo / Simbol Kaligrafi
+                        </label>
+                        <input
+                          type="text"
+                          value={appConfig.app_logo}
+                          onChange={(e) => setAppConfig({ ...appConfig, app_logo: e.target.value })}
+                          className="w-full rounded-xl border px-3.5 py-2 text-xs font-semibold outline-none font-arabic-amiri text-lg"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                        Teks Hak Cipta (Copyright)
+                      </label>
+                      <input
+                        type="text"
+                        value={appConfig.app_copyright}
+                        onChange={(e) => setAppConfig({ ...appConfig, app_copyright: e.target.value })}
+                        className="w-full rounded-xl border px-3.5 py-2 text-xs outline-none"
+                        style={{
+                          backgroundColor: 'var(--bg-muted)',
+                          borderColor: 'var(--border-color)',
+                          color: 'var(--text-primary)',
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                        Lisensi Aplikasi
+                      </label>
+                      <input
+                        type="text"
+                        value={appConfig.app_license}
+                        onChange={(e) => setAppConfig({ ...appConfig, app_license: e.target.value })}
+                        className="w-full rounded-xl border px-3.5 py-2 text-xs outline-none"
+                        style={{
+                          backgroundColor: 'var(--bg-muted)',
+                          borderColor: 'var(--border-color)',
+                          color: 'var(--text-primary)',
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                        Pesan Pengumuman Pengguna (Broadcast Banner)
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={appConfig.app_announcement}
+                        onChange={(e) => setAppConfig({ ...appConfig, app_announcement: e.target.value })}
+                        className="w-full rounded-xl border p-3 text-xs outline-none leading-relaxed"
+                        style={{
+                          backgroundColor: 'var(--bg-muted)',
+                          borderColor: 'var(--border-color)',
+                          color: 'var(--text-primary)',
+                        }}
+                      />
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        type="submit"
+                        disabled={savingConfig}
+                        className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold shadow-md transition-transform active:scale-95 cursor-pointer"
+                        style={{
+                          backgroundColor: 'var(--bg-accent)',
+                          color: 'var(--text-on-accent)',
+                        }}
+                      >
+                        <CheckCircle2 className="h-4 w-4" />
+                        <span>{savingConfig ? 'Menyimpan...' : 'Simpan Konfigurasi'}</span>
+                      </button>
+                    </div>
+                  </form>
                 </div>
 
-                <form onSubmit={handleSaveConfig} className="space-y-4">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
-                        Nama Aplikasi
-                      </label>
-                      <input
-                        type="text"
-                        value={appConfig.app_name}
-                        onChange={(e) => setAppConfig({ ...appConfig, app_name: e.target.value })}
-                        className="w-full rounded-xl border px-3.5 py-2 text-xs font-semibold outline-none"
-                        style={{
-                          backgroundColor: 'var(--bg-muted)',
-                          borderColor: 'var(--border-color)',
-                          color: 'var(--text-primary)',
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
-                        Logo / Simbol Kaligrafi
-                      </label>
-                      <input
-                        type="text"
-                        value={appConfig.app_logo}
-                        onChange={(e) => setAppConfig({ ...appConfig, app_logo: e.target.value })}
-                        className="w-full rounded-xl border px-3.5 py-2 text-xs font-semibold outline-none font-arabic-amiri text-lg"
-                        style={{
-                          backgroundColor: 'var(--bg-muted)',
-                          borderColor: 'var(--border-color)',
-                          color: 'var(--text-primary)',
-                        }}
-                      />
-                    </div>
-                  </div>
-
+                {/* Live Preview Card */}
+                <div
+                  className="rounded-2xl border p-6 shadow-sm flex flex-col justify-between"
+                  style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                >
                   <div>
-                    <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
-                      Teks Hak Cipta (Copyright)
-                    </label>
-                    <input
-                      type="text"
-                      value={appConfig.app_copyright}
-                      onChange={(e) => setAppConfig({ ...appConfig, app_copyright: e.target.value })}
-                      className="w-full rounded-xl border px-3.5 py-2 text-xs outline-none"
-                      style={{
-                        backgroundColor: 'var(--bg-muted)',
-                        borderColor: 'var(--border-color)',
-                        color: 'var(--text-primary)',
-                      }}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
-                      Lisensi Aplikasi
-                    </label>
-                    <input
-                      type="text"
-                      value={appConfig.app_license}
-                      onChange={(e) => setAppConfig({ ...appConfig, app_license: e.target.value })}
-                      className="w-full rounded-xl border px-3.5 py-2 text-xs outline-none"
-                      style={{
-                        backgroundColor: 'var(--bg-muted)',
-                        borderColor: 'var(--border-color)',
-                        color: 'var(--text-primary)',
-                      }}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
-                      Pesan Pengumuman Pengguna (Broadcast Banner)
-                    </label>
-                    <textarea
-                      rows={3}
-                      value={appConfig.app_announcement}
-                      onChange={(e) => setAppConfig({ ...appConfig, app_announcement: e.target.value })}
-                      className="w-full rounded-xl border p-3 text-xs outline-none leading-relaxed"
-                      style={{
-                        backgroundColor: 'var(--bg-muted)',
-                        borderColor: 'var(--border-color)',
-                        color: 'var(--text-primary)',
-                      }}
-                    />
-                  </div>
-
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      disabled={savingConfig}
-                      className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold shadow-md transition-transform active:scale-95 cursor-pointer"
-                      style={{
-                        backgroundColor: 'var(--bg-accent)',
-                        color: 'var(--text-on-accent)',
-                      }}
-                    >
-                      <CheckCircle2 className="h-4 w-4" />
-                      <span>{savingConfig ? 'Menyimpan...' : 'Simpan Konfigurasi'}</span>
-                    </button>
-                  </div>
-                </form>
-              </div>
-
-              {/* Live Preview Card */}
-              <div
-                className="rounded-2xl border p-6 shadow-sm flex flex-col justify-between"
-                style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
-              >
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-secondary)' }}>
-                    Pratinjau Langsung (Live Preview)
-                  </h4>
-
-                  <div
-                    className="rounded-xl border p-4 mb-4"
-                    style={{ backgroundColor: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}
-                  >
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <div
-                        className="flex h-9 w-9 items-center justify-center rounded-xl text-base font-bold text-white font-arabic-amiri shadow-xs"
-                        style={{ backgroundColor: 'var(--bg-accent)' }}
-                      >
-                        {appConfig.app_logo}
-                      </div>
-                      <span className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
-                        {appConfig.app_name}
-                      </span>
-                    </div>
+                    <h4 className="text-xs font-bold uppercase tracking-wider mb-4" style={{ color: 'var(--text-secondary)' }}>
+                      Pratinjau Langsung (Live Preview)
+                    </h4>
 
                     <div
-                      className="rounded-lg p-2.5 text-[11px] leading-relaxed mb-3"
-                      style={{ backgroundColor: 'var(--bg-accent-soft)', color: 'var(--text-primary)' }}
+                      className="rounded-xl border p-4 mb-4"
+                      style={{ backgroundColor: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}
                     >
-                      📢 {appConfig.app_announcement}
-                    </div>
+                      <div className="flex items-center gap-2.5 mb-3">
+                        <div
+                          className="flex h-9 w-9 items-center justify-center rounded-xl text-base font-bold text-white font-arabic-amiri shadow-xs"
+                          style={{ backgroundColor: 'var(--bg-accent)' }}
+                        >
+                          {appConfig.app_logo}
+                        </div>
+                        <span className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>
+                          {appConfig.app_name}
+                        </span>
+                      </div>
 
-                    <div className="border-t pt-2.5 text-[10px] space-y-0.5" style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
-                      <div>{appConfig.app_copyright}</div>
-                      <div>Lisensi: {appConfig.app_license}</div>
+                      <div
+                        className="rounded-lg p-2.5 text-[11px] leading-relaxed mb-3"
+                        style={{ backgroundColor: 'var(--bg-accent-soft)', color: 'var(--text-primary)' }}
+                      >
+                        📢 {appConfig.app_announcement}
+                      </div>
+
+                      <div className="border-t pt-2.5 text-[10px] space-y-0.5" style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
+                        <div>{appConfig.app_copyright}</div>
+                        <div>Lisensi: {appConfig.app_license}</div>
+                      </div>
                     </div>
                   </div>
+
+                  <div className="text-[11px] italic" style={{ color: 'var(--text-secondary)' }}>
+                    Perubahan nama dan logo akan disinkronkan secara global ke bilah atas dan footer pembaca.
+                  </div>
+                </div>
+              </div>
+
+              {/* SECTION 2: PENGATURAN SERVER EMAIL & SMTP */}
+              <div className="grid gap-6 lg:grid-cols-3">
+                {/* Form Konfigurasi SMTP */}
+                <div
+                  className="lg:col-span-2 rounded-2xl border p-6 shadow-sm"
+                  style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                >
+                  <div className="border-b pb-3 mb-5 flex items-center justify-between" style={{ borderColor: 'var(--border-color)' }}>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <Mail className="h-5 w-5 text-emerald-500" />
+                        <h3 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>
+                          Pengaturan Server Email (SMTP Settings)
+                        </h3>
+                      </div>
+                      <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
+                        Konfigurasikan gateway pengiriman email untuk buletin, pengingat ibadah, dan pemberitahuan sistem.
+                      </p>
+                    </div>
+
+                    <label className="flex items-center gap-2 text-xs font-bold cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={emailConfig.is_active}
+                        onChange={(e) => setEmailConfig({ ...emailConfig, is_active: e.target.checked })}
+                        className="rounded-md accent-emerald-500"
+                      />
+                      <span className={emailConfig.is_active ? 'text-emerald-500' : 'opacity-60'}>
+                        {emailConfig.is_active ? 'Layanan Aktif' : 'Nonaktif'}
+                      </span>
+                    </label>
+                  </div>
+
+                  <form onSubmit={handleSaveEmailConfig} className="space-y-4">
+                    <div className="grid gap-4 sm:grid-cols-3">
+                      <div className="sm:col-span-2">
+                        <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                          SMTP Host / Server
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={emailConfig.smtp_host}
+                          onChange={(e) => setEmailConfig({ ...emailConfig, smtp_host: e.target.value })}
+                          placeholder="smtp.gmail.com / mail.domain.com"
+                          className="w-full rounded-xl border px-3.5 py-2 text-xs font-mono outline-none"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                          SMTP Port
+                        </label>
+                        <input
+                          type="number"
+                          required
+                          value={emailConfig.smtp_port}
+                          onChange={(e) => setEmailConfig({ ...emailConfig, smtp_port: parseInt(e.target.value, 10) || 587 })}
+                          placeholder="587 / 465"
+                          className="w-full rounded-xl border px-3.5 py-2 text-xs font-mono outline-none"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                          Protokol Keamanan (Enkripsi)
+                        </label>
+                        <select
+                          value={emailConfig.smtp_secure}
+                          onChange={(e) => setEmailConfig({ ...emailConfig, smtp_secure: e.target.value as any })}
+                          className="w-full rounded-xl border px-3.5 py-2 text-xs font-semibold outline-none"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        >
+                          <option value="tls">STARTTLS / TLS (Port 587 - Direkomendasikan)</option>
+                          <option value="ssl">SSL (Port 465)</option>
+                          <option value="none">None / Plain Text (Port 25)</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                          Username SMTP / Akun Email
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={emailConfig.smtp_user}
+                          onChange={(e) => setEmailConfig({ ...emailConfig, smtp_user: e.target.value })}
+                          placeholder="notifikasi@quranweb.id"
+                          className="w-full rounded-xl border px-3.5 py-2 text-xs outline-none"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-3">
+                      <div>
+                        <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                          Password / App Password
+                        </label>
+                        <input
+                          type="password"
+                          value={emailConfig.smtp_password || ''}
+                          onChange={(e) => setEmailConfig({ ...emailConfig, smtp_password: e.target.value })}
+                          placeholder="••••••••••••"
+                          className="w-full rounded-xl border px-3.5 py-2 text-xs outline-none"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                          Nama Pengirim (Sender Name)
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={emailConfig.sender_name}
+                          onChange={(e) => setEmailConfig({ ...emailConfig, sender_name: e.target.value })}
+                          placeholder="QuranWeb Official"
+                          className="w-full rounded-xl border px-3.5 py-2 text-xs outline-none"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="mb-1 block text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                          Email Pengirim (Sender Address)
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={emailConfig.sender_email}
+                          onChange={(e) => setEmailConfig({ ...emailConfig, sender_email: e.target.value })}
+                          placeholder="notifikasi@quranweb.id"
+                          className="w-full rounded-xl border px-3.5 py-2 text-xs outline-none"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex items-center justify-between">
+                      <button
+                        type="submit"
+                        disabled={savingEmailConfig}
+                        className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold shadow-md transition-transform active:scale-95 cursor-pointer"
+                        style={{
+                          backgroundColor: 'var(--bg-accent)',
+                          color: 'var(--text-on-accent)',
+                        }}
+                      >
+                        <CheckCircle2 className="h-4 w-4" />
+                        <span>{savingEmailConfig ? 'Menyimpan...' : 'Simpan Pengaturan SMTP'}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setActiveTab('campaigns')}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-500 hover:underline"
+                      >
+                        <span>Buka Modul Pengiriman Email &rarr;</span>
+                      </button>
+                    </div>
+                  </form>
                 </div>
 
-                <div className="text-[11px] italic" style={{ color: 'var(--text-secondary)' }}>
-                  Perubahan nama dan logo akan disinkronkan secara global ke bilah atas dan footer pembaca.
+                {/* Kartu Uji Koneksi SMTP */}
+                <div
+                  className="rounded-2xl border p-6 shadow-sm flex flex-col justify-between"
+                  style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                >
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-bold mb-1" style={{ color: 'var(--text-primary)' }}>
+                        <Send className="h-4 w-4 text-emerald-500" />
+                        <span>Uji Coba Koneksi Server SMTP</span>
+                      </div>
+                      <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                        Kirimkan email uji coba singkat ke alamat tujuan untuk memverifikasi keabsahan host, port, dan kredensial akun.
+                      </p>
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-bold mb-1" style={{ color: 'var(--text-secondary)' }}>
+                        Email Tujuan Pengujian:
+                      </label>
+                      <input
+                        type="email"
+                        value={testEmailTarget}
+                        onChange={(e) => setTestEmailTarget(e.target.value)}
+                        placeholder="admin@quranweb.id"
+                        className="w-full rounded-xl border px-3 py-2 text-xs outline-none font-mono"
+                        style={{ backgroundColor: 'var(--bg-muted)', borderColor: 'var(--border-color)' }}
+                      />
+                    </div>
+
+                    <button
+                      type="button"
+                      disabled={testingSmtp}
+                      onClick={handleTestSmtpConnection}
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-bold transition-all hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
+                      style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
+                    >
+                      <Mail className="h-4 w-4 text-emerald-500" />
+                      <span>{testingSmtp ? 'Menguji Koneksi...' : 'Kirim Email Uji Coba'}</span>
+                    </button>
+                  </div>
+
+                  <div className="mt-4 border-t pt-3 text-[11px] opacity-75" style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
+                    Tips: Jika menggunakan Gmail, pastikan menggunakan <strong>App Password 16 digit</strong> untuk otentikasi SMTP yang aman.
+                  </div>
                 </div>
               </div>
             </div>

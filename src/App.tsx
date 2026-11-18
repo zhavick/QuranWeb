@@ -157,6 +157,7 @@ export const App: React.FC = () => {
   const [quickAyahInput, setQuickAyahInput] = useState('');
 
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
+  const [mobileDrawerTab, setMobileDrawerTab] = useState<'menu' | 'quran'>('menu');
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [tajweedGuideOpen, setTajweedGuideOpen] = useState(false);
   const [khatamPlannerOpen, setKhatamPlannerOpen] = useState(false);
@@ -740,26 +741,21 @@ export const App: React.FC = () => {
       {/* Top Header (Hidden in Fullscreen Zen Mode) */}
       {!isFullscreen && (
         <header
-          className="flex h-14 shrink-0 items-center justify-between border-b px-3 sm:px-5"
+          className="flex h-14 shrink-0 items-center justify-between border-b px-3 sm:px-5 max-w-full overflow-hidden"
           style={{
             backgroundColor: 'var(--bg-secondary)',
             borderColor: 'var(--border-color)',
           }}
         >
-          <div className="flex items-center gap-2.5 min-w-0">
-            <button
-              type="button"
-              onClick={() => setMobileDrawerOpen(true)}
-              aria-label="Buka menu navigasi"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-xl lg:hidden cursor-pointer"
-              style={{ backgroundColor: 'var(--bg-muted)', color: 'var(--text-primary)' }}
+          {/* Left: Logo & Current Surah/Section Title */}
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <div
+              className="flex items-center gap-2 cursor-pointer shrink-0"
+              onClick={() => navigateTo('reader')}
+              title="Kembali ke Pembaca Al-Qur'an"
             >
-              <Menu className="h-5 w-5" />
-            </button>
-
-            <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigateTo('reader')}>
               <div
-                className="flex h-8 w-8 items-center justify-center rounded-xl font-bold text-sm font-arabic-amiri"
+                className="flex h-8 w-8 items-center justify-center rounded-xl font-bold text-sm font-arabic-amiri shrink-0"
                 style={{
                   backgroundColor: 'var(--bg-accent)',
                   color: 'var(--text-on-accent)',
@@ -767,17 +763,22 @@ export const App: React.FC = () => {
               >
                 {appConfig.app_logo}
               </div>
-              <span className="hidden font-bold tracking-tight sm:inline" style={{ color: 'var(--text-primary)' }}>
+              <span className="font-bold tracking-tight text-sm sm:text-base hidden xs:inline" style={{ color: 'var(--text-primary)' }}>
                 {appConfig.app_name}
               </span>
             </div>
 
-            <div className="ml-2 truncate text-xs sm:text-sm font-semibold" style={{ color: 'var(--text-accent)' }}>
-              {headerTitle}
+            <div
+              className="truncate text-xs sm:text-sm font-semibold max-w-[130px] xs:max-w-[200px] sm:max-w-[320px]"
+              style={{ color: 'var(--text-accent)' }}
+              title={headerTitle}
+            >
+              • {headerTitle}
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* Right on Desktop (lg:): Full Toolbar */}
+          <div className="hidden lg:flex items-center gap-2 shrink-0">
             <PrayerTimeWidget
               onOpenKhatamPlanner={currentUser ? () => setKhatamPlannerOpen(true) : undefined}
               onOpenQibla={() => navigateTo('kiblat')}
@@ -1039,6 +1040,27 @@ export const App: React.FC = () => {
             >
               <Maximize2 className="h-3.5 w-3.5" />
               <span>Layar Penuh</span>
+            </button>
+          </div>
+
+          {/* Right on Smartphone / Mobile (< lg): SINGLE 3-STRIP BUTTON ONLY */}
+          <div className="flex lg:hidden items-center shrink-0">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileDrawerOpen(true);
+                setMobileDrawerTab('menu');
+              }}
+              aria-label="Buka Menu 3 Strip"
+              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-bold cursor-pointer transition-all shadow-xs"
+              style={{
+                backgroundColor: 'var(--bg-accent-soft)',
+                borderColor: 'var(--border-color)',
+                color: 'var(--text-accent)',
+              }}
+            >
+              <Menu className="h-5 w-5" />
+              <span className="font-semibold text-xs">Menu</span>
             </button>
           </div>
         </header>
@@ -1457,232 +1479,538 @@ export const App: React.FC = () => {
         </nav>
       )}
 
-      {/* Mobile Slide-Over Navigation Drawer */}
+      {/* Mobile Slide-Over 3-Strip Menu & Navigation Drawer */}
       {mobileDrawerOpen && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
           <div
-            className="fixed inset-0 bg-black/50"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
             onClick={() => setMobileDrawerOpen(false)}
           />
           <div
-            className="relative z-10 flex h-full w-80 max-w-[85vw] flex-col border-r shadow-2xl"
+            className="relative z-10 flex h-full w-88 max-w-[90vw] flex-col border-r shadow-2xl"
             style={{
               backgroundColor: 'var(--bg-secondary)',
               borderColor: 'var(--border-color)',
             }}
           >
+            {/* Drawer Header */}
             <div
-              className="flex items-center justify-between border-b px-4 py-3"
+              className="flex items-center justify-between border-b px-4 py-3 shrink-0"
               style={{ borderColor: 'var(--border-color)' }}
             >
-              <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
-                Navigasi Al-Qur&apos;an
-              </span>
+              <div className="flex items-center gap-2">
+                <div
+                  className="flex h-7 w-7 items-center justify-center rounded-lg font-bold text-xs font-arabic-amiri"
+                  style={{
+                    backgroundColor: 'var(--bg-accent)',
+                    color: 'var(--text-on-accent)',
+                  }}
+                >
+                  {appConfig.app_logo}
+                </div>
+                <span className="font-bold text-sm tracking-tight" style={{ color: 'var(--text-primary)' }}>
+                  Menu {appConfig.app_name}
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => setMobileDrawerOpen(false)}
                 aria-label="Tutup menu"
-                className="rounded-lg p-1"
+                className="rounded-lg p-1.5 cursor-pointer"
                 style={{ backgroundColor: 'var(--bg-muted)', color: 'var(--text-secondary)' }}
               >
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4" />
               </button>
             </div>
 
-            {/* Mobile Drawer Quick Links: Kisah Rasul & Jurnal Blog */}
-            <div className="p-3 border-b space-y-2" style={{ borderColor: 'var(--border-color)' }}>
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileDrawerOpen(false);
-                  navigateTo('prophets');
-                }}
-                className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+            {/* Segmented Tab Switcher: [ ☰ Menu & Fitur ] vs [ 📑 Navigasi Al-Qur'an ] */}
+            <div className="p-2.5 border-b shrink-0" style={{ borderColor: 'var(--border-color)' }}>
+              <div
+                className="grid grid-cols-2 gap-1 rounded-xl border p-1 text-xs font-semibold"
                 style={{
-                  backgroundColor: 'var(--bg-accent-soft)',
+                  backgroundColor: 'var(--bg-muted)',
                   borderColor: 'var(--border-color)',
-                  color: 'var(--text-accent)',
                 }}
               >
-                <div className="flex items-center gap-2">
-                  <Compass className="h-4 w-4 text-amber-500" />
-                  <span>Kisah Para Rasulullah (25 Nabi)</span>
-                </div>
-                <span>Buka →</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileDrawerOpen(false);
-                  navigateTo('blog');
-                }}
-                className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
-                style={{
-                  backgroundColor: 'var(--bg-accent-soft)',
-                  borderColor: 'var(--border-color)',
-                  color: 'var(--text-accent)',
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <Newspaper className="h-4 w-4 text-emerald-500" />
-                  <span>Jurnal &amp; Blog Tadabbur</span>
-                </div>
-                <span>Buka →</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileDrawerOpen(false);
-                  navigateTo('kiblat');
-                }}
-                className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
-                style={{
-                  backgroundColor: 'var(--bg-accent-soft)',
-                  borderColor: 'var(--border-color)',
-                  color: 'var(--text-accent)',
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <Navigation className="h-4 w-4 text-emerald-500" />
-                  <span>Kompas Arah Kiblat Adaptif</span>
-                </div>
-                <span>Buka →</span>
-              </button>
-
-              {/* Tombol Akses Cepat Peta Masjid Terdekat (Hanya saat login) */}
-              {currentUser && (
                 <button
                   type="button"
-                  onClick={() => {
-                    setMobileDrawerOpen(false);
-                    navigateTo('masjid');
-                  }}
-                  className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+                  onClick={() => setMobileDrawerTab('menu')}
+                  className="flex items-center justify-center gap-1.5 rounded-lg py-1.5 transition-all cursor-pointer"
                   style={{
-                    backgroundColor: 'var(--bg-accent-soft)',
-                    borderColor: 'var(--border-color)',
-                    color: 'var(--text-accent)',
+                    backgroundColor:
+                      mobileDrawerTab === 'menu' ? 'var(--bg-accent)' : 'transparent',
+                    color:
+                      mobileDrawerTab === 'menu'
+                        ? 'var(--text-on-accent)'
+                        : 'var(--text-secondary)',
                   }}
                 >
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-emerald-500" />
-                    <span>Peta Masjid Terdekat (OpenStreetMap)</span>
-                  </div>
-                  <span>Buka →</span>
+                  <Menu className="h-3.5 w-3.5" />
+                  <span>Menu &amp; Fitur</span>
                 </button>
-              )}
 
-              {/* Tombol Akses Cepat Doa Qur'ani & Dzikir (Hanya saat login) */}
-              {currentUser && (
                 <button
                   type="button"
-                  onClick={() => {
-                    setMobileDrawerOpen(false);
-                    navigateTo('prayers');
-                  }}
-                  className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
+                  onClick={() => setMobileDrawerTab('quran')}
+                  className="flex items-center justify-center gap-1.5 rounded-lg py-1.5 transition-all cursor-pointer"
                   style={{
-                    backgroundColor: 'var(--bg-accent-soft)',
-                    borderColor: 'var(--border-color)',
-                    color: 'var(--text-accent)',
+                    backgroundColor:
+                      mobileDrawerTab === 'quran' ? 'var(--bg-accent)' : 'transparent',
+                    color:
+                      mobileDrawerTab === 'quran'
+                        ? 'var(--text-on-accent)'
+                        : 'var(--text-secondary)',
                   }}
                 >
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-emerald-500" />
-                    <span>Doa Qur&apos;ani &amp; Tasbih Haptic</span>
-                  </div>
-                  <span>Buka →</span>
+                  <BookOpen className="h-3.5 w-3.5" />
+                  <span>Al-Qur&apos;an</span>
                 </button>
-              )}
-
-              {/* Tombol Akses Cepat Audiobook 3 Menit (Step 16) */}
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileDrawerOpen(false);
-                  setAudioCapsuleOpen(true);
-                  logActivity('OPEN_AUDIO_CAPSULE');
-                }}
-                className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
-                style={{
-                  backgroundColor: 'var(--bg-accent-soft)',
-                  borderColor: 'var(--border-color)',
-                  color: 'var(--text-accent)',
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <Headphones className="h-4 w-4 text-amber-500" />
-                  <span>Audiobook Tadabbur &amp; Kisah (3 Mnt)</span>
-                </div>
-                <span>Dengar →</span>
-              </button>
-
-              {/* Tombol Akses Cepat Rencana Khatam Sakinah (Hanya saat login) */}
-              {currentUser && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMobileDrawerOpen(false);
-                    setKhatamPlannerOpen(true);
-                    logActivity('OPEN_KHATAM_PLANNER');
-                  }}
-                  className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all shadow-xs"
-                  style={{
-                    backgroundColor: 'var(--bg-accent-soft)',
-                    borderColor: 'var(--border-color)',
-                    color: 'var(--text-accent)',
-                  }}
-                >
-                  <div className="flex items-center gap-2">
-                    <Compass className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                    <span>Rencana Khatam Sakinah (&apos;Ain)</span>
-                  </div>
-                  <span>Buka →</span>
-                </button>
-              )}
+              </div>
             </div>
 
-            <div className="flex-1 overflow-hidden">
-              <NavigationPanel
-                meta={meta}
-                activeTab={navTab}
-                onTabChange={setNavTab}
-                selectedSurahId={selectedSurahId}
-                selectedJuz={selectedJuz}
-                selectedAin={selectedAin}
-                lastRead={lastRead}
-                bookmarks={bookmarks}
-                elderMode={settings.elderMode}
-                onSelectSurah={(id) => {
-                  setViewMode('surah');
-                  setSelectedSurahId(id);
-                  setMobileDrawerOpen(false);
-                }}
-                onSelectJuz={(juz) => {
-                  setViewMode('juz');
-                  setSelectedJuz(juz);
-                  setMobileDrawerOpen(false);
-                }}
-                onSelectAin={(ain) => {
-                  setViewMode('ain');
-                  setSelectedAin(ain);
-                  setMobileDrawerOpen(false);
-                }}
-                onJumpToAyah={handleJumpToAyah}
-                onDeleteBookmark={handleDeleteBookmark}
-                onUpdateBookmarkNote={handleUpdateBookmarkNote}
-                onOpenKhatamPlanner={
-                  currentUser
-                    ? () => {
+            {/* TAB CONTENT */}
+            {mobileDrawerTab === 'menu' ? (
+              <div className="flex-1 overflow-y-auto p-3.5 space-y-4">
+                {/* 1. Waktu Shalat & Jam Aktual Widget */}
+                <div
+                  className="rounded-2xl border p-3 shadow-xs"
+                  style={{
+                    backgroundColor: 'var(--bg-card)',
+                    borderColor: 'var(--border-color)',
+                  }}
+                >
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: 'var(--text-accent)' }}>
+                      Waktu Aktual &amp; Shalat
+                    </span>
+                  </div>
+                  <PrayerTimeWidget
+                    onOpenKhatamPlanner={currentUser ? () => {
+                      setMobileDrawerOpen(false);
+                      setKhatamPlannerOpen(true);
+                    } : undefined}
+                    onOpenQibla={() => {
+                      setMobileDrawerOpen(false);
+                      navigateTo('kiblat');
+                    }}
+                    onOpenMosqueMap={() => {
+                      setMobileDrawerOpen(false);
+                      if (!currentUser) setJoinModalOpen(true);
+                      else navigateTo('masjid');
+                    }}
+                  />
+                </div>
+
+                {/* 2. Profil Akun / Sesi Pengguna */}
+                <div
+                  className="rounded-2xl border p-3 shadow-xs"
+                  style={{
+                    backgroundColor: 'var(--bg-card)',
+                    borderColor: 'var(--border-color)',
+                  }}
+                >
+                  <span className="text-[11px] font-bold uppercase tracking-wider block mb-2" style={{ color: 'var(--text-accent)' }}>
+                    Akun Pengguna
+                  </span>
+                  {currentUser ? (
+                    <div className="space-y-2.5">
+                      <div className="flex items-center gap-2.5">
+                        <span
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white uppercase shadow-xs"
+                          style={{ backgroundColor: 'var(--bg-accent)' }}
+                        >
+                          {currentUser.username.charAt(0) || 'U'}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <div className="truncate text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                            {currentUser.full_name}
+                          </div>
+                          <div className="text-[11px]" style={{ color: 'var(--text-secondary)' }}>
+                            @{currentUser.username} • <span className="font-semibold uppercase" style={{ color: 'var(--text-accent)' }}>{currentUser.role}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2 pt-1">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMobileDrawerOpen(false);
+                            if (currentUser.role === 'admin' || currentUser.role === 'asatidz' || currentUser.role === 'editor') {
+                              navigateTo('admin');
+                            } else {
+                              navigateTo('user');
+                            }
+                          }}
+                          className="flex items-center justify-center gap-1.5 rounded-xl border py-2 text-xs font-bold cursor-pointer transition-all"
+                          style={{
+                            backgroundColor: 'var(--bg-accent-soft)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-accent)',
+                          }}
+                        >
+                          <User className="h-3.5 w-3.5" />
+                          <span>Dashboard</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMobileDrawerOpen(false);
+                            setLogoutModalOpen(true);
+                          }}
+                          className="flex items-center justify-center gap-1.5 rounded-xl border py-2 text-xs font-bold cursor-pointer transition-all text-red-500 hover:bg-red-500/10"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                          }}
+                        >
+                          <LogOut className="h-3.5 w-3.5" />
+                          <span>Keluar</span>
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="text-xs mb-2.5" style={{ color: 'var(--text-secondary)' }}>
+                        Masuk untuk menyimpan bookmark, rencana khatam, dan akses penuh fitur Islami.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMobileDrawerOpen(false);
+                          navigateTo('user');
+                        }}
+                        className="flex w-full items-center justify-center gap-2 rounded-xl py-2 text-xs font-bold text-white shadow-xs cursor-pointer"
+                        style={{ backgroundColor: 'var(--bg-accent)' }}
+                      >
+                        <User className="h-3.5 w-3.5" />
+                        <span>Masuk ke Akun / Daftar</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* 3. Daftar Fitur & Layanan Islami */}
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider block mb-2 px-1" style={{ color: 'var(--text-accent)' }}>
+                    Fitur &amp; Layanan Islami
+                  </span>
+                  <div className="space-y-1.5">
+                    <button
+                      type="button"
+                      onClick={() => {
                         setMobileDrawerOpen(false);
-                        setKhatamPlannerOpen(true);
-                      }
-                    : undefined
-                }
-              />
-            </div>
+                        navigateTo('prophets');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Compass className="h-4 w-4 text-amber-500 shrink-0" />
+                        <span>Kisah Para Rasulullah (25 Nabi)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        navigateTo('blog');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Newspaper className="h-4 w-4 text-emerald-500 shrink-0" />
+                        <span>Jurnal &amp; Blog Tadabbur</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        navigateTo('kiblat');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Navigation className="h-4 w-4 text-emerald-500 shrink-0" />
+                        <span>Kompas Arah Kiblat Adaptif</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        if (!currentUser) setJoinModalOpen(true);
+                        else navigateTo('masjid');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <MapPin className="h-4 w-4 text-emerald-500 shrink-0" />
+                        <span>Peta Masjid Terdekat (OpenStreetMap)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        if (!currentUser) setJoinModalOpen(true);
+                        else navigateTo('prayers');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Sparkles className="h-4 w-4 text-emerald-500 shrink-0" />
+                        <span>Doa Qur&apos;ani (40 Rabbana) &amp; Tasbih</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        setAudioCapsuleOpen(true);
+                        logActivity('OPEN_AUDIO_CAPSULE');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Headphones className="h-4 w-4 text-amber-500 shrink-0" />
+                        <span>Audiobook Tadabbur &amp; Kisah (3 Mnt)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Dengar →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        if (!currentUser) setJoinModalOpen(true);
+                        else {
+                          setKhatamPlannerOpen(true);
+                          logActivity('OPEN_KHATAM_PLANNER');
+                        }
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Compass className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                        <span>Rencana Khatam Sakinah (&apos;Ain)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* 4. Pengaturan Cepat & Aksesibilitas */}
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider block mb-2 px-1" style={{ color: 'var(--text-accent)' }}>
+                    Aksesibilitas &amp; Tampilan
+                  </span>
+                  <div className="space-y-1.5">
+                    {/* Mode Lansia Quick Switch */}
+                    <button
+                      type="button"
+                      onClick={handleToggleElderMode}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: settings.elderMode ? 'var(--bg-accent-soft)' : 'var(--bg-card)',
+                        borderColor: settings.elderMode ? 'var(--bg-accent)' : 'var(--border-color)',
+                        color: settings.elderMode ? 'var(--text-accent)' : 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <User className="h-4 w-4 shrink-0" />
+                        <span>Mode Lansia (Font Besar &amp; Nyaman)</span>
+                      </div>
+                      <span
+                        className="rounded-lg px-2 py-0.5 text-[10px] font-bold uppercase"
+                        style={{
+                          backgroundColor: settings.elderMode ? 'var(--bg-accent)' : 'var(--bg-muted)',
+                          color: settings.elderMode ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+                        }}
+                      >
+                        {settings.elderMode ? 'Aktif' : 'Mati'}
+                      </span>
+                    </button>
+
+                    {/* Tajwid Berwarna Quick Switch */}
+                    <button
+                      type="button"
+                      onClick={handleToggleTajweedQuick}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: settings.tajweedEnabled && !settings.elderMode && settings.theme !== 'high-contrast' ? 'var(--bg-accent-soft)' : 'var(--bg-card)',
+                        borderColor: settings.tajweedEnabled && !settings.elderMode && settings.theme !== 'high-contrast' ? 'var(--bg-accent)' : 'var(--border-color)',
+                        color: settings.tajweedEnabled && !settings.elderMode && settings.theme !== 'high-contrast' ? 'var(--text-accent)' : 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Palette className="h-4 w-4 shrink-0" />
+                        <span>Tajwid Berwarna</span>
+                      </div>
+                      <span
+                        className="rounded-lg px-2 py-0.5 text-[10px] font-bold uppercase"
+                        style={{
+                          backgroundColor: settings.tajweedEnabled && !settings.elderMode && settings.theme !== 'high-contrast' ? 'var(--bg-accent)' : 'var(--bg-muted)',
+                          color: settings.tajweedEnabled && !settings.elderMode && settings.theme !== 'high-contrast' ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+                        }}
+                      >
+                        {settings.tajweedEnabled && !settings.elderMode && settings.theme !== 'high-contrast' ? 'Aktif' : 'Mati'}
+                      </span>
+                    </button>
+
+                    {/* Panduan Edukasi Tajwid */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        setTajweedGuideOpen(true);
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <GraduationCap className="h-4 w-4 text-emerald-500 shrink-0" />
+                        <span>Panduan Tajwid &amp; Makhraj</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    {/* Pengaturan Lengkap */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        setSettingsOpen(true);
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Settings className="h-4 w-4 shrink-0" />
+                        <span>Pengaturan Tampilan &amp; Font</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    {/* Fullscreen */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        toggleFullscreen();
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Maximize2 className="h-4 w-4 shrink-0" />
+                        <span>Mode Layar Penuh (Zen Mode)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Aktifkan</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* TAB NAVIGASI AL-QUR'AN (FULL HEIGHT) */
+              <div className="flex-1 overflow-hidden">
+                <NavigationPanel
+                  meta={meta}
+                  activeTab={navTab}
+                  onTabChange={setNavTab}
+                  selectedSurahId={selectedSurahId}
+                  selectedJuz={selectedJuz}
+                  selectedAin={selectedAin}
+                  lastRead={lastRead}
+                  bookmarks={bookmarks}
+                  elderMode={settings.elderMode}
+                  onSelectSurah={(id) => {
+                    setViewMode('surah');
+                    setSelectedSurahId(id);
+                    setMobileDrawerOpen(false);
+                  }}
+                  onSelectJuz={(juz) => {
+                    setViewMode('juz');
+                    setSelectedJuz(juz);
+                    setMobileDrawerOpen(false);
+                  }}
+                  onSelectAin={(ain) => {
+                    setViewMode('ain');
+                    setSelectedAin(ain);
+                    setMobileDrawerOpen(false);
+                  }}
+                  onJumpToAyah={handleJumpToAyah}
+                  onDeleteBookmark={handleDeleteBookmark}
+                  onUpdateBookmarkNote={handleUpdateBookmarkNote}
+                  onOpenKhatamPlanner={
+                    currentUser
+                      ? () => {
+                          setMobileDrawerOpen(false);
+                          setKhatamPlannerOpen(true);
+                        }
+                      : undefined
+                  }
+                />
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuranWeb — Mushaf Digital oleh MaktabIT Technology</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Amiri (Kaligrafi Arab), Cormorant Garamond, Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldDeep: '#041f1c',
+                        emeraldCard: '#072b27',
+                        goldSoft: '#d4af37',
+                        goldLight: '#f3e5ab',
+                        creamWarm: '#fdfbf7',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    animation: {
+                        'float-slow': 'floatSlow 7s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 5s ease-in-out infinite',
+                        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        floatSlow: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        glowPulse: {
+                            '0%, 100%': { opacity: '0.28' },
+                            '50%': { opacity: '0.5' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(16px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Pola Geometris Islami Halus (Rub el Hizb / Star Pattern) */
+        .islamic-pattern {
+            background-color: #041f1c;
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d4af37' stroke-width='0.75' stroke-opacity='0.09'%3E%3Crect x='18' y='18' width='44' height='44'/%3E%3Crect x='18' y='18' width='44' height='44' transform='rotate(45 40 40)'/%3E%3Ccircle cx='40' cy='40' r='14'/%3E%3Cpath d='M40 0V80M0 40H80' stroke-opacity='0.04'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Animasi Gambar Garis SVG Logo QuranWeb */
+        .quran-logo-path {
+            stroke-dasharray: 280;
+            stroke-dashoffset: 280;
+            animation: drawGold 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes drawGold {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Transisi Keluar Splash Screen */
+        #quran-splash {
+            transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.85s;
+        }
+
+        .splash-exit {
+            opacity: 0 !important;
+            transform: scale(1.03) !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        /* Transisi Masuk Aplikasi QuranWeb */
+        #quran-app {
+            transition: opacity 0.9s ease-out;
+        }
+
+        .app-active {
+            opacity: 1 !important;
+        }
+
+        /* Bingkai Emas Halus pada Foto Al-Qur'an */
+        .gold-frame-shadow {
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.14);
+        }
+    </style>
+</head>
+
+<body class="bg-emeraldDeep text-creamWarm antialiased selection:bg-goldSoft selection:text-emeraldDeep">
+
+    <!-- =====================================================================
+         1. SPLASH SCREEN KHUSUS QURANWEB (BY MAKTABIT TECHNOLOGY)
+         ===================================================================== -->
+    <section id="quran-splash"
+        class="fixed inset-0 z-50 flex flex-col justify-between islamic-pattern overflow-y-auto px-4 sm:px-8 py-6 sm:py-8">
+
+        <!-- Efek Cahaya Ambien Hangat -->
+        <div
+            class="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] sm:w-[540px] sm:h-[540px] bg-goldSoft/15 rounded-full blur-[120px] pointer-events-none animate-glow-pulse">
+        </div>
+        <div
+            class="fixed bottom-10 right-10 w-[260px] h-[260px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none">
+        </div>
+
+        <!-- BARIS ATAS: Salam Pembuka & Basmalah -->
+        <header class="relative z-10 flex flex-col items-center text-center pt-1 animate-fade-up">
+            <p class="font-arabic text-2xl sm:text-3xl text-goldLight/95 tracking-wide drop-shadow-sm" dir="rtl"
+                lang="ar">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </p>
+            <div class="flex items-center gap-3 mt-1.5">
+                <span class="h-px w-8 bg-gradient-to-r from-transparent to-goldSoft/60"></span>
+                <span class="text-[11px] uppercase tracking-[0.22em] text-goldSoft/85 font-medium">
+                    Mushaf Digital Al-Qur'an
+                </span>
+                <span class="h-px w-8 bg-gradient-to-l from-transparent to-goldSoft/60"></span>
+            </div>
+        </header>
+
+        <!-- KONTEN UTAMA TENGAH: Visual Al-Qur'an, Logo & Preamble -->
+        <main class="relative z-10 max-w-5xl w-full mx-auto my-auto py-6 sm:py-8">
+            <div
+                class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center bg-emeraldCard/80 backdrop-blur-xl border border-goldSoft/25 rounded-3xl p-6 sm:p-9 lg:p-10 shadow-2xl">
+
+                <!-- KOLOM KIRI (5 Kolom): Image Al-Qur'an & Logo Kustom QuranWeb -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div
+                        class="relative w-full max-w-sm rounded-2xl overflow-hidden border border-goldSoft/35 gold-frame-shadow group">
+                        <!-- Gambar Mushaf Al-Qur'an Bebas Lisensi (Unsplash) -->
+                        <div class="aspect-[4/3] sm:aspect-[4/4] bg-emeraldDeep relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=900&q=85"
+                                alt="Mushaf Al-Qur'an Terbuka dengan Pencahayaan Hangat"
+                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 opacity-90"
+                                onerror="this.onerror=null; this.src='https://placehold.co/700x700/041f1c/d4af37?text=QuranWeb+Mushaf';">
+                            <!-- Gradasi Gelap Lembut di Bagian Bawah Gambar -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-emeraldDeep via-emeraldDeep/40 to-transparent">
+                            </div>
+                        </div>
+
+                        <!-- Overlay Logo QuranWeb di Bawah Foto -->
+                        <div class="absolute inset-x-0 bottom-0 p-5 flex flex-col items-center text-center">
+                            <!-- Emblem Logo SVG Kustom QuranWeb -->
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-emeraldDeep/95 border border-goldSoft/60 shadow-xl flex items-center justify-center mb-3 animate-float-slow">
+                                <svg class="w-11 h-11" viewBox="0 0 64 64" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="goldGrad" x1="8" y1="8" x2="56" y2="56"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop offset="0%" stop-color="#F3E5AB" />
+                                            <stop offset="50%" stop-color="#D4AF37" />
+                                            <stop offset="100%" stop-color="#AA8220" />
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- Bingkai Rub el Hizb (Bintang Segi Delapan Islami) -->
+                                    <rect x="16" y="16" width="32" height="32" rx="3" stroke="url(#goldGrad)"
+                                        stroke-width="2.2" class="quran-logo-path" />
+                                    <rect x="16" y="16" width="32" height="32" rx="3" transform="rotate(45 32 32)"
+                                        stroke="url(#goldGrad)" stroke-width="2.2" class="quran-logo-path" />
+                                    <!-- Siluet Mushaf Terbuka di Tengah -->
+                                    <path
+                                        d="M21 37V26C25 26 29 27.5 32 30C35 27.5 39 26 43 26V37C39 37 35 38.5 32 41C29 38.5 25 37 21 37Z"
+                                        stroke="#FDFBF7" stroke-width="2.2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="quran-logo-path" />
+                                    <path d="M32 30V41" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </div>
+
+                            <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-wide text-white">
+                                Quran<span class="text-goldSoft">Web</span>
+                            </h1>
+                            <p class="text-xs text-emerald-100/75 mt-0.5">
+                                Cahaya Petunjuk dalam Genggaman Digital
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KOLOM KANAN (7 Kolom): Preamble (Muqaddimah) & Informasi Aplikasi -->
+                <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+
+                    <!-- Muqaddimah / Kata Pengantar -->
+                    <div class="space-y-3.5">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emeraldDeep/90 border border-goldSoft/30 text-goldSoft text-xs font-medium">
+                            <span class="w-1.5 h-1.5 rounded-full bg-goldSoft"></span>
+                            <span>Muqaddimah & Pengantar Aplikasi</span>
+                        </div>
+
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-creamWarm leading-snug">
+                            Mendekatkan Diri dengan Al-Qur'an Secara Tenang, Jernih, dan Bebas Gangguan
+                        </h2>
+
+                        <div class="space-y-3 text-sm sm:text-[15px] text-emerald-100/85 leading-relaxed font-light">
+                            <p>
+                                <strong class="font-medium text-goldLight">Assalamu’alaikum Warahmatullahi
+                                    Wabarakatuh.</strong><br>
+                                Segala puji bagi Allah Subhanahu wa Ta'ala yang telah menurunkan Al-Qur'an sebagai
+                                petunjuk bagi seluruh manusia.
+                            </p>
+                            <p>
+                                <strong class="font-semibold text-white">QuranWeb</strong> hadir sebagai ikhtiar digital
+                                dari <span class="text-goldLight font-medium">MaktabIT Technology</span> untuk
+                                menyediakan ruang tilawah dan tadabbur berbasis web yang ringan, berestetika bersih,
+                                serta nyaman dibaca di berbagai perangkat tanpa gangguan iklan.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Intisari Fitur QuranWeb (4 Poin Ringkas) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <div
+                            class="flex items-start gap-3 p-3.5 rounded-2xl bg-emeraldDeep/75 border border-emerald-800/70">
+                            <div
+                                class="w-8 h-8 rounded-xl bg-goldSoft/15 text-goldSoft flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-semibold text-white">Mushaf 30 Juz Lengkap</h3>
+                                <p class="text-[11px] text-emerald-200/70 mt-0.5">Rasm jelas dengan tipografi Arab yang
+                                    nyaman di mata.</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-start gap-3 p-3.5 rounded-2xl bg-emeraldDeep/75 border border-emerald-800/70">
+                            <div
+                                class="w-8 h-8 rounded-xl bg-goldSoft/15 text-goldSoft flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-semibold text-white">Terjemahan & Makna</h3>
+                                <p class="text-[11px] text-emerald-200/70 mt-0.5">Dilengkapi terjemahan bahasa Indonesia
+                                    yang akurat.</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-start gap-3 p-3.5 rounded-2xl bg-emeraldDeep/75 border border-emerald-800/70">
+                            <div
+                                class="w-8 h-8 rounded-xl bg-goldSoft/15 text-goldSoft flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-semibold text-white">Navigasi Surah Instan</h3>
+                                <p class="text-[11px] text-emerald-200/70 mt-0.5">Akses cepat ke 114 surah dan pencarian
+                                    ayat.</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-start gap-3 p-3.5 rounded-2xl bg-emeraldDeep/75 border border-emerald-800/70">
+                            <div
+                                class="w-8 h-8 rounded-xl bg-goldSoft/15 text-goldSoft flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-semibold text-white">Penanda Terakhir Baca</h3>
+                                <p class="text-[11px] text-emerald-200/70 mt-0.5">Menyimpan progres tilawah secara
+                                    otomatis.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bilah Kesiapan & Tombol Masuk Utama -->
+                    <div class="pt-3 border-t border-goldSoft/20 space-y-4">
+                        <!-- Indikator Kesiapan Modul -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center text-xs">
+                                <span id="load-status-text" class="text-emerald-200/80">Menyiapkan mushaf & indeks
+                                    surah...</span>
+                                <span id="load-percent-text" class="font-mono text-goldSoft font-semibold">0%</span>
+                            </div>
+                            <div
+                                class="w-full h-1.5 bg-emeraldDeep rounded-full overflow-hidden border border-emerald-800">
+                                <div id="load-progress-bar"
+                                    class="h-full w-0 bg-gradient-to-r from-goldSoft via-goldLight to-goldSoft rounded-full transition-all duration-200">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tombol Aksi -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                            <button id="enter-quran-btn" onclick="openQuranWeb()"
+                                class="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-goldSoft to-amber-400 hover:from-goldLight hover:to-goldSoft text-emeraldDeep font-display font-bold text-sm shadow-lg shadow-goldSoft/20 transition-all duration-300 active:scale-95">
+                                <span>Mulai Membaca Al-Qur'an</span>
+                                <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+
+                            <a href="https://github.com/zhavick/QuranWeb" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emeraldDeep/80 hover:bg-emeraldDeep text-emerald-100/85 hover:text-white border border-emerald-700/70 text-xs font-medium transition-colors">
+                                <svg class="w-4 h-4 text-goldSoft" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z">
+                                    </path>
+                                </svg>
+                                <span>Repositori Proyek</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- BARIS BAWAH: BRANDING PEMBUAT (MAKTABIT TECHNOLOGY + LOGO) -->
+        <footer
+            class="relative z-10 max-w-5xl w-full mx-auto pt-2 pb-1 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-emerald-200/75">
+
+            <!-- Identitas & Logo Resmi MaktabIT Technology -->
+            <div
+                class="flex items-center gap-3 px-4 py-2 rounded-2xl bg-emeraldCard/90 border border-goldSoft/25 shadow-md">
+                <!-- Logo SVG Kustom MaktabIT Technology -->
+                <div
+                    class="w-9 h-9 rounded-xl bg-emeraldDeep border border-goldSoft/40 flex items-center justify-center shrink-0">
+                    <svg class="w-6 h-6" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Bingkai Segi Delapan MaktabIT -->
+                        <path d="M24 8H48L64 24V48L48 64H24L8 48V24L24 8Z" stroke="#D4AF37" stroke-width="3.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <!-- Monogram M / Buku Terbuka -->
+                        <path d="M20 46V26L36 37L52 26V46" stroke="#FDFBF7" stroke-width="4" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <!-- Titik Simpul Digital -->
+                        <circle cx="36" cy="20" r="3.5" fill="#10B981" />
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-[10px] uppercase tracking-widest text-emerald-300/70">Dikembangkan oleh</span>
+                    <span class="font-display font-bold text-sm text-white tracking-tight">
+                        Maktab<span class="text-goldSoft">IT</span> Technology
+                    </span>
+                </div>
+            </div>
+
+            <!-- Keterangan Versi & Lisensi -->
+            <div class="text-center sm:text-right text-[11px] text-emerald-200/60">
+                <div>QuranWeb v1.0 • Software Engineering & Digital Literacy</div>
+                <div>&copy; 2026 MaktabIT Technology. Bebas Iklan & Terbuka untuk Kebaikan.</div>
+            </div>
+        </footer>
+    </section>
+
+
+    <!-- =====================================================================
+         2. PRATINJAU ANTARMUKA APLIKASI QURANWEB (SETELAH SPLASH DITUTUP)
+         ===================================================================== -->
+    <div id="quran-app" class="opacity-0 min-h-screen bg-creamWarm text-slate-800 flex flex-col">
+
+        <!-- Header Aplikasi QuranWeb -->
+        <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200/80">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+
+                <!-- Brand QuranWeb -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-9 h-9 rounded-xl bg-emeraldDeep border border-goldSoft/60 flex items-center justify-center">
+                        <svg class="w-6 h-6" viewBox="0 0 64 64" fill="none">
+                            <rect x="16" y="16" width="32" height="32" rx="3" stroke="#D4AF37" stroke-width="2.5" />
+                            <rect x="16" y="16" width="32" height="32" rx="3" transform="rotate(45 32 32)"
+                                stroke="#D4AF37" stroke-width="2.5" />
+                            <path
+                                d="M21 37V26C25 26 29 27.5 32 30C35 27.5 39 26 43 26V37C39 37 35 38.5 32 41C29 38.5 25 37 21 37Z"
+                                stroke="#FDFBF7" stroke-width="2.5" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-serif font-bold text-xl text-emeraldDeep leading-none">
+                            Quran<span class="text-amber-600">Web</span>
+                        </div>
+                        <div class="text-[10px] text-slate-400 font-medium mt-0.5">by MaktabIT Technology</div>
+                    </div>
+                </div>
+
+                <!-- Tombol Putar Ulang Splash Screen -->
+                <button onclick="replayQuranSplash()"
+                    class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emeraldDeep hover:bg-emerald-900 text-goldLight text-xs font-semibold shadow-sm transition-all active:scale-95">
+                    <svg class="w-3.5 h-3.5 text-goldSoft" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                        </path>
+                    </svg>
+                    <span>Tampilkan Muqaddimah / Splash</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Konten Bacaan Surah Al-Fatihah -->
+        <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+
+            <!-- Banner Header Surah -->
+            <div
+                class="rounded-3xl bg-emeraldDeep text-creamWarm p-6 sm:p-8 mb-8 islamic-pattern border border-goldSoft/30 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-left">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-goldSoft/15 text-goldSoft text-xs font-semibold mb-2">
+                        Surah ke-1 • Makkiyah • 7 Ayat
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Al-Fatihah</h2>
+                    <p class="text-xs sm:text-sm text-emerald-100/75 mt-1">Pembukaan (The Opening)</p>
+                </div>
+                <div class="font-arabic text-4xl sm:text-5xl text-goldLight" dir="rtl" lang="ar">
+                    سُورَةُ الْفَاتِحَةِ
+                </div>
+            </div>
+
+            <!-- Daftar Ayat -->
+            <div class="space-y-4">
+                <!-- Ayat 1 -->
+                <div
+                    class="bg-white rounded-2xl p-5 sm:p-7 border border-stone-200/90 shadow-sm hover:border-amber-300/80 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="w-8 h-8 rounded-full bg-emeraldDeep text-goldSoft text-xs font-bold flex items-center justify-center">1</span>
+                        <span class="text-xs text-slate-400">QS. Al-Fatihah: 1</span>
+                    </div>
+                    <p class="font-arabic text-2xl sm:text-4xl text-right text-slate-900 leading-[2.2] mb-4" dir="rtl"
+                        lang="ar">
+                        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                    </p>
+                    <p class="text-xs text-amber-700 italic mb-1">Bismillāhir-raḥmānir-raḥīm(i).</p>
+                    <p class="text-sm sm:text-base text-slate-600">Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.
+                    </p>
+                </div>
+
+                <!-- Ayat 2 -->
+                <div
+                    class="bg-white rounded-2xl p-5 sm:p-7 border border-stone-200/90 shadow-sm hover:border-amber-300/80 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="w-8 h-8 rounded-full bg-emeraldDeep text-goldSoft text-xs font-bold flex items-center justify-center">2</span>
+                        <span class="text-xs text-slate-400">QS. Al-Fatihah: 2</span>
+                    </div>
+                    <p class="font-arabic text-2xl sm:text-4xl text-right text-slate-900 leading-[2.2] mb-4" dir="rtl"
+                        lang="ar">
+                        الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+                    </p>
+                    <p class="text-xs text-amber-700 italic mb-1">Al-ḥamdu lillāhi rabbil-‘ālamīn(a).</p>
+                    <p class="text-sm sm:text-base text-slate-600">Segala puji bagi Allah, Tuhan seluruh alam,</p>
+                </div>
+
+                <!-- Ayat 3 -->
+                <div
+                    class="bg-white rounded-2xl p-5 sm:p-7 border border-stone-200/90 shadow-sm hover:border-amber-300/80 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="w-8 h-8 rounded-full bg-emeraldDeep text-goldSoft text-xs font-bold flex items-center justify-center">3</span>
+                        <span class="text-xs text-slate-400">QS. Al-Fatihah: 3</span>
+                    </div>
+                    <p class="font-arabic text-2xl sm:text-4xl text-right text-slate-900 leading-[2.2] mb-4" dir="rtl"
+                        lang="ar">
+                        الرَّحْمَٰنِ الرَّحِيمِ
+                    </p>
+                    <p class="text-xs text-amber-700 italic mb-1">Ar-raḥmānir-raḥīm(i).</p>
+                    <p class="text-sm sm:text-base text-slate-600">Yang Maha Pengasih, Maha Penyayang,</p>
+                </div>
+
+                <!-- Ayat 4 -->
+                <div
+                    class="bg-white rounded-2xl p-5 sm:p-7 border border-stone-200/90 shadow-sm hover:border-amber-300/80 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="w-8 h-8 rounded-full bg-emeraldDeep text-goldSoft text-xs font-bold flex items-center justify-center">4</span>
+                        <span class="text-xs text-slate-400">QS. Al-Fatihah: 4</span>
+                    </div>
+                    <p class="font-arabic text-2xl sm:text-4xl text-right text-slate-900 leading-[2.2] mb-4" dir="rtl"
+                        lang="ar">
+                        مَالِكِ يَوْمِ الدِّينِ
+                    </p>
+                    <p class="text-xs text-amber-700 italic mb-1">Māliki yaumid-dīn(i).</p>
+                    <p class="text-sm sm:text-base text-slate-600">Pemilik hari pembalasan.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Aplikasi -->
+        <footer class="border-t border-stone-200 bg-white py-6 text-center text-xs text-slate-500">
+            QuranWeb — Dikembangkan dengan penuh ketelitian oleh <strong class="text-emeraldDeep">MaktabIT
+                Technology</strong>
+        </footer>
+    </div>
+
+    <!-- =====================================================================
+         3. LOGIKA JAVASCRIPT SPLASH SCREEN QURANWEB
+         ===================================================================== -->
+    <script>
+        const quranSplash = document.getElementById('quran-splash');
+        const quranApp = document.getElementById('quran-app');
+        const progressBar = document.getElementById('load-progress-bar');
+        const percentText = document.getElementById('load-percent-text');
+        const statusText = document.getElementById('load-status-text');
+
+        let progressValue = 0;
+        let loaderInterval = null;
+
+        const loadingMessages = [
+            { at: 0, text: "Menyiapkan mushaf & indeks 114 surah..." },
+            { at: 40, text: "Memuat tipografi Arab & terjemahan..." },
+            { at: 80, text: "Menyelaraskan antarmuka bacaan..." },
+            { at: 100, text: "Mushaf siap dibaca. Silakan masuk." }
+        ];
+
+        // Menjalankan indikator kesiapan di splash screen tanpa menutup paksa
+        // agar pengguna dapat membaca muqaddimah (preamble) dengan tenang
+        function initQuranSplash() {
+            progressValue = 0;
+            progressBar.style.width = '0%';
+            percentText.textContent = '0%';
+            statusText.textContent = loadingMessages[0].text;
+
+            if (loaderInterval) clearInterval(loaderInterval);
+
+            loaderInterval = setInterval(() => {
+                progressValue = Math.min(progressValue + 4, 100);
+                progressBar.style.width = `${progressValue}%`;
+                percentText.textContent = `${progressValue}%`;
+
+                for (let i = loadingMessages.length - 1; i >= 0; i--) {
+                    if (progressValue >= loadingMessages[i].at) {
+                        statusText.textContent = loadingMessages[i].text;
+                        break;
+                    }
+                }
+
+                if (progressValue >= 100) {
+                    clearInterval(loaderInterval);
+                }
+            }, 45);
+        }
+
+        // Membuka aplikasi utama QuranWeb
+        function openQuranWeb() {
+            if (loaderInterval) clearInterval(loaderInterval);
+            quranSplash.classList.add('splash-exit');
+
+            setTimeout(() => {
+                quranApp.classList.add('app-active');
+                document.body.classList.remove('bg-emeraldDeep');
+                document.body.classList.add('bg-creamWarm');
+            }, 220);
+        }
+
+        // Menampilkan kembali halaman splash screen & muqaddimah
+        function replayQuranSplash() {
+            quranApp.classList.remove('app-active');
+            document.body.classList.remove('bg-creamWarm');
+            document.body.classList.add('bg-emeraldDeep');
+            quranSplash.classList.remove('splash-exit');
+
+            // Reset animasi garis emas pada logo QuranWeb
+            document.querySelectorAll('.quran-logo-path').forEach(path => {
+                path.style.animation = 'none';
+                path.offsetHeight;
+                path.style.animation = null;
+            });
+
+            initQuranSplash();
+        }
+
+        window.addEventListener('DOMContentLoaded', initQuranSplash);
+    </script>
+</body>
+
+</html>

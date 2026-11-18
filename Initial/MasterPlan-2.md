@@ -1,9 +1,11 @@
 # Master Plan 2 & Brainstorming: Ekosistem Pembelajaran, Ibadah & Aksesibilitas QuranWeb
-## Konsep Integrasi Modul Qashashul Anbiya', Jurnal Blog, Standarisasi Akun & Logout, Rencana Khatam 'Ain, Doa-Dzikir, Asbabun Nuzul, Audio Narasi, Kompas Kiblat & Peta Masjid OpenStreetMap
+## Konsep Integrasi Modul Qashashul Anbiya', Jurnal Blog, Standarisasi Akun & Logout, Rencana Khatam 'Ain, Doa-Dzikir, Asbabun Nuzul, Audio Narasi, Kompas Kiblat, Peta Masjid OpenStreetMap, Email Siaran Admin & Unified Docker Deployment
 
 * **Nama Dokumen:** MasterPlan-2.md
-* **Fokus Dokumen:** Brainstorming Konseptual & Perencanaan Strategis Tahap 2 (No Code — Pure Ideation Only)
-* **Kategori:** Ekosistem Edukasi, Tadabbur, Sejarah Nabawi, Jurnal Literasi, Ibadah Harian, Navigasi Masjid & Aksesibilitas Lansia
+* **Versi Dokumen:** 2.1.0 (Full Implementation Realization)
+* **Status Implementasi:** **100% Terealisasi (Step 9 s.d. Step 17 Selesai & Teruji)**
+* **Fokus Dokumen:** Brainstorming Konseptual, Perencanaan Strategis & Realisasi Arsitektur Tahap 2
+* **Kategori:** Ekosistem Edukasi, Tadabbur, Sejarah Nabawi, Jurnal Literasi, Ibadah Harian, Navigasi Masjid, Aksesibilitas Lansia, Email Kampanye & Deployment Kontainer
 * **Target Pengguna:** Umat Muslim Seluruh Usia, Terkhusus Lansia, Keluarga, Guru Tilawah, dan Penuntut Ilmu
 
 ---
@@ -615,11 +617,20 @@ Struktur Entitas Terintegrasi QuranWeb Tahap 2:
 │   ├── historical_context_text & source_reference (As-Suyuthi / Al-Wahidi)
 │   └── vocabulary_tokens (Array kata sukar, akar kata, dan penjelasan arti)
 │
-└── 7. Entitas Peta Masjid Terdekat (Nearby Mosques Cache)
-    ├── mosque_id, name, latitude, longitude, address
-    ├── google_place_id, distance_meters, walking_time_minutes
-    ├── has_ground_floor_wudhu, has_prayer_chairs, is_elder_friendly
-    └── last_cached_at & sync_source ('google_places' | 'openstreetmap')
+├── 7. Entitas Peta Masjid Terdekat (Nearby Mosques Cache)
+│   ├── mosque_id, name, latitude, longitude, address
+│   ├── google_place_id, distance_meters, walking_time_minutes
+│   ├── has_ground_floor_wudhu, has_prayer_chairs, is_elder_friendly
+│   └── last_cached_at & sync_source ('google_places' | 'openstreetmap')
+│
+├── 8. Entitas Konfigurasi Email & Log Siaran (Email Configuration & Campaigns)
+│   ├── email_configurations: smtp_host, smtp_port, smtp_secure, smtp_user, smtp_pass, sender_name, sender_email, is_active
+│   └── email_campaign_logs: campaign_title, subject, category, target_audience, recipient_count, status, sent_by, sent_at, body_html
+│
+└── 9. Kontainerisasi Terpadu & Otomasi Deployment (Unified Docker & Deployment Scripts)
+    ├── Dockerfile tunggal multi-stage & multi-target ('target: web' & 'target: api')
+    ├── docker-compose.yml: healthcheck postgresql, environment variables dinamis (.env)
+    └── Skrip deployment 1-klik: docker_deploy.sh (Linux/macOS) & docker_deploy.bat (Windows)
 ```
 
 ---

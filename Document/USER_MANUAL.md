@@ -43,20 +43,36 @@ Aplikasi ini memiliki keunggulan navigasi berdasarkan **Surat**, **Juz**, dan **
    ```
 3. Buka peramban (Chrome, Edge, Safari, Firefox) pada alamat `http://localhost:5173`.
 
-### B. Menggunakan Docker Container (Port 3382)
-Aplikasi telah dilengkapi kontainer mandiri berbasis Nginx Alpine pada port **3382**:
-1. Jalankan perintah Docker Compose:
+### B. Menggunakan Docker Deployment Script (Sangat Direkomendasikan)
+Aplikasi telah dilengkapi skrip otomatisasi deployment multi-platform berbasis Nginx Alpine pada port **3382**:
+
+1. **Untuk Pengguna Windows:**
+   - Cukup klik dua kali berkas **`docker_deploy.bat`** di Windows Explorer, atau jalankan via Command Prompt:
+     ```cmd
+     docker_deploy.bat
+     ```
+2. **Untuk Pengguna Linux & macOS:**
+   - Berikan izin eksekusi sekali, lalu jalankan:
+     ```bash
+     chmod +x docker_deploy.sh
+     ./docker_deploy.sh
+     ```
+3. **Menggunakan Docker Compose Standar:**
    ```bash
    docker compose up -d --build
    ```
-2. Buka peramban pada alamat:
+4. Buka peramban pada alamat:
    ```text
    http://localhost:3382
    ```
-3. Untuk menghentikan container:
+   - Portal Admin: `http://localhost:3382/admin` (`admin` / `admin123`)
+   - Portal Anggota: `http://localhost:3382/user` (`fulan` / `user123`)
+5. Untuk menghentikan kontainer:
    ```bash
-   docker compose down
+   ./docker_deploy.sh down
+   # atau di Windows: docker_deploy.bat down
    ```
+   Panduan lengkap arsitektur port, pemeliharaan backup database PostgreSQL, dan SSL produksi tersedia di **[DOCKER_DEPLOY.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/DOCKER_DEPLOY.md)**.
 
 ---
 

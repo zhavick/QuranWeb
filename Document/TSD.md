@@ -9,9 +9,9 @@
 | :--- | :--- |
 | **Nama Proyek** | QuranWeb: Platform Tilawah Al-Qur'an Digital Modern Ramah Lansia |
 | **Kode Dokumen** | QW-DOC-TSD-001 |
-| **Versi Dokumen** | 2.0.0 (Comprehensive Architecture Release) |
+| **Versi Dokumen** | 2.1.0 (Comprehensive Architecture Release) |
 | **Status Dokumen** | Disetujui & Tervalidasi Produksi (Production Ready) |
-| **Tanggal Pembaruan** | 17 November 2026 |
+| **Tanggal Pembaruan** | 18 November 2026 |
 | **Target Lingkungan** | Web Browser Modern (Desktop & Mobile), PWA Offline, Docker Container Port 3382 |
 | **Basis Dokumen Rujukan** | [FSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/FSD.md), [TSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/TSD.md), [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md), [MasterPlan.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan.md), [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md), [DEV_STEP.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP.md), [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md), [QualityAssurance.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/QualityAssurance.md) |
 
@@ -625,21 +625,34 @@ Saat instalasi Service Worker (`sw.js`), aset-aset berikut di-cache ke dalam `qu
 
 ## BAB 8: KONFIGURASI DEPLOYMENT & KONTAINERISASI DOCKER (PORT 3382)
 
-### 8.1 Dockerfile Multi-Stage Teroptimasi (Node.js Builder + Nginx Runner)
+### 8.1 Unified Multi-Stage Dockerfile (Target: `web` & `api`)
+
+Seluruh image kontainer frontend dan backend disatukan ke dalam satu berkas `Dockerfile` terpadu:
 
 ```dockerfile
-# Stage 1: Build Environment
+# Stage 1: Base Builder untuk Asset Statis Frontend (Vite + TypeScript)
 FROM node:20-alpine AS builder
 WORKDIR /app
-COPY package*.json ./
+COPY package.json package-lock.json ./
 RUN npm ci
-COPY . .
+COPY index.html tsconfig.json vite.config.ts ./
+COPY src ./src
+COPY public ./public
 RUN npm run build
 
-# Stage 2: Production Web Server
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Target 1: Backend API Service (Node.js 20 on Port 4000)
+FROM node:20-alpine AS api
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+COPY server ./server
+EXPOSE 4000
+CMD ["node", "server/index.js"]
+
+# Target 2: Web Frontend Runner (Nginx Alpine on Port 3382 - Default Target)
+FROM nginx:alpine AS web
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 3382
 CMD ["nginx", "-g", "daemon off;"]
 ```
@@ -694,14 +707,19 @@ services:
     image: postgres:16-alpine
     container_name: quran-postgres
     environment:
-      POSTGRES_DB: quranweb
-      POSTGRES_USER: quran_user
-      POSTGRES_PASSWORD: quran_secret_password
+      POSTGRES_DB: ${POSTGRES_DB:-quranweb}
+      POSTGRES_USER: ${POSTGRES_USER:-quran_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-quran_secret_password}
     ports:
-      - "5572:5432"
+      - "${DB_PORT:-5572}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-quran_user} -d ${POSTGRES_DB:-quranweb}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   api:
     build:
@@ -710,10 +728,11 @@ services:
       target: api
     container_name: quran-api
     environment:
-      DATABASE_URL: postgres://quran_user:quran_secret_password@postgres:5432/quranweb
+      DATABASE_URL: postgres://${POSTGRES_USER:-quran_user}:${POSTGRES_PASSWORD:-quran_secret_password}@postgres:5432/${POSTGRES_DB:-quranweb}
       PORT: 4000
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
 
   quranweb:
@@ -723,7 +742,7 @@ services:
       target: web
     container_name: quran-web
     ports:
-      - "3382:3382"
+      - "${WEB_PORT:-3382}:3382"
     depends_on:
       - api
     restart: unless-stopped
@@ -731,6 +750,11 @@ services:
 volumes:
   postgres_data:
 ```
+
+### 8.4 Skrip Otomasi Deployment Multi-Platform
+- **Linux & macOS:** Menggunakan `docker_deploy.sh` (berbasis Bash dengan pewarnaan terminal, auto-check docker compose, dan perintah `up`, `down`, `restart`, `logs`, `status`, `health`, `clean`).
+- **Windows:** Menggunakan `docker_deploy.bat` (berbasis Batch script interaktif 1-klik untuk developer Windows).
+- **Panduan Terpadu:** Didokumentasikan secara mandiri pada `DOCKER_DEPLOY.md` dan `.env.example`.
 - Perintah eksekusi kontainer: `docker compose up -d --build`.
 - URL akses aplikasi: `http://localhost:3382`.
 

@@ -9,9 +9,9 @@
 | :--- | :--- |
 | **Nama Proyek** | QuranWeb: Platform Tilawah Al-Qur'an Digital Modern Ramah Lansia |
 | **Kode Dokumen** | QW-DOC-FSD-001 |
-| **Versi Dokumen** | 2.0.0 (Comprehensive Release) |
+| **Versi Dokumen** | 2.1.0 (Comprehensive Release) |
 | **Status Dokumen** | Disetujui & Tervalidasi Produksi (Production Ready) |
-| **Tanggal Pembaruan** | 17 November 2026 |
+| **Tanggal Pembaruan** | 18 November 2026 |
 | **Target Lingkungan** | Web Browser Modern (Desktop & Mobile), PWA Offline, Docker Container Port 3382 |
 | **Basis Dokumen Rujukan** | [FSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/FSD.md), [TSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/TSD.md), [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md), [MasterPlan.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan.md), [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md), [DEV_STEP.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP.md), [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md), [QualityAssurance.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/QualityAssurance.md) |
 
@@ -503,8 +503,10 @@ Sistem menerapkan pengamanan sesi (*Session Guard*) pada sisi routing aplikasi:
 - **Enkripsi Kredensial:** Seluruh kata sandi pengguna akun terdaftar disimpan dalam bentuk *hash* satu arah yang aman di database PostgreSQL.
 
 ### 5.6 Portabilitas, Kontainerisasi & Infrastruktur [NFR-06]
-- **Standardisasi Docker Compose:** Seluruh komponen aplikasi (Nginx Web Server, Node.js API Service, dan PostgreSQL Database) terbungkus rapi dalam kontainer Docker multi-tahap yang siap dijalankan dengan satu perintah `docker compose up -d`.
-- **Alokasi Port Mandiri:** Server web Nginx mengekspos port kustom **3382** secara default untuk mencegah benturan port dengan layanan web server lain di komputer host.
+- **Standardisasi Unified Dockerfile:** Seluruh komponen aplikasi frontend Nginx (`target: web`) dan backend Node.js (`target: api`) terkonsolidasi dalam satu berkas `Dockerfile` multi-stage & multi-target terpadu tanpa redundansi berkas terpisah.
+- **Orkestrasi Docker Compose Mandiri:** Nginx Web Server, Node.js API Service, dan PostgreSQL Database terorkestrasi via `docker-compose.yml` dengan healthcheck database otomatis (`pg_isready`) dan restart-resilient policy.
+- **Skrip Deployment Multi-Platform 1-Klik:** Disediakan skrip `docker_deploy.sh` (Linux/macOS) dan `docker_deploy.bat` (Windows) serta berkas panduan deployment resmi `DOCKER_DEPLOY.md` dan `.env.example`.
+- **Alokasi Port Mandiri:** Server web Nginx mengekspos port kustom **3382** secara default, database PostgreSQL pada port **5572**, dan API internal pada port **4000** untuk mencegah benturan port dengan layanan web server lain di host.
 
 ---
 
@@ -616,6 +618,28 @@ CREATE TABLE IF NOT EXISTS nearby_mosques_cache (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_mosques_coords ON nearby_mosques_cache(lat, lng);
+
+-- 10. Tabel Konfigurasi Gateway SMTP & Email
+CREATE TABLE IF NOT EXISTS email_configurations (
+  key VARCHAR(100) PRIMARY KEY,
+  value TEXT NOT NULL,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 11. Tabel Riwayat Pengiriman Email Buletin & Reminder (Outbox)
+CREATE TABLE IF NOT EXISTS email_campaign_logs (
+  id BIGSERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  campaign_type VARCHAR(50) NOT NULL,
+  target_audience VARCHAR(50) NOT NULL,
+  manual_recipients TEXT,
+  subject VARCHAR(255) NOT NULL,
+  content_html TEXT NOT NULL,
+  status VARCHAR(30) DEFAULT 'sent',
+  recipient_count INT DEFAULT 1,
+  sent_by VARCHAR(100) DEFAULT 'admin',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
 ```
 
 ### 6.2 Struktur Penyimpanan Sisi Klien (localStorage & Cache API)
@@ -625,9 +649,11 @@ CREATE INDEX IF NOT EXISTS idx_mosques_coords ON nearby_mosques_cache(lat, lng);
    - `quranweb_bookmarks`: Menyimpan array data bookmark lokal pengguna beserta catatan tadabbur.
    - `quranweb_khatam_progress`: Menyimpan array 'Ain yang telah diselesaikan pada rencana khatam sakinah.
    - `quranweb_auth_session`: Menyimpan token sesi masuk dan identitas ringkas pengguna terdaftar.
+   - `quranweb_email_config`: Menyimpan konfigurasi parameter server SMTP lokal.
+   - `quranweb_email_campaigns`: Menyimpan riwayat siaran email dan outbox lokal.
 2. **Koleksi Cache Service Worker (`Cache API`):**
-   - `quranweb-core-v3`: Berisi HTML app-shell, CSS, bundel JavaScript, dan font Arab `.woff2`.
-   - `quranweb-data-v3`: Berisi berkas JSON metadata Al-Qur'an (`meta.json`), 114 data surat (`surahs/*.json`), data 25 nabi, artikel blog, doa rabbana, asbabun nuzul, gharib, dan audio capsule.
+   - `quranweb-core-v7`: Berisi HTML app-shell, CSS, bundel JavaScript, dan font Arab `.woff2`.
+   - `quranweb-data-v7`: Berisi berkas JSON metadata Al-Qur'an (`meta.json`), 114 data surat (`surahs/*.json`), data 25 nabi, artikel blog, doa rabbana, asbabun nuzul, gharib, audio capsule, dan bibit data masjid.
 
 ### 6.3 Alur Migrasi Data Staging IP ke Akun Permanen
 ```mermaid

@@ -30,7 +30,7 @@ Dokumen ini merupakan panduan tahapan pengembangan teknis (*development steps*) 
 | **Step 14** | Orientasi Shalat Adaptif | **Modul Arah Kiblat Adaptif (*Offline Compass*):** Kompas gerak dinamis di smartphone vs sudut azimuth/jam matahari di laptop, getaran penanda arah tepat Ka'bah. | Menengah | **Selesai (Done)** | Penunjuk kiblat 100% offline dengan rumus trigonometri speris lokal. |
 | **Step 15** | Panduan Jamaah & Geografis | **Modul Peta Masjid Terdekat (OpenStreetMap + Google Maps):** Menu navbar baru `/masjid`, peta Leaflet.js lokal, integrasi izin GPS jadwal shalat, estimasi jalan santai lansia. | Lanjutan | **Selesai (Done)** | Peta OpenStreetMap interaktif, kartu masjid terdekat, rute navigasi suara 1-klik. |
 | **Step 16** | Pendalaman Makna & Inklusivitas | **Modul Asbabun Nuzul, Glosarium Mufradat & Audio Narasi (Audiobook 3 Menit) + Guard Akses Peta Masjid:** Kartu riwayat turunnya ayat, kamus kosakata sukar (*Gharibul Qur'an*), rekaman audio cerita 3 menit dengan Sleep Timer & 0.75x tempo lansia, serta proteksi menu peta masjid wajib memiliki akun. | Lanjutan | **Selesai (Done)** | Dialog Asbabun Nuzul & kamus mufradat di kartu ayat, pemutar audiobook tadabbur 3 menit dengan sleep timer & transkrip teks, serta guard sesi akun untuk menu peta masjid. |
-| **Step 17** | Integrasi Sistem & Rilis Fase 2 | **Audit Aksesibilitas WCAG, Pengujian Tema, PWA Cache & Deployment:** Sinkronisasi skema PostgreSQL baru, uji coba multi-perangkat (Mobile & Desktop), update panduan pengguna. | Akhir (Release) | Rencana | Sistem stabil 100%, PWA offline cache untuk modul baru, siap rilis produksi. |
+| **Step 17** | Integrasi Sistem & Rilis Fase 2 | **Audit Aksesibilitas, Kontainerisasi Terpadu, Docker Deployment & Rilis Fase 2:** Penyatuan Dockerfile multi-target (`web` & `api`), skrip `docker_deploy.sh` / `.bat`, panduan `DOCKER_DEPLOY.md`, header seluler adaptif, PWA v7 cache, dan sinkronisasi dokumentasi menyeluruh. | Akhir (Release) | **Selesai (Done)** | Sistem produksi stabil 100%, 1-klik deploy Docker compose, multi-target container, PWA offline, dokumentasi FSD/TSD/Manual/QA tersinkronisasi. |
 
 ---
 
@@ -219,21 +219,25 @@ Dokumen ini merupakan panduan tahapan pengembangan teknis (*development steps*) 
 ---
 
 ### Step 17: Uji Integrasi Sistem, Standar Aksesibilitas Lansia, PWA & Kontainerisasi Rilis Fase 2
-* **Tujuan:** Memastikan seluruh modul baru terintegrasi secara harmonis, performa tetap ringan (*zero bloat*), dan siap dijalankan secara mandiri di server produksi.
-* **Tugas Spesifik:**
-  1. **Audit Aksesibilitas Ramah Lansia (WCAG AAA Compliance):**
+* **Status:** **Selesai (Done)**
+* **Tujuan:** Memastikan seluruh modul baru terintegrasi secara harmonis, performa tetap ringan (*zero bloat*), menyatukan proses kontainerisasi Docker ke dalam berkas tunggal yang elegan, menyediakan otomasi deployment multi-platform, serta menyinkronkan seluruh dokumentasi arsitektur dan panduan pengguna.
+* **Tugas Spesifik yang Diselesaikan:**
+  1. **Audit Aksesibilitas Ramah Lansia (WCAG AAA Compliance) & Optimalisasi Header Mobile:**
      - Memastikan seluruh tombol dan tap target berukuran minimal `44px × 44px`.
      - Memverifikasi rasio kontras teks dan ikon di 4 tema warna (Light, Dark, Sepia, High Contrast).
-  2. **Migrasi Database PostgreSQL & Caching PWA:**
-     - Menjalankan skrip migrasi tabel baru (`nearby_mosques_cache`, entitas artikel blog, kisah nabi, dan rencana khatam).
-     - Memperbarui Service Worker (`sw.js`) untuk menyimpan aset statis modul baru, ubin peta OpenStreetMap terpilih, dan berkas audio narasi secara offline.
-  3. **Verifikasi Kontainer Docker & Port 3382:**
-     - Memperbarui `docker-compose.yml` multi-container dengan dukungan variabel lingkungan (`.env.example`) dan healthcheck PostgreSQL.
-     - Menyediakan skrip deployment otomatis multi-platform: `docker_deploy.sh` (Linux/macOS) dan `docker_deploy.bat` (Windows) dengan perintah `up`, `down`, `restart`, `status`, `logs`, `health`, dan `clean`.
-     - Menyusun panduan deployment resmi developer di `DOCKER_DEPLOY.md` mencakup alokasi port 3382/5572/4000, backup/restore database, dan reverse proxy SSL produksi.
-  4. **Pembaruan Dokumentasi Resmi:**
-     - Memperbarui berkas `Document/FSD.md`, `Document/TSD.md`, `Document/USER_MANUAL.md`, dan `Initial/QualityAssurance.md` agar mencerminkan seluruh kapabilitas Fase 2.
-* **Kriteria Selesai:** Seluruh pengujian lolos, kontainer Docker berjalan lancar pada port 3382, fitur offline PWA terverifikasi, dan dokumentasi proyek termutakhirkan secara komprehensif.
+     - Mengonsolidasikan deretan tombol header smartphone (Pengaturan, Jadwal Shalat, Info) ke dalam 1 tombol 3-garis "Menu" berlabel jelas untuk mencegah pemotongan teks atau overflow horizontal pada layar `< 640px`.
+     - Menetapkan perlindungan CSS `overflow-x: hidden`, `width: 100%`, dan `max-width: 100vw` di `src/index.css`.
+  2. **Migrasi Database PostgreSQL & Caching PWA v7:**
+     - Menjalankan skrip skema tabel baru (`nearby_mosques_cache`, `email_configurations`, `email_campaign_logs`, entitas artikel blog, kisah nabi, dan rencana khatam).
+     - Memperbarui Service Worker (`sw.js` cache v7) untuk menyimpan aset statis modul baru, ubin peta OpenStreetMap terpilih, dan berkas audio narasi secara offline.
+  3. **Penyatuan Kontainer Docker (`Dockerfile`) & Port Produksi:**
+     - Menggabungkan `Dockerfile.api` ke dalam `Dockerfile` utama melalui arsitektur multi-stage & multi-target (`target: web` dan `target: api`), meniadakan redundansi berkas build.
+     - Memperbarui `docker-compose.yml` multi-container dengan dukungan variabel lingkungan (`.env.example`), alokasi port dinamis (default: Web 3382, API 5572, DB 5433), dan healthcheck PostgreSQL otomatis (`pg_isready`).
+     - Menyediakan skrip deployment otomatis multi-platform: `docker_deploy.sh` (Linux/macOS) dan `docker_deploy.bat` (Windows) dengan argumen `up`, `down`, `restart`, `status`, `logs`, `health`, dan `clean`.
+     - Menyusun panduan deployment resmi developer di `DOCKER_DEPLOY.md` mencakup arsitektur build, alokasi port, siklus hidup container, backup/restore database PostgreSQL, dan reverse proxy SSL produksi.
+  4. **Pembaruan Dokumentasi Resmi Menyeluruh:**
+     - Memperbarui berkas `Document/FSD.md` (v2.1.0), `Document/TSD.md` (v2.1.0), `Document/USER_MANUAL.md` (v2.1.0), `Initial/QualityAssurance.md`, dan `Initial/DEV_STEP_2.md` agar mencerminkan seluruh kapabilitas Fase 2.
+* **Kriteria Selesai:** Seluruh pengujian lolos, kontainer Docker multi-target terverifikasi berjalan lancar pada port 3382 & 5572, skrip deployment multi-platform beroperasi 1-klik, fitur offline PWA terverifikasi, dan dokumentasi proyek termutakhirkan secara komprehensif. Tervalidasi 0 error pada kompilasi TypeScript (`tsc -b`).
 
 ---
 *Dokumen ini merupakan cetak biru resmi urutan pengembangan teknis Fase 2 yang siap menjadi acuan kerja tim pengembang.*

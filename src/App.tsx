@@ -46,6 +46,7 @@ import { AudioMiniPlayer } from './components/audio/AudioMiniPlayer';
 import { JoinPromptModal } from './components/auth/JoinPromptModal';
 import { LogoutConfirmModal } from './components/auth/LogoutConfirmModal';
 import { RegisterView } from './components/auth/RegisterView';
+import { SplashScreen } from './components/common/SplashScreen';
 import { AdminPortal } from './components/admin/AdminPortal';
 import { UserPortal } from './components/user/UserPortal';
 import { ProphetsCatalog } from './components/prophets/ProphetsCatalog';
@@ -170,6 +171,11 @@ export const App: React.FC = () => {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [focusedAyahId, setFocusedAyahId] = useState<number | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [splashOpen, setSplashOpen] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return true;
+    const p = window.location.pathname.toLowerCase();
+    return p === '/' || p === '' || p === '/index.html';
+  });
 
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(() => getStoredUser());
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
@@ -1795,6 +1801,27 @@ export const App: React.FC = () => {
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Aktifkan</span>
                     </button>
+
+                    {/* Tampilkan Muqaddimah / Splash Screen (MaktabIT Technology) */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        setSplashOpen(true);
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-accent-soft)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-accent)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Sparkles className="h-4 w-4 shrink-0 text-amber-500" />
+                        <span>Tampilkan Muqaddimah / Splash</span>
+                      </div>
+                      <span className="text-[10px] font-bold">Buka →</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1967,6 +1994,12 @@ export const App: React.FC = () => {
       <AudioCapsuleModal
         isOpen={audioCapsuleOpen}
         onClose={() => setAudioCapsuleOpen(false)}
+      />
+
+      {/* Splash Screen & Muqaddimah (MaktabIT Technology) */}
+      <SplashScreen
+        isOpen={splashOpen}
+        onClose={() => setSplashOpen(false)}
       />
 
       {/* Toast Notification */}

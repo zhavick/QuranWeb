@@ -11,7 +11,7 @@
   - **Frontend Client:** React 19 + TypeScript + Tailwind CSS (Nginx Alpine reverse proxy)
   - **Otomasi Deployment:** `docker_deploy.sh` (Linux/macOS) & `docker_deploy.bat` (Windows)
   - **Perangkat Uji:** Desktop (macOS Chrome/Safari, Windows Edge/Chrome), Mobile Smartphone (iOS Safari, Android Chrome)
-* **Status Keseluruhan:** **ALL 145 TEST CASES PASSED (100% READY FOR PRODUCTION)**
+* **Status Keseluruhan:** **ALL 146 TEST CASES PASSED (100% READY FOR PRODUCTION)**
 
 ---
 
@@ -47,8 +47,8 @@ Pengujian mencakup seluruh siklus pengembangan dari **Fase 1 (Step 1 s.d. 8)** h
 | **Step 14: CMS Blog, Session Guard Doa, Chart.js & Kiblat** | 11 | 11 | 0 | 0 | **PASS** |
 | **Step 15: Peta Masjid OpenStreetMap & Leaflet.js Lokal** | 12 | 12 | 0 | 0 | **PASS** |
 | **Step 16: Asbabun Nuzul, Gharib, Audiobook 3 Mnt, Email Admin** | 20 | 20 | 0 | 0 | **PASS** |
-| **Step 17: Unified Dockerfile, Deployment Script & Integrasi** | 7 | 7 | 0 | 0 | **PASS** |
-| **TOTAL KESELURUHAN (FASE 1 & FASE 2)** | **145** | **145** | **0** | **0** | **100% PASS** |
+| **Step 17: Unified Dockerfile, Deployment Script & Registrasi** | 8 | 8 | 0 | 0 | **PASS** |
+| **TOTAL KESELURUHAN (FASE 1 & FASE 2)** | **146** | **146** | **0** | **0** | **100% PASS** |
 
 ---
 
@@ -608,12 +608,13 @@ Sebagai persiapan memasuki fase implementasi teknis berikutnya (mengacu pada [DE
 | **TC-ST17-05** | Offline PWA Cache Service Worker v7 (`public/sw.js`) | Seluruh aset data baru (`asbabun_nuzul.json`, `gharibul_quran.json`, `audio_capsules.json`, `mosques_seed.json`) ter-cache otomatis di Service Worker v7, memastikan aplikasi bekerja 100% offline. | **PASS** |
 | **TC-ST17-06** | Audit Standar Aksesibilitas Lansia & Kepatuhan WCAG AAA | Seluruh target sentuhan (tap target) memenuhi standar minimal `44px × 44px`. Rasio kontras teks dan ikon memenuhi kriteria WCAG AAA pada seluruh 4 tema (Light, Dark OLED, Sepia, High Contrast). Mode lansia (Elder Mode) dengan font Arab hingga 52px dan transliterasi/arti besar terverifikasi stabil. | **PASS** |
 | **TC-ST17-07** | Verifikasi Kompilasi TypeScript (`tsc -b`) | Seluruh berkas TypeScript dikompilasi dengan exit code 0 tanpa error tipe (`TS error = 0`). Seluruh impor modul bersih dari variabel tak terpakai. | **PASS** |
+| **TC-ST17-08** | Halaman Pendaftaran Akun Jamaah Baru (`/daftar` & API Registrasi) | Formulir registrasi ramah lansia (`RegisterView.tsx`), tombol toggle lihat/sembunyikan sandi, pencegahan duplikasi akun (HTTP 409), endpoint `POST /api/auth/register`, tab switcher di `/user`, tombol akses di Header/Drawer, dan fallback offline storage `localStorage` berjalan sempurna. | **PASS** |
 
 ---
 
 ## 14. Kesimpulan Akhir & Rekomendasi Rilis Fase 2 (Final Sign-off)
 
-1. **Hasil Akhir Menyeluruh:** Seluruh **145 kasus uji** yang mencakup modul Fase 1 (Step 1 s.d. 8) dan Fase 2 (Step 9 s.d. 17) dinyatakan **100% LULUS (ALL 145 PASS)**.
+1. **Hasil Akhir Menyeluruh:** Seluruh **146 kasus uji** yang mencakup modul Fase 1 (Step 1 s.d. 8) dan Fase 2 (Step 9 s.d. 17) dinyatakan **100% LULUS (ALL 146 PASS)**.
 2. **Kestabilan & Performa:** Aplikasi beroperasi sangat cepat (*zero unnecessary re-render*), memori ringan, hemat kuota data seluler, serta mendukung operasi 100% luring (offline) via Service Worker PWA v7 dan Web Speech API lisan.
 3. **Kepatuhan Terhadap Standar Religi & Aksesibilitas:**
    - Standar mushaf Kemenag RI (RTL, 6.236 ayat, font LPMQ Misbah, kaidah waqaf & tajwid) terpenuhi secara sempurna.

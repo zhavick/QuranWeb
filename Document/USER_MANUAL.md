@@ -325,15 +325,31 @@ Untuk pengelola dan administrator sistem, QuranWeb menyediakan portal khusus pad
 
 ---
 
-## 14. Portal Pengguna & Anggota (`/user`)
+## 14. Portal Pengguna & Anggota (`/user`) serta Pendaftaran Akun (`/daftar`)
 
-Untuk pembaca yang ingin menikmati pengalaman tilawah yang terpersonalisasi, QuranWeb menyediakan portal akun anggota pada rute `/user`:
+Untuk pembaca yang ingin menikmati pengalaman tilawah yang terpersonalisasi, QuranWeb menyediakan portal akun anggota pada rute `/user` serta formulir pendaftaran akun jamaah baru pada rute `/daftar` (atau `/register`):
 
+### 14.1. Pendaftaran Akun Jamaah Baru (`/daftar` atau `/register`)
+1. **Akses Pendaftaran:**
+   - Klik tombol **"Daftar"** berikon `UserPlus` di bilah atas Header desktop atau drawer menu smartphone.
+   - Atau buka langsung tautan `http://localhost:3382/daftar` (atau `/register`).
+   - Atau pilih tab switcher **"Daftar Baru"** pada halaman login `/user`.
+   - Atau klik tombol **"Buka Formulir Pendaftaran Akun Lengkap"** pada popup ajakan bergabung (*JoinPromptModal*).
+2. **Formulir Pendaftaran Ramah Lansia:**
+   - **Nama Lengkap:** Nama pengguna atau nama sapaan santun.
+   - **Username Unik:** Nama pengguna tanpa spasi (minimal 3 karakter).
+   - **Alamat Email:** Alamat surat elektronik aktif untuk komunikasi buletin dan pengingat tilawah.
+   - **Kata Sandi & Konfirmasi:** Dilengkapi tombol toggle mata (*eye icon*) untuk memudahkan lansia memeriksa ketepatan ketikan sandi.
+   - **Opsi Sinkronisasi:** Kotak centang otomatis memindahkan bookmark dan pengaturan yang tersimpan di perangkat ke akun baru.
+3. **Dukungan Pendaftaran Offline:**
+   - Jika server database sedang tidak terhubung atau aplikasi berjalan dalam mode PWA offline, pendaftaran tetap berhasil disimpan di penyimpanan peramban lokal (`localStorage`), dan pengguna langsung masuk (*auto-login*).
+
+### 14.2. Masuk Akun Pengguna (`/user`)
 1. **Akses & Kredensial Pengguna Demo:**
-   - **URL:** `http://localhost:3382/user` (atau klik ikon pengguna `👤` pada bilah atas atau di menu Pengaturan).
+   - **URL:** `http://localhost:3382/user` (atau klik tombol **"Masuk"** pada Header/Drawer).
    - **Username:** `fulan` (atau `user@quranweb.id`)
    - **Password:** `user123`
-   - *Catatan:* Tersedia tombol 1-klik *"Gunakan Otomatis"* pada formulir login untuk masuk langsung tanpa repot mengetik.
+   - *Catatan:* Pengguna baru yang telah mendaftar dapat langsung masuk menggunakan username/email dan kata sandi yang telah dibuat.
 2. **Dashboard Bookmark Pribadi (Card Bookmark):**
    - Menampilkan koleksi ayat yang Anda tandai dalam format kartu modern.
    - Setiap kartu memuat nama surat, nomor ayat, nomor 'Ain, catatan tadabbur pribadi, serta tanggal penyimpanan.

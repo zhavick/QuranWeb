@@ -541,8 +541,141 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ==========================================
-  // 5. AUTHENTICATION (ADMIN & USER LOGIN)
+  // 5. AUTHENTICATION (REGISTER & LOGIN)
   // ==========================================
+  if (pathname === '/api/auth/register' && req.method === 'POST') {
+    const body = await parseJsonBody(req);
+    const fullName = (body.fullName || body.full_name || '').trim();
+    const username = (body.username || '').trim().toLowerCase();
+    const email = (body.email || '').trim().toLowerCase();
+    const password = (body.password || '').trim();
+
+    if (!username || !email || !password) {
+      return sendJson(res, 400, {
+        success: false,
+        message: 'Nama, username, email, dan kata sandi wajib diisi.',
+      });
+    }
+
+    if (username.length < 3) {
+      return sendJson(res, 400, {
+        success: false,
+        message: 'Username minimal harus memiliki 3 karakter.',
+      });
+    }
+
+    if (password.length < 6) {
+      return sendJson(res, 400, {
+        success: false,
+        message: 'Kata sandi minimal harus memiliki 6 karakter.',
+      });
+    }
+
+    // Check existing in DB or memory
+    let existingUser = null;
+    if (pool && dbConnected) {
+      try {
+        const check = await pool.query(
+          'SELECT id, username, email FROM users WHERE username = $1 OR email = $2',
+          [username, email]
+        );
+        if (check.rows.length > 0) {
+          existingUser = check.rows[0];
+        }
+      } catch (err) {
+        console.error('Check user error:', err.message);
+      }
+    }
+
+    if (!existingUser) {
+      existingUser = memoryDb.users.find(
+        (u) => u.username.toLowerCase() === username || u.email.toLowerCase() === email
+      );
+    }
+
+    if (existingUser) {
+      const field = existingUser.username.toLowerCase() === username ? 'Username' : 'Email';
+      return sendJson(res, 409, {
+        success: false,
+        message: `${field} sudah terdaftar. Silakan gunakan yang lain atau masuk ke akun Anda.`,
+      });
+    }
+
+    let newUser = {
+      id: Date.now(),
+      username,
+      email,
+      password,
+      role: 'user',
+      full_name: fullName || username,
+      created_at: new Date().toISOString(),
+    };
+
+    if (pool && dbConnected) {
+      try {
+        const insertRes = await pool.query(
+          `INSERT INTO users (username, email, password, role, full_name, created_at)
+           VALUES ($1, $2, $3, $4, $5, CURRENT_TIMESTAMP)
+           RETURNING id, username, email, role, full_name, created_at`,
+          [username, email, password, 'user', fullName || username]
+        );
+        if (insertRes.rows.length > 0) {
+          newUser = insertRes.rows[0];
+        }
+      } catch (err) {
+        console.error('Insert user error:', err.message);
+      }
+    }
+
+    memoryDb.users.push(newUser);
+
+    // Optional: Migrate staging IP settings/bookmarks to this user if available
+    if (pool && dbConnected) {
+      try {
+        const ipStaging = await pool.query('SELECT bookmarks FROM temp_ip_settings WHERE ip_address = $1', [ip]);
+        if (ipStaging.rows.length > 0 && ipStaging.rows[0].bookmarks) {
+          const bms = ipStaging.rows[0].bookmarks;
+          if (Array.isArray(bms) && bms.length > 0) {
+            for (const b of bms) {
+              await pool.query(
+                `INSERT INTO user_bookmarks (username, surah_id, ayah_number, ain_number, note, created_at)
+                 VALUES ($1, $2, $3, $4, $5, CURRENT_TIMESTAMP)
+                 ON CONFLICT DO NOTHING`,
+                [username, b.surahId, b.ayahNumber, b.ainNumber || 1, b.note || 'Tersinkronisasi dari perangkat']
+              ).catch(() => {});
+            }
+          }
+        }
+      } catch (e) {
+        // Non-blocking
+      }
+    }
+
+    // Record activity log
+    memoryDb.activity_logs.push({
+      id: memoryDb.activity_logs.length + 1,
+      ip_address: ip,
+      activity_type: 'REGISTER_USER',
+      payload: { username, email },
+      created_at: new Date().toISOString(),
+    });
+
+    const safeUser = {
+      id: newUser.id,
+      username: newUser.username,
+      email: newUser.email,
+      role: newUser.role,
+      full_name: newUser.full_name,
+    };
+
+    return sendJson(res, 201, {
+      success: true,
+      message: 'Pendaftaran akun berhasil! Selamat datang di QuranWeb.',
+      token: `quranweb-token-${safeUser.role}-${Date.now()}`,
+      user: safeUser,
+    });
+  }
+
   if (pathname === '/api/auth/login' && req.method === 'POST') {
     const body = await parseJsonBody(req);
     const { username, password } = body;

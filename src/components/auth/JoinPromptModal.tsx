@@ -6,12 +6,14 @@ interface JoinPromptModalProps {
   open: boolean;
   onClose: () => void;
   onSuccess: (msg: string) => void;
+  onNavigateToRegister?: () => void;
 }
 
 export const JoinPromptModal: React.FC<JoinPromptModalProps> = ({
   open,
   onClose,
   onSuccess,
+  onNavigateToRegister,
 }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -125,7 +127,7 @@ export const JoinPromptModal: React.FC<JoinPromptModalProps> = ({
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 rounded-xl py-2.5 text-xs font-bold"
+                className="flex-1 rounded-xl py-2.5 text-xs font-bold cursor-pointer"
                 style={{
                   backgroundColor: 'var(--bg-accent)',
                   color: 'var(--text-on-accent)',
@@ -134,6 +136,23 @@ export const JoinPromptModal: React.FC<JoinPromptModalProps> = ({
                 {loading ? 'Memproses...' : 'Daftar Sekarang'}
               </button>
             </div>
+
+            {onNavigateToRegister && (
+              <div className="pt-2 text-center border-t" style={{ borderColor: 'var(--border-color)' }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                    onNavigateToRegister();
+                  }}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold underline hover:opacity-80 cursor-pointer"
+                  style={{ color: 'var(--text-accent)' }}
+                >
+                  <UserPlus className="h-3.5 w-3.5" />
+                  <span>Buka Formulir Pendaftaran Akun Lengkap</span>
+                </button>
+              </div>
+            )}
           </form>
         )}
       </div>

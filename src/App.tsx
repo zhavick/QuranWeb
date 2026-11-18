@@ -22,6 +22,7 @@ import {
   Navigation,
   MapPin,
   Headphones,
+  UserPlus,
 } from 'lucide-react';
 import type {
   QuranMeta,
@@ -44,6 +45,7 @@ import { TajweedMakhrajModal } from './components/settings/TajweedMakhrajModal';
 import { AudioMiniPlayer } from './components/audio/AudioMiniPlayer';
 import { JoinPromptModal } from './components/auth/JoinPromptModal';
 import { LogoutConfirmModal } from './components/auth/LogoutConfirmModal';
+import { RegisterView } from './components/auth/RegisterView';
 import { AdminPortal } from './components/admin/AdminPortal';
 import { UserPortal } from './components/user/UserPortal';
 import { ProphetsCatalog } from './components/prophets/ProphetsCatalog';
@@ -87,10 +89,11 @@ const DEFAULT_SETTINGS: ReaderSettings = {
 
 export const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<
-    'reader' | 'admin' | 'user' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid'
+    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid'
   >(() => {
     const p = window.location.pathname.toLowerCase();
     if (p === '/admin' || p.startsWith('/admin/')) return 'admin';
+    if (p === '/daftar' || p === '/register' || p.startsWith('/daftar/') || p.startsWith('/register/')) return 'register';
     if (p === '/user' || p.startsWith('/user/')) return 'user';
     if (p === '/kisah' || p.startsWith('/kisah/')) return 'prophets';
     if (p === '/blog' || p.startsWith('/blog/')) return 'blog';
@@ -107,7 +110,7 @@ export const App: React.FC = () => {
   }, []);
 
   const navigateTo = useCallback(
-    (route: 'reader' | 'admin' | 'user' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid') => {
+    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid') => {
       setCurrentRoute(route);
       const path =
         route === 'reader'
@@ -120,6 +123,8 @@ export const App: React.FC = () => {
           ? '/kiblat'
           : route === 'masjid'
           ? '/masjid'
+          : route === 'register'
+          ? '/daftar'
           : `/${route}`;
       if (window.location.pathname !== path) {
         window.history.pushState({}, '', path);
@@ -132,6 +137,7 @@ export const App: React.FC = () => {
     const handlePopState = () => {
       const p = window.location.pathname.toLowerCase();
       if (p === '/admin' || p.startsWith('/admin/')) setCurrentRoute('admin');
+      else if (p === '/daftar' || p === '/register' || p.startsWith('/daftar/') || p.startsWith('/register/')) setCurrentRoute('register');
       else if (p === '/user' || p.startsWith('/user/')) setCurrentRoute('user');
       else if (p === '/kisah' || p.startsWith('/kisah/')) setCurrentRoute('prophets');
       else if (p === '/blog' || p.startsWith('/blog/')) setCurrentRoute('blog');
@@ -639,6 +645,20 @@ export const App: React.FC = () => {
     );
   }
 
+  if (currentRoute === 'register') {
+    return (
+      <RegisterView
+        onBackToMushaf={() => navigateTo('reader')}
+        onNavigateToLogin={() => navigateTo('user')}
+        onRegisterSuccess={(newUser) => {
+          setCurrentUser(newUser);
+          showToast(`Alhamdulillah! Selamat datang, ${newUser.full_name}.`);
+          navigateTo('user');
+        }}
+      />
+    );
+  }
+
   if (currentRoute === 'prophets') {
     return (
       <ProphetsCatalog
@@ -847,20 +867,38 @@ export const App: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <button
-                type="button"
-                onClick={() => navigateTo('user')}
-                aria-label="Masuk ke Akun / Dashboard"
-                title="Masuk / Dashboard Pengguna (/user)"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border cursor-pointer transition-colors"
-                style={{
-                  backgroundColor: 'var(--bg-muted)',
-                  borderColor: 'var(--border-color)',
-                  color: 'var(--text-primary)',
-                }}
-              >
-                <User className="h-4 w-4" />
-              </button>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => navigateTo('user')}
+                  aria-label="Masuk ke Akun / Dashboard"
+                  title="Masuk / Dashboard Pengguna (/user)"
+                  className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors"
+                  style={{
+                    backgroundColor: 'var(--bg-muted)',
+                    borderColor: 'var(--border-color)',
+                    color: 'var(--text-primary)',
+                  }}
+                >
+                  <User className="h-4 w-4" />
+                  <span className="hidden sm:inline">Masuk</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => navigateTo('register')}
+                  aria-label="Daftar Akun Baru"
+                  title="Daftar Akun Jamaah Baru (/daftar)"
+                  className="inline-flex h-9 items-center gap-1.5 rounded-xl px-2.5 sm:px-3 text-xs font-bold cursor-pointer transition-all shadow-xs"
+                  style={{
+                    backgroundColor: 'var(--bg-accent)',
+                    color: 'var(--text-on-accent)',
+                  }}
+                >
+                  <UserPlus className="h-4 w-4" />
+                  <span className="hidden sm:inline">Daftar</span>
+                </button>
+              </div>
             )}
 
             {/* Tombol Akses Cepat Kisah Para Rasulullah */}
@@ -1673,20 +1711,42 @@ export const App: React.FC = () => {
                   ) : (
                     <div>
                       <p className="text-xs mb-2.5" style={{ color: 'var(--text-secondary)' }}>
-                        Masuk untuk menyimpan bookmark, rencana khatam, dan akses penuh fitur Islami.
+                        Masuk atau daftar untuk menyimpan bookmark, rencana khatam, dan akses penuh fitur Islami.
                       </p>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setMobileDrawerOpen(false);
-                          navigateTo('user');
-                        }}
-                        className="flex w-full items-center justify-center gap-2 rounded-xl py-2 text-xs font-bold text-white shadow-xs cursor-pointer"
-                        style={{ backgroundColor: 'var(--bg-accent)' }}
-                      >
-                        <User className="h-3.5 w-3.5" />
-                        <span>Masuk ke Akun / Daftar</span>
-                      </button>
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMobileDrawerOpen(false);
+                            navigateTo('user');
+                          }}
+                          className="flex items-center justify-center gap-1.5 rounded-xl border py-2 text-xs font-bold shadow-xs cursor-pointer"
+                          style={{
+                            backgroundColor: 'var(--bg-muted)',
+                            borderColor: 'var(--border-color)',
+                            color: 'var(--text-primary)',
+                          }}
+                        >
+                          <User className="h-3.5 w-3.5" />
+                          <span>Masuk</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMobileDrawerOpen(false);
+                            navigateTo('register');
+                          }}
+                          className="flex items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-bold shadow-xs cursor-pointer"
+                          style={{
+                            backgroundColor: 'var(--bg-accent)',
+                            color: 'var(--text-on-accent)',
+                          }}
+                        >
+                          <UserPlus className="h-3.5 w-3.5" />
+                          <span>Daftar</span>
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -2091,6 +2151,7 @@ export const App: React.FC = () => {
         open={joinModalOpen}
         onClose={() => setJoinModalOpen(false)}
         onSuccess={(msg) => showToast(msg)}
+        onNavigateToRegister={() => navigateTo('register')}
       />
 
       {/* Logout Confirmation Modal */}

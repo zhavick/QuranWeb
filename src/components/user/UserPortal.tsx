@@ -18,8 +18,10 @@ import {
   Newspaper,
   BookText,
   Compass,
+  UserPlus,
 } from 'lucide-react';
 import { getStoredUser, loginUser, logoutUser, type AuthUser } from '../../services/auth';
+import { RegisterView } from '../auth/RegisterView';
 import {
   getReadLaterList,
   toggleReadLater,
@@ -53,6 +55,7 @@ interface UserPortalProps {
   onPerformSearch: (query: string) => void;
   onOpenBlogArticle?: (slug?: string) => void;
   onOpenKhatamPlanner?: () => void;
+  initialAuthMode?: 'login' | 'register';
 }
 
 export const UserPortal: React.FC<UserPortalProps> = ({
@@ -61,8 +64,10 @@ export const UserPortal: React.FC<UserPortalProps> = ({
   onPerformSearch,
   onOpenBlogArticle,
   onOpenKhatamPlanner,
+  initialAuthMode = 'login',
 }) => {
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(getStoredUser());
+  const [authMode, setAuthMode] = useState<'login' | 'register'>(initialAuthMode);
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [loginError, setLoginError] = useState<string | null>(null);
@@ -237,9 +242,23 @@ export const UserPortal: React.FC<UserPortalProps> = ({
   };
 
   // ==========================================
-  // VIEW: USER LOGIN
+  // VIEW: USER LOGIN / REGISTER
   // ==========================================
   if (!currentUser) {
+    if (authMode === 'register') {
+      return (
+        <RegisterView
+          onBackToMushaf={onBackToApp}
+          onNavigateToLogin={() => setAuthMode('login')}
+          onRegisterSuccess={(newUser) => {
+            setCurrentUser(newUser);
+            loadUserData(newUser.username);
+            showToast(`Alhamdulillah! Selamat datang, ${newUser.full_name}.`);
+          }}
+        />
+      );
+    }
+
     return (
       <div
         className="flex min-h-screen items-center justify-center p-4"
@@ -249,6 +268,36 @@ export const UserPortal: React.FC<UserPortalProps> = ({
           className="w-full max-w-md rounded-2xl border p-6 shadow-2xl sm:p-8"
           style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
         >
+          {/* Tab Switcher: Masuk vs Daftar */}
+          <div
+            className="mb-6 flex rounded-xl border p-1"
+            style={{ backgroundColor: 'var(--bg-muted)', borderColor: 'var(--border-color)' }}
+          >
+            <button
+              type="button"
+              onClick={() => setAuthMode('login')}
+              className="flex-1 rounded-lg py-2 text-xs font-bold transition-all cursor-pointer"
+              style={{
+                backgroundColor: 'var(--bg-card)',
+                color: 'var(--text-accent)',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+              }}
+            >
+              Masuk Akun
+            </button>
+            <button
+              type="button"
+              onClick={() => setAuthMode('register')}
+              className="flex-1 rounded-lg py-2 text-xs font-bold transition-all cursor-pointer"
+              style={{
+                backgroundColor: 'transparent',
+                color: 'var(--text-secondary)',
+              }}
+            >
+              Daftar Baru
+            </button>
+          </div>
+
           <div className="mb-6 text-center">
             <div
               className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-bold text-white shadow-lg"
@@ -322,6 +371,19 @@ export const UserPortal: React.FC<UserPortalProps> = ({
               <span>Masuk Dashboard Pribadi</span>
             </button>
           </form>
+
+          {/* Prompt to Register */}
+          <div className="mt-4 text-center">
+            <button
+              type="button"
+              onClick={() => setAuthMode('register')}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline cursor-pointer"
+              style={{ color: 'var(--text-accent)' }}
+            >
+              <UserPlus className="h-3.5 w-3.5" />
+              <span>Belum punya akun? Daftar Akun Baru Sekarang</span>
+            </button>
+          </div>
 
           <div className="mt-6 border-t pt-4 text-center" style={{ borderColor: 'var(--border-color)' }}>
             <button

@@ -228,8 +228,9 @@ Dokumen ini merupakan panduan tahapan pengembangan teknis (*development steps*) 
      - Menjalankan skrip migrasi tabel baru (`nearby_mosques_cache`, entitas artikel blog, kisah nabi, dan rencana khatam).
      - Memperbarui Service Worker (`sw.js`) untuk menyimpan aset statis modul baru, ubin peta OpenStreetMap terpilih, dan berkas audio narasi secara offline.
   3. **Verifikasi Kontainer Docker & Port 3382:**
-     - Memperbarui `docker-compose.yml` dan `Dockerfile` multi-stage.
-     - Menjalankan uji build dan memverifikasi aplikasi beroperasi penuh tanpa error pada port `3382`.
+     - Memperbarui `docker-compose.yml` multi-container dengan dukungan variabel lingkungan (`.env.example`) dan healthcheck PostgreSQL.
+     - Menyediakan skrip deployment otomatis multi-platform: `docker_deploy.sh` (Linux/macOS) dan `docker_deploy.bat` (Windows) dengan perintah `up`, `down`, `restart`, `status`, `logs`, `health`, dan `clean`.
+     - Menyusun panduan deployment resmi developer di `DOCKER_DEPLOY.md` mencakup alokasi port 3382/5572/4000, backup/restore database, dan reverse proxy SSL produksi.
   4. **Pembaruan Dokumentasi Resmi:**
      - Memperbarui berkas `Document/FSD.md`, `Document/TSD.md`, `Document/USER_MANUAL.md`, dan `Initial/QualityAssurance.md` agar mencerminkan seluruh kapabilitas Fase 2.
 * **Kriteria Selesai:** Seluruh pengujian lolos, kontainer Docker berjalan lancar pada port 3382, fitur offline PWA terverifikasi, dan dokumentasi proyek termutakhirkan secara komprehensif.

@@ -155,20 +155,34 @@ QuranWeb/
 
 ---
 
-### Cara 1: Menjalankan Menggunakan Docker Compose (Direkomendasikan)
+### Cara 1: Menjalankan Menggunakan Docker Deployment Script (Sangat Direkomendasikan)
 
-Cukup jalankan satu perintah berikut di direktori proyek:
+Tersedia skrip deployment otomatis multi-platform:
 
+**Untuk Linux & macOS:**
 ```bash
-docker compose up -d --build
+chmod +x docker_deploy.sh
+./docker_deploy.sh
 ```
+
+**Untuk Windows:**
+```cmd
+docker_deploy.bat
+```
+
+*(Atau via Docker Compose standar: `docker compose up -d --build`)*
 
 Setelah proses build selesai, buka browser Anda pada alamat:
 👉 **[http://localhost:3382](http://localhost:3382)**
+* **Portal Administrator:** [http://localhost:3382/admin](http://localhost:3382/admin) (`admin` / `admin123`)
+* **Portal Anggota:** [http://localhost:3382/user](http://localhost:3382/user) (`fulan` / `user123`)
+
+Panduan deployment, arsitektur port, dan konfigurasi SSL produksi lengkap tersedia di **[DOCKER_DEPLOY.md](DOCKER_DEPLOY.md)**.
 
 Untuk menghentikan kontainer:
 ```bash
-docker compose down
+./docker_deploy.sh down
+# atau di Windows: docker_deploy.bat down
 ```
 
 ---

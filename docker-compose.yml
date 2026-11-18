@@ -3,14 +3,19 @@ services:
     image: postgres:16-alpine
     container_name: quran-postgres
     environment:
-      POSTGRES_DB: quranweb
-      POSTGRES_USER: quran_user
-      POSTGRES_PASSWORD: quran_secret_password
+      POSTGRES_DB: ${POSTGRES_DB:-quranweb}
+      POSTGRES_USER: ${POSTGRES_USER:-quran_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-quran_secret_password}
     ports:
-      - "5572:5432"
+      - "${DB_PORT:-5572}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-quran_user} -d ${POSTGRES_DB:-quranweb}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   api:
     build:
@@ -18,10 +23,11 @@ services:
       dockerfile: Dockerfile.api
     container_name: quran-api
     environment:
-      DATABASE_URL: postgres://quran_user:quran_secret_password@postgres:5432/quranweb
+      DATABASE_URL: postgres://${POSTGRES_USER:-quran_user}:${POSTGRES_PASSWORD:-quran_secret_password}@postgres:5432/${POSTGRES_DB:-quranweb}
       PORT: 4000
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
 
   quranweb:
@@ -30,7 +36,7 @@ services:
       dockerfile: Dockerfile
     container_name: quran-web
     ports:
-      - "3382:3382"
+      - "${WEB_PORT:-3382}:3382"
     depends_on:
       - api
     restart: unless-stopped

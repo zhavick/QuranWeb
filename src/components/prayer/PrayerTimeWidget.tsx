@@ -72,7 +72,7 @@ export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
           <div
-            className="absolute right-0 z-50 mt-2 w-80 rounded-3xl border p-4 shadow-2xl"
+            className="fixed inset-x-3 top-16 sm:inset-x-auto sm:absolute sm:right-0 sm:top-full sm:mt-2 w-auto sm:w-80 max-w-[calc(100vw-1.5rem)] rounded-3xl border p-4 shadow-2xl z-50"
             style={{
               backgroundColor: 'var(--bg-card)',
               borderColor: 'var(--border-color)',

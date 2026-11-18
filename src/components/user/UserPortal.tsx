@@ -178,11 +178,6 @@ export const UserPortal: React.FC<UserPortalProps> = ({
     }
   };
 
-  const fillDemoCredentials = () => {
-    setUsernameInput('fulan');
-    setPasswordInput('user123');
-  };
-
   const handleLogout = () => {
     logoutUser();
     setCurrentUser(null);
@@ -269,31 +264,6 @@ export const UserPortal: React.FC<UserPortalProps> = ({
             </p>
           </div>
 
-          {/* Preset Demo Box */}
-          <div
-            className="mb-5 rounded-xl border p-3.5 text-xs leading-relaxed"
-            style={{
-              backgroundColor: 'var(--bg-accent-soft)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--text-primary)',
-            }}
-          >
-            <div className="font-bold flex items-center justify-between">
-              <span>👤 Akun Demo Pengguna:</span>
-              <button
-                type="button"
-                onClick={fillDemoCredentials}
-                className="underline hover:text-emerald-500 font-semibold cursor-pointer"
-              >
-                Gunakan Otomatis
-              </button>
-            </div>
-            <div className="mt-1.5 font-mono text-[11px] space-y-0.5" style={{ color: 'var(--text-secondary)' }}>
-              <div>Username: <span className="font-bold text-emerald-600 dark:text-emerald-400">fulan</span> (atau user@quranweb.id)</div>
-              <div>Password: <span className="font-bold text-emerald-600 dark:text-emerald-400">user123</span></div>
-            </div>
-          </div>
-
           {loginError && (
             <div className="mb-4 flex items-center gap-2 rounded-xl bg-red-500/10 p-3 text-xs text-red-500 border border-red-500/20">
               <AlertCircle className="h-4 w-4 shrink-0" />
@@ -311,7 +281,7 @@ export const UserPortal: React.FC<UserPortalProps> = ({
                 required
                 value={usernameInput}
                 onChange={(e) => setUsernameInput(e.target.value)}
-                placeholder="fulan"
+                placeholder="Masukkan username atau email"
                 className="w-full rounded-xl border px-3.5 py-2.5 text-sm outline-none transition-colors"
                 style={{
                   backgroundColor: 'var(--bg-muted)',

@@ -591,49 +591,6 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
             </p>
           </div>
 
-          {/* Preset Demo Box */}
-          <div
-            className="mb-5 rounded-xl border p-3.5 text-xs leading-relaxed"
-            style={{
-              backgroundColor: 'var(--bg-accent-soft)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--text-primary)',
-            }}
-          >
-            <div className="font-bold flex items-center justify-between mb-2">
-              <span>🔐 Pilih Kredensial Pengujian (RBAC):</span>
-            </div>
-            <div className="grid grid-cols-3 gap-1.5 font-mono text-[11px]">
-              <button
-                type="button"
-                onClick={() => { setUsernameInput('admin'); setPasswordInput('admin123'); }}
-                className="rounded-lg border p-1.5 text-center hover:bg-emerald-500/20 transition-colors cursor-pointer"
-                style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
-              >
-                <div className="font-bold text-emerald-600 dark:text-emerald-400">admin</div>
-                <div className="text-[10px] text-zinc-500">Super Admin</div>
-              </button>
-              <button
-                type="button"
-                onClick={() => { setUsernameInput('asatidz'); setPasswordInput('asatidz123'); }}
-                className="rounded-lg border p-1.5 text-center hover:bg-emerald-500/20 transition-colors cursor-pointer"
-                style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
-              >
-                <div className="font-bold text-emerald-600 dark:text-emerald-400">asatidz</div>
-                <div className="text-[10px] text-zinc-500">Asatidz</div>
-              </button>
-              <button
-                type="button"
-                onClick={() => { setUsernameInput('editor'); setPasswordInput('editor123'); }}
-                className="rounded-lg border p-1.5 text-center hover:bg-emerald-500/20 transition-colors cursor-pointer"
-                style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
-              >
-                <div className="font-bold text-emerald-600 dark:text-emerald-400">editor</div>
-                <div className="text-[10px] text-zinc-500">Editor</div>
-              </button>
-            </div>
-          </div>
-
           {loginError && (
             <div className="mb-4 flex items-center gap-2 rounded-xl bg-red-500/10 p-3 text-xs text-red-500 border border-red-500/20">
               <AlertCircle className="h-4 w-4 shrink-0" />
@@ -651,7 +608,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 required
                 value={usernameInput}
                 onChange={(e) => setUsernameInput(e.target.value)}
-                placeholder="admin"
+                placeholder="Masukkan username atau email"
                 className="w-full rounded-xl border px-3.5 py-2.5 text-sm outline-none transition-colors"
                 style={{
                   backgroundColor: 'var(--bg-muted)',

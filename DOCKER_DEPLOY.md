@@ -35,6 +35,8 @@ Aplikasi QuranWeb dirancang menggunakan arsitektur modular multi-kontainer yang 
 | **`quran-api`** | `node:20-alpine` | - | `4000` | Backend API (telemetri IP, audit logs, sinkronisasi staging, email campaign). |
 | **`quran-postgres`** | `postgres:16-alpine` | **`5572`** | `5432` | Basis data relasional persisten (visitor logs, users, bookmarks, mosques cache). |
 
+> **Catatan Arsitektur Build:** Service `quran-web` dan `quran-api` dibangun dari satu berkas **`Dockerfile`** terpadu (*Unified Multi-Stage Dockerfile*) menggunakan target build spesifik (`target: web` untuk frontend Nginx dan `target: api` untuk backend Node.js), menyederhanakan siklus pemeliharaan berkas kontainer.
+
 ---
 
 ## 2. Prasyarat Sistem

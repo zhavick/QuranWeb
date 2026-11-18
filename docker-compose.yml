@@ -20,7 +20,8 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile.api
+      dockerfile: Dockerfile
+      target: api
     container_name: quran-api
     environment:
       DATABASE_URL: postgres://${POSTGRES_USER:-quran_user}:${POSTGRES_PASSWORD:-quran_secret_password}@postgres:5432/${POSTGRES_DB:-quranweb}
@@ -34,6 +35,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: web
     container_name: quran-web
     ports:
       - "${WEB_PORT:-3382}:3382"

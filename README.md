@@ -137,8 +137,7 @@ QuranWeb/
 │   ├── App.tsx               # Komponen Induk Aplikasi
 │   └── main.tsx              # Entry Point Vite
 ├── docker-compose.yml        # Orkestrasi PostgreSQL 16 + Node.js API + Web Nginx
-├── Dockerfile                # Multi-stage build Nginx Client
-├── Dockerfile.api            # Dockerfile Backend API
+├── Dockerfile                # Unified Multi-Stage Dockerfile (Target: web & api)
 ├── nginx.conf                # Konfigurasi Reverse Proxy Nginx & Routing SPA
 ├── package.json              # Dependensi & Script Proyek
 ├── tsconfig.json             # Konfigurasi TypeScript

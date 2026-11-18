@@ -797,10 +797,14 @@ export const App: React.FC = () => {
             </div>
           </div>
 
-          {/* Right on Desktop (lg:): Full Toolbar */}
-          <div className="hidden lg:flex items-center gap-2 shrink-0">
+          {/* Right Header Toolbar (Clean, Unified & Clutter-Free across all devices) */}
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Widget Jadwal Shalat */}
             <PrayerTimeWidget
-              onOpenKhatamPlanner={currentUser ? () => setKhatamPlannerOpen(true) : undefined}
+              onOpenKhatamPlanner={currentUser ? () => {
+                setKhatamPlannerOpen(true);
+                logActivity('OPEN_KHATAM_PLANNER');
+              } : undefined}
               onOpenQibla={() => navigateTo('kiblat')}
               onOpenMosqueMap={() => {
                 if (!currentUser) {
@@ -811,242 +815,7 @@ export const App: React.FC = () => {
               }}
             />
 
-            {/* Adaptive User Session / Quick Logout */}
-            {currentUser ? (
-              <div className="flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (currentUser.role === 'admin' || currentUser.role === 'asatidz' || currentUser.role === 'editor') {
-                      navigateTo('admin');
-                    } else {
-                      navigateTo('user');
-                    }
-                  }}
-                  aria-label={`Profil ${currentUser.full_name} (${currentUser.role})`}
-                  title={`Masuk sebagai ${currentUser.full_name} (${currentUser.role}) — Klik untuk buka portal`}
-                  className="inline-flex h-9 items-center gap-2 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-all hover:opacity-95"
-                  style={{
-                    backgroundColor: 'var(--bg-accent-soft)',
-                    borderColor: 'var(--border-color)',
-                    color: 'var(--text-primary)',
-                  }}
-                >
-                  <span
-                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white uppercase shadow-xs"
-                    style={{ backgroundColor: 'var(--bg-accent)' }}
-                  >
-                    {currentUser.username.charAt(0) || 'U'}
-                  </span>
-                  <span className="max-w-[70px] sm:max-w-[110px] truncate hidden xs:inline">
-                    {currentUser.username}
-                  </span>
-                  <span
-                    className="rounded-md px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider hidden md:inline"
-                    style={{
-                      backgroundColor: 'var(--bg-muted)',
-                      color: 'var(--text-accent)',
-                    }}
-                  >
-                    {currentUser.role}
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setLogoutModalOpen(true)}
-                  aria-label="Keluar dari Akun (Logout)"
-                  title="Keluar dari Akun (Logout)"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl border cursor-pointer transition-all hover:bg-red-500/10 hover:border-red-500/30 text-red-500"
-                  style={{
-                    backgroundColor: 'var(--bg-muted)',
-                    borderColor: 'var(--border-color)',
-                  }}
-                >
-                  <LogOut className="h-4 w-4" />
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => navigateTo('user')}
-                  aria-label="Masuk ke Akun / Dashboard"
-                  title="Masuk / Dashboard Pengguna (/user)"
-                  className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors"
-                  style={{
-                    backgroundColor: 'var(--bg-muted)',
-                    borderColor: 'var(--border-color)',
-                    color: 'var(--text-primary)',
-                  }}
-                >
-                  <User className="h-4 w-4" />
-                  <span className="hidden sm:inline">Masuk</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => navigateTo('register')}
-                  aria-label="Daftar Akun Baru"
-                  title="Daftar Akun Jamaah Baru (/daftar)"
-                  className="inline-flex h-9 items-center gap-1.5 rounded-xl px-2.5 sm:px-3 text-xs font-bold cursor-pointer transition-all shadow-xs"
-                  style={{
-                    backgroundColor: 'var(--bg-accent)',
-                    color: 'var(--text-on-accent)',
-                  }}
-                >
-                  <UserPlus className="h-4 w-4" />
-                  <span className="hidden sm:inline">Daftar</span>
-                </button>
-              </div>
-            )}
-
-            {/* Tombol Akses Cepat Kisah Para Rasulullah */}
-            <button
-              type="button"
-              onClick={() => navigateTo('prophets')}
-              aria-label="Kisah Para Rasulullah (25 Nabi)"
-              title="Kisah Para Rasulullah (Qashashul Anbiya' — 25 Nabi)"
-              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
-              style={{
-                backgroundColor: 'var(--bg-muted)',
-                borderColor: 'var(--border-color)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              <Compass className="h-4 w-4 text-amber-500" />
-              <span className="hidden sm:inline">Kisah Rasul</span>
-            </button>
-
-            {/* Tombol Akses Cepat Jurnal Blog & Tadabbur */}
-            <button
-              type="button"
-              onClick={() => navigateTo('blog')}
-              aria-label="Jurnal Literasi & Blog Tadabbur"
-              title="Jurnal Literasi & Blog Tadabbur Qur'ani (/blog)"
-              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
-              style={{
-                backgroundColor: 'var(--bg-muted)',
-                borderColor: 'var(--border-color)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              <Newspaper className="h-4 w-4 text-emerald-500" />
-              <span className="hidden sm:inline">Jurnal Blog</span>
-            </button>
-
-            {/* Tombol Akses Cepat Kompas Arah Kiblat */}
-            <button
-              type="button"
-              onClick={() => navigateTo('kiblat')}
-              aria-label="Kompas Arah Kiblat"
-              title="Kompas Arah Kiblat Adaptif (/kiblat)"
-              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
-              style={{
-                backgroundColor: 'var(--bg-muted)',
-                borderColor: 'var(--border-color)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              <Navigation className="h-4 w-4 text-emerald-500" />
-              <span className="hidden sm:inline">Arah Kiblat</span>
-            </button>
-
-            {/* Tombol Akses Cepat Peta Masjid Terdekat (Hanya ditampilkan jika memiliki akun) */}
-            {currentUser && (
-              <button
-                type="button"
-                onClick={() => navigateTo('masjid')}
-                aria-label="Peta Masjid Terdekat"
-                title="Peta Masjid Terdekat OpenStreetMap (/masjid)"
-                className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
-                style={{
-                  backgroundColor: 'var(--bg-muted)',
-                  borderColor: 'var(--border-color)',
-                  color: 'var(--text-primary)',
-                }}
-              >
-                <MapPin className="h-4 w-4 text-emerald-500" />
-                <span className="hidden md:inline">Peta Masjid</span>
-              </button>
-            )}
-
-            {/* Tombol Akses Cepat Doa Qur'ani & Dzikir (Hanya ditampilkan jika memiliki akun) */}
-            {currentUser && (
-              <button
-                type="button"
-                onClick={() => navigateTo('prayers')}
-                aria-label="Kumpulan Doa Qur'ani & Dzikir"
-                title="Kumpulan Doa Qur'ani (40 Rabbana) & Tasbih Haptic (/doa)"
-                className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
-                style={{
-                  backgroundColor: 'var(--bg-muted)',
-                  borderColor: 'var(--border-color)',
-                  color: 'var(--text-primary)',
-                }}
-              >
-                <Sparkles className="h-4 w-4 text-emerald-500" />
-                <span className="hidden sm:inline">Doa &amp; Dzikir</span>
-              </button>
-            )}
-
-            {/* Tombol Audio Capsule / Audiobook 3 Menit (Step 16) */}
-            <button
-              type="button"
-              onClick={() => {
-                setAudioCapsuleOpen(true);
-                logActivity('OPEN_AUDIO_CAPSULE');
-              }}
-              aria-label="Audiobook Tadabbur 3 Menit"
-              title="Dengarkan Audio Narasi Tadabbur & Kisah Ringkas 3 Menit (Audiobook)"
-              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
-              style={{
-                backgroundColor: 'var(--bg-muted)',
-                borderColor: 'var(--border-color)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              <Headphones className="h-4 w-4 text-amber-500" />
-              <span className="hidden xl:inline">Audiobook 3 Mnt</span>
-            </button>
-
-            {/* Tombol Akses Cepat Rencana Khatam Sakinah (Hanya ditampilkan jika memiliki akun) */}
-            {currentUser && (
-              <button
-                type="button"
-                onClick={() => {
-                  setKhatamPlannerOpen(true);
-                  logActivity('OPEN_KHATAM_PLANNER');
-                }}
-                aria-label="Rencana Khatam Sakinah Berbasis 'Ain"
-                title="Rencana Khatam Sakinah (Khatam Planner Berbasis 'Ain)"
-                className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
-                style={{
-                  backgroundColor: 'var(--bg-muted)',
-                  borderColor: 'var(--border-color)',
-                  color: 'var(--text-primary)',
-                }}
-              >
-                <Compass className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                <span className="hidden sm:inline">Rencana Khatam</span>
-              </button>
-            )}
-
-            <button
-              type="button"
-              onClick={() => setTajweedGuideOpen(true)}
-              aria-label="Panduan Tajwid dan Makhraj"
-              title="Panduan Tajwid & Makhraj"
-              className="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-xl border cursor-pointer"
-              style={{
-                backgroundColor: 'var(--bg-muted)',
-                borderColor: 'var(--border-color)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              <GraduationCap className="h-4 w-4" />
-            </button>
-
+            {/* Quick Settings Icon */}
             <button
               type="button"
               onClick={() => {
@@ -1055,7 +824,7 @@ export const App: React.FC = () => {
               }}
               aria-label="Pengaturan dan Aksesibilitas"
               title="Pengaturan & Aksesibilitas"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-xl border cursor-pointer"
+              className="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-xl border cursor-pointer transition-colors"
               style={{
                 backgroundColor: 'var(--bg-muted)',
                 borderColor: 'var(--border-color)',
@@ -1065,12 +834,13 @@ export const App: React.FC = () => {
               <Settings className="h-4 w-4" />
             </button>
 
+            {/* Fullscreen Zen Mode Button */}
             <button
               type="button"
               onClick={toggleFullscreen}
               aria-label="Mode Layar Penuh"
               title="Mode Layar Penuh (F)"
-              className="hidden lg:inline-flex h-9 items-center gap-1.5 rounded-xl px-3 text-xs font-semibold cursor-pointer"
+              className="hidden md:inline-flex h-9 items-center gap-1.5 rounded-xl px-3 text-xs font-semibold cursor-pointer transition-all shadow-xs"
               style={{
                 backgroundColor: 'var(--bg-accent)',
                 color: 'var(--text-on-accent)',
@@ -1079,18 +849,17 @@ export const App: React.FC = () => {
               <Maximize2 className="h-3.5 w-3.5" />
               <span>Layar Penuh</span>
             </button>
-          </div>
 
-          {/* Right on Smartphone / Mobile (< lg): SINGLE 3-STRIP BUTTON ONLY */}
-          <div className="flex lg:hidden items-center shrink-0">
+            {/* SINGLE UNIFIED 3-STRIP MENU BUTTON (Dropdown/Drawer untuk Desktop & Mobile) */}
             <button
               type="button"
               onClick={() => {
                 setMobileDrawerOpen(true);
                 setMobileDrawerTab('menu');
               }}
-              aria-label="Buka Menu 3 Strip"
-              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-2.5 sm:px-3 text-xs font-bold cursor-pointer transition-all shadow-xs"
+              aria-label="Buka Menu Dropdown 3 Strip"
+              title="Menu Lengkap & Fitur QuranWeb"
+              className="inline-flex h-9 items-center gap-1.5 rounded-xl border px-3 text-xs font-bold cursor-pointer transition-all shadow-xs hover:opacity-90"
               style={{
                 backgroundColor: 'var(--bg-accent-soft)',
                 borderColor: 'var(--border-color)',
@@ -1517,15 +1286,15 @@ export const App: React.FC = () => {
         </nav>
       )}
 
-      {/* Mobile Slide-Over 3-Strip Menu & Navigation Drawer */}
+      {/* Slide-Over 3-Strip Dropdown Menu & Navigation Panel (Desktop & Mobile) */}
       {mobileDrawerOpen && (
-        <div className="fixed inset-0 z-50 flex lg:hidden">
+        <div className="fixed inset-0 z-50 flex justify-end">
           <div
             className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
             onClick={() => setMobileDrawerOpen(false)}
           />
           <div
-            className="relative z-10 flex h-full w-88 max-w-[90vw] flex-col border-r shadow-2xl"
+            className="relative z-10 flex h-full w-88 sm:w-96 max-w-[92vw] flex-col border-l shadow-2xl transition-transform"
             style={{
               backgroundColor: 'var(--bg-secondary)',
               borderColor: 'var(--border-color)',

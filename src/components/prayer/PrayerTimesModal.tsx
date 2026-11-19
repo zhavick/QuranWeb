@@ -7,6 +7,8 @@ import {
   Square,
   CheckCircle2,
   Sparkles,
+  Clock,
+  Sliders,
 } from 'lucide-react';
 import {
   PrayerAdhanSettings,
@@ -21,6 +23,8 @@ import {
   stopAdhan,
   requestNotificationPermission,
 } from '../../services/adhanAudio';
+import { PrayerChecklistWidget } from './PrayerChecklistWidget';
+import { PrayerReminderSettingsModal } from './PrayerReminderSettingsModal';
 
 interface PrayerTimesModalProps {
   isOpen: boolean;
@@ -34,6 +38,8 @@ export const PrayerTimesModal: React.FC<PrayerTimesModalProps> = ({
   elderMode = false,
 }) => {
   const [settings, setSettings] = useState<PrayerAdhanSettings>(() => getAdhanSettings());
+  const [activeTab, setActiveTab] = useState<'adhan' | 'checklist'>('adhan');
+  const [reminderModalOpen, setReminderModalOpen] = useState(false);
   const [previewingId, setPreviewingId] = useState<string | null>(null);
   const [notifGranted, setNotifGranted] = useState<boolean>(() => {
     return typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted';
@@ -95,16 +101,18 @@ export const PrayerTimesModal: React.FC<PrayerTimesModalProps> = ({
         <div className="flex items-center justify-between border-b px-5 py-4" style={{ borderColor: 'var(--border-color)' }}>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-              <Volume2 className="h-5 w-5" />
+              {activeTab === 'adhan' ? <Volume2 className="h-5 w-5" /> : <CheckCircle2 className="h-5 w-5" />}
             </div>
             <div>
               <h2 className="text-sm sm:text-base font-bold flex items-center gap-2">
-                <span>Pengaturan Audio Azan Otomatis</span>
+                <span>{activeTab === 'adhan' ? 'Pengaturan Audio Azan Otomatis' : 'Pelacak Kepatuhan & Pengingat'}</span>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                  Auto-Adhan
+                  {activeTab === 'adhan' ? 'Auto-Adhan' : 'Smart Reminder'}
                 </span>
               </h2>
-              <p className="text-xs text-[var(--text-secondary)]">Pilihan Muadzin, Mode Suara &amp; Notifikasi Shalat</p>
+              <p className="text-xs text-[var(--text-secondary)]">
+                {activeTab === 'adhan' ? 'Pilihan Muadzin, Mode Suara & Notifikasi Shalat' : 'Checklist Ibadah Harian & Pengingat Bertahap Shalat'}
+              </p>
             </div>
           </div>
           <button
@@ -116,9 +124,75 @@ export const PrayerTimesModal: React.FC<PrayerTimesModalProps> = ({
           </button>
         </div>
 
+        {/* Tab Switcher */}
+        <div className="flex border-b bg-black/5 dark:bg-white/5" style={{ borderColor: 'var(--border-color)' }}>
+          <button
+            type="button"
+            onClick={() => setActiveTab('adhan')}
+            className={`flex-1 py-2.5 px-3 text-xs font-bold flex items-center justify-center gap-2 border-b-2 transition-all cursor-pointer ${
+              activeTab === 'adhan'
+                ? 'border-emerald-600 text-emerald-600 dark:text-emerald-400 bg-[var(--bg-card)]'
+                : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+            }`}
+          >
+            <Volume2 className="h-4 w-4" />
+            <span>Audio Azan Otomatis</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('checklist')}
+            className={`flex-1 py-2.5 px-3 text-xs font-bold flex items-center justify-center gap-2 border-b-2 transition-all cursor-pointer ${
+              activeTab === 'checklist'
+                ? 'border-emerald-600 text-emerald-600 dark:text-emerald-400 bg-[var(--bg-card)]'
+                : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+            }`}
+          >
+            <CheckCircle2 className="h-4 w-4" />
+            <span>Checklist &amp; Pengingat</span>
+          </button>
+        </div>
+
         {/* Modal Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-5 space-y-5">
-          {/* 1. Global Toggle Auto-Adhan */}
+          {activeTab === 'checklist' ? (
+            <div className="space-y-4">
+              <PrayerChecklistWidget
+                elderMode={elderMode}
+                onOpenSettings={() => setReminderModalOpen(true)}
+              />
+
+              {/* Shortcut card for Smart Reminders Configuration */}
+              <div
+                className="rounded-xl border p-4 flex items-center justify-between gap-4"
+                style={{
+                  backgroundColor: 'var(--bg-muted)',
+                  borderColor: 'var(--border-color)',
+                }}
+              >
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4 text-amber-500" />
+                    <span className="text-xs font-bold text-[var(--text-primary)]">
+                      Pengingat Bertahap (Smart Reminders)
+                    </span>
+                  </div>
+                  <span className="text-[11px] text-[var(--text-secondary)] block">
+                    Reminder I (10m), Reminder II (20m), interval kustom, serta peringatan sebelum waktu habis.
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setReminderModalOpen(true)}
+                  className="px-3 py-1.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] hover:border-emerald-500/50 text-xs font-bold text-[var(--text-accent)] cursor-pointer whitespace-nowrap"
+                >
+                  Konfigurasi ➔
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* 1. Global Toggle Auto-Adhan */}
           <div
             className="rounded-xl border p-4 flex items-center justify-between gap-4"
             style={{
@@ -289,6 +363,8 @@ export const PrayerTimesModal: React.FC<PrayerTimesModalProps> = ({
               </span>
             )}
           </div>
+            </>
+          )}
         </div>
 
         {/* Footer Actions */}
@@ -296,15 +372,27 @@ export const PrayerTimesModal: React.FC<PrayerTimesModalProps> = ({
           className="border-t p-4 flex flex-wrap items-center justify-between gap-3"
           style={{ borderColor: 'var(--border-color)', backgroundColor: 'var(--bg-muted)' }}
         >
-          <button
-            type="button"
-            onClick={handleTestAdhan}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
-            style={{ borderColor: 'var(--border-color)' }}
-          >
-            <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-            <span>Uji Coba Panggilan Azan</span>
-          </button>
+          {activeTab === 'adhan' ? (
+            <button
+              type="button"
+              onClick={handleTestAdhan}
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
+              style={{ borderColor: 'var(--border-color)' }}
+            >
+              <Sparkles className="h-3.5 w-3.5 text-amber-500" />
+              <span>Uji Coba Panggilan Azan</span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setReminderModalOpen(true)}
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
+              style={{ borderColor: 'var(--border-color)' }}
+            >
+              <Sliders className="h-3.5 w-3.5 text-emerald-500" />
+              <span>Atur Interval Smart Reminder</span>
+            </button>
+          )}
 
           <button
             type="button"
@@ -315,6 +403,13 @@ export const PrayerTimesModal: React.FC<PrayerTimesModalProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Embedded Smart Reminder Settings Modal */}
+      <PrayerReminderSettingsModal
+        isOpen={reminderModalOpen}
+        onClose={() => setReminderModalOpen(false)}
+        elderMode={elderMode}
+      />
     </div>
   );
 };

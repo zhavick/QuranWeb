@@ -28,6 +28,7 @@ import {
   Award,
   Calendar,
   Volume2,
+  CheckCircle2,
 } from 'lucide-react';
 import type {
   QuranMeta,
@@ -74,6 +75,10 @@ import { TafsirModal } from './components/reader/TafsirModal';
 import { AyahPosterModal } from './components/reader/AyahPosterModal';
 import { AdhanPlayerModal } from './components/prayer/AdhanPlayerModal';
 import { PrayerTimesModal } from './components/prayer/PrayerTimesModal';
+import { PrayerReminderBanner } from './components/prayer/PrayerReminderBanner';
+import { PrayerReminderSettingsModal } from './components/prayer/PrayerReminderSettingsModal';
+import { PrayerChecklistWidget } from './components/prayer/PrayerChecklistWidget';
+import { checkAndTriggerReminders, PrayerTimeSlot } from './services/prayerReminder';
 import { ActiveAdhanState } from './types/adhan';
 import { subscribeAdhanTrigger, triggerAdhan, getAdhanSettings } from './services/adhanAudio';
 import { Coordinates, PrayerTimes, Madhab } from 'adhan';
@@ -237,6 +242,8 @@ export const App: React.FC = () => {
   // Step 28 Auto-Adhan State
   const [activeAdhanState, setActiveAdhanState] = useState<ActiveAdhanState | null>(null);
   const [adhanSettingsOpen, setAdhanSettingsOpen] = useState(false);
+  // Step 29 Smart Reminders Modal State
+  const [prayerReminderModalOpen, setPrayerReminderModalOpen] = useState(false);
 
   // Live actual time state for header marquee banner
   const [currentActualTime, setCurrentActualTime] = useState(() => {
@@ -276,7 +283,6 @@ export const App: React.FC = () => {
 
     const adhanCheckTimer = setInterval(() => {
       const settings = getAdhanSettings();
-      if (!settings.autoAdhanEnabled) return;
 
       let city = INDONESIA_CITIES[0];
       try {
@@ -298,27 +304,40 @@ export const App: React.FC = () => {
         adjustments: { fajr: 2, dhuhr: 2, asr: 2, maghrib: 2, isha: 2 },
       } as any);
 
-      const nowHm = formatHm(now);
-      const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+      // Step 28: Auto-Adhan check
+      if (settings.autoAdhanEnabled) {
+        const nowHm = formatHm(now);
+        const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 
-      const fardhuList: { key: 'fajr' | 'dhuhr' | 'asr' | 'maghrib' | 'isha'; label: string; time: Date }[] = [
-        { key: 'fajr', label: 'Subuh', time: params.fajr },
-        { key: 'dhuhr', label: 'Dzuhur', time: params.dhuhr },
-        { key: 'asr', label: 'Ashar', time: params.asr },
-        { key: 'maghrib', label: 'Maghrib', time: params.maghrib },
-        { key: 'isha', label: 'Isya', time: params.isha },
-      ];
+        const fardhuList: { key: 'fajr' | 'dhuhr' | 'asr' | 'maghrib' | 'isha'; label: string; time: Date }[] = [
+          { key: 'fajr', label: 'Subuh', time: params.fajr },
+          { key: 'dhuhr', label: 'Dzuhur', time: params.dhuhr },
+          { key: 'asr', label: 'Ashar', time: params.asr },
+          { key: 'maghrib', label: 'Maghrib', time: params.maghrib },
+          { key: 'isha', label: 'Isya', time: params.isha },
+        ];
 
-      for (const p of fardhuList) {
-        const prayerHm = formatHm(p.time);
-        if (nowHm === prayerHm) {
-          const expectedKey = `${todayStr}_${p.key}`;
-          if (settings.lastPlayedKey !== expectedKey) {
-            triggerAdhan(p.key, p.label);
-            break;
+        for (const p of fardhuList) {
+          const prayerHm = formatHm(p.time);
+          if (nowHm === prayerHm) {
+            const expectedKey = `${todayStr}_${p.key}`;
+            if (settings.lastPlayedKey !== expectedKey) {
+              triggerAdhan(p.key, p.label);
+              break;
+            }
           }
         }
       }
+
+      // Step 29: Tiered Smart Reminders check (10m, 20m, custom, pre-expiry)
+      const prayerSlots: PrayerTimeSlot[] = [
+        { key: 'fajr', label: 'Subuh', time: params.fajr, nextPrayerKey: 'dhuhr', nextPrayerLabel: 'Dzuhur', nextPrayerTime: params.dhuhr },
+        { key: 'dhuhr', label: 'Dzuhur', time: params.dhuhr, nextPrayerKey: 'asr', nextPrayerLabel: 'Ashar', nextPrayerTime: params.asr },
+        { key: 'asr', label: 'Ashar', time: params.asr, nextPrayerKey: 'maghrib', nextPrayerLabel: 'Maghrib', nextPrayerTime: params.maghrib },
+        { key: 'maghrib', label: 'Maghrib', time: params.maghrib, nextPrayerKey: 'isha', nextPrayerLabel: 'Isya', nextPrayerTime: params.isha },
+        { key: 'isha', label: 'Isya', time: params.isha },
+      ];
+      checkAndTriggerReminders(prayerSlots, now);
     }, 5000);
 
     return () => {
@@ -1701,6 +1720,18 @@ export const App: React.FC = () => {
                       else navigateTo('masjid');
                     }}
                   />
+
+                  {/* Step 29: Prayer Checklist Compact Widget in Drawer */}
+                  <div className="mt-3 pt-2.5 border-t border-[var(--border-color)]">
+                    <PrayerChecklistWidget
+                      compact
+                      elderMode={settings.elderMode}
+                      onOpenSettings={() => {
+                        setMobileDrawerOpen(false);
+                        setPrayerReminderModalOpen(true);
+                      }}
+                    />
+                  </div>
                 </div>
 
                 {/* 2. Profil Akun / Sesi Pengguna */}
@@ -2112,6 +2143,27 @@ export const App: React.FC = () => {
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Atur →</span>
                     </button>
+
+                    {/* Step 29: Smart Reminders Settings Button in Drawer */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        setPrayerReminderModalOpen(true);
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-muted)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                        <span>Pengingat Shalat Bertahap (Smart Reminders)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Atur →</span>
+                    </button>
                   </div>
                 </div>
 
@@ -2466,6 +2518,16 @@ export const App: React.FC = () => {
       <PrayerTimesModal
         isOpen={adhanSettingsOpen}
         onClose={() => setAdhanSettingsOpen(false)}
+        elderMode={settings.elderMode}
+      />
+
+      {/* Step 29: Floating Smart Prayer Reminder Banner */}
+      <PrayerReminderBanner elderMode={settings.elderMode} />
+
+      {/* Step 29: Smart Reminders Settings Modal */}
+      <PrayerReminderSettingsModal
+        isOpen={prayerReminderModalOpen}
+        onClose={() => setPrayerReminderModalOpen(false)}
         elderMode={settings.elderMode}
       />
 

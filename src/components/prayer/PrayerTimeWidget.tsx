@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Clock, MapPin, Navigation, Calendar, AlertCircle, X, Bell, Compass, Volume2 } from 'lucide-react';
+import { Clock, MapPin, Navigation, Calendar, AlertCircle, X, Bell, Compass, Volume2, CheckCircle2 } from 'lucide-react';
 import { usePrayerTimes, INDONESIA_CITIES } from '../../hooks/usePrayerTimes';
 import { PrayerTimesModal } from './PrayerTimesModal';
+import { PrayerChecklistWidget } from './PrayerChecklistWidget';
+import { PrayerReminderSettingsModal } from './PrayerReminderSettingsModal';
 
 interface PrayerTimeWidgetProps {
   onOpenKhatamPlanner?: () => void;
@@ -30,6 +32,7 @@ export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
   } = usePrayerTimes();
   const [open, setOpen] = useState(false);
   const [adhanSettingsOpen, setAdhanSettingsOpen] = useState(false);
+  const [reminderSettingsOpen, setReminderSettingsOpen] = useState(false);
 
   // Group cities by region/island
   const cityGroups = [
@@ -148,6 +151,17 @@ export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
               ))}
             </div>
 
+            {/* Step 29: Prayer Checklist Compact Widget */}
+            <div className="mt-3 border-t pt-3" style={{ borderColor: 'var(--border-color)' }}>
+              <PrayerChecklistWidget
+                compact
+                onOpenSettings={() => {
+                  setOpen(false);
+                  setReminderSettingsOpen(true);
+                }}
+              />
+            </div>
+
             {/* Khatam Planner Gentle Shortcut */}
             {onOpenKhatamPlanner && (
               <button
@@ -238,6 +252,27 @@ export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
               <span>Atur ➔</span>
             </button>
 
+            {/* Step 29: Smart Reminders Settings Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                setReminderSettingsOpen(true);
+              }}
+              className="mt-2 flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all hover:opacity-95 cursor-pointer shadow-xs"
+              style={{
+                backgroundColor: 'var(--bg-muted)',
+                borderColor: 'var(--border-color)',
+                color: 'var(--text-primary)',
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                <span>Pengingat Bertahap (Smart Reminders)</span>
+              </div>
+              <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Atur ➔</span>
+            </button>
+
             {/* City Selection & GPS */}
             <div className="mt-3 border-t pt-3 space-y-2" style={{ borderColor: 'var(--border-color)' }}>
               <div className="flex items-center justify-between text-[11px] font-semibold" style={{ color: 'var(--text-secondary)' }}>
@@ -304,6 +339,12 @@ export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
       <PrayerTimesModal
         isOpen={adhanSettingsOpen}
         onClose={() => setAdhanSettingsOpen(false)}
+      />
+
+      {/* Step 29: Smart Reminders Settings Modal */}
+      <PrayerReminderSettingsModal
+        isOpen={reminderSettingsOpen}
+        onClose={() => setReminderSettingsOpen(false)}
       />
     </div>
   );

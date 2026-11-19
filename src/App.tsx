@@ -64,6 +64,7 @@ import { AsbabunNuzulModal } from './components/literacy/AsbabunNuzulModal';
 import { GharibulQuranModal } from './components/literacy/GharibulQuranModal';
 import { AudioCapsuleModal } from './components/audio/AudioCapsuleModal';
 import { TafsirModal } from './components/reader/TafsirModal';
+import { AyahPosterModal } from './components/reader/AyahPosterModal';
 import { getAyahTafsir } from './services/tafsir';
 import type { SelectedTafsirContext } from './types/tafsir';
 import {
@@ -205,6 +206,7 @@ export const App: React.FC = () => {
   const [selectedAsbab, setSelectedAsbab] = useState<AsbabunNuzulItem | null>(null);
   const [selectedGharibWords, setSelectedGharibWords] = useState<GharibulQuranWord[]>([]);
   const [selectedTafsir, setSelectedTafsir] = useState<SelectedTafsirContext | null>(null);
+  const [selectedPosterAyah, setSelectedPosterAyah] = useState<Ayah | null>(null);
   const [audioCapsuleOpen, setAudioCapsuleOpen] = useState(false);
 
   // Live actual time state for header marquee banner
@@ -487,6 +489,14 @@ export const App: React.FC = () => {
       });
     }
   }, [surahNameMap]);
+
+  const handleOpenPoster = useCallback((ayah: Ayah) => {
+    setSelectedPosterAyah(ayah);
+    logActivity('OPEN_POSTER_MODAL', {
+      surahId: ayah.surahId,
+      ayahNumber: ayah.ayahNumber,
+    });
+  }, []);
 
   const handlePrev = useCallback(() => {
     if (viewMode === 'surah' && selectedSurahId > 1) {
@@ -1359,6 +1369,7 @@ export const App: React.FC = () => {
                     onOpenAsbabunNuzul={handleOpenAsbabunNuzul}
                     onOpenGharibWords={handleOpenGharibWords}
                     onOpenTafsir={handleOpenTafsir}
+                    onOpenPoster={handleOpenPoster}
                   />
                 );
               })}
@@ -2197,6 +2208,18 @@ export const App: React.FC = () => {
         context={selectedTafsir}
         onClose={() => setSelectedTafsir(null)}
         elderMode={settings.elderMode}
+      />
+
+      {/* Generator Poster Kutipan Ayat ke WhatsApp (Step 24) */}
+      <AyahPosterModal
+        ayah={selectedPosterAyah}
+        surahName={
+          selectedPosterAyah
+            ? surahNameMap.get(selectedPosterAyah.surahId) || `Surah ${selectedPosterAyah.surahId}`
+            : ''
+        }
+        isOpen={Boolean(selectedPosterAyah)}
+        onClose={() => setSelectedPosterAyah(null)}
       />
 
       {/* Gharibul Qur'an Modal (Step 16) */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bookmark, Play, Pause, Check, Share2, BookMarked, BookOpen, Languages, ScrollText } from 'lucide-react';
+import { Bookmark, Play, Pause, Check, Share2, BookMarked, BookOpen, Languages, ScrollText, ImageIcon } from 'lucide-react';
 import type { Ayah, ReaderSettings } from '../../types/quran';
 import { TajweedRenderer } from './TajweedRenderer';
 
@@ -23,6 +23,7 @@ interface AyahCardProps {
   onOpenAsbabunNuzul?: (ayah: Ayah) => void;
   onOpenGharibWords?: (ayah: Ayah) => void;
   onOpenTafsir?: (ayah: Ayah) => void;
+  onOpenPoster?: (ayah: Ayah) => void;
 }
 
 function toArabicDigits(num: number): string {
@@ -53,6 +54,7 @@ export const AyahCard: React.FC<AyahCardProps> = ({
   onOpenAsbabunNuzul,
   onOpenGharibWords,
   onOpenTafsir,
+  onOpenPoster,
 }) => {
   const fontClass = `font-arabic-${settings.arabicFont}`;
   const effectiveTajweed =
@@ -189,6 +191,24 @@ export const AyahCard: React.FC<AyahCardProps> = ({
             >
               <Share2 className="h-4 w-4" />
             </button>
+
+            {onOpenPoster && (
+              <button
+                type="button"
+                onClick={() => onOpenPoster(ayah)}
+                aria-label={`Buat poster ayat ${ayah.ayahNumber} untuk WhatsApp`}
+                className={`inline-flex items-center justify-center rounded-lg transition-colors ${
+                  settings.elderMode ? 'h-11 w-11' : 'h-9 w-9'
+                }`}
+                style={{
+                  backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                  color: '#059669',
+                }}
+                title="Buat Poster Ayat untuk WhatsApp & Story"
+              >
+                <ImageIcon className="h-4 w-4" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -248,6 +268,22 @@ export const AyahCard: React.FC<AyahCardProps> = ({
               >
                 <ScrollText className="h-3.5 w-3.5" />
                 <span>Tafsir</span>
+              </button>
+            )}
+            {onOpenPoster && (
+              <button
+                type="button"
+                onClick={() => onOpenPoster(ayah)}
+                className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition-all hover:opacity-90 active:scale-95 shadow-xs cursor-pointer"
+                style={{
+                  backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                  color: '#059669',
+                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                }}
+                title="Buat Poster Kutipan Ayat (WhatsApp & Media Sosial)"
+              >
+                <ImageIcon className="h-3.5 w-3.5" />
+                <span>Poster Ayat</span>
               </button>
             )}
             {hasAsbabunNuzul && (

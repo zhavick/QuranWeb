@@ -462,7 +462,23 @@ Akses rute `/asmaul-husna` atau `/asma` (khusus pengguna yang telah login/terdaf
 
 ---
 
-## 24. Pertanyaan yang Sering Diajukan (FAQ)
+## 24. Modul Tasbih Digital (Hitung Naik & Mundur) (`/tasbih`)
+
+Akses rute `/tasbih` atau `/tashbih` (khusus pengguna yang telah login/terdaftar):
+- **Kartu Tasbih Interaktif (Tap-Anywhere Card):** Tampilan kartu interaktif berukuran besar dengan kaligrafi Arab (`font-arabic-amiri`), transliterasi Latin, dan terjemahan. Seluruh area kartu dapat disentuh atau diketuk (atau tekan tombol Spasi / Enter) untuk menambah atau mengurangi hitungan dzikir.
+- **Dua Pilihan Mode Bertasbih:**
+  1. **Mode Hitung Naik (Count Up):** Hitungan dimulai dari 0 dan bertambah pada tiap ketukan hingga mencapai target (33x, 99x, 100x, 1000x, atau Bebas $\infty$). Bar kemajuan terisi dari 0% menuju 100%.
+  2. **Mode Hitung Mundur (Count Down):** Hitungan dimulai dari target yang dipilih (misal 33 atau 100) dan berkurang menuju 0. Selesai putaran ditandai perayaan audio & getar, lalu otomatis bersiap untuk putaran berikutnya.
+- **Umpan Balik Haptic & Audio Chime:**
+  - **Getaran Haptic Smartphone:** Bergetar lembut 18ms pada tiap ketukan, dan getaran panjang saat mencapai target/putaran.
+  - **Suara Sintesis Lembut:** Suara klik lembut Web Audio API pada tiap ketukan, serta melodi harmoni kristal (*chime*) saat tuntas satu putaran penuh.
+- **Ragam Kalimat Dzikir Ma'tsur:** Koleksi kalimat dzikir lengkap (Subhanallah, Alhamdulillah, Allahu Akbar, Tahlil, Istighfar, Shalawat, Hauqalah, Subhanallahi wa bihamdihi) dilengkapi keterangan fadhilah dan rujukan hadits shahih (Bukhari/Muslim).
+- **Statistik Dzikir Harian:** Menyimpan total ketukan dzikir hari ini dan jumlah putaran selesai secara otomatis di memori lokal (*localStorage*).
+- **Aksesibilitas Ramah Lansia:** Didukung pengatur ukuran teks 3 tingkat (A, A+, A++), kontras tinggi WCAG AAA, dan tips panduan berdzikir dengan mata terpejam.
+
+---
+
+## 25. Pertanyaan yang Sering Diajukan (FAQ)
 
 **Q: Apakah saya perlu mendaftar atau membuat akun?**  
 *A:* Tidak perlu. Seluruh fitur membaca, bookmark, terakhir dibaca, dan pengaturan tersimpan aman di peramban perangkat Anda sendiri (*zero sign-up*).

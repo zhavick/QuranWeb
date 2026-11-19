@@ -54,6 +54,7 @@ import { ProphetLanternBanner } from './components/prophets/ProphetLanternBanner
 import { BlogCatalog } from './components/blog/BlogCatalog';
 import { PrayersCatalog } from './components/prayers/PrayersCatalog';
 import { AsmaulHusnaCatalog } from './components/asmaulhusna/AsmaulHusnaCatalog';
+import { TasbihPage } from './components/tasbih/TasbihPage';
 import { QiblaCompass } from './components/qibla/QiblaCompass';
 import { MosqueMap } from './components/mosque/MosqueMap';
 import { KhatamPlannerModal } from './components/khatam/KhatamPlannerModal';
@@ -91,7 +92,7 @@ const DEFAULT_SETTINGS: ReaderSettings = {
 
 export const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<
-    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna'
+    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih'
   >(() => {
     const p = window.location.pathname.toLowerCase();
     if (p === '/admin' || p.startsWith('/admin/')) return 'admin';
@@ -103,6 +104,7 @@ export const App: React.FC = () => {
     if (p === '/kiblat' || p.startsWith('/kiblat/')) return 'kiblat';
     if (p === '/masjid' || p.startsWith('/masjid/')) return 'masjid';
     if (p === '/asmaul-husna' || p === '/asma' || p.startsWith('/asmaul-husna/') || p.startsWith('/asma/')) return 'asmaul-husna';
+    if (p === '/tasbih' || p === '/tashbih' || p.startsWith('/tasbih/') || p.startsWith('/tashbih/')) return 'tasbih';
     return 'reader';
   });
 
@@ -113,7 +115,7 @@ export const App: React.FC = () => {
   }, []);
 
   const navigateTo = useCallback(
-    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna') => {
+    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih') => {
       setCurrentRoute(route);
       const path =
         route === 'reader'
@@ -130,6 +132,8 @@ export const App: React.FC = () => {
           ? '/daftar'
           : route === 'asmaul-husna'
           ? '/asmaul-husna'
+          : route === 'tasbih'
+          ? '/tasbih'
           : `/${route}`;
       if (window.location.pathname !== path) {
         window.history.pushState({}, '', path);
@@ -150,6 +154,7 @@ export const App: React.FC = () => {
       else if (p === '/kiblat' || p.startsWith('/kiblat/')) setCurrentRoute('kiblat');
       else if (p === '/masjid' || p.startsWith('/masjid/')) setCurrentRoute('masjid');
       else if (p === '/asmaul-husna' || p === '/asma' || p.startsWith('/asmaul-husna/') || p.startsWith('/asma/')) setCurrentRoute('asmaul-husna');
+      else if (p === '/tasbih' || p === '/tashbih' || p.startsWith('/tasbih/') || p.startsWith('/tashbih/')) setCurrentRoute('tasbih');
       else setCurrentRoute('reader');
     };
     window.addEventListener('popstate', handlePopState);
@@ -750,6 +755,20 @@ export const App: React.FC = () => {
           handleJumpToAyah(surahId, ayahNumber);
           navigateTo('reader');
         }}
+        elderMode={settings.elderMode}
+      />
+    );
+  }
+
+  if (currentRoute === 'tasbih') {
+    if (!currentUser) {
+      setJoinModalOpen(true);
+      navigateTo('reader');
+      return null;
+    }
+    return (
+      <TasbihPage
+        onBackToMushaf={() => navigateTo('reader')}
         elderMode={settings.elderMode}
       />
     );
@@ -1674,6 +1693,27 @@ export const App: React.FC = () => {
                       <div className="flex items-center gap-2.5">
                         <Sparkles className="h-4 w-4 text-amber-500 shrink-0" />
                         <span>Asmaul Husna (99 Nama Allah)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        if (!currentUser) setJoinModalOpen(true);
+                        else navigateTo('tasbih');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Sparkles className="h-4 w-4 text-emerald-500 shrink-0" />
+                        <span>Tasbih Digital (Hitung Naik &amp; Mundur)</span>
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
                     </button>

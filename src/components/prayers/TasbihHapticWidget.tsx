@@ -7,8 +7,10 @@ import {
   Sparkles,
   Check,
   Award,
+  TrendingUp,
+  TrendingDown,
 } from 'lucide-react';
-import { triggerHaptic, playSyntheticClick } from '../../services/prayers';
+import { triggerHaptic, playSyntheticClick, playSyntheticChime } from '../../services/prayers';
 import { logActivity } from '../../services/telemetry';
 
 const PHRASES = [
@@ -27,6 +29,7 @@ interface TasbihHapticWidgetProps {
 export const TasbihHapticWidget: React.FC<TasbihHapticWidgetProps> = ({
   elderMode = false,
 }) => {
+  const [countMode, setCountMode] = useState<'up' | 'down'>('up');
   const [count, setCount] = useState<number>(0);
   const [target, setTarget] = useState<number>(33); // 33, 100, 0 (bebas)
   const [laps, setLaps] = useState<number>(0);
@@ -35,30 +38,52 @@ export const TasbihHapticWidget: React.FC<TasbihHapticWidgetProps> = ({
   const [soundEnabled, setSoundEnabled] = useState<boolean>(false);
   const [completedNotification, setCompletedNotification] = useState<boolean>(false);
 
-  const handleTap = useCallback(() => {
-    const nextCount = count + 1;
-    setCount(nextCount);
+  const handleModeChange = (mode: 'up' | 'down') => {
+    setCountMode(mode);
+    setCount(mode === 'up' ? 0 : (target > 0 ? target : 33));
+    setCompletedNotification(false);
+  };
 
-    // Audio & Haptic Feedback
+  const handleTap = useCallback(() => {
+    // Audio feedback
     if (soundEnabled) playSyntheticClick();
 
-    if (target > 0 && nextCount % target === 0) {
-      // Reached Target
-      setLaps((l) => l + 1);
-      setCompletedNotification(true);
-      if (hapticEnabled) {
-        if (target === 33) triggerHaptic('lap');
-        else triggerHaptic('complete');
+    if (countMode === 'up') {
+      const nextCount = count + 1;
+      setCount(nextCount);
+
+      if (target > 0 && nextCount % target === 0) {
+        setLaps((l) => l + 1);
+        setCompletedNotification(true);
+        if (hapticEnabled) triggerHaptic('complete');
+        if (soundEnabled) playSyntheticChime();
+        setTimeout(() => setCompletedNotification(false), 2200);
+        logActivity('TASBIH_TARGET_REACHED', { mode: 'up', phrase: selectedPhrase.id, target });
+      } else {
+        if (hapticEnabled) triggerHaptic('tap');
       }
-      setTimeout(() => setCompletedNotification(false), 2000);
-      logActivity('TASBIH_TARGET_REACHED', { phrase: selectedPhrase.id, target });
     } else {
-      if (hapticEnabled) triggerHaptic('tap');
+      // Hitung Mundur
+      if (count <= 1) {
+        setCount(0);
+        setLaps((l) => l + 1);
+        setCompletedNotification(true);
+        if (hapticEnabled) triggerHaptic('complete');
+        if (soundEnabled) playSyntheticChime();
+        setTimeout(() => {
+          setCompletedNotification(false);
+          setCount(target > 0 ? target : 33);
+        }, 2200);
+        logActivity('TASBIH_TARGET_REACHED', { mode: 'down', phrase: selectedPhrase.id, target });
+      } else {
+        setCount(count - 1);
+        if (hapticEnabled) triggerHaptic('tap');
+      }
     }
-  }, [count, target, hapticEnabled, soundEnabled, selectedPhrase.id]);
+  }, [count, countMode, target, hapticEnabled, soundEnabled, selectedPhrase.id]);
 
   const handleReset = () => {
-    setCount(0);
+    setCount(countMode === 'up' ? 0 : (target > 0 ? target : 33));
     setLaps(0);
     setCompletedNotification(false);
     if (hapticEnabled) triggerHaptic('tap');
@@ -77,10 +102,56 @@ export const TasbihHapticWidget: React.FC<TasbihHapticWidgetProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleTap]);
 
-  const progressPercent = target > 0 ? Math.min(100, Math.round(((count % target) / target) * 100)) : 100;
+  const progressPercent =
+    target > 0
+      ? countMode === 'up'
+        ? Math.min(100, Math.round(((count % target) / target) * 100))
+        : Math.min(100, Math.round(((Math.max(0, target - count)) / target) * 100))
+      : 100;
 
   return (
     <div className="space-y-6 max-w-2xl mx-auto">
+      {/* Pilihan Cara Bertasbih: Hitung Naik vs Hitung Mundur */}
+      <div
+        className="flex items-center justify-between gap-2 rounded-2xl border p-2 shadow-xs"
+        style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+      >
+        <span className="text-xs font-bold px-2" style={{ color: 'var(--text-secondary)' }}>
+          Mode Hitungan:
+        </span>
+        <div className="flex items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() => handleModeChange('up')}
+            className={`flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold cursor-pointer transition-all ${
+              countMode === 'up' ? 'shadow-xs' : ''
+            }`}
+            style={{
+              backgroundColor: countMode === 'up' ? 'var(--bg-accent)' : 'var(--bg-muted)',
+              color: countMode === 'up' ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+            }}
+          >
+            <TrendingUp className="h-3.5 w-3.5" />
+            <span>Hitung Naik (0 → Target)</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleModeChange('down')}
+            className={`flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold cursor-pointer transition-all ${
+              countMode === 'down' ? 'shadow-xs' : ''
+            }`}
+            style={{
+              backgroundColor: countMode === 'down' ? 'var(--bg-accent)' : 'var(--bg-muted)',
+              color: countMode === 'down' ? 'var(--text-on-accent)' : 'var(--text-secondary)',
+            }}
+          >
+            <TrendingDown className="h-3.5 w-3.5" />
+            <span>Hitung Mundur (Target → 0)</span>
+          </button>
+        </div>
+      </div>
+
       {/* Phrase Selector Tabs */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1">
         {PHRASES.map((p) => {
@@ -236,7 +307,7 @@ export const TasbihHapticWidget: React.FC<TasbihHapticWidgetProps> = ({
         <div className="flex items-center gap-3 text-xs font-bold" style={{ color: 'var(--text-secondary)' }}>
           {target > 0 && (
             <span className="rounded-lg px-2.5 py-1 bg-black/5 dark:bg-white/5">
-              Putaran: {count % target} / {target}
+              {countMode === 'up' ? `Putaran: ${count % target} / ${target}` : `Sisa: ${count} dari ${target}`}
             </span>
           )}
 

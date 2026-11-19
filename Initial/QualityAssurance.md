@@ -610,12 +610,13 @@ Sebagai persiapan memasuki fase implementasi teknis berikutnya (mengacu pada [DE
 | **TC-ST17-07** | Verifikasi Kompilasi TypeScript (`tsc -b`) | Seluruh berkas TypeScript dikompilasi dengan exit code 0 tanpa error tipe (`TS error = 0`). Seluruh impor modul bersih dari variabel tak terpakai. | **PASS** |
 | **TC-ST17-08** | Halaman Pendaftaran Akun Jamaah Baru (`/daftar` & API Registrasi) | Formulir registrasi ramah lansia (`RegisterView.tsx`), tombol toggle lihat/sembunyikan sandi, pencegahan duplikasi akun (HTTP 409), endpoint `POST /api/auth/register`, tab switcher di `/user`, tombol akses di Header/Drawer, dan fallback offline storage `localStorage` berjalan sempurna. | **PASS** |
 | **TC-ST17-09** | Modul Asmaul Husna 99 Nama Allah (`/asmaul-husna`) & Session Guard | Dataset 99 nama Allah lengkap dengan rujukan ayat Al-Qur'an dan faedah tadabbur (`public/data/asmaul_husna.json`). Proteksi rute khusus pengguna terdaftar (tamu otomatis dialihkan dan disajikan modal pendaftaran/masuk), tombol menu drawer khusus terdaftar, pelafalan suara Arab Web Speech API, ukuran font ramah lansia (A, A+, A++), tombol lompat ayat ke mushaf, dan offline caching di Service Worker v8 berjalan sempurna. | **PASS** |
+| **TC-ST17-10** | Modul Tasbih Digital Card (`/tasbih`) Hitung Naik & Mundur | Kartu tasbih interaktif berukuran besar dengan tap-anywhere, animasi ripple, dan keyboard spacebar. Mode Hitung Naik (0 ke target) dan Mode Hitung Mundur (target ke 0), getaran haptic smartphone, audio klik dan melodic completion chime, 8 kalimat dzikir ma'tsur, target presets (33, 99, 100, 1000, Bebas, Kustom), statistik harian lokal, serta session guard proteksi khusus pengguna terdaftar berjalan sempurna. | **PASS** |
 
 ---
 
 ## 14. Kesimpulan Akhir & Rekomendasi Rilis Fase 2 (Final Sign-off)
 
-1. **Hasil Akhir Menyeluruh:** Seluruh **147 kasus uji** yang mencakup modul Fase 1 (Step 1 s.d. 8) dan Fase 2 (Step 9 s.d. 17) dinyatakan **100% LULUS (ALL 147 PASS)**.
+1. **Hasil Akhir Menyeluruh:** Seluruh **148 kasus uji** yang mencakup modul Fase 1 (Step 1 s.d. 8) dan Fase 2 (Step 9 s.d. 17) dinyatakan **100% LULUS (ALL 148 PASS)**.
 2. **Kestabilan & Performa:** Aplikasi beroperasi sangat cepat (*zero unnecessary re-render*), memori ringan, hemat kuota data seluler, serta mendukung operasi 100% luring (offline) via Service Worker PWA v7 dan Web Speech API lisan.
 3. **Kepatuhan Terhadap Standar Religi & Aksesibilitas:**
    - Standar mushaf Kemenag RI (RTL, 6.236 ayat, font LPMQ Misbah, kaidah waqaf & tajwid) terpenuhi secara sempurna.

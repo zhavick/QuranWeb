@@ -107,6 +107,39 @@ export function playSyntheticClick(): void {
 }
 
 /**
+ * Memainkan nada lembut melodi (chime) penanda tuntas target dzikir
+ */
+export function playSyntheticChime(): void {
+  try {
+    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+
+    const notes = [523.25, 659.25, 783.99]; // Nada C5, E5, G5
+    notes.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const startTime = ctx.currentTime + idx * 0.08;
+      const duration = 0.28;
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, startTime);
+
+      gain.gain.setValueAtTime(0.08, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    });
+  } catch {
+    // Ignore audio context limitation
+  }
+}
+
+/**
  * Menghasilkan tautan audio EveryAyah untuk murottal per ayat
  */
 export function getAyahAudioUrl(surahId: number, ayahNumber: number): string {

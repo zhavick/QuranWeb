@@ -62,6 +62,9 @@ import { KhatamPlannerModal } from './components/khatam/KhatamPlannerModal';
 import { AsbabunNuzulModal } from './components/literacy/AsbabunNuzulModal';
 import { GharibulQuranModal } from './components/literacy/GharibulQuranModal';
 import { AudioCapsuleModal } from './components/audio/AudioCapsuleModal';
+import { TafsirModal } from './components/reader/TafsirModal';
+import { getAyahTafsir } from './services/tafsir';
+import type { SelectedTafsirContext } from './types/tafsir';
 import {
   fetchAsbabunNuzulList,
   fetchGharibulQuranList,
@@ -200,6 +203,7 @@ export const App: React.FC = () => {
   const [gharibKeys, setGharibKeys] = useState<Set<string>>(new Set());
   const [selectedAsbab, setSelectedAsbab] = useState<AsbabunNuzulItem | null>(null);
   const [selectedGharibWords, setSelectedGharibWords] = useState<GharibulQuranWord[]>([]);
+  const [selectedTafsir, setSelectedTafsir] = useState<SelectedTafsirContext | null>(null);
   const [audioCapsuleOpen, setAudioCapsuleOpen] = useState(false);
 
   useEffect(() => {
@@ -439,6 +443,25 @@ export const App: React.FC = () => {
     meta?.surahs.forEach((s) => map.set(s.id, s.nameLatin));
     return map;
   }, [meta]);
+
+  const handleOpenTafsir = useCallback(async (ayah: Ayah) => {
+    const tafsirItem = await getAyahTafsir(ayah.surahId, ayah.ayahNumber);
+    if (tafsirItem) {
+      const surahName = surahNameMap.get(ayah.surahId) || `Surah ${ayah.surahId}`;
+      setSelectedTafsir({
+        surahId: ayah.surahId,
+        surahName,
+        ayahNumber: ayah.ayahNumber,
+        textUthmani: ayah.textUthmani,
+        translationId: ayah.translationId,
+        tafsir: tafsirItem,
+      });
+      logActivity('VIEW_TAFSIR_AYAH', {
+        surahId: ayah.surahId,
+        ayahNumber: ayah.ayahNumber,
+      });
+    }
+  }, [surahNameMap]);
 
   const handlePrev = useCallback(() => {
     if (viewMode === 'surah' && selectedSurahId > 1) {
@@ -1278,6 +1301,7 @@ export const App: React.FC = () => {
                     }
                     onOpenAsbabunNuzul={handleOpenAsbabunNuzul}
                     onOpenGharibWords={handleOpenGharibWords}
+                    onOpenTafsir={handleOpenTafsir}
                   />
                 );
               })}
@@ -2109,6 +2133,13 @@ export const App: React.FC = () => {
       <AsbabunNuzulModal
         item={selectedAsbab}
         onClose={() => setSelectedAsbab(null)}
+      />
+
+      {/* Tafsir Kemenag RI Modal (Step 23) */}
+      <TafsirModal
+        context={selectedTafsir}
+        onClose={() => setSelectedTafsir(null)}
+        elderMode={settings.elderMode}
       />
 
       {/* Gharibul Qur'an Modal (Step 16) */}

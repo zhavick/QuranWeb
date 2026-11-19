@@ -6,6 +6,7 @@ const PRECACHE_URLS = [
   '/data/meta.json',
   '/data/asmaul_husna.json',
   '/data/arbain_hadith.json',
+  '/data/tafsir/1.json',
   '/data/prophets_meta.json',
   '/data/prophets_data.json',
   '/data/blog_articles.json',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bookmark, Play, Pause, Check, Share2, BookMarked, BookOpen, Languages } from 'lucide-react';
+import { Bookmark, Play, Pause, Check, Share2, BookMarked, BookOpen, Languages, ScrollText } from 'lucide-react';
 import type { Ayah, ReaderSettings } from '../../types/quran';
 import { TajweedRenderer } from './TajweedRenderer';
 
@@ -22,6 +22,7 @@ interface AyahCardProps {
   onFocusAyah: (ayahId: number) => void;
   onOpenAsbabunNuzul?: (ayah: Ayah) => void;
   onOpenGharibWords?: (ayah: Ayah) => void;
+  onOpenTafsir?: (ayah: Ayah) => void;
 }
 
 function toArabicDigits(num: number): string {
@@ -51,6 +52,7 @@ export const AyahCard: React.FC<AyahCardProps> = ({
   onFocusAyah,
   onOpenAsbabunNuzul,
   onOpenGharibWords,
+  onOpenTafsir,
 }) => {
   const fontClass = `font-arabic-${settings.arabicFont}`;
   const effectiveTajweed =
@@ -225,13 +227,29 @@ export const AyahCard: React.FC<AyahCardProps> = ({
           </p>
         )}
 
-        {/* Asbabun Nuzul & Gharib Mufradat Badges */}
-        {(hasAsbabunNuzul || hasGharibWords) && (
+        {/* Tafsir, Asbabun Nuzul & Gharib Mufradat Badges */}
+        {(onOpenTafsir || hasAsbabunNuzul || hasGharibWords) && (
           <div
             className="mt-3.5 flex flex-wrap items-center gap-2 pt-2 border-t border-dashed"
             style={{ borderColor: 'var(--border-color)' }}
             onClick={(e) => e.stopPropagation()}
           >
+            {onOpenTafsir && (
+              <button
+                type="button"
+                onClick={() => onOpenTafsir(ayah)}
+                className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition-all hover:opacity-90 active:scale-95 shadow-xs cursor-pointer"
+                style={{
+                  backgroundColor: 'rgba(2, 132, 199, 0.12)',
+                  color: '#0284c7',
+                  border: '1px solid rgba(2, 132, 199, 0.3)',
+                }}
+                title="Buka Telaah Tafsir Kemenag RI (Tafsir Wajiz & Tahlili)"
+              >
+                <ScrollText className="h-3.5 w-3.5" />
+                <span>Tafsir</span>
+              </button>
+            )}
             {hasAsbabunNuzul && (
               <button
                 type="button"

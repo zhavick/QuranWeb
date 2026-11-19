@@ -23,6 +23,7 @@ import {
   MapPin,
   Headphones,
   UserPlus,
+  Clock,
 } from 'lucide-react';
 import type {
   QuranMeta,
@@ -205,6 +206,30 @@ export const App: React.FC = () => {
   const [selectedGharibWords, setSelectedGharibWords] = useState<GharibulQuranWord[]>([]);
   const [selectedTafsir, setSelectedTafsir] = useState<SelectedTafsirContext | null>(null);
   const [audioCapsuleOpen, setAudioCapsuleOpen] = useState(false);
+
+  // Live actual time state for header marquee banner
+  const [currentActualTime, setCurrentActualTime] = useState(() => {
+    return new Date().toLocaleTimeString('id-ID', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    });
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentActualTime(
+        new Date().toLocaleTimeString('id-ID', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        })
+      );
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     fetchAsbabunNuzulList().then((list) => {
@@ -838,17 +863,49 @@ export const App: React.FC = () => {
 
   return (
     <div className="flex h-[100dvh] flex-col overflow-hidden">
-      {/* Optional Admin Broadcast Announcement */}
+      {/* Live Actual Clock & Horizontal Marquee Announcement */}
       {appConfig.app_announcement && (
         <div
-          className="px-4 py-1.5 text-center text-[11px] font-semibold border-b truncate"
+          className="relative flex items-center border-b overflow-hidden text-[11px] font-semibold select-none h-8 shrink-0"
           style={{
             backgroundColor: 'var(--bg-accent-soft)',
             borderColor: 'var(--border-color)',
             color: 'var(--text-accent)',
           }}
         >
-          📢 {appConfig.app_announcement}
+          {/* Jam Aktual Saat Ini (di bagian depan) */}
+          <div
+            className="flex items-center gap-1.5 px-3 h-full shrink-0 z-10 border-r shadow-xs font-mono font-bold tracking-wider"
+            style={{
+              backgroundColor: 'var(--bg-card)',
+              borderColor: 'var(--border-color)',
+              color: 'var(--text-primary)',
+            }}
+            title="Waktu / Jam Aktual Saat Ini"
+          >
+            <Clock className="h-3.5 w-3.5 text-emerald-500 animate-pulse" />
+            <span>{currentActualTime}</span>
+            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-sans font-semibold">WIB</span>
+          </div>
+
+          {/* Marquee Scroller (Bergerak dari Kanan ke Kiri Hingga Hilang dan Muncul Lagi) */}
+          <div className="flex-1 overflow-hidden relative h-full flex items-center">
+            <div
+              className="animate-marquee whitespace-nowrap cursor-default"
+              title="Arahkan kursor atau sentuh untuk menjeda tulisan bergerak"
+            >
+              <span className="inline-flex items-center gap-3 pr-16">
+                <span className="inline-flex items-center gap-1.5 font-sans">
+                  <span>📢</span>
+                  <span>{appConfig.app_announcement}</span>
+                </span>
+                <span className="opacity-40">•</span>
+                <span className="opacity-80 font-mono text-[10px]">🕒 {currentActualTime} WIB</span>
+                <span className="opacity-40">•</span>
+                <span className="text-emerald-600 dark:text-emerald-400">✨ Platform Al-Qur&apos;an Digital Ramah Lansia</span>
+              </span>
+            </div>
+          </div>
         </div>
       )}
 

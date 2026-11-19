@@ -9,9 +9,9 @@
 | :--- | :--- |
 | **Nama Proyek** | QuranWeb: Platform Tilawah Al-Qur'an Digital Modern Ramah Lansia |
 | **Kode Dokumen** | QW-DOC-FSD-001 |
-| **Versi Dokumen** | 2.1.0 (Comprehensive Release) |
+| **Versi Dokumen** | 2.2.0 (Comprehensive Release) |
 | **Status Dokumen** | Disetujui & Tervalidasi Produksi (Production Ready) |
-| **Tanggal Pembaruan** | 18 November 2026 |
+| **Tanggal Pembaruan** | 19 November 2026 |
 | **Target Lingkungan** | Web Browser Modern (Desktop & Mobile), PWA Offline, Docker Container Port 3382 |
 | **Basis Dokumen Rujukan** | [FSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/FSD.md), [TSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/TSD.md), [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md), [MasterPlan.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan.md), [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md), [DEV_STEP.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP.md), [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md), [QualityAssurance.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/QualityAssurance.md) |
 
@@ -36,7 +36,7 @@
   - [3.2 Matriks Hak Akses Peran (Role-Based Access Control)](#32-matriks-hak-akses-peran-role-based-access-control)
   - [3.3 Mekanisme Proteksi Rute & Session Guard](#33-mekanisme-proteksi-rute--session-guard)
   - [3.4 Mekanisme Quick Logout & Sesi Bersih](#34-mekanisme-quick-logout--sesi-bersih)
-- [BAB 4: SPESIFIKASI KEBUTUHAN FUNGSIONAL RINCI (FR-01 s.d. FR-20)](#bab-4-spesifikasi-kebutuhan-fungsional-rinci-fr-01-sd-fr-20)
+- [BAB 4: SPESIFIKASI KEBUTUHAN FUNGSIONAL RINCI (FR-01 s.d. FR-24)](#bab-4-spesifikasi-kebutuhan-fungsional-rinci-fr-01-sd-fr-24)
   - [4.1 Modul Navigasi & Indeks Tiga Dimensi (Surat, Juz, 'Ain) [FR-01]](#41-modul-navigasi--indeks-tiga-dimensi-surat-juz-ain-fr-01)
   - [4.2 Modul Lembar Tilawah & Pembaca Al-Qur'an (Quran Reader RTL) [FR-02]](#42-modul-lembar-tilawah--pembaca-al-quran-quran-reader-rtl-fr-02)
   - [4.3 Modul Tata Letak Adaptif, Layar Penuh Desktop & Mobile View [FR-03]](#43-modul-tata-letak-adaptif-layar-penuh-desktop--mobile-view-fr-03)
@@ -57,6 +57,10 @@
   - [4.18 Modul Kompas Arah Kiblat Adaptif (Offline Great Circle) [FR-18]](#418-modul-kompas-arah-kiblat-adaptif-offline-great-circle-fr-18)
   - [4.19 Modul Peta Masjid Terdekat (Leaflet.js + OSM + Lansia Routing) [FR-19]](#419-modul-peta-masjid-terdekat-leafletjs--osm--lansia-routing-fr-19)
   - [4.20 Modul Khazanah Ulumul Qur'an (Asbabun Nuzul, Gharib & Audio Capsule) [FR-20]](#420-modul-khazanah-ulumul-quran-asbabun-nuzul-gharib--audio-capsule-fr-20)
+  - [4.21 Modul Pendaftaran Akun Jamaah Baru & Dropdown Menu Strip 3 [FR-21]](#421-modul-pendaftaran-akun-jamaah-baru--dropdown-menu-strip-3-fr-21)
+  - [4.22 Modul Splash Screen Pembuka & Brand Experience [FR-22]](#422-modul-splash-screen-pembuka--brand-experience-fr-22)
+  - [4.23 Modul Asmaul Husna (99 Nama Agung & Tadabbur Dalil) [FR-23]](#423-modul-asmaul-husna-99-nama-agung--tadabbur-dalil-fr-23)
+  - [4.24 Modul Tasbih Digital Interaktif Card (Hitung Naik & Mundur) [FR-24]](#424-modul-tasbih-digital-interaktif-card-hitung-naik--mundur-fr-24)
 - [BAB 5: SPESIFIKASI KEBUTUHAN NON-FUNGSIONAL (NON-FUNCTIONAL REQUIREMENTS)](#bab-5-spesifikasi-kebutuhan-non-fungsional-non-functional-requirements)
   - [5.1 Kinerja & Waktu Muat (Performance & Latency) [NFR-01]](#51-kinerja--waktu-muat-performance--latency-nfr-01)
   - [5.2 Ketahanan & Operasional Tanpa Jaringan (Offline-First & PWA) [NFR-02]](#52-ketahanan--operasional-tanpa-jaringan-offline-first--pwa-nfr-02)
@@ -259,7 +263,7 @@ Sistem menerapkan pengamanan sesi (*Session Guard*) pada sisi routing aplikasi:
 
 ---
 
-## BAB 4: SPESIFIKASI KEBUTUHAN FUNGSIONAL RINCI (FR-01 s.d. FR-20)
+## BAB 4: SPESIFIKASI KEBUTUHAN FUNGSIONAL RINCI (FR-01 s.d. FR-24)
 
 ### 4.1 Modul Navigasi & Indeks Tiga Dimensi (Surat, Juz, 'Ain) [FR-01]
 - **Tujuan Modul:** Memfasilitasi pengguna dalam menemukan dan membuka ayat Al-Qur'an berdasarkan tiga perspektif klasifikasi Islam: Surat, Juz, dan 'Ain (Ruku' tematik).
@@ -474,6 +478,50 @@ Sistem menerapkan pengamanan sesi (*Session Guard*) pada sisi routing aplikasi:
     - Pemutar rekaman tuturan audio bertema tadabbur ringkas 3 menit dengan narasi suara yang hangat dan tenang di bilah header dan laci menu.
     - Dilengkapi *Dual-Engine Audio*: engine Web Speech API bahasa Indonesia (100% offline tanpa kuota) dan engine audio streaming qari CDN berkualitas jernih.
     - Dilengkapi fitur *Sleep Timer* (otomatis mati setelah 15, 30, atau 45 menit) dengan hitung mundur visual dan jendela transkrip teks berhuruf besar untuk menemani istirahat malam para lansia.
+
+### 4.21 Modul Pendaftaran Akun Jamaah Baru & Dropdown Menu Strip 3 [FR-21]
+- **Tujuan Modul:** Mempermudah pendaftaran anggota jamaah baru dengan formulir bersih dan ramah lansia, serta merapikan bilah navigasi (navbar) agar terhindar dari tumpukan menu melalui konsolidasi dropdown 3-garis (strip 3).
+- **Rincian Spesifikasi:**
+  - **FR-21.1 (Formulir Registrasi Mandiri `/daftar`):** Formulir pendaftaran akun memuat kolom Nama Lengkap, Alamat Email, Username (otomatis disanitasi menjadi huruf kecil tanpa spasi), Password, dan Konfirmasi Password.
+  - **FR-21.2 (Fitur Aksesibilitas Sandi):** Tombol interaktif untuk menampilkan atau menyembunyikan karakter kata sandi (toggle *eye icon*) guna mencegah kesalahan pengetikan bagi lansia.
+  - **FR-21.3 (Validasi Sisi Klien & Backend Endpoint):** Validasi lengkap pencegahan spasi pada username, verifikasi format email, kecocokan konfirmasi sandi, dan penanganan HTTP 409 jika username/email telah terdaftar via endpoint `POST /api/auth/register` dengan hashing bcrypt serta fallback luring ke `localStorage`.
+  - **FR-21.4 (Konsolidasi Menu Strip 3 / Dropdown Drawer):**
+    - Seluruh item navigasi header dikonsolidasikan ke dalam tombol dropdown 3-garis (strip 3) berlabel "Menu".
+    - Menu beradaptasi secara cerdas berdasarkan status autentikasi:
+      - **Tamu (Belum Login):** Menampilkan opsi cepat *"Login / Masuk Akun"* dan *"Daftar Akun Baru"*.
+      - **Pengguna Login:** Menampilkan kartu identitas profil jamaah (Avatar, Nama Lengkap, Email, Badge Peran) dan tombol *"Logout / Keluar Sesi"* dengan dialog konfirmasi santun.
+
+### 4.22 Modul Splash Screen Pembuka & Brand Experience [FR-22]
+- **Tujuan Modul:** Menghadirkan kesan pertama yang menenangkan, syahdu, dan bermartabat melalui layar pembuka (*splash screen*) berornamen islami sebelum pengguna memasuki lembar mushaf tilawah.
+- **Rincian Spesifikasi:**
+  - **FR-22.1 (Tampilan Visual Syahdu):** Menampilkan ornamen kubah masjid bercahaya, bulan sabit & bintang emas dengan animasi kilau mengambang (*floating glow*), kaligrafi basmalah bercahaya, judul elegan "QURAN WEB", serta kutipan pengantar tadabbur.
+  - **FR-22.2 (Indikator Pemuatan & Aksi Cepat):** Dilengkapi bilah progres animasi pemuatan halus 3 detik dengan transisi fade-out otomatis menuju mushaf, serta tombol *"Masuk Sekarang →"* bagi pengguna yang ingin langsung membaca tanpa menunggu.
+  - **FR-22.3 (Preferensi Langsung ke Mushaf):** Opsi centang *"Jangan tampilkan lagi"* yang menyimpan preferensi di `localStorage` (`quranweb_skip_splash`) agar kunjungan berikutnya langsung menuju mushaf tanpa jeda splash screen.
+  - **FR-22.4 (Perlindungan Rute Langsung):** Splash screen hanya aktif pada kunjungan ke rute utama (`/` atau `/index.html`), dan secara otomatis dilewati jika pengguna membuka tautan langsung ke rute spesifik (seperti `/admin`, `/daftar`, `/doa`, `/kisah`).
+
+### 4.23 Modul Asmaul Husna (99 Nama Agung & Tadabbur Dalil) [FR-23]
+- **Tujuan Modul:** Membimbing jamaah dalam mengenal, menghafal, dan meneladani 99 sifat keagungan Allah Subhanahu wa Ta'ala secara interaktif dan terhubung langsung dengan dalil Al-Qur'an.
+- **Rincian Spesifikasi:**
+  - **FR-23.1 (Rute Khusus `/asmaul-husna` & Session Guard):** Halaman Asmaul Husna dilindungi *session guard* khusus jamaah terdaftar; pengunjung tamu otomatis disajikan modal pendaftaran/masuk dan dialihkan kembali ke mushaf.
+  - **FR-23.2 (Koleksi Lengkap 99 Nama Allah):** Memuat 99 nama agung lengkap dengan nomor urut (1–99), kaligrafi Arab besar (`font-arabic-amiri`), transliterasi Latin standar Kemenag RI, terjemahan ringkas, tafsir makna teologis hakiki, dan faidah refleksi kehidupan.
+  - **FR-23.3 (Tautan 1-Klik Rujukan Ayat Al-Qur'an):** Setiap nama yang memiliki rujukan dalil dilengkapi tombol langsung yang melompat ke surah dan ayat terkait di lembar tilawah mushaf (misal: *Ar-Rahman* ke QS. Al-Fatihah: 1, *Al-Quddus* ke QS. Al-Hasyr: 23).
+  - **FR-23.4 (Pelafalan Audio Makhraj Web Speech API):** Tombol audio sintetis untuk mendengarkan pelafalan bahasa Arab standar yang bekerja 100% luring tanpa kuota internet.
+  - **FR-23.5 (Pencarian Cepat, Favorit & Skalabilitas Huruf):** Fitur pencarian multi-kriteria (nomor, lafadz Arab, ejaan Latin, arti), penyimpanan nama favorit ke `localStorage`, pengatur ukuran huruf 3 tingkat (A, A+, A++), dan opsi tata letak Grid atau List.
+  - **FR-23.6 (PWA Offline Precache v8):** Dataset `/data/asmaul_husna.json` tersimpan dalam Service Worker cache v8 untuk akses penuh tanpa koneksi internet.
+
+### 4.24 Modul Tasbih Digital Interaktif Card (Hitung Naik & Mundur) [FR-24]
+- **Tujuan Modul:** Menyediakan sarana bertasbih dan berdzikir modern berbasis kartu interaktif (*card-based interface*) yang fleksibel dengan pilihan mode hitung naik (*count up*) dan hitung mundur (*count down*).
+- **Rincian Spesifikasi:**
+  - **FR-24.1 (Rute Khusus `/tasbih` & Session Guard):** Halaman tasbih digital khusus untuk pengguna yang telah terdaftar, dapat diakses dari menu dropdown 3-garis pada seksi Fitur & Layanan Islami.
+  - **FR-24.2 (Kartu Tasbih Sentuh Bebas / Tap-Anywhere):** Seluruh area kartu berukuran besar dapat disentuh di layar sentuh, diklik mouse, atau ditekan tombol keyboard (Spasi / Enter) dengan animasi ripple dan umpan balik getar.
+  - **FR-24.3 (Dua Mode Hitungan Fleksibel):**
+    - **Mode Hitung Naik (Count Up):** Hitungan bertambah `+1` dari 0 menuju target yang ditentukan (33x, 99x, 100x, 1000x, atau Bebas $\infty$). Bar kemajuan terisi dari 0% hingga 100%.
+    - **Mode Hitung Mundur (Count Down):** Hitungan berkurang `-1` dari target yang ditentukan (misal 33 atau 100) menuju angka 0. Saat mencapai 0, sistem menampilkan perayaan tuntas putaran dan bersiap otomatis untuk putaran berikutnya.
+  - **FR-24.4 (Umpan Balik Sensori Haptic & Melodic Chime):**
+    - *Getaran Haptic Smartphone:* Getaran halus 18ms pada tiap ketukan dan getaran ritmis panjang saat mencapai target/putaran.
+    - *Suara Sintesis Web Audio API:* Suara klik lembut pada tiap ketukan dan melodi harmoni kristal 3-nada (*C5-E5-G5 chime*) saat tuntas satu putaran target.
+  - **FR-24.5 (Koleksi 8 Dzikir Ma'tsur & Fadhilah):** Pilihan cepat dzikir (*Subhanallah, Alhamdulillah, Allahu Akbar, Tahlil, Istighfar, Shalawat, Hauqalah, Subhanallahi wa bihamdihi*) dengan fadhilah dan rujukan hadits shahih Bukhari/Muslim.
+  - **FR-24.6 (Statistik Harian & Konsistensi Widget `/doa`):** Pencatatan otomatis total dzikir harian dan putaran tuntas di `localStorage`, serta sinkronisasi kemampuan hitung naik/mundur pada widget tasbih di modul Doa Qur'ani (`/doa`).
 
 ---
 
@@ -726,6 +774,10 @@ sequenceDiagram
 | **FR-18** | Kompas Arah Kiblat Adaptif (Offline) | [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) - Step 14 | **Selesai (100%)** |
 | **FR-19** | Peta Masjid Terdekat (Leaflet.js + OSM) | [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) - Step 15 & 16 | **Selesai (100%)** |
 | **FR-20** | Asbabun Nuzul, Gharib & Audio Capsule 3 Mnt | [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) - Step 16 | **Selesai (100%)** |
+| **FR-21** | Pendaftaran Akun Jamaah Baru & Dropdown Strip 3 | [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) - Step 18 | **Selesai (100%)** |
+| **FR-22** | Splash Screen Pembuka & Brand Experience | [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) - Step 19 | **Selesai (100%)** |
+| **FR-23** | Asmaul Husna (99 Nama Allah & Dalil Mushaf) | [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) - Step 20 | **Selesai (100%)** |
+| **FR-24** | Tasbih Digital Card (Hitung Naik & Mundur) | [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md) - Step 21 | **Selesai (100%)** |
 
 ### 8.2 Pemetaan FR ke Skenario Pengujian Mutu (QA Test Cases)
 
@@ -743,6 +795,10 @@ sequenceDiagram
 | **FR-18** | TC-ST14-01 s.d. TC-ST14-07 (Kompas Kiblat & Visualisasi Audit) | Kompas akurat Great Circle Ka'bah, Chart.js dinamis. | **PASS (100%)** |
 | **FR-19** | TC-ST15-01 s.d. TC-ST15-06 (Peta Masjid Leaflet.js OSM) | Peta offline ringan, rute jalan santai lansia teruji. | **PASS (100%)** |
 | **FR-20** | TC-ST16-01 s.d. TC-ST16-07 (Asbabun Nuzul, Gharib & Audio 3 Mnt) | Riwayat Asbabun Nuzul shahih, glosarium balaghah jelas. | **PASS (100%)** |
+| **FR-21** | TC-ST17-08 (Formulir Pendaftaran & Dropdown Menu Strip 3) | Validasi bersih, sanitasi spasi, toggle sandi, drawer responsif. | **PASS (100%)** |
+| **FR-22** | TC-ST17-04 (Splash Screen Pembuka & Brand Experience) | Animasi kilau halus, tombol lewati, skip preference tersimpan. | **PASS (100%)** |
+| **FR-23** | TC-ST17-09 (Modul Asmaul Husna 99 Nama & Session Guard) | 99 nama lengkap, dalil ayat presisi, audio makhraj offline. | **PASS (100%)** |
+| **FR-24** | TC-ST17-10 (Tasbih Digital Card Hitung Naik & Mundur) | Tap-anywhere card, mode naik/mundur presisi, getar & chime. | **PASS (100%)** |
 
 ---
 

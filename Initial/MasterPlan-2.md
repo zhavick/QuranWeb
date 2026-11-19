@@ -2,10 +2,10 @@
 ## Konsep Integrasi Modul Qashashul Anbiya', Jurnal Blog, Standarisasi Akun & Logout, Rencana Khatam 'Ain, Doa-Dzikir, Asbabun Nuzul, Audio Narasi, Kompas Kiblat, Peta Masjid OpenStreetMap, Email Siaran Admin & Unified Docker Deployment
 
 * **Nama Dokumen:** MasterPlan-2.md
-* **Versi Dokumen:** 2.1.0 (Full Implementation Realization)
-* **Status Implementasi:** **100% Terealisasi (Step 9 s.d. Step 17 Selesai & Teruji)**
+* **Versi Dokumen:** 2.2.0 (Comprehensive Ecosystem Release)
+* **Status Implementasi:** **100% Terealisasi (Step 9 s.d. Step 21 Selesai & Teruji)**
 * **Fokus Dokumen:** Brainstorming Konseptual, Perencanaan Strategis & Realisasi Arsitektur Tahap 2
-* **Kategori:** Ekosistem Edukasi, Tadabbur, Sejarah Nabawi, Jurnal Literasi, Ibadah Harian, Navigasi Masjid, Aksesibilitas Lansia, Email Kampanye & Deployment Kontainer
+* **Kategori:** Ekosistem Edukasi, Tadabbur, Sejarah Nabawi, Jurnal Literasi, Ibadah Harian, Navigasi Masjid, Aksesibilitas Lansia, Asmaul Husna, Tasbih Digital, Splash Screen, Email Kampanye & Deployment Kontainer
 * **Target Pengguna:** Umat Muslim Seluruh Usia, Terkhusus Lansia, Keluarga, Guru Tilawah, dan Penuntut Ilmu
 
 ---
@@ -631,6 +631,13 @@ Struktur Entitas Terintegrasi QuranWeb Tahap 2:
     ├── Dockerfile tunggal multi-stage & multi-target ('target: web' & 'target: api')
     ├── docker-compose.yml: healthcheck postgresql, environment variables dinamis (.env)
     └── Skrip deployment 1-klik: docker_deploy.sh (Linux/macOS) & docker_deploy.bat (Windows)
+└── 10. Pengalaman Masuk & Keanggotaan Jamaah (Membership & User Journey)
+    ├── Splash Screen pembuka bercahaya (splash.html / SplashScreen.tsx) dengan skip preference
+    ├── Formulir Pendaftaran Akun Jamaah Baru (/daftar) dengan validasi sanitasi & toggle password
+    └── Konsolidasi Menu Navbar Strip-3 Dropdown dengan adaptasi menu login vs guest
+└── 11. Khazanah Asmaul Husna & Tasbih Digital Card (Spiritual Modules)
+    ├── Asmaul Husna (/asmaul-husna): 99 nama agung, tafsir makna, rujukan ayat Al-Qur'an & audio Web Speech API
+    └── Tasbih Digital Card (/tasbih): Tampilan kartu sentuh bebas, mode Hitung Naik & Mundur, haptic & melodic chime
 ```
 
 ---
@@ -643,10 +650,14 @@ Struktur Entitas Terintegrasi QuranWeb Tahap 2:
 | **Ritme Khatam** | Memaksa 1 Juz/hari yang melelahkan lansia. | **Ritme Sakinah Berbasis 'Ain:** Santai 1 'Ain usai shalat fardhu (khatam ~3,5 bulan tanpa lelah mata). |
 | **Kisah Para Nabi** | Artikel teks lepas tanpa kaitan mushaf. | **Bi-Directional Linking:** Terkoneksi ke ayat mushaf, doa nabawi, dan linimasa sejarah. |
 | **Doa & Dzikir** | Sekadar teks statis. | **Tasbih Haptic Layar Penuh:** Berdzikir dengan getaran penanda tanpa harus menatap layar. |
+| **Tasbih Digital Card** | Counter angka standar tanpa opsi arah hitungan. | **Kartu Interaktif Tap-Anywhere:** Pilihan Hitung Naik (0 → Target) & Hitung Mundur (Target → 0), getar haptic & melodi chime. |
+| **Asmaul Husna** | Teks tabel statis tanpa dalil. | **99 Nama Lengkap + Dalil Qur'an:** 1-klik lompat ke ayat mushaf, audio makhraj Arab, dan faedah tadabbur. |
 | **Audio Ramah Lansia** | Hanya lantunan murottal ayat. | **Murottal 5 Qari + Audio Narasi Bertutur 3 Menit** untuk mata yang lelah membaca layar. |
 | **Arah Kiblat** | Dipenuhi iklan banner dan kompas macet di laptop. | **Kompas Adaptif:** Live compass di HP & panduan azimuth/matahari di laptop, 100% offline. |
 | **Peta Masjid Terdekat** | Peta berat penuh iklan dan biaya API mahal. | **OpenStreetMap Lokal + Data Google Maps:** Terintegrasi izin lokasi jadwal shalat & estimasi jalan santai. |
 | **Manajemen Akun** | Tidak ada pemisahan peran kurasi. | **RBAC Terstandarisasi:** Super Admin, Asatidz, Editor, Jamaah, dan Tamu. |
+| **Pendaftaran Jamaah** | Form rumit dengan verifikasi email kaku. | **Form Ramah Lansia (/daftar):** Cepat, bebas spasi otomatis, toggle sandi, dan fallback offline localStorage. |
+| **Tata Letak Navbar** | Menu bertumpuk dan bergeser di layar sempit. | **Konsolidasi Strip-3 Dropdown:** Navigasi bersih, adaptif status login/logout, dan anti-overflow horizontal. |
 | **Aksesibilitas Logout** | Tersembunyi di rute dashboard rumit. | **Tombol Logout Cepat di Halaman Depan:** Dilengkapi modal konfirmasi santun ramah lansia. |
 
 ---
@@ -660,7 +671,8 @@ Struktur Entitas Terintegrasi QuranWeb Tahap 2:
 | **Fase 3: Modul Ibadah Harian, Khatam & Kompas Kiblat** | Pembangunan antarmuka Rencana Khatam 'Ain, Tasbih Digital Haptic, dan Kompas Kiblat visual adaptif. | Fitur pendukung ibadah harian yang menyejukkan hati dan praktis digunakan lansia. |
 | **Fase 4: Halaman Peta Masjid OpenStreetMap (Navbar Menu)** | Pembuatan menu navbar baru, integrasi peta OpenStreetMap lokal dengan sinkronisasi data Google Maps, dan alur izin GPS terpadu dengan Jadwal Shalat. | Halaman `/masjid` interaktif dengan kartu jarak jalan santai lansia dan navigasi rute turn-by-turn. |
 | **Fase 5: Asbabun Nuzul, Glosarium & Audio Narasi** | Integrasi tooltip Asbabun Nuzul, kamus mufradat kata sukar, dan rekaman audio bertutur 3 menit. | Pengalaman tadabbur Al-Qur'an yang mendalam dan inklusif bagi pembaca bermata lelah. |
-| **Fase 6: Panel Manajemen Terpadu CMS** | Pengintegrasian antarmuka penulisan draf dan kurasi asatidz di `/admin` serta sinkronisasi progres khatam di `/user`. | Portal terpadu yang siap operasional penuh bagi seluruh pemangku kepentingan. |
+| **Fase 6: Panel Manajemen Terpadu CMS & Kontainerisasi** | Pengintegrasian antarmuka penulisan draf dan kurasi asatidz di `/admin`, pengiriman email kampanye SMTP, serta Dockerfile terpadu. | Portal terpadu yang siap operasional penuh bagi seluruh pemangku kepentingan. |
+| **Fase 7: Keanggotaan, Asmaul Husna & Tasbih Digital Card** | Implementasi pendaftaran `/daftar`, konsolidasi navbar strip 3, splash screen pembuka, modul Asmaul Husna 99 nama, dan kartu Tasbih Digital Hitung Naik/Mundur. | Pengalaman pengguna yang anggun, khidmat, rapi, dan terpadu secara spiritual bagi seluruh jamaah. |
 
 ---
 
@@ -671,9 +683,10 @@ Pengembangan **Tahap 2 pada Master Plan 2** ini menegaskan identitas QuranWeb bu
 1. **Mushaf & Khatam 'Ain:** Membimbing pembaca menyelesaikan Al-Qur'an dengan ritme yang manusiawi dan menenangkan.
 2. **Kisah Rasul & Jurnal Blog:** Menanamkan keteladanan kenabian dan menjawab dinamika hidup modern dengan landasan wahyu.
 3. **Doa, Dzikir & Kompas Kiblat Adaptif:** Memfasilitasi amalan harian jamaah di smartphone maupun laptop di mana pun berada.
-4. **Peta Masjid Terdekat (OpenStreetMap + Google Maps):** Menuntun langkah kaki jamaah menuju shalat berjamaah tepat waktu melalui menu navbar baru dan izin lokasi yang bersinergi dengan jadwal shalat.
-5. **Asbabun Nuzul & Audio Narasi:** Membuka wawasan pemahaman ayat secara inklusif, terkhusus bagi generasi sepuh.
-6. **Standarisasi Akun & Aksesibilitas Halaman Depan:** Menjamin keamanan, amanah kurasi, dan kenyamanan navigasi yang bebas hambatan.
+4. **Tasbih Digital Card & Asmaul Husna:** Membantu penghayatan 99 sifat keagungan Allah dan kemudahan dzikir hitung naik/mundur dengan umpan balik getar dan melodi halus.
+5. **Peta Masjid Terdekat (OpenStreetMap + Google Maps):** Menuntun langkah kaki jamaah menuju shalat berjamaah tepat waktu melalui menu navbar baru dan izin lokasi yang bersinergi dengan jadwal shalat.
+6. **Asbabun Nuzul & Audio Narasi:** Membuka wawasan pemahaman ayat secara inklusif, terkhusus bagi generasi sepuh.
+7. **Standarisasi Akun, Pendaftaran Jamaah & Navbar Bersih:** Menjamin kenyamanan navigasi, keamanan data, dan kemudahan akses tanpa hambatan visual.
 
 Dengan berpegang teguh pada prinsip **Waqaf Digital Tanpa Iklan**, QuranWeb dirancang untuk menghadirkan ketenangan batin (*peace of mind*), memelihara keimanan, dan menjadi ladang amal jariyah yang abadi bagi umat Islam.
 

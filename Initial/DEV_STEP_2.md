@@ -240,5 +240,76 @@ Dokumen ini merupakan panduan tahapan pengembangan teknis (*development steps*) 
 * **Kriteria Selesai:** Seluruh pengujian lolos, kontainer Docker multi-target terverifikasi berjalan lancar pada port 3382 & 5572, skrip deployment multi-platform beroperasi 1-klik, fitur offline PWA terverifikasi, dan dokumentasi proyek termutakhirkan secara komprehensif. Tervalidasi 0 error pada kompilasi TypeScript (`tsc -b`).
 
 ---
+
+### Step 18: Modul Registrasi Akun Jamaah Baru (`/daftar`) & Redesain Navbar Menu 3-Garis (Strip 3)
+* **Status:** **Selesai (Done)**
+* **Tujuan:** Menyediakan antarmuka pendaftaran akun jamaah baru yang mudah dan ramah lansia, mengoptimasi navbar desktop & mobile agar tidak menumpuk dengan menyatukan seluruh navigasi ke dalam menu dropdown 3-garis (strip 3), serta membedakan menu bagi tamu dan pengguna login.
+* **Tugas Spesifik yang Diselesaikan:**
+  1. **Komponen Formulir Pendaftaran Akun (`src/components/auth/RegisterView.tsx`):**
+     - Form pendaftaran mencakup Nama Lengkap, Alamat Email, Username (otomatis sanitasi lowercase tanpa spasi), Password (dengan toggle lihat/sembunyikan sandi), dan Konfirmasi Password.
+     - Validasi sisi klien lengkap: pencegahan spasi, validasi format email, konfirmasi sandi cocok, serta penanganan error duplikasi (HTTP 409).
+     - Tombol "Daftar Akun Baru" ramah lansia dengan animasi loading, tombol "Sudah Punya Akun? Masuk di Sini", dan tombol "Kembali ke Mushaf".
+  2. **Layanan Backend & Endpoint Registrasi (`server/index.js` & `src/services/auth.ts`):**
+     - Menambahkan endpoint `POST /api/auth/register` dengan hashing bcrypt, penyimpanan ke tabel `users` PostgreSQL (peran default `jamaah`), serta mekanisme fallback luring ke `localStorage` jika backend PostgreSQL offline.
+     - Penambahan tab switcher "Masuk Akun" dan "Daftar Baru" pada `UserPortal.tsx`.
+  3. **Konsolidasi Menu Navbar ke Dropdown 3-Garis (Strip 3) (`src/App.tsx`):**
+     - Mengubah deretan menu navbar agar tidak bertumpuk dengan menyatukannya ke dalam menu drawer dropdown 3-garis berlabel "Menu".
+     - Menambahkan menu status akun:
+       - **Bagi Pengguna Belum Login (Tamu):** Tampil opsi "Login / Masuk Akun" dan "Daftar Akun Baru".
+       - **Bagi Pengguna Sudah Login:** Tampil kartu profil jamaah (Avatar, Nama, Email, Peran) dan tombol "Logout / Keluar Sesi".
+* **Kriteria Selesai:** Pendaftaran akun baru berhasil menyimpan data ke backend/offline storage, menu navbar rapi dan bersih dari tumpukan elemen, serta transisi login/register/logout berjalan mulus.
+
+---
+
+### Step 19: Integrasi Layar Pembuka Interaktif (Splash Screen Brand Experience)
+* **Status:** **Selesai (Done)**
+* **Tujuan:** Mengintegrasikan halaman splash screen pembuka (`splash/splash.html`) ke dalam aplikasi utama React (`src/components/common/SplashScreen.tsx`) untuk memberikan sambutan syahdu dan branding profesional sebelum memasuki mushaf.
+* **Tugas Spesifik yang Diselesaikan:**
+  1. **Porting Komponen Splash Screen (`src/components/common/SplashScreen.tsx`):**
+     - Membawa seluruh desain dari `splash/splash.html`: ornamen kubah masjid bercahaya, bulan sabit & bintang emas, kaligrafi basmalah bercahaya, judul "QURAN WEB", subtitle tadabbur, progress bar pemuatan halus 3 detik, tombol "Masuk Sekarang →", dan opsi "Jangan tampilkan lagi".
+  2. **Integrasi Logika Pembuka pada `src/App.tsx`:**
+     - Splash screen otomatis tampil hanya pada kunjungan awal ke halaman utama (`/` atau `/index.html`), dan tidak mengganggu saat user mengakses tautan langsung ke rute spesifik (misal `/admin`, `/daftar`, `/doa`).
+     - Menggunakan `localStorage` key `quranweb_skip_splash` jika user mencentang opsi agar langsung ke mushaf pada kunjungan berikutnya.
+* **Kriteria Selesai:** Splash screen tampil menawan dengan transisi fade-out halus menuju lembar mushaf tanpa flicker.
+
+---
+
+### Step 20: Modul Asmaul Husna (99 Nama Allah) (`/asmaul-husna`) Khusus Pengguna Terdaftar
+* **Status:** **Selesai (Done)**
+* **Tujuan:** Menghadirkan modul interaktif 99 Asmaul Husna lengkap dengan makna hakiki, rujukan dalil Al-Qur'an, pelafalan audio, dan kontrol akses khusus pengguna terdaftar.
+* **Tugas Spesifik yang Diselesaikan:**
+  1. **Dataset Lengkap 99 Asmaul Husna (`public/data/asmaul_husna.json`):**
+     - Menyusun dataset 99 Asmaul Husna lengkap dengan nomor urut, kaligrafi Arab (`font-arabic-amiri`), transliterasi Latin standar Kemenag, arti bahasa Indonesia, tafsir makna hakiki, rujukan surah & ayat Al-Qur'an (`surahId`, `surahName`, `ayahNumber`), serta faidah refleksi kehidupan.
+  2. **Komponen Katalog Ramah Lansia (`src/components/asmaulhusna/AsmaulHusnaCatalog.tsx`):**
+     - Pencarian cepat (nomor, latin, arab, arti), filter favorit lokal, font scaler 3 tingkat (A, A+, A++), toggle tampilan Grid/List, salin teks 1-klik, dan modal telaah detail & tadabbur.
+     - **Audio Pelafalan (Web Speech API):** Sintesis suara makhraj Arab (fallback Indonesia) yang berjalan luring tanpa kuota.
+     - **Tautan 1-Klik ke Mushaf:** Tombol rujukan langsung melompat ke surah dan ayat terkait di lembar mushaf tilawah.
+  3. **Proteksi Rute (Session Guard) & Caching PWA v8 (`src/App.tsx` & `public/sw.js`):**
+     - Membatasi akses rute `/asmaul-husna` dan tombol drawer khusus bagi pengguna terdaftar (tamu otomatis disajikan modal pendaftaran).
+     - Menaikkan Service Worker ke `quranweb-cache-v8` dan memprecache `/data/asmaul_husna.json` untuk akses offline 100%.
+* **Kriteria Selesai:** Seluruh 99 Asmaul Husna dapat dibaca, dicari, didengarkan pelafalannya, diakses luring, dan terproteksi session guard bagi jamaah terdaftar.
+
+---
+
+### Step 21: Modul Tasbih Digital Interaktif Card (Hitung Naik & Mundur) (`/tasbih`)
+* **Status:** **Selesai (Done)**
+* **Tujuan:** Menyediakan modul tasbih digital berbasis kartu interaktif (*card-based UI*) dengan opsi hitung naik (*count up*) dan hitung mundur (*count down*), umpan balik haptic & audio melodi, serta proteksi khusus pengguna terdaftar.
+* **Tugas Spesifik yang Diselesaikan:**
+  1. **Kartu Tasbih Digital Sentuh Layar (`src/components/tasbih/TasbihPage.tsx`):**
+     - Tampilan kartu interaktif berukuran besar dengan kaligrafi Arab, transliterasi Latin, dan arti. Seluruh area kartu dapat disentuh (*tap anywhere*) atau menggunakan tombol Spasi/Enter dengan animasi ripple.
+  2. **Dua Pilihan Mode Bertasbih:**
+     - **Mode Hitung Naik (0 → Target):** Counter bertambah `+1` menuju target (33x, 99x, 100x, 1000x, Bebas) dengan bar kemajuan dinamis.
+     - **Mode Hitung Mundur (Target → 0):** Counter berkurang `-1` dari target menuju 0, memberikan notifikasi perayaan, dan bersiap otomatis untuk putaran berikutnya.
+  3. **Umpan Balik Haptic & Chime Melodi (`src/services/prayers.ts`):**
+     - Getaran haptic smartphone halus pada tiap ketukan dan getaran panjang saat genap putaran.
+     - Suara klik lembut pada tiap ketukan dan melodi harmoni kristal (*chime C5-E5-G5*) Web Audio API saat tuntas target.
+  4. **Koleksi Dzikir Ma'tsur, Statistik Harian & Proteksi Akses (`src/services/tasbih.ts` & `src/App.tsx`):**
+     - Pilihan 8 kalimat dzikir ma'tsur dengan fadhilah dan rujukan hadits shahih Bukhari/Muslim.
+     - Pencatatan statistik harian total ketukan dan putaran dzikir di `localStorage`.
+     - Proteksi rute `/tasbih` dan tombol menu drawer 3-garis khusus bagi jamaah terdaftar.
+     - Peningkatan `TasbihHapticWidget.tsx` pada modul `/doa` agar turut mendukung pilihan Hitung Naik dan Hitung Mundur.
+* **Kriteria Selesai:** Pengguna terdaftar dapat bertasbih dengan mode hitung naik maupun hitung mundur pada tampilan kartu yang responsif, dilengkapi umpan balik getar dan audio melodi, serta tervalidasi 0 error pada kompilasi TypeScript (`tsc -b`).
+
+---
 *Dokumen ini merupakan cetak biru resmi urutan pengembangan teknis Fase 2 yang siap menjadi acuan kerja tim pengembang.*
 

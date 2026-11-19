@@ -29,7 +29,9 @@ Aplikasi ini memiliki keunggulan navigasi berdasarkan **Surat**, **Juz**, dan **
 20. [Modul Kompas Arah Kiblat Adaptif (/kiblat)](#20-modul-kompas-arah-kiblat-adaptif-kiblat)
 21. [Modul Peta Masjid Terdekat OpenStreetMap (/masjid)](#21-modul-peta-masjid-terdekat-openstreetmap-masjid)
 22. [Asbabun Nuzul, Kamus Mufradat Gharib & Audiobook 3 Menit](#22-asbabun-nuzul-kamus-mufradat-gharib--audiobook-3-menit)
-23. [Pertanyaan yang Sering Diajukan (FAQ)](#23-pertanyaan-yang-sering-diajukan-faq)
+23. [Modul Asmaul Husna (99 Nama Allah) (/asmaul-husna)](#23-modul-asmaul-husna-99-nama-allah-asmaul-husna)
+24. [Modul Tasbih Digital (Hitung Naik & Mundur) (/tasbih)](#24-modul-tasbih-digital-hitung-naik--mundur-tasbih)
+25. [Pertanyaan yang Sering Diajukan (FAQ)](#25-pertanyaan-yang-sering-diajukan-faq)
 
 ---
 
@@ -74,6 +76,13 @@ Aplikasi telah dilengkapi skrip otomatisasi deployment multi-platform berbasis N
    ```
    Panduan lengkap arsitektur port, pemeliharaan backup database PostgreSQL, dan SSL produksi tersedia di **[DOCKER_DEPLOY.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/DOCKER_DEPLOY.md)**.
 
+### C. Pengalaman Layar Pembuka (Splash Screen)
+Saat pertama kali membuka alamat utama QuranWeb, pengguna akan disambut dengan **Splash Screen Syahdu**:
+- Ornamen kubah masjid bercahaya, bulan sabit dan bintang emas mengambang, serta kaligrafi basmalah.
+- Bilah pemuatan (*progress bar*) 3 detik yang bertransisi halus ke lembar mushaf.
+- Tombol **"Masuk Sekarang →"** bagi pengguna yang ingin langsung membaca tanpa menunggu.
+- Kotak centang **"Jangan tampilkan lagi"** untuk melewati splash screen pada kunjungan berikutnya.
+
 ---
 
 ## 2. Navigasi Al-Qur'an (Surat, Juz, dan 'Ain)
@@ -113,6 +122,21 @@ Quran Web menyediakan 3 metode navigasi utama yang dapat diakses melalui panel n
 - **Desain Proporsional (100% Lebar Layar):** Teks Arab dan terjemahan otomatis menyesuaikan lebar layar ponsel tanpa ada geser horizontal (*no horizontal scroll*).
 - **Aman untuk Notch & Navigasi Ponsel:** Memanfaatkan area aman (*safe-area-inset*) sehingga teks tidak tertutup poni layar atau bilah navigasi ponsel.
 - **Bottom Navigation Bar:** Di bagian bawah layar ponsel terdapat menu cepat: **Surat**, **Juz**, **'Ain**, dan **Simpan (Bookmark)** yang membuka laci navigasi dari bawah (*slide-over drawer*).
+
+### C. Menu Navbar Dropdown 3-Garis (Strip 3)
+Untuk mencegah menu bertumpuk atau terpotong pada bilah navigasi (navbar), seluruh menu utilitas dan layanan islami dikonsolidasikan ke dalam satu tombol dropdown 3-garis (strip 3) berlabel **"Menu"**:
+- **Menu Adaptif Berdasarkan Status Login:**
+  - **Bagi Pengguna Tamu (Belum Login):** Menampilkan opsi **"Masuk / Login"** dan **"Daftar Akun Baru"** (`/daftar`).
+  - **Bagi Pengguna Terdaftar (Sudah Login):** Menampilkan kartu profil jamaah (Avatar, Nama, Email, Peran) dan tombol **"Logout / Keluar Sesi"** dengan dialog konfirmasi santun.
+- **Akses Cepat Fitur & Layanan Islami:**
+  - Kisah Para Rasulullah (25 Nabi) (`/kisah`)
+  - Jurnal & Blog Tadabbur (`/blog`)
+  - Kompas Arah Kiblat Adaptif (`/kiblat`)
+  - Peta Masjid Terdekat OpenStreetMap (`/masjid`)
+  - Doa Qur'ani (40 Rabbana) & Dzikir (`/doa`)
+  - Asmaul Husna (99 Nama Allah) (`/asmaul-husna`)
+  - Tasbih Digital Hitung Naik & Mundur (`/tasbih`)
+  - Audiobook Tadabbur 3 Menit
 
 ---
 

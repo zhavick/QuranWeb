@@ -9,9 +9,9 @@
 | :--- | :--- |
 | **Nama Proyek** | QuranWeb: Platform Tilawah Al-Qur'an Digital Modern Ramah Lansia |
 | **Kode Dokumen** | QW-DOC-TSD-001 |
-| **Versi Dokumen** | 2.1.0 (Comprehensive Architecture Release) |
+| **Versi Dokumen** | 2.2.0 (Comprehensive Architecture Release) |
 | **Status Dokumen** | Disetujui & Tervalidasi Produksi (Production Ready) |
-| **Tanggal Pembaruan** | 18 November 2026 |
+| **Tanggal Pembaruan** | 19 November 2026 |
 | **Target Lingkungan** | Web Browser Modern (Desktop & Mobile), PWA Offline, Docker Container Port 3382 |
 | **Basis Dokumen Rujukan** | [FSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/FSD.md), [TSD.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/TSD.md), [USER_MANUAL.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Document/USER_MANUAL.md), [MasterPlan.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan.md), [MasterPlan-2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/MasterPlan-2.md), [DEV_STEP.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP.md), [DEV_STEP_2.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/DEV_STEP_2.md), [QualityAssurance.md](file:///c:/TEMP/VSCODE/QuranWeb/QuranWeb/Initial/QualityAssurance.md) |
 
@@ -49,6 +49,10 @@
   - [5.10 Modul Portal Administrator, Chart.js Dual-Series Audit Trail & CMS Blog](#510-modul-portal-administrator-chartjs-dual-series-audit-trail--cms-blog)
   - [5.11 Modul Portal Pengguna, Card Bookmark & Sinkronisasi Cloud](#511-modul-portal-pengguna-card-bookmark--sinkronisasi-cloud)
   - [5.12 Modul Gateway Email Buletin, Pengingat Tilawah & Pengaturan SMTP](#512-modul-gateway-email-buletin-pengingat-tilawah--pengaturan-smtp)
+  - [5.13 Modul Registrasi Akun Jamaah Baru (/daftar) & Dropdown Menu Strip 3](#513-modul-registrasi-akun-jamaah-baru-daftar--dropdown-menu-strip-3)
+  - [5.14 Modul Splash Screen Brand Experience (splash.html & SplashScreen.tsx)](#514-modul-splash-screen-brand-experience-splashhtml--splashscreentsx)
+  - [5.15 Modul Asmaul Husna (99 Nama Allah, Precache v8 & Web Speech API)](#515-modul-asmaul-husna-99-nama-allah-precache-v8--web-speech-api)
+  - [5.16 Modul Tasbih Digital Interaktif Card (Hitung Naik & Mundur, Haptic & Melodic Chime)](#516-modul-tasbih-digital-interaktif-card-hitung-naik--mundur-haptic--melodic-chime)
 - [BAB 6: STRATEGI CACHING, KETAHANAN OFFLINE & SERVICE WORKER (PWA)](#bab-6-strategi-caching-ketahanan-offline--service-worker-pwa)
   - [6.1 Fase Pre-Caching Inti (App Shell, Font, Dataset Metadata)](#61-fase-pre-caching-inti-app-shell-font-dataset-metadata)
   - [6.2 Strategi Runtime Cache (CacheFirst & On-Demand)](#62-strategi-runtime-cache-cachefirst--on-demand)
@@ -578,15 +582,63 @@ public/
 - Komponen `EmailCampaignManager.tsx` mengelola penyusunan dan pengiriman warta email jamaah.
 - Panel pengaturan server SMTP mendukung Host, Port, Enkripsi (STARTTLS/SSL), dan pengujian koneksi (*SMTP Ping*).
 
+### 5.13 Modul Registrasi Akun Jamaah Baru (`/daftar`) & Dropdown Menu Strip 3
+- **Komponen Formulir (`RegisterView.tsx`):**
+  - Mengelola state input pendaftaran jamaah: `full_name`, `email`, `username`, `password`, dan `confirm_password`.
+  - Sanitasi otomatis: spasi dihilangkan secara instan dan dikonversi ke huruf kecil (`val.toLowerCase().replace(/\s+/g, '')`).
+  - Fitur aksesibilitas kata sandi: tombol mata (*eye toggle*) mengubah tipe input antara `password` dan `text`.
+- **Layanan Autentikasi (`auth.ts` & `server/index.js`):**
+  - Endpoint `POST /api/auth/register` memeriksa duplikasi username/email di tabel `users` PostgreSQL (menghasilkan status HTTP 409 jika ada).
+  - Kata sandi di-hash menggunakan algoritma `bcryptjs` (salt 10).
+  - Sisi klien menyediakan mekanisme penyimpanan fallback ke `localStorage` (`quranweb_registered_users`) jika server backend luring.
+- **Konsolidasi Menu Navbar Strip-3 (`App.tsx`):**
+  - Menggabungkan elemen navbar desktop dan mobile ke dalam drawer menu dropdown 3-garis (`mobileDrawerOpen`).
+  - Menu beradaptasi dinamis: menampilkan opsi *"Login / Masuk"* & *"Daftar Akun"* untuk tamu publik, atau profil pengguna & tombol *"Logout / Keluar Sesi"* untuk jamaah yang telah diautentikasi.
+
+### 5.14 Modul Splash Screen Brand Experience (`splash.html` & `SplashScreen.tsx`)
+- **Struktur Komponen (`SplashScreen.tsx`):**
+  - Membawa arsitektur visual mandiri: kubah masjid bercahaya, bulan sabit & bintang emas dengan animasi kilau mengambang (*floating glow*), kaligrafi basmalah bercahaya, judul elegan "QURAN WEB", serta kutipan pengantar tadabbur.
+  - State `progress` teranimasi dari 0% hingga 100% selama 3 detik menggunakan `setInterval` interval 30ms.
+- **Transisi & Logika Akses:**
+  - Tombol *"Masuk Sekarang →"* memanggil `handleDismiss()` yang memicu animasi `fade-out` CSS (durasi 500ms) sebelum komponen di-unmount.
+  - Opsi *"Jangan tampilkan lagi"* menyimpan nilai `'true'` pada `localStorage` key `quranweb_skip_splash`.
+  - Evaluasi rute: `splashOpen` hanya diinisialisasi `true` jika `window.location.pathname` adalah `/`, `''`, atau `/index.html`.
+
+### 5.15 Modul Asmaul Husna (99 Nama Allah, Precache v8 & Web Speech API)
+- **Dataset Mandiri (`public/data/asmaul_husna.json`):**
+  - Berisi array 99 objek `AsmaulHusnaItem`: `id`, `arabic`, `latin`, `translation`, `meaning`, `surahRef` (`surahId`, `surahName`, `ayahNumber`), dan `faedah`.
+- **Komponen Antarmuka (`AsmaulHusnaCatalog.tsx`):**
+  - Menyediakan filter teks instan melalui memoized filter `filteredItems`.
+  - Pengatur ukuran kaligrafi Arab dan teks Latin dengan 3 tingkat (*fontSizeStep* 0, 1, 2) yang menyesuaikan variabel CSS `--bg-card`, `--text-primary`, dan `--border-color`.
+  - **Sintesis Audio Pelafalan:** Memanfaatkan `window.speechSynthesis` dengan `SpeechSynthesisUtterance` berbahasa Arab (`ar-SA`, fallback `id-ID`).
+  - **Integrasi Lompat Ayat:** Callback `onNavigateToAyah(surahId, ayahNumber)` yang mengarahkan pembaca langsung ke ayat terkait di lembar mushaf tilawah.
+- **Session Guard & Precache:**
+  - Dilindungi rute guard di `App.tsx`: jika `!currentUser`, aplikasi memunculkan `JoinPromptModal` dan mengarahkan kembali ke `reader`.
+  - Service Worker dinaikkan ke versi `quranweb-cache-v8` dengan mendaftarkan `/data/asmaul_husna.json` untuk offline precache.
+
+### 5.16 Modul Tasbih Digital Interaktif Card (Hitung Naik & Mundur, Haptic & Melodic Chime)
+- **Komponen Kartu Interaktif (`TasbihPage.tsx`):**
+  - Mengimplementasikan kartu sentuh bebas (*tap-anywhere card*) dengan dukungan klik mouse, sentuhan layar, dan penekanan tombol keyboard (Spasi / Enter).
+  - Animasi visual *ripple effect* dan bar pengisian latar (*ambient progress fill*) dari bawah ke atas sesuai kemajuan persentase putaran.
+- **Logika Dua Mode Perhitungan:**
+  - **Hitung Naik (`countMode === 'up'`):** Counter bertambah `+1` dari 0 menuju target. Saat mencapai kelipatan target, sistem mencatat `laps + 1` dan memicu notifikasi tuntas.
+  - **Hitung Mundur (`countMode === 'down'`):** Counter berkurang `-1` dari target menuju 0. Saat counter menyentuh angka 0, sistem mencatat `laps + 1`, memutar melodi tuntas, dan mereset counter kembali ke target untuk putaran berikutnya.
+- **Sintesis Suara & Getaran Haptic (`prayers.ts`):**
+  - Menggunakan Web Audio API oscillator: nada klik berfrekuensi 480Hz → 240Hz (`playSyntheticClick()`) dan rangkaian nada akor kristal C5 (523.25Hz), E5 (659.25Hz), G5 (783.99Hz) (`playSyntheticChime()`) saat tuntas target.
+  - Menggunakan Web Vibration API: getaran 18ms pada ketukan biasa, dan pola `[40, 60, 40, 60, 80]` saat tuntas satu putaran penuh.
+- **Penyimpanan Statistik Harian (`tasbih.ts`):**
+  - Menyimpan metrik `todayCount` dan `totalLaps` ke `localStorage` (`quranweb_tasbih_stats`) yang direset otomatis setiap pergantian tanggal kalender.
+
 ---
 
 ## BAB 6: STRATEGI CACHING, KETAHANAN OFFLINE & SERVICE WORKER (PWA)
 
 ### 6.1 Fase Pre-Caching Inti (App Shell, Font, Dataset Metadata)
-Saat instalasi Service Worker (`sw.js`), aset-aset berikut di-cache ke dalam `quranweb-core-v7`:
+Saat instalasi Service Worker (`sw.js`), aset-aset berikut di-cache ke dalam `quranweb-cache-v8`:
 - `index.html` dan bundel JavaScript/CSS hasil kompresi Vite.
 - Seluruh font mandiri: `amiri-quran.woff2`, `amiri.woff2`, `scheherazade.woff2`.
 - Berkas indeks Al-Qur'an: `public/data/meta.json` dan `translation_index.json`.
+- Berkas dataset Asmaul Husna: `public/data/asmaul_husna.json`.
 - Berkas metadata nabi, blog, doa, dan khazanah ulumul Qur'an.
 
 ### 6.2 Strategi Runtime Cache (CacheFirst & On-Demand)
@@ -772,7 +824,7 @@ volumes:
 - **Step 7:** Tajwid berwarna 11 kaidah, panduan makhraj & waqaf, dan pemutar audio murottal 5 qari dunia.
 - **Step 8:** Portal Administrator (`/admin`), Portal Pengguna (`/user`), audit trail, PWA offline, dan kontainerisasi Docker port `3382`.
 
-### 9.2 Rekapitulasi Eksekusi Teknis Step 9 s.d. Step 16 (Fase 2)
+### 9.2 Rekapitulasi Eksekusi Teknis Step 9 s.d. Step 21 (Fase 2)
 - **Step 9:** Standarisasi 5 peran akun RBAC (`admin`, `asatidz`, `editor`, `user`, `guest`) dan modal logout santun.
 - **Step 10:** Katalog Qashashul Anbiya' (Kisah 25 Nabi), rujukan ayat silang dua arah, dan lentera kisah mushaf.
 - **Step 11:** Jurnal literasi tadabbur 5 pilar konten, shortcode widget ayat bersuara, dan CMS artikel draf.
@@ -781,7 +833,11 @@ volumes:
 - **Step 14:** Kompas arah kiblat adaptif (akselerometer ponsel pintar + desktop azimuth) dan grafik garis Chart.js audit trail.
 - **Step 15:** Peta interaktif masjid terdekat berbasis Leaflet.js & OpenStreetMap lokal serta estimasi jalan santai lansia.
 - **Step 16:** Badge riwayat Asbabun Nuzul (*Lubabun Nuqul* & *Al-Wahidi*), kamus mufradat *Gharibul Qur'an*, dan Audiobook tadabbur 3 menit dengan sleep timer.
-- **Modul Ekstra:** Tab Email & Siaran di portal admin (`EmailCampaignManager.tsx`) untuk buletin mingguan, pengingat ibadah, serta konfigurasi server SMTP.
+- **Step 17:** Uji integrasi sistem, audit aksesibilitas lansia WCAG AAA, penyatuan Dockerfile multi-target (`target: web` & `target: api`), skrip deployment otomatis multi-platform (`docker_deploy.sh` & `docker_deploy.bat`), dan panduan developer `DOCKER_DEPLOY.md`.
+- **Step 18:** Halaman pendaftaran akun jamaah baru (`/daftar`, `RegisterView.tsx`), endpoint API registrasi bcrypt, konsolidasi navbar dropdown 3-garis (strip 3), dan adaptasi menu login vs guest.
+- **Step 19:** Integrasi splash screen pembuka (`splash.html` → `SplashScreen.tsx`) berornamen kubah masjid dan bulan sabit emas dengan progress bar 3 detik serta skip preference.
+- **Step 20:** Modul Asmaul Husna (99 Nama Allah) (`/asmaul-husna`), makna teologis, dalil Al-Qur'an terhubung ke mushaf, audio pelafalan Web Speech API, dan PWA cache v8.
+- **Step 21:** Modul Tasbih Digital Card (`/tasbih`), kartu sentuh bebas, opsi mode Hitung Naik dan Hitung Mundur, getaran haptic smartphone, audio klik dan harmoni chime melodi Web Audio API, serta sinkronisasi widget tasbih `/doa`.
 
 ### 9.3 Matriks Referensi & Tautan Berkas Proyek
 Seluruh bab dan sub-bab teknis pada dokumen TSD ini terhubung secara langsung dengan dokumentasi dan kode sumber proyek:

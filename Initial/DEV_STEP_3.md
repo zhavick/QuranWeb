@@ -30,7 +30,7 @@ Dokumen ini merupakan panduan teknis tahapan pengembangan komprehensif (*step-by
 
 | Step | Pilar / Kategori | Modul yang Dikerjakan | File Utama Terkait | Prioritas | Target Luaran |
 | :--- | :--- | :--- | :--- | :---: | :--- |
-| **Step 22** | Pilar IV: Hadits | **Modul Hadits Arba'in An-Nawawiyah (`/hadits`):** Katalog 42 hadits pokok Islam, teks Arab berharakat, transliterasi Latin, terjemahan Indonesia, mukharrij, faidah syarah, pencarian cepat, dan audio makhraj. | `public/data/arbain_hadith.json`<br>`src/components/hadith/HadithCatalog.tsx`<br>`src/components/hadith/HadithDetailModal.tsx` | Tinggi | Halaman katalog `/hadits` responsif, filter 4 tema besar (Akidah, Ibadah, Akhlak, Muamalah), dan dialog tadabbur hadits. |
+| **Step 22** | Pilar IV: Hadits | **Modul Hadits Arba'in An-Nawawiyah (`/hadits`):** Katalog 42 hadits pokok Islam, teks Arab berharakat, transliterasi Latin, terjemahan Indonesia, mukharrij, faidah syarah, pencarian cepat, dan audio makhraj. | `public/data/arbain_hadith.json`<br>`src/components/hadith/HadithCatalog.tsx`<br>`src/components/hadith/HadithDetailModal.tsx` | Tinggi | **Selesai (Done)** | Halaman katalog `/hadits` responsif, filter 4 tema besar (Akidah, Ibadah, Akhlak, Muamalah), dan dialog tadabbur hadits. |
 | **Step 23** | Pilar I: Tilawah | **Integrasi Tafsir Ringkas Kemenag RI per Ayat:** Tafsir Wajiz (ringkas) dan Tafsir Tahlili (mendalam) resmi Kemenag RI, tersemat langsung pada kartu ayat mushaf tilawah. | `public/data/tafsir/*.json`<br>`src/components/reader/AyahCard.tsx`<br>`src/components/reader/TafsirModal.tsx`<br>`src/services/tafsir.ts` | Tinggi | Lencana safir *"Tafsir"* di kartu ayat membuka modal telaah tafsir resmi Kemenag RI dengan kontrol font ramah lansia. |
 | **Step 24** | Pilar III: Syiar | **Generator Poster Kutipan Ayat ke WhatsApp (*Ayah Poster Maker*):** Pembuat gambar kutipan ayat otomatis berbasis HTML5 Canvas untuk status WhatsApp dan Instagram. | `src/services/posterGenerator.ts`<br>`src/components/reader/AyahPosterModal.tsx`<br>`src/components/reader/AyahCard.tsx` | Menengah | Dialog pembuat poster pada kartu ayat dengan 4 ornamen Islami, rasio 1:1 & 9:16, tombol unduh PNG, dan tombol share ke WhatsApp. |
 | **Step 25** | Pilar III: Keluarga | **Lingkaran Khatam Bersama Keluarga (*Family Khatam Circle*):** Fitur grup tilawah keluarga, pembagian penugasan Juz/'Ain, cincin progres bersama, dan notifikasi motivasi sakinah. | `src/components/khatam/FamilyCirclePage.tsx`<br>`src/services/familyCircle.ts`<br>`server/index.js` (skema grup) | Menengah | Antarmuka manajemen grup khatam keluarga, kode undangan bergabung, dan visualisasi progres khatam bersama. |
@@ -48,7 +48,7 @@ Dokumen ini merupakan panduan teknis tahapan pengembangan komprehensif (*step-by
 ---
 
 ### Step 22: Modul Hadits Arba'in An-Nawawiyah (`/hadits`)
-* **Status:** Siap Dikerjakan (Ready)
+* **Status:** **Selesai (Done)**
 * **Tujuan:** Menghadirkan naskah 42 hadits monumental karya Imam An-Nawawi yang menjadi pilar ajaran Islam, lengkap dengan matan Arab berharakat, transliterasi Latin, terjemahan Indonesia, perawi, faidah syarah, dan pelafalan audio.
 * **Tugas Spesifik:**
   1. **Penyusunan Dataset Mandiri (`public/data/arbain_hadith.json`):**
@@ -367,7 +367,7 @@ CREATE TABLE IF NOT EXISTS tahfidz_progress (
 
 | ID Uji | Modul Target | Prosedur Pengujian | Hasil yang Diharapkan | Status |
 | :---: | :--- | :--- | :--- | :---: |
-| **QA-3.01** | Hadits Arba'in | Buka rute `/hadits`, cari kata kunci "Niat", dan ubah ukuran font. | Tampil Hadits No. 1 riwayat Umar bin Khattab, font membesar tanpa tumpang tindih. | Pending |
+| **QA-3.01** | Hadits Arba'in | Buka rute `/hadits`, cari kata kunci "Niat", dan ubah ukuran font. | Tampil Hadits No. 1 riwayat Umar bin Khattab, font membesar tanpa tumpang tindih. | **Passed** |
 | **QA-3.02** | Tafsir Kemenag | Klik lencana *"Tafsir"* pada QS Al-Fatihah ayat 1 di mushaf tilawah. | Muncul modal dengan tab Tafsir Wajiz dan Tahlili resmi Kemenag RI, respons < 150ms. | Pending |
 | **QA-3.03** | Poster Maker | Klik ikon poster pada ayat, pilih tema *Mihrab Emas* rasio 9:16, unduh PNG. | File gambar PNG beresolusi 1080×1920 tersimpan di gawai dengan tipografi Arab tajam. | Pending |
 | **QA-3.04** | Family Circle | Buat grup keluarga, salin link undangan, dan buka pada akun anggota lain. | Anggota baru berhasil bergabung dan memilih Juz penugasan tilawah. | Pending |

@@ -55,6 +55,7 @@ import { BlogCatalog } from './components/blog/BlogCatalog';
 import { PrayersCatalog } from './components/prayers/PrayersCatalog';
 import { AsmaulHusnaCatalog } from './components/asmaulhusna/AsmaulHusnaCatalog';
 import { TasbihPage } from './components/tasbih/TasbihPage';
+import { HadithCatalog } from './components/hadith/HadithCatalog';
 import { QiblaCompass } from './components/qibla/QiblaCompass';
 import { MosqueMap } from './components/mosque/MosqueMap';
 import { KhatamPlannerModal } from './components/khatam/KhatamPlannerModal';
@@ -92,7 +93,7 @@ const DEFAULT_SETTINGS: ReaderSettings = {
 
 export const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<
-    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih'
+    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits'
   >(() => {
     const p = window.location.pathname.toLowerCase();
     if (p === '/admin' || p.startsWith('/admin/')) return 'admin';
@@ -105,6 +106,7 @@ export const App: React.FC = () => {
     if (p === '/masjid' || p.startsWith('/masjid/')) return 'masjid';
     if (p === '/asmaul-husna' || p === '/asma' || p.startsWith('/asmaul-husna/') || p.startsWith('/asma/')) return 'asmaul-husna';
     if (p === '/tasbih' || p === '/tashbih' || p.startsWith('/tasbih/') || p.startsWith('/tashbih/')) return 'tasbih';
+    if (p === '/hadits' || p === '/hadith' || p.startsWith('/hadits/') || p.startsWith('/hadith/')) return 'hadits';
     return 'reader';
   });
 
@@ -115,7 +117,7 @@ export const App: React.FC = () => {
   }, []);
 
   const navigateTo = useCallback(
-    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih') => {
+    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits') => {
       setCurrentRoute(route);
       const path =
         route === 'reader'
@@ -134,6 +136,8 @@ export const App: React.FC = () => {
           ? '/asmaul-husna'
           : route === 'tasbih'
           ? '/tasbih'
+          : route === 'hadits'
+          ? '/hadits'
           : `/${route}`;
       if (window.location.pathname !== path) {
         window.history.pushState({}, '', path);
@@ -155,6 +159,7 @@ export const App: React.FC = () => {
       else if (p === '/masjid' || p.startsWith('/masjid/')) setCurrentRoute('masjid');
       else if (p === '/asmaul-husna' || p === '/asma' || p.startsWith('/asmaul-husna/') || p.startsWith('/asma/')) setCurrentRoute('asmaul-husna');
       else if (p === '/tasbih' || p === '/tashbih' || p.startsWith('/tasbih/') || p.startsWith('/tashbih/')) setCurrentRoute('tasbih');
+      else if (p === '/hadits' || p === '/hadith' || p.startsWith('/hadits/') || p.startsWith('/hadith/')) setCurrentRoute('hadits');
       else setCurrentRoute('reader');
     };
     window.addEventListener('popstate', handlePopState);
@@ -769,6 +774,24 @@ export const App: React.FC = () => {
     return (
       <TasbihPage
         onBackToMushaf={() => navigateTo('reader')}
+        elderMode={settings.elderMode}
+      />
+    );
+  }
+
+  if (currentRoute === 'hadits') {
+    if (!currentUser) {
+      setJoinModalOpen(true);
+      navigateTo('reader');
+      return null;
+    }
+    return (
+      <HadithCatalog
+        onBackToMushaf={() => navigateTo('reader')}
+        onNavigateToAyah={(surahId, ayahNumber) => {
+          handleJumpToAyah(surahId, ayahNumber);
+          navigateTo('reader');
+        }}
         elderMode={settings.elderMode}
       />
     );
@@ -1714,6 +1737,27 @@ export const App: React.FC = () => {
                       <div className="flex items-center gap-2.5">
                         <Sparkles className="h-4 w-4 text-emerald-500 shrink-0" />
                         <span>Tasbih Digital (Hitung Naik &amp; Mundur)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        if (!currentUser) setJoinModalOpen(true);
+                        else navigateTo('hadits');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <BookOpen className="h-4 w-4 text-sky-500 shrink-0" />
+                        <span>Hadits Arba'in An-Nawawiyah (42 Hadits)</span>
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
                     </button>

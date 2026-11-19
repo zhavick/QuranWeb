@@ -1,10 +1,11 @@
-const CACHE_NAME = 'quranweb-cache-v8';
+const CACHE_NAME = 'quranweb-cache-v9';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
   '/data/meta.json',
   '/data/asmaul_husna.json',
+  '/data/arbain_hadith.json',
   '/data/prophets_meta.json',
   '/data/prophets_data.json',
   '/data/blog_articles.json',

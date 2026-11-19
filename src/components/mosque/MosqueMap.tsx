@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
-  ArrowLeft,
   MapPin,
   Navigation,
   Search,
@@ -26,6 +25,7 @@ import {
   MOSQUE_FACILITIES,
 } from '../../services/mosques';
 import { logActivity } from '../../services/telemetry';
+import { BackToMushafButton } from '../common/BackToMushafButton';
 
 interface MosqueMapProps {
   onBackToMushaf: () => void;
@@ -360,15 +360,10 @@ export const MosqueMap: React.FC<MosqueMapProps> = ({
         }}
       >
         <div className="flex items-center gap-3">
-          <button
-            type="button"
+          <BackToMushafButton
             onClick={onBackToMushaf}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border transition-colors cursor-pointer hover:bg-black/5 dark:hover:bg-white/5"
-            style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
-            title="Kembali ke Mushaf Al-Qur'an"
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </button>
+            elderMode={elderMode}
+          />
           <div>
             <div className="flex items-center gap-2">
               <MapPin className="h-5 w-5 text-emerald-500" />

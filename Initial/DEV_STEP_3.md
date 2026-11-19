@@ -34,7 +34,7 @@ Dokumen ini merupakan panduan teknis tahapan pengembangan komprehensif (*step-by
 | **Step 23** | Pilar I: Tilawah | **Integrasi Tafsir Ringkas Kemenag RI per Ayat:** Tafsir Wajiz (ringkas) dan Tafsir Tahlili (mendalam) resmi Kemenag RI, tersemat langsung pada kartu ayat mushaf tilawah. | `public/data/tafsir/*.json`<br>`src/components/reader/AyahCard.tsx`<br>`src/components/reader/TafsirModal.tsx`<br>`src/services/tafsir.ts` | Tinggi | **Selesai (Done)** | Lencana safir *"Tafsir"* di kartu ayat membuka modal telaah tafsir resmi Kemenag RI dengan kontrol font ramah lansia. |
 | **Step 24** | Pilar III: Syiar | **Generator Poster Kutipan Ayat ke WhatsApp (*Ayah Poster Maker*):** Pembuat gambar kutipan ayat otomatis berbasis HTML5 Canvas untuk status WhatsApp dan Instagram. | `src/services/posterGenerator.ts`<br>`src/components/reader/AyahPosterModal.tsx`<br>`src/components/reader/AyahCard.tsx` | Menengah | **Selesai (Done)** | Dialog pembuat poster pada kartu ayat dengan 4 ornamen Islami, rasio 1:1 & 9:16, tombol unduh PNG, dan tombol share ke WhatsApp. |
 | **Step 25** | Pilar III: Keluarga | **Lingkaran Khatam Bersama Keluarga (*Family Khatam Circle*):** Fitur grup tilawah keluarga, pembagian penugasan Juz/'Ain, cincin progres bersama, dan notifikasi motivasi sakinah. | `src/components/khatam/FamilyCirclePage.tsx`<br>`src/services/familyCircle.ts`<br>`server/index.js` (skema grup) | Menengah | **Selesai (Done)** | Antarmuka manajemen grup khatam keluarga, kode undangan bergabung, cincin visual progres 30 Juz, dan penugasan Juz per anggota. |
-| **Step 26** | Pilar III: Analitik | **Portal Laporan Analitik Ibadah Jamaah (`/report`) & Worship Report Card:** Dashboard analitik komprehensif tilawah Al-Qur'an, kepatuhan shalat, hafalan juz 'amma, dan dzikir tasbih. | `src/components/report/WorshipReportPage.tsx`<br>`src/services/reportAnalytics.ts`<br>`src/components/report/WorshipReportCard.tsx` | Tinggi | Rute `/report` dengan grafik tren Chart.js, metrik istiqomah mingguan/bulanan, dan ekspor *Worship Report Card* PDF/PNG. |
+| **Step 26** | Pilar III: Analitik & UX | **Portal Laporan Analitik Ibadah Jamaah (`/report`), Worship Report Card & Standarisasi Tombol Kembali Universal:** Penyeragaman desain tombol kembali di seluruh modul web menjadi satu komponen baku, dashboard analitik komprehensif tilawah Al-Qur'an, kepatuhan shalat, hafalan juz 'amma, dan dzikir tasbih. | `src/components/common/BackToMushafButton.tsx`<br>`src/components/report/WorshipReportPage.tsx`<br>`src/services/reportAnalytics.ts`<br>`src/components/report/WorshipReportCard.tsx` | Tinggi | **Selesai (Done)** | Rute `/report` dengan grafik tren, metrik istiqomah mingguan/bulanan, ekspor *Worship Report Card* PNG, serta tombol kembali yang seragam di seluruh modul. |
 | **Step 27** | Pilar II: Ibadah | **Kalender Hijriah, Penanda Puasa Sunnah & Kalkulator Zakat:** Kalender hisab Umm al-Qura/Kemenag, deteksi otomatis puasa sunnah, dan kalkulator zakat maal, profesi & fitrah. | `src/components/calendar/HijriCalendarPage.tsx`<br>`src/components/zakat/ZakatCalculatorModal.tsx`<br>`src/services/hijriCalendar.ts` | Menengah | Rute `/kalender` penanda puasa Senin-Kamis & Ayyamul Bidh, serta modal hitung zakat otomatis berbasis nisab emas. |
 | **Step 28** | Pilar II: Shalat | **Audio Lantunan Azan Otomatis (Auto-Adhan) & Notifikasi Masuk Waktu Shalat:** Pemutar suara azan otomatis saat waktu shalat tiba dengan 5 pilihan muadzin ternama dan modal panggilan shalat. | `src/services/adhanAudio.ts`<br>`src/components/prayer/AdhanPlayerModal.tsx`<br>`src/components/prayer/PrayerTimesModal.tsx` | Tinggi | Audio azan berkumandang otomatis tepat waktu shalat, dialog lafadz azan & doa sesudah azan, serta Web Notification API. |
 | **Step 29** | Pilar II: Shalat | **Pelacak Kepatuhan Shalat (Prayer Checklist) & Pengingat Bertahap (Smart Reminder):** Checklist centang shalat fardhu/sunnah, reminder 10m, 20m, interval kustom, dan pembatalan otomatis. | `src/components/prayer/PrayerChecklistWidget.tsx`<br>`src/services/prayerReminder.ts`<br>`src/components/prayer/PrayerReminderSettings.tsx` | Tinggi | Widget checklist shalat pada header dan modal jadwal shalat, notifikasi pengingat bertahap anti-terlewat shalat. |
@@ -155,28 +155,31 @@ Dokumen ini merupakan panduan teknis tahapan pengembangan komprehensif (*step-by
 
 ---
 
-### Step 26: Portal Laporan Analitik Ibadah Jamaah (`/report`) & Worship Report Card
-* **Status:** Menunggu Step 25
-* **Tujuan:** Menyediakan pusat rekapitulasi data ibadah personal yang komprehensif bagi pengguna terdaftar, merangkum pencapaian tilawah Al-Qur'an, kepatuhan shalat 5 waktu & sunnah, capaian tahfidz hafalan, serta dzikir harian ke dalam satu halaman laporan yang bermakna.
+### Step 26: Portal Laporan Analitik Ibadah Jamaah (`/report`), Worship Report Card & Standarisasi Tombol Kembali Universal
+* **Status:** **Selesai (Done)**
+* **Tujuan:** Menyediakan standarisasi desain tombol navigasi kembali yang seragam dan elegan di seluruh modul aplikasi, serta pusat rekapitulasi data ibadah personal yang komprehensif bagi pengguna terdaftar, merangkum pencapaian tilawah Al-Qur'an, kepatuhan shalat 5 waktu & sunnah, capaian tahfidz hafalan, serta dzikir harian ke dalam satu halaman laporan bermakna.
 * **Tugas Spesifik:**
-  1. **Layanan Agregator Metrik Ibadah (`src/services/reportAnalytics.ts`):**
+  1. **Standarisasi Komponen Tombol Kembali Universal (`src/components/common/BackToMushafButton.tsx`):**
+     - Membangun komponen tombol kembali tunggal, konsisten, dan ramah lansia (`min-h-[40px]`, ikon panah `ArrowLeft`, label teks jelas `"Kembali ke Mushaf"` / kustom, `rounded-xl`, `border`, `bg-card`, hover halus, dan responsif).
+     - Menggantikan seluruh tombol kembali beraneka ragam di semua modul: `AsmaulHusnaCatalog`, `TasbihPage`, `ProphetsCatalog`, `BlogCatalog`, `BlogDetailView`, `PrayersCatalog`, `QiblaCompass`, `MosqueMap`, `HadithCatalog`, `FamilyCirclePage`, `UserPortal`, `AdminPortal`, dan modul laporan baru.
+  2. **Layanan Agregator Metrik Ibadah (`src/services/reportAnalytics.ts`):**
      - Mengumpulkan dan mengolah data dari berbagai modul:
        - Tilawah Al-Qur'an: Total ayat dibaca, durasi waktu, sebaran juz, konsistensi harian.
        - Disiplin Shalat: Persentase shalat tepat waktu, total shalat fardhu tercatat, shalat berjamaah vs munfarid.
        - Tahfidz: Jumlah surah/ayat dalam daftar hafalan, skor kelancaran tes masker.
        - Dzikir Tasbih: Total ketukan dzikir, rekap amalan Asmaul Husna dan doa harian.
-  2. **Halaman Dashboard Analitik (`src/components/report/WorshipReportPage.tsx`):**
+  3. **Halaman Dashboard Analitik (`src/components/report/WorshipReportPage.tsx`):**
      - Rute baru terproteksi `/report` khusus pengguna terdaftar.
      - Ringkasan KPI Ibadah dalam 4 kartu istiqomah: *Tilawah Score*, *Prayer Compliance*, *Memorization Progress*, dan *Dhikr Count*.
-     - Grafik tren aktivitas harian dan mingguan menggunakan Chart.js / SVG Canvas lokal yang ringan.
+     - Grafik tren aktivitas harian dan mingguan menggunakan SVG Canvas lokal yang ringan dan bebas ketergantungan berat.
      - Kalender panas (*Activity Heatmap*) yang menampilkan intensitas interaksi dengan Al-Qur'an sepanjang bulan.
-  3. **Worship Report Card Generator (`src/components/report/WorshipReportCard.tsx`):**
-     - Komponen kartu infografis ringkasan mingguan/bulanan berdesain kartu penghargaan santun (*"Laporan Istiqomah Ibadah Bulan Ramadhan 1448 H"*).
-     - Tombol ekspor ke gambar PNG atau dokumen PDF untuk arsip pribadi atau evaluasi diri (*muhasabah*).
-  4. **Proteksi Akses & Tautan Menu:**
+  4. **Worship Report Card Generator (`src/components/report/WorshipReportCard.tsx`):**
+     - Komponen kartu infografis ringkasan mingguan/bulanan berdesain kartu penghargaan santun (*"Laporan Istiqomah Ibadah"*).
+     - Generator gambar PNG resolusi tinggi berbasis Canvas untuk diunduh atau dibagikan ke keluarga / media sosial.
+  5. **Proteksi Akses & Tautan Menu:**
      - Session Guard: Tamu diarahkan ke halaman login/daftar sebelum mengakses `/report`.
      - Tautan menu langsung "Laporan Ibadah" pada Menu Drawer 3-Garis dan Portal Pengguna (`/user`).
-* **Kriteria Selesai (DoD):** Halaman `/report` berhasil mengonsolidasikan seluruh data riwayat ibadah secara akurat, grafik tren tersaji responsif pada desktop dan smartphone, serta fitur unduh *Worship Report Card* menghasilkan infografis bersih tanpa error.
+* **Kriteria Selesai (DoD):** Seluruh modul memiliki bentuk tombol kembali yang seragam dan konsisten, halaman `/report` berhasil mengonsolidasikan seluruh data riwayat ibadah secara akurat, grafik tren tersaji responsif pada desktop dan smartphone, serta fitur unduh *Worship Report Card* menghasilkan infografis bersih tanpa error.
 
 ---
 
@@ -371,7 +374,7 @@ CREATE TABLE IF NOT EXISTS tahfidz_progress (
 | **QA-3.02** | Tafsir Kemenag | Klik lencana *"Tafsir"* pada QS Al-Fatihah ayat 1 di mushaf tilawah. | Muncul modal dengan tab Tafsir Wajiz dan Tahlili resmi Kemenag RI, respons < 150ms. | **Passed** |
 | **QA-3.03** | Poster Maker | Klik ikon poster pada ayat, pilih tema *Mihrab Emas* rasio 9:16, unduh PNG. | File gambar PNG beresolusi 1080×1920 tersimpan di gawai dengan tipografi Arab tajam. | **Passed** |
 | **QA-3.04** | Family Circle | Buat grup keluarga, salin link undangan, dan buka pada akun anggota lain. | Anggota baru berhasil bergabung dan memilih Juz penugasan tilawah. | **Passed** |
-| **QA-3.05** | Portal `/report` | Akses `/report` setelah menyelesaikan tilawah dan centang shalat. | Grafik tren ter-update, total ayat dan skor kepatuhan shalat terakumulasi akurat. | Pending |
+| **QA-3.05** | Portal `/report` | Akses `/report` setelah menyelesaikan tilawah dan centang shalat. | Grafik tren ter-update, total ayat dan skor kepatuhan shalat terakumulasi akurat. | **Passed** |
 | **QA-3.06** | Kalender Hijriah | Buka `/kalender`, periksa penanda puasa Ayyamul Bidh bulan berjalan. | Tanggal 13, 14, 15 Hijriah bertanda lencana puasa sunnah dengan dalil sahih. | Pending |
 | **QA-3.07** | Audio Azan | Simulasikan waktu saat shalat Maghrib masuk dengan memajukan jam uji. | Lantunan suara muadzin Makkah berbunyi otomatis dan modal panggilan shalat muncul. | Pending |
 | **QA-3.08** | Smart Reminder | Biarkan waktu shalat masuk tanpa dicentang selama 10 dan 20 menit. | Notifikasi pengingat bertahap muncul di menit ke-10 dan ke-20; batal saat dicentang. | Pending |

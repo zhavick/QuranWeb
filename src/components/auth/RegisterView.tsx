@@ -4,7 +4,6 @@ import {
   Lock,
   Mail,
   User,
-  ArrowLeft,
   Eye,
   EyeOff,
   CheckCircle2,
@@ -14,6 +13,7 @@ import {
   HeartHandshake,
 } from 'lucide-react';
 import { registerUser, type AuthUser } from '../../services/auth';
+import { BackToMushafButton } from '../common/BackToMushafButton';
 
 interface RegisterViewProps {
   onBackToMushaf: () => void;
@@ -106,19 +106,9 @@ export const RegisterView: React.FC<RegisterViewProps> = ({
       <div className="w-full max-w-lg">
         {/* Top Back Link */}
         <div className="mb-4">
-          <button
-            type="button"
+          <BackToMushafButton
             onClick={onBackToMushaf}
-            className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-xs sm:text-sm font-semibold transition-colors hover:opacity-80 cursor-pointer"
-            style={{
-              backgroundColor: 'var(--bg-card)',
-              color: 'var(--text-secondary)',
-              border: '1px solid var(--border-color)',
-            }}
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <span>Kembali ke Tilawah Mushaf</span>
-          </button>
+          />
         </div>
 
         {/* Main Card */}

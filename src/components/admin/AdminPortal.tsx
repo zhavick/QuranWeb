@@ -6,7 +6,6 @@ import {
   FileText,
   Settings,
   LogOut,
-  ArrowLeft,
   Users,
   Clock,
   Activity,
@@ -48,6 +47,7 @@ import {
 import type { BlogArticle, BlogPillar, BlogArticleStatus } from '../../types/blog';
 import { getStoredUser, loginUser, logoutUser, type AuthUser } from '../../services/auth';
 import { EmailCampaignManager } from './EmailCampaignManager';
+import { BackToMushafButton } from '../common/BackToMushafButton';
 import {
   fetchEmailConfig,
   saveEmailConfig,
@@ -650,16 +650,10 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
             </button>
           </form>
 
-          <div className="mt-6 border-t pt-4 text-center" style={{ borderColor: 'var(--border-color)' }}>
-            <button
-              type="button"
+          <div className="mt-6 border-t pt-4 text-center flex justify-center" style={{ borderColor: 'var(--border-color)' }}>
+            <BackToMushafButton
               onClick={onBackToApp}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              <span>Kembali ke Beranda Al-Qur&apos;an</span>
-            </button>
+            />
           </div>
         </div>
       </div>
@@ -708,19 +702,9 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
+          <BackToMushafButton
             onClick={onBackToApp}
-            className="inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-bold transition-colors"
-            style={{
-              backgroundColor: 'var(--bg-muted)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--text-primary)',
-            }}
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <span className="hidden sm:inline">Web Al-Qur&apos;an</span>
-          </button>
+          />
 
           <button
             type="button"

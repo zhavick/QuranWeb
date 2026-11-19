@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ArrowLeft,
   Clock,
   Bookmark,
   Share2,
@@ -19,6 +18,7 @@ import {
   saveUserReflection,
 } from '../../services/blog';
 import { logActivity } from '../../services/telemetry';
+import { BackToMushafButton } from '../common/BackToMushafButton';
 
 interface BlogDetailViewProps {
   article: BlogArticle;
@@ -165,19 +165,10 @@ export const BlogDetailView: React.FC<BlogDetailViewProps> = ({
         }}
       >
         <div className="flex items-center gap-3">
-          <button
-            type="button"
+          <BackToMushafButton
             onClick={onBackToCatalog}
-            className="inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
-            style={{
-              backgroundColor: 'var(--bg-muted)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--text-primary)',
-            }}
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <span>Katalog Jurnal</span>
-          </button>
+            label="Kembali ke Jurnal"
+          />
 
           <span
             className="hidden sm:inline-block rounded-md px-2.5 py-0.5 text-xs font-bold"

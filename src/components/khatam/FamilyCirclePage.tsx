@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import {
-  ArrowLeft,
   Users,
   Sparkles,
   Share2,
@@ -33,6 +32,7 @@ import {
 } from '../../services/familyCircle';
 import { getStoredUser } from '../../services/auth';
 import { logActivity } from '../../services/telemetry';
+import { BackToMushafButton } from '../common/BackToMushafButton';
 
 interface FamilyCirclePageProps {
   onBackToMushaf: () => void;
@@ -276,19 +276,10 @@ export const FamilyCirclePage: React.FC<FamilyCirclePageProps> = ({
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <button
-              type="button"
+            <BackToMushafButton
               onClick={onBackToMushaf}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-semibold transition-all hover:scale-[1.02] cursor-pointer"
-              style={{
-                backgroundColor: 'var(--bg-card)',
-                borderColor: 'var(--border-color)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span className="hidden sm:inline">Kembali ke Mushaf</span>
-            </button>
+              elderMode={elderMode}
+            />
             <div className="h-4 w-px bg-gray-300 dark:bg-gray-700 hidden sm:block" />
             <div>
               <h1 className="text-sm sm:text-base font-bold leading-tight flex items-center gap-2">

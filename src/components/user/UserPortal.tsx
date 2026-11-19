@@ -3,9 +3,7 @@ import {
   User,
   Bookmark,
   Search,
-  BookOpen,
   LogOut,
-  ArrowLeft,
   BookMarked,
   Sparkles,
   Plus,
@@ -19,6 +17,7 @@ import {
   BookText,
   Compass,
   UserPlus,
+  Award,
 } from 'lucide-react';
 import { getStoredUser, loginUser, logoutUser, type AuthUser } from '../../services/auth';
 import { RegisterView } from '../auth/RegisterView';
@@ -29,6 +28,7 @@ import {
   saveUserReflection,
   fetchBlogArticles,
 } from '../../services/blog';
+import { BackToMushafButton } from '../common/BackToMushafButton';
 import type { BlogArticle, UserReflection } from '../../types/blog';
 
 interface UserBookmarkItem {
@@ -55,6 +55,7 @@ interface UserPortalProps {
   onPerformSearch: (query: string) => void;
   onOpenBlogArticle?: (slug?: string) => void;
   onOpenKhatamPlanner?: () => void;
+  onOpenReport?: () => void;
   initialAuthMode?: 'login' | 'register';
 }
 
@@ -64,6 +65,7 @@ export const UserPortal: React.FC<UserPortalProps> = ({
   onPerformSearch,
   onOpenBlogArticle,
   onOpenKhatamPlanner,
+  onOpenReport,
   initialAuthMode = 'login',
 }) => {
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(getStoredUser());
@@ -385,16 +387,10 @@ export const UserPortal: React.FC<UserPortalProps> = ({
             </button>
           </div>
 
-          <div className="mt-6 border-t pt-4 text-center" style={{ borderColor: 'var(--border-color)' }}>
-            <button
-              type="button"
+          <div className="mt-6 border-t pt-4 text-center flex justify-center" style={{ borderColor: 'var(--border-color)' }}>
+            <BackToMushafButton
               onClick={onBackToApp}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              <span>Kembali Membaca Al-Qur&apos;an</span>
-            </button>
+            />
           </div>
         </div>
       </div>
@@ -443,19 +439,9 @@ export const UserPortal: React.FC<UserPortalProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
+          <BackToMushafButton
             onClick={onBackToApp}
-            className="inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-bold transition-colors cursor-pointer"
-            style={{
-              backgroundColor: 'var(--bg-muted)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--text-primary)',
-            }}
-          >
-            <BookOpen className="h-4 w-4" style={{ color: 'var(--text-accent)' }} />
-            <span className="hidden sm:inline">Mulai Membaca Al-Qur&apos;an</span>
-          </button>
+          />
 
           <button
             type="button"
@@ -506,6 +492,22 @@ export const UserPortal: React.FC<UserPortalProps> = ({
                   >
                     <Compass className="h-4 w-4 text-emerald-500" />
                     <span>Rencana Khatam Sakinah</span>
+                  </button>
+                )}
+
+                {onOpenReport && (
+                  <button
+                    type="button"
+                    onClick={onOpenReport}
+                    className="inline-flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-xs font-bold transition-all hover:opacity-90 cursor-pointer shadow-xs"
+                    style={{
+                      backgroundColor: 'var(--bg-card)',
+                      borderColor: 'var(--border-color)',
+                      color: 'var(--text-primary)',
+                    }}
+                  >
+                    <Award className="h-4 w-4 text-amber-500" />
+                    <span>Laporan Ibadah (/report)</span>
                   </button>
                 )}
 

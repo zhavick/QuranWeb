@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
-  ArrowLeft,
   Search,
   Sparkles,
   Heart,
@@ -23,6 +22,7 @@ import {
   toggleFavoriteDua,
   getAyahAudioUrl,
 } from '../../services/prayers';
+import { BackToMushafButton } from '../common/BackToMushafButton';
 import { TasbihHapticWidget } from './TasbihHapticWidget';
 import { logActivity } from '../../services/telemetry';
 
@@ -148,19 +148,10 @@ export const PrayersCatalog: React.FC<PrayersCatalogProps> = ({
         }}
       >
         <div className="flex items-center gap-3">
-          <button
-            type="button"
+          <BackToMushafButton
             onClick={onBackToMushaf}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border transition-colors cursor-pointer"
-            style={{
-              backgroundColor: 'var(--bg-muted)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--text-primary)',
-            }}
-            title="Kembali ke Mushaf Al-Qur'an"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </button>
+            elderMode={elderMode}
+          />
 
           <div>
             <h1 className="text-base sm:text-lg font-bold flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>

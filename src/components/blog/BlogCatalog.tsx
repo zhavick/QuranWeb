@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import {
-  ArrowLeft,
   Search,
   BookOpen,
   Clock,
@@ -12,6 +11,7 @@ import type { BlogArticle, BlogPillar } from '../../types/blog';
 import { fetchBlogArticles, isArticleReadLater, toggleReadLater } from '../../services/blog';
 import { BlogDetailView } from './BlogDetailView';
 import { logActivity } from '../../services/telemetry';
+import { BackToMushafButton } from '../common/BackToMushafButton';
 
 interface BlogCatalogProps {
   onBackToMushaf: () => void;
@@ -107,19 +107,7 @@ export const BlogCatalog: React.FC<BlogCatalogProps> = ({
         }}
       >
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={onBackToMushaf}
-            className="inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold cursor-pointer transition-colors shadow-xs"
-            style={{
-              backgroundColor: 'var(--bg-muted)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--text-primary)',
-            }}
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <span>Kembali ke Mushaf</span>
-          </button>
+          <BackToMushafButton onClick={onBackToMushaf} />
 
           <div className="hidden sm:block h-5 w-px bg-[var(--border-color)]" />
 

@@ -25,6 +25,7 @@ import {
   UserPlus,
   Clock,
   Users,
+  Award,
 } from 'lucide-react';
 import type {
   QuranMeta,
@@ -59,6 +60,7 @@ import { AsmaulHusnaCatalog } from './components/asmaulhusna/AsmaulHusnaCatalog'
 import { TasbihPage } from './components/tasbih/TasbihPage';
 import { HadithCatalog } from './components/hadith/HadithCatalog';
 import { FamilyCirclePage } from './components/khatam/FamilyCirclePage';
+import { WorshipReportPage } from './components/report/WorshipReportPage';
 import { QiblaCompass } from './components/qibla/QiblaCompass';
 import { MosqueMap } from './components/mosque/MosqueMap';
 import { KhatamPlannerModal } from './components/khatam/KhatamPlannerModal';
@@ -100,7 +102,7 @@ const DEFAULT_SETTINGS: ReaderSettings = {
 
 export const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<
-    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga'
+    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report'
   >(() => {
     const p = window.location.pathname.toLowerCase();
     if (p === '/admin' || p.startsWith('/admin/')) return 'admin';
@@ -115,6 +117,7 @@ export const App: React.FC = () => {
     if (p === '/tasbih' || p === '/tashbih' || p.startsWith('/tasbih/') || p.startsWith('/tashbih/')) return 'tasbih';
     if (p === '/hadits' || p === '/hadith' || p.startsWith('/hadits/') || p.startsWith('/hadith/')) return 'hadits';
     if (p === '/khatam-keluarga' || p === '/khatam' || p.startsWith('/khatam-keluarga/') || p.startsWith('/khatam/')) return 'khatam-keluarga';
+    if (p === '/report' || p === '/laporan' || p.startsWith('/report/') || p.startsWith('/laporan/')) return 'report';
     return 'reader';
   });
 
@@ -125,7 +128,7 @@ export const App: React.FC = () => {
   }, []);
 
   const navigateTo = useCallback(
-    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga') => {
+    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report') => {
       setCurrentRoute(route);
       const path =
         route === 'reader'
@@ -148,6 +151,8 @@ export const App: React.FC = () => {
           ? '/hadits'
           : route === 'khatam-keluarga'
           ? '/khatam-keluarga'
+          : route === 'report'
+          ? '/report'
           : `/${route}`;
       if (window.location.pathname !== path) {
         window.history.pushState({}, '', path);
@@ -171,6 +176,7 @@ export const App: React.FC = () => {
       else if (p === '/tasbih' || p === '/tashbih' || p.startsWith('/tasbih/') || p.startsWith('/tashbih/')) setCurrentRoute('tasbih');
       else if (p === '/hadits' || p === '/hadith' || p.startsWith('/hadits/') || p.startsWith('/hadith/')) setCurrentRoute('hadits');
       else if (p === '/khatam-keluarga' || p === '/khatam' || p.startsWith('/khatam-keluarga/') || p.startsWith('/khatam/')) setCurrentRoute('khatam-keluarga');
+      else if (p === '/report' || p === '/laporan' || p.startsWith('/report/') || p.startsWith('/laporan/')) setCurrentRoute('report');
       else setCurrentRoute('reader');
     };
     window.addEventListener('popstate', handlePopState);
@@ -726,6 +732,7 @@ export const App: React.FC = () => {
           }
         }}
         onOpenKhatamPlanner={() => setKhatamPlannerOpen(true)}
+        onOpenReport={() => navigateTo('report')}
       />
     );
   }
@@ -869,6 +876,20 @@ export const App: React.FC = () => {
     }
     return (
       <FamilyCirclePage
+        onBackToMushaf={() => navigateTo('reader')}
+        elderMode={settings.elderMode}
+      />
+    );
+  }
+
+  if (currentRoute === 'report') {
+    if (!currentUser) {
+      setJoinModalOpen(true);
+      navigateTo('reader');
+      return null;
+    }
+    return (
+      <WorshipReportPage
         onBackToMushaf={() => navigateTo('reader')}
         elderMode={settings.elderMode}
       />
@@ -1936,6 +1957,27 @@ export const App: React.FC = () => {
                       <div className="flex items-center gap-2.5">
                         <Users className="h-4 w-4 text-emerald-500 shrink-0" />
                         <span>Lingkaran Khatam Keluarga (Family Circle)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        if (!currentUser) setJoinModalOpen(true);
+                        else navigateTo('report');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Award className="h-4 w-4 text-amber-500 shrink-0" />
+                        <span>Laporan Analitik Ibadah (/report)</span>
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
                     </button>

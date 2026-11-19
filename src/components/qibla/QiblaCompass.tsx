@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import QRCode from 'qrcode';
 import {
-  ArrowLeft,
   Compass,
   Navigation,
   MapPin,
@@ -21,6 +20,7 @@ import {
   KAABA_LNG,
 } from '../../services/qibla';
 import { logActivity } from '../../services/telemetry';
+import { BackToMushafButton } from '../common/BackToMushafButton';
 
 interface QiblaCompassProps {
   onBackToMushaf: () => void;
@@ -230,15 +230,10 @@ export const QiblaCompass: React.FC<QiblaCompassProps> = ({
         }}
       >
         <div className="flex items-center gap-3">
-          <button
-            type="button"
+          <BackToMushafButton
             onClick={onBackToMushaf}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border transition-colors cursor-pointer hover:bg-black/5 dark:hover:bg-white/5"
-            style={{ borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
-            title="Kembali ke Mushaf Al-Qur'an"
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </button>
+            elderMode={elderMode}
+          />
           <div>
             <div className="flex items-center gap-2">
               <Compass className="h-5 w-5 text-emerald-500" />

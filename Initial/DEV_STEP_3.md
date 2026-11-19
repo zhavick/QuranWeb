@@ -38,7 +38,7 @@ Dokumen ini merupakan panduan teknis tahapan pengembangan komprehensif (*step-by
 | **Step 27** | Pilar II: Ibadah | **Kalender Hijriah, Penanda Puasa Sunnah & Kalkulator Zakat:** Kalender hisab Umm al-Qura/Kemenag, deteksi otomatis puasa sunnah, dan kalkulator zakat maal, profesi & fitrah. | `src/components/calendar/HijriCalendarPage.tsx`<br>`src/components/zakat/ZakatCalculatorModal.tsx`<br>`src/services/hijriCalendar.ts` | Menengah | **Selesai (Done)** | Rute `/kalender` penanda puasa Senin-Kamis & Ayyamul Bidh, modal hitung zakat otomatis berbasis nisab emas/beras, dan koreksi hisab lokal. |
 | **Step 28** | Pilar II: Shalat | **Audio Lantunan Azan Otomatis (Auto-Adhan) & Notifikasi Masuk Waktu Shalat:** Pemutar suara azan otomatis saat waktu shalat tiba dengan 5 pilihan muadzin ternama dan modal panggilan shalat. | `src/services/adhanAudio.ts`<br>`src/components/prayer/AdhanPlayerModal.tsx`<br>`src/components/prayer/PrayerTimesModal.tsx` | Tinggi | **Selesai (Done)** | Audio azan berkumandang otomatis tepat waktu shalat, dialog lafadz azan & doa sesudah azan, 5 muadzin pilihan, serta Web Notification API. |
 | **Step 29** | Pilar II: Shalat | **Pelacak Kepatuhan Shalat (Prayer Checklist) & Pengingat Bertahap (Smart Reminder):** Checklist centang shalat fardhu/sunnah, reminder 10m, 20m, interval kustom, dan pembatalan otomatis. | `src/components/prayer/PrayerChecklistWidget.tsx`<br>`src/services/prayerReminder.ts`<br>`src/components/prayer/PrayerReminderSettingsModal.tsx` | Tinggi | **Selesai (Done)** | Widget checklist shalat interaktif, dialog attendance mode (berjamaah di masjid, munfarid, tepat waktu), reminder bertahap anti-terlewat shalat, dan auto-clear. |
-| **Step 30** | Pilar II: Sunnah | **Kumpulan Doa Sehari-hari (*Hisnul Muslim*) & Panduan Shalat Bergambar:** Kompilasi doa aktivitas harian berlandaskan hadits shahih dan panduan shalat fardhu/sunnah lengkap. | `public/data/hisnul_muslim.json`<br>`src/components/prayers/HisnulMuslimCatalog.tsx`<br>`src/components/prayers/SalahGuideModal.tsx` | Menengah | Halaman `/doa-harian` dengan pencarian instan, audio Web Speech, dan panduan shalat sunnah Dhuha, Tahajud & Jenazah. |
+| **Step 30** | Pilar II: Sunnah | **Kumpulan Doa Sehari-hari (*Hisnul Muslim*) & Panduan Shalat Bergambar:** Kompilasi doa aktivitas harian berlandaskan hadits shahih dan panduan shalat fardhu/sunnah lengkap. | `public/data/hisnul_muslim.json`<br>`src/components/prayers/HisnulMuslimCatalog.tsx`<br>`src/components/prayers/SalahGuideModal.tsx` | Menengah | **Selesai (Done)** | Halaman `/doa-harian` dengan 102 doa shahih Hisnul Muslim, pencarian instan, audio Web Speech TTS, filter kategori, favorit, dan modal 10 rukun shalat bergambar + shalat sunnah. |
 | **Step 31** | Pilar I & V: AI/Suara | **Mode Uji Hafalan (Tahfidz Masker), Audio Looper A-B & Navigasi Suara AI:** Fitur sensor kata ayat untuk muroja'ah, pemutar audio loop A-B, voice search, dan pembalik halaman bebas sentuh. | `src/components/reader/TahfidzMaskerControls.tsx`<br>`src/components/audio/AudioLooperControls.tsx`<br>`src/services/voiceAssistant.ts` | Lanjutan | Masker kata interaktif di mushaf, pengulang audio ayat berulang, dan kendali suara navigasi halaman bebas sentuh tangan. |
 
 ---
@@ -258,7 +258,7 @@ Dokumen ini merupakan panduan teknis tahapan pengembangan komprehensif (*step-by
 ---
 
 ### Step 30: Kumpulan Doa Sehari-hari (*Hisnul Muslim*) & Panduan Shalat Bergambar
-* **Status:** Menunggu Step 29
+* **Status:** **Selesai (Done)**
 * **Tujuan:** Menyediakan perisai doa harian dari bangun tidur hingga kembali terlelap bersumber dari kitab masyhur *Hisnul Muslim* (Benteng Seorang Muslim), serta panduan shalat fardhu dan sunnah yang shahih dan mudah dipahami.
 * **Tugas Spesifik:**
   1. **Penyusunan Dataset Mandiri (`public/data/hisnul_muslim.json`):**
@@ -378,7 +378,7 @@ CREATE TABLE IF NOT EXISTS tahfidz_progress (
 | **QA-3.06** | Kalender Hijriah | Buka `/kalender`, periksa penanda puasa Ayyamul Bidh bulan berjalan. | Tanggal 13, 14, 15 Hijriah bertanda lencana puasa sunnah dengan dalil sahih. | **Passed** |
 | **QA-3.07** | Audio Azan | Simulasikan waktu saat shalat Maghrib masuk dengan memajukan jam uji. | Lantunan suara muadzin Makkah berbunyi otomatis dan modal panggilan shalat muncul. | **Passed** |
 | **QA-3.08** | Smart Reminder | Biarkan waktu shalat masuk tanpa dicentang selama 10 dan 20 menit. | Notifikasi pengingat bertahap muncul di menit ke-10 dan ke-20; batal saat dicentang. | **Passed** |
-| **QA-3.09** | Hisnul Muslim | Buka `/doa-harian`, klik doa sebelum tidur, tekan tombol dengarkan audio. | Web Speech membacakan lafadz Arab / terjemahan doa dengan intonasi jelas. | Pending |
+| **QA-3.09** | Hisnul Muslim | Buka `/doa-harian`, klik doa sebelum tidur, tekan tombol dengarkan audio. | Web Speech membacakan lafadz Arab / terjemahan doa dengan intonasi jelas. | **Passed** |
 | **QA-3.10** | Tahfidz Masker | Aktifkan Mode Masker Tingkat 3 pada QS An-Nas, ketuk ayat untuk intip (*peek*). | Seluruh ayat tersamarkan; ketukan membuka teks selama 3 detik lalu tertutup kembali. | Pending |
 
 ---

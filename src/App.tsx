@@ -59,6 +59,7 @@ import { ProphetsCatalog } from './components/prophets/ProphetsCatalog';
 import { ProphetLanternBanner } from './components/prophets/ProphetLanternBanner';
 import { BlogCatalog } from './components/blog/BlogCatalog';
 import { PrayersCatalog } from './components/prayers/PrayersCatalog';
+import { HisnulMuslimCatalog } from './components/prayers/HisnulMuslimCatalog';
 import { AsmaulHusnaCatalog } from './components/asmaulhusna/AsmaulHusnaCatalog';
 import { TasbihPage } from './components/tasbih/TasbihPage';
 import { HadithCatalog } from './components/hadith/HadithCatalog';
@@ -116,7 +117,7 @@ const DEFAULT_SETTINGS: ReaderSettings = {
 
 export const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<
-    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report' | 'kalender'
+    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report' | 'kalender' | 'doa-harian'
   >(() => {
     const p = window.location.pathname.toLowerCase();
     if (p === '/admin' || p.startsWith('/admin/')) return 'admin';
@@ -124,6 +125,7 @@ export const App: React.FC = () => {
     if (p === '/user' || p.startsWith('/user/')) return 'user';
     if (p === '/kisah' || p.startsWith('/kisah/')) return 'prophets';
     if (p === '/blog' || p.startsWith('/blog/')) return 'blog';
+    if (p === '/doa-harian' || p === '/hisnul-muslim' || p.startsWith('/doa-harian/') || p.startsWith('/hisnul-muslim/')) return 'doa-harian';
     if (p === '/doa' || p.startsWith('/doa/')) return 'prayers';
     if (p === '/kiblat' || p.startsWith('/kiblat/')) return 'kiblat';
     if (p === '/masjid' || p.startsWith('/masjid/')) return 'masjid';
@@ -143,7 +145,7 @@ export const App: React.FC = () => {
   }, []);
 
   const navigateTo = useCallback(
-    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report' | 'kalender') => {
+    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report' | 'kalender' | 'doa-harian') => {
       setCurrentRoute(route);
       const path =
         route === 'reader'
@@ -152,6 +154,8 @@ export const App: React.FC = () => {
           ? '/kisah'
           : route === 'prayers'
           ? '/doa'
+          : route === 'doa-harian'
+          ? '/doa-harian'
           : route === 'kiblat'
           ? '/kiblat'
           : route === 'masjid'
@@ -186,6 +190,7 @@ export const App: React.FC = () => {
       else if (p === '/user' || p.startsWith('/user/')) setCurrentRoute('user');
       else if (p === '/kisah' || p.startsWith('/kisah/')) setCurrentRoute('prophets');
       else if (p === '/blog' || p.startsWith('/blog/')) setCurrentRoute('blog');
+      else if (p === '/doa-harian' || p === '/hisnul-muslim' || p.startsWith('/doa-harian/') || p.startsWith('/hisnul-muslim/')) setCurrentRoute('doa-harian');
       else if (p === '/doa' || p.startsWith('/doa/')) setCurrentRoute('prayers');
       else if (p === '/kiblat' || p.startsWith('/kiblat/')) setCurrentRoute('kiblat');
       else if (p === '/masjid' || p.startsWith('/masjid/')) setCurrentRoute('masjid');
@@ -877,6 +882,15 @@ export const App: React.FC = () => {
     );
   }
 
+  if (currentRoute === 'doa-harian') {
+    return (
+      <HisnulMuslimCatalog
+        onBackToMushaf={() => navigateTo('reader')}
+        elderMode={settings.elderMode}
+      />
+    );
+  }
+
   if (currentRoute === 'prayers') {
     if (!currentUser) {
       setJoinModalOpen(true);
@@ -890,6 +904,7 @@ export const App: React.FC = () => {
           handleJumpToAyah(surahId, ayahNumber);
           navigateTo('reader');
         }}
+        onNavigateToHisnulMuslim={() => navigateTo('doa-harian')}
         elderMode={settings.elderMode}
       />
     );
@@ -1950,6 +1965,27 @@ export const App: React.FC = () => {
                       <div className="flex items-center gap-2.5">
                         <Sparkles className="h-4 w-4 text-emerald-500 shrink-0" />
                         <span>Doa Qur&apos;ani (40 Rabbana) &amp; Tasbih</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    {/* Step 30: Hisnul Muslim Kumpulan Doa Sehari-hari */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        navigateTo('doa-harian');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-accent-soft)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-accent)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <BookOpen className="h-4 w-4 text-emerald-500 shrink-0" />
+                        <span>Kumpulan Doa Sehari-hari (Hisnul Muslim)</span>
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
                     </button>

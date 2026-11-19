@@ -29,12 +29,14 @@ import { logActivity } from '../../services/telemetry';
 interface PrayersCatalogProps {
   onBackToMushaf: () => void;
   onNavigateToAyah: (surahId: number, ayahNumber: number) => void;
+  onNavigateToHisnulMuslim?: () => void;
   elderMode?: boolean;
 }
 
 export const PrayersCatalog: React.FC<PrayersCatalogProps> = ({
   onBackToMushaf,
   onNavigateToAyah,
+  onNavigateToHisnulMuslim,
   elderMode = false,
 }) => {
   const [activeMainTab, setActiveMainTab] = useState<'rabbana' | 'dzikir' | 'tasbih'>('rabbana');
@@ -236,6 +238,37 @@ export const PrayersCatalog: React.FC<PrayersCatalogProps> = ({
           {/* ======================================================= */}
           {activeMainTab === 'rabbana' && (
             <div className="space-y-5">
+              {/* Shortcut Banner to Hisnul Muslim */}
+              {onNavigateToHisnulMuslim && (
+                <div
+                  className="rounded-2xl border p-3.5 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs"
+                  style={{
+                    backgroundColor: 'var(--bg-accent-soft)',
+                    borderColor: 'var(--border-color)',
+                  }}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-2xl">🛡️</span>
+                    <div>
+                      <h3 className="font-bold text-xs sm:text-sm text-[var(--text-accent)]">
+                        Kumpulan Doa Sehari-hari (Hisnul Muslim 100+ Doa)
+                      </h3>
+                      <p className="text-[11px] text-[var(--text-secondary)]">
+                        Lengkap dengan audio pelafalan Web Speech, doa rutinitas harian, serta panduan shalat bergambar.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={onNavigateToHisnulMuslim}
+                    className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer shadow-xs whitespace-nowrap self-stretch sm:self-auto text-center"
+                  >
+                    Buka Doa Harian ➔
+                  </button>
+                </div>
+              )}
+
               {/* Filter & Search Bar */}
               <div className="flex flex-col sm:flex-row items-center gap-3">
                 <div className="relative flex-1 w-full">

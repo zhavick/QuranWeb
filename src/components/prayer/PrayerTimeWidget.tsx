@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Clock, MapPin, Navigation, Calendar, AlertCircle, X, Bell, Compass } from 'lucide-react';
+import { Clock, MapPin, Navigation, Calendar, AlertCircle, X, Bell, Compass, Volume2 } from 'lucide-react';
 import { usePrayerTimes, INDONESIA_CITIES } from '../../hooks/usePrayerTimes';
+import { PrayerTimesModal } from './PrayerTimesModal';
 
 interface PrayerTimeWidgetProps {
   onOpenKhatamPlanner?: () => void;
@@ -28,6 +29,7 @@ export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
     times,
   } = usePrayerTimes();
   const [open, setOpen] = useState(false);
+  const [adhanSettingsOpen, setAdhanSettingsOpen] = useState(false);
 
   // Group cities by region/island
   const cityGroups = [
@@ -215,6 +217,27 @@ export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
               </button>
             )}
 
+            {/* Auto-Adhan Settings Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                setAdhanSettingsOpen(true);
+              }}
+              className="mt-2 flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-bold transition-all hover:opacity-95 cursor-pointer shadow-xs"
+              style={{
+                backgroundColor: 'var(--bg-accent-soft)',
+                borderColor: 'var(--border-color)',
+                color: 'var(--text-accent)',
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <Volume2 className="h-4 w-4 text-emerald-500" />
+                <span>Pengaturan Azan Otomatis (Auto-Adhan)</span>
+              </div>
+              <span>Atur ➔</span>
+            </button>
+
             {/* City Selection & GPS */}
             <div className="mt-3 border-t pt-3 space-y-2" style={{ borderColor: 'var(--border-color)' }}>
               <div className="flex items-center justify-between text-[11px] font-semibold" style={{ color: 'var(--text-secondary)' }}>
@@ -276,6 +299,12 @@ export const PrayerTimeWidget: React.FC<PrayerTimeWidgetProps> = ({
           </div>
         </>
       )}
+
+      {/* Auto-Adhan Settings Modal */}
+      <PrayerTimesModal
+        isOpen={adhanSettingsOpen}
+        onClose={() => setAdhanSettingsOpen(false)}
+      />
     </div>
   );
 };

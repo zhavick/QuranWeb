@@ -27,6 +27,7 @@ import {
   Users,
   Award,
   Calendar,
+  Volume2,
 } from 'lucide-react';
 import type {
   QuranMeta,
@@ -71,6 +72,12 @@ import { GharibulQuranModal } from './components/literacy/GharibulQuranModal';
 import { AudioCapsuleModal } from './components/audio/AudioCapsuleModal';
 import { TafsirModal } from './components/reader/TafsirModal';
 import { AyahPosterModal } from './components/reader/AyahPosterModal';
+import { AdhanPlayerModal } from './components/prayer/AdhanPlayerModal';
+import { PrayerTimesModal } from './components/prayer/PrayerTimesModal';
+import { ActiveAdhanState } from './types/adhan';
+import { subscribeAdhanTrigger, triggerAdhan, getAdhanSettings } from './services/adhanAudio';
+import { Coordinates, PrayerTimes, Madhab } from 'adhan';
+import { INDONESIA_CITIES } from './hooks/usePrayerTimes';
 import { getAyahTafsir } from './services/tafsir';
 import type { SelectedTafsirContext } from './types/tafsir';
 import {
@@ -227,6 +234,10 @@ export const App: React.FC = () => {
   const [selectedPosterAyah, setSelectedPosterAyah] = useState<Ayah | null>(null);
   const [audioCapsuleOpen, setAudioCapsuleOpen] = useState(false);
 
+  // Step 28 Auto-Adhan State
+  const [activeAdhanState, setActiveAdhanState] = useState<ActiveAdhanState | null>(null);
+  const [adhanSettingsOpen, setAdhanSettingsOpen] = useState(false);
+
   // Live actual time state for header marquee banner
   const [currentActualTime, setCurrentActualTime] = useState(() => {
     return new Date().toLocaleTimeString('id-ID', {
@@ -249,6 +260,71 @@ export const App: React.FC = () => {
       );
     }, 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  // Step 28: Auto-Adhan Listener & Precision Trigger Interval
+  useEffect(() => {
+    const unsub = subscribeAdhanTrigger((state) => {
+      setActiveAdhanState(state);
+    });
+
+    const formatHm = (d: Date) => {
+      const h = String(d.getHours()).padStart(2, '0');
+      const m = String(d.getMinutes()).padStart(2, '0');
+      return `${h}:${m}`;
+    };
+
+    const adhanCheckTimer = setInterval(() => {
+      const settings = getAdhanSettings();
+      if (!settings.autoAdhanEnabled) return;
+
+      let city = INDONESIA_CITIES[0];
+      try {
+        const rawCity = localStorage.getItem('quranweb_prayer_city');
+        if (rawCity) city = JSON.parse(rawCity);
+      } catch {
+        // ignore
+      }
+
+      const now = new Date();
+      const coords = new Coordinates(city.lat, city.lng);
+      // Hisab Kemenag (+2 menit ihtiyat)
+      const params = new PrayerTimes(coords, now, {
+        fajrAngle: 20,
+        ishaAngle: 18,
+        method: 'Other',
+        madhab: Madhab.Shafi,
+        highLatitudeRule: 'MiddleOfTheNight',
+        adjustments: { fajr: 2, dhuhr: 2, asr: 2, maghrib: 2, isha: 2 },
+      } as any);
+
+      const nowHm = formatHm(now);
+      const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+      const fardhuList: { key: 'fajr' | 'dhuhr' | 'asr' | 'maghrib' | 'isha'; label: string; time: Date }[] = [
+        { key: 'fajr', label: 'Subuh', time: params.fajr },
+        { key: 'dhuhr', label: 'Dzuhur', time: params.dhuhr },
+        { key: 'asr', label: 'Ashar', time: params.asr },
+        { key: 'maghrib', label: 'Maghrib', time: params.maghrib },
+        { key: 'isha', label: 'Isya', time: params.isha },
+      ];
+
+      for (const p of fardhuList) {
+        const prayerHm = formatHm(p.time);
+        if (nowHm === prayerHm) {
+          const expectedKey = `${todayStr}_${p.key}`;
+          if (settings.lastPlayedKey !== expectedKey) {
+            triggerAdhan(p.key, p.label);
+            break;
+          }
+        }
+      }
+    }, 5000);
+
+    return () => {
+      unsub();
+      clearInterval(adhanCheckTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -2016,6 +2092,26 @@ export const App: React.FC = () => {
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
                     </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        setAdhanSettingsOpen(true);
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-accent-soft)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-accent)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Volume2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                        <span>Pengaturan Azan Otomatis (Auto-Adhan)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Atur →</span>
+                    </button>
                   </div>
                 </div>
 
@@ -2357,6 +2453,20 @@ export const App: React.FC = () => {
       <SplashScreen
         isOpen={splashOpen}
         onClose={() => setSplashOpen(false)}
+      />
+
+      {/* Step 28: Pop-up Dialog Panggilan Shalat Otomatis */}
+      <AdhanPlayerModal
+        state={activeAdhanState}
+        onClose={() => setActiveAdhanState(null)}
+        elderMode={settings.elderMode}
+      />
+
+      {/* Step 28: Pengaturan Azan Otomatis Modal */}
+      <PrayerTimesModal
+        isOpen={adhanSettingsOpen}
+        onClose={() => setAdhanSettingsOpen(false)}
+        elderMode={settings.elderMode}
       />
 
       {/* Toast Notification */}

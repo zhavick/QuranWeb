@@ -26,6 +26,7 @@ import {
   Clock,
   Users,
   Award,
+  Calendar,
 } from 'lucide-react';
 import type {
   QuranMeta,
@@ -61,6 +62,7 @@ import { TasbihPage } from './components/tasbih/TasbihPage';
 import { HadithCatalog } from './components/hadith/HadithCatalog';
 import { FamilyCirclePage } from './components/khatam/FamilyCirclePage';
 import { WorshipReportPage } from './components/report/WorshipReportPage';
+import { HijriCalendarPage } from './components/calendar/HijriCalendarPage';
 import { QiblaCompass } from './components/qibla/QiblaCompass';
 import { MosqueMap } from './components/mosque/MosqueMap';
 import { KhatamPlannerModal } from './components/khatam/KhatamPlannerModal';
@@ -102,7 +104,7 @@ const DEFAULT_SETTINGS: ReaderSettings = {
 
 export const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<
-    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report'
+    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report' | 'kalender'
   >(() => {
     const p = window.location.pathname.toLowerCase();
     if (p === '/admin' || p.startsWith('/admin/')) return 'admin';
@@ -118,6 +120,7 @@ export const App: React.FC = () => {
     if (p === '/hadits' || p === '/hadith' || p.startsWith('/hadits/') || p.startsWith('/hadith/')) return 'hadits';
     if (p === '/khatam-keluarga' || p === '/khatam' || p.startsWith('/khatam-keluarga/') || p.startsWith('/khatam/')) return 'khatam-keluarga';
     if (p === '/report' || p === '/laporan' || p.startsWith('/report/') || p.startsWith('/laporan/')) return 'report';
+    if (p === '/kalender' || p === '/calendar' || p.startsWith('/kalender/') || p.startsWith('/calendar/')) return 'kalender';
     return 'reader';
   });
 
@@ -128,7 +131,7 @@ export const App: React.FC = () => {
   }, []);
 
   const navigateTo = useCallback(
-    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report') => {
+    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna' | 'tasbih' | 'hadits' | 'khatam-keluarga' | 'report' | 'kalender') => {
       setCurrentRoute(route);
       const path =
         route === 'reader'
@@ -153,6 +156,8 @@ export const App: React.FC = () => {
           ? '/khatam-keluarga'
           : route === 'report'
           ? '/report'
+          : route === 'kalender'
+          ? '/kalender'
           : `/${route}`;
       if (window.location.pathname !== path) {
         window.history.pushState({}, '', path);
@@ -177,6 +182,7 @@ export const App: React.FC = () => {
       else if (p === '/hadits' || p === '/hadith' || p.startsWith('/hadits/') || p.startsWith('/hadith/')) setCurrentRoute('hadits');
       else if (p === '/khatam-keluarga' || p === '/khatam' || p.startsWith('/khatam-keluarga/') || p.startsWith('/khatam/')) setCurrentRoute('khatam-keluarga');
       else if (p === '/report' || p === '/laporan' || p.startsWith('/report/') || p.startsWith('/laporan/')) setCurrentRoute('report');
+      else if (p === '/kalender' || p === '/calendar' || p.startsWith('/kalender/') || p.startsWith('/calendar/')) setCurrentRoute('kalender');
       else setCurrentRoute('reader');
     };
     window.addEventListener('popstate', handlePopState);
@@ -890,6 +896,15 @@ export const App: React.FC = () => {
     }
     return (
       <WorshipReportPage
+        onBackToMushaf={() => navigateTo('reader')}
+        elderMode={settings.elderMode}
+      />
+    );
+  }
+
+  if (currentRoute === 'kalender') {
+    return (
+      <HijriCalendarPage
         onBackToMushaf={() => navigateTo('reader')}
         elderMode={settings.elderMode}
       />
@@ -1978,6 +1993,26 @@ export const App: React.FC = () => {
                       <div className="flex items-center gap-2.5">
                         <Award className="h-4 w-4 text-amber-500 shrink-0" />
                         <span>Laporan Analitik Ibadah (/report)</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        navigateTo('kalender');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Calendar className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                        <span>Kalender Hijriah &amp; Puasa Sunnah</span>
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
                     </button>

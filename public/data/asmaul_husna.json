@@ -1,0 +1,1289 @@
+[
+  {
+    "id": 1,
+    "arabic": "الرَّحْمَٰنُ",
+    "latin": "Ar-Rahman",
+    "translation": "Maha Pengasih",
+    "meaning": "Mencurahkan kasih sayang yang teramat luas kepada seluruh makhluk di dunia tanpa terkecuali.",
+    "surahRef": {
+      "surahId": 1,
+      "surahName": "Al-Fatihah",
+      "ayahNumber": 3
+    },
+    "faedah": "Menenangkan jiwa dari kegelisahan dan menanamkan rasa syukur atas rahmat Allah."
+  },
+  {
+    "id": 2,
+    "arabic": "الرَّحِيمُ",
+    "latin": "Ar-Rahim",
+    "translation": "Maha Penyayang",
+    "meaning": "Memberikan limpahan kasih sayang istimewa dan abadi khusus bagi hamba-hamba yang beriman di akhirat.",
+    "surahRef": {
+      "surahId": 1,
+      "surahName": "Al-Fatihah",
+      "ayahNumber": 3
+    },
+    "faedah": "Memperteguh keimanan dan harapan akan ampunan serta surga-Nya."
+  },
+  {
+    "id": 3,
+    "arabic": "الْمَلِكُ",
+    "latin": "Al-Malik",
+    "translation": "Maha Merajai",
+    "meaning": "Penguasa mutlak seluruh alam semesta, yang memerintah tanpa bergantung kepada siapa pun.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 23
+    },
+    "faedah": "Menghilangkan kesombongan dan ketergantungan pada kekuasaan duniawi."
+  },
+  {
+    "id": 4,
+    "arabic": "الْقُدُّوسُ",
+    "latin": "Al-Quddus",
+    "translation": "Maha Suci",
+    "meaning": "Bersih dari segala cela, kekurangan, aib, dan prasangka yang tidak layak bagi keagungan-Nya.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 23
+    },
+    "faedah": "Membersihkan hati dari sifat dengki, riya, dan kotoran batin."
+  },
+  {
+    "id": 5,
+    "arabic": "السَّلَامُ",
+    "latin": "As-Salam",
+    "translation": "Maha Memberi Kesejahteraan",
+    "meaning": "Sumber keselamatan, kedamaian sejati, dan kesejahteraan bagi seluruh makhluk-Nya.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 23
+    },
+    "faedah": "Mendatangkan kedamaian batin dan keselamatan dari marabahaya lahir-batin."
+  },
+  {
+    "id": 6,
+    "arabic": "الْمُؤْمِنُ",
+    "latin": "Al-Mu'min",
+    "translation": "Maha Memberi Keamanan",
+    "meaning": "Pembenar janji-janji-Nya dan pemberi rasa aman serta ketentraman bagi orang-orang beriman.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 23
+    },
+    "faedah": "Menghilangkan rasa takut berlebihan terhadap masa depan dan musuh."
+  },
+  {
+    "id": 7,
+    "arabic": "الْمُهَيْمِنُ",
+    "latin": "Al-Muhaimin",
+    "translation": "Maha Memelihara",
+    "meaning": "Maha Mengawasi, Menjaga, Mengatur, dan Menyaksikan segala gerak-gerik ciptaan-Nya.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 23
+    },
+    "faedah": "Meningkatkan kesadaran muraqabah (selalu merasa diawasi Allah SWT)."
+  },
+  {
+    "id": 8,
+    "arabic": "الْعَزِيزُ",
+    "latin": "Al-'Aziz",
+    "translation": "Maha Perkasa",
+    "meaning": "Memiliki kemuliaan dan keperkasaan mutlak yang tidak terkalahkan oleh kekuatan apa pun.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 23
+    },
+    "faedah": "Membangun wibawa moral dan keteguhan prinsip dalam kebenaran."
+  },
+  {
+    "id": 9,
+    "arabic": "الْجَبَّارُ",
+    "latin": "Al-Jabbar",
+    "translation": "Maha Memaksa Kehendak",
+    "meaning": "Memperbaiki segala kerusakan makhluk-Nya dan kehendak-Nya pasti terlaksana di alam semesta.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 23
+    },
+    "faedah": "Memulihkan hati yang patah dan menyembuhkan luka batin akibat ujian."
+  },
+  {
+    "id": 10,
+    "arabic": "الْمُتَكَبِّرُ",
+    "latin": "Al-Mutakabbir",
+    "translation": "Maha Megah / Pemilik Kebesaran",
+    "meaning": "Hanya bagi Allah segala keagungan hakiki, bersih dari sifat rendah ciptaan.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 23
+    },
+    "faedah": "Menyadarkan diri akan kehambaan dan kelemahan mutlak di hadapan-Nya."
+  },
+  {
+    "id": 11,
+    "arabic": "الْخَالِقُ",
+    "latin": "Al-Khaliq",
+    "translation": "Maha Pencipta",
+    "meaning": "Menciptakan segala sesuatu dari ketiadaan dengan takdir ukuran yang sempurna.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 24
+    },
+    "faedah": "Membangkitkan kekaguman atas keajaiban alam semesta dan penciptaan diri."
+  },
+  {
+    "id": 12,
+    "arabic": "الْبَارِئُ",
+    "latin": "Al-Bari'",
+    "translation": "Maha Mengadakan",
+    "meaning": "Mewujudkan ciptaan secara harmonis tanpa cacat dari rancangan ke wujud nyata.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 24
+    },
+    "faedah": "Menyempurnakan ikhtiar dan melepaskan keterikatan pada hasil akhir."
+  },
+  {
+    "id": 13,
+    "arabic": "الْمُصَوِّرُ",
+    "latin": "Al-Mushawwir",
+    "translation": "Maha Membentuk Rupa",
+    "meaning": "Memberikan bentuk, wajah, ciri khas, dan warna yang unik bagi setiap ciptaan.",
+    "surahRef": {
+      "surahId": 59,
+      "surahName": "Al-Hasyr",
+      "ayahNumber": 24
+    },
+    "faedah": "Mensyukuri rupa fisik diri sendiri dan menghargai keberagaman sesama insan."
+  },
+  {
+    "id": 14,
+    "arabic": "الْغَفَّارُ",
+    "latin": "Al-Ghaffar",
+    "translation": "Maha Pengampun",
+    "meaning": "Menutupi dosa-dosa hamba-Nya di dunia dan tidak menuntutnya kembali di akhirat.",
+    "surahRef": {
+      "surahId": 20,
+      "surahName": "Thaha",
+      "ayahNumber": 82
+    },
+    "faedah": "Membuka pintu ampunan dari dosa yang berulang serta mendatangkan kelapangan rezeki."
+  },
+  {
+    "id": 15,
+    "arabic": "الْقَهَّارُ",
+    "latin": "Al-Qahhar",
+    "translation": "Maha Menundukkan",
+    "meaning": "Menaklukkan seluruh makhluk di bawah kekuasaan dan takdir-Nya tanpa sanggahan.",
+    "surahRef": {
+      "surahId": 12,
+      "surahName": "Yusuf",
+      "ayahNumber": 39
+    },
+    "faedah": "Menundukkan hawa nafsu angkara dan bisikan godaan syaithan."
+  },
+  {
+    "id": 16,
+    "arabic": "الْوَهَّابُ",
+    "latin": "Al-Wahhab",
+    "translation": "Maha Pemberi Karunia",
+    "meaning": "Melimpahkan anugerah dan nikmat melimpah secara cuma-cuma tanpa pamrih.",
+    "surahRef": {
+      "surahId": 3,
+      "surahName": "Ali 'Imran",
+      "ayahNumber": 8
+    },
+    "faedah": "Memperoleh anugerah keturunan shaleh, hikmah ilmu, dan karunia yang tak terduga."
+  },
+  {
+    "id": 17,
+    "arabic": "الرَّزَّاقُ",
+    "latin": "Ar-Razzaq",
+    "translation": "Maha Pemberi Rezeki",
+    "meaning": "Menjamin sarana kehidupan, pangan, rezeki lahiriah dan batiniah bagi semua makhluk.",
+    "surahRef": {
+      "surahId": 51,
+      "surahName": "Adz-Dzariyat",
+      "ayahNumber": 58
+    },
+    "faedah": "Melancarkan pintu rezeki yang berkah dan halal serta menghilangkan kecemasan nafkah."
+  },
+  {
+    "id": 18,
+    "arabic": "الْفَتَّاحُ",
+    "latin": "Al-Fattah",
+    "translation": "Maha Pembuka Rahmat",
+    "meaning": "Membuka jalan keluar dari segala kebuntuan, kesulitan hidup, dan gerbang taufiq.",
+    "surahRef": {
+      "surahId": 34,
+      "surahName": "Saba'",
+      "ayahNumber": 26
+    },
+    "faedah": "Membuka pintu hikmah, kemudahan dalam urusan buntu, dan kejernihan pikiran."
+  },
+  {
+    "id": 19,
+    "arabic": "الْعَلِيمُ",
+    "latin": "Al-'Alim",
+    "translation": "Maha Mengetahui",
+    "meaning": "Mengetahui segala sesuatu yang nyata maupun tersembunyi, masa lalu, kini, dan esok.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 29
+    },
+    "faedah": "Memperdalam wawasan keilmuan dan menjaga keikhlasan amal batin."
+  },
+  {
+    "id": 20,
+    "arabic": "الْقَابِضُ",
+    "latin": "Al-Qabidh",
+    "translation": "Maha Menyempitkan",
+    "meaning": "Menahan rezeki atau ruh makhluk-Nya sesuai kebijaksanaan hikmah keadilan-Nya.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 245
+    },
+    "faedah": "Melatih kesabaran di saat kondisi sulit dan menjaga diri dari kerakusan."
+  },
+  {
+    "id": 21,
+    "arabic": "الْبَاسِطُ",
+    "latin": "Al-Basith",
+    "translation": "Maha Melapangkan",
+    "meaning": "Melapangkan rezeki, kebahagiaan, dan ruh hamba-Nya dengan kemurahan-Nya.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 245
+    },
+    "faedah": "Menghadirkan kelapangan dada dan kelegaan dari rasa sempit."
+  },
+  {
+    "id": 22,
+    "arabic": "الْخَافِضُ",
+    "latin": "Al-Khafidh",
+    "translation": "Maha Merendahkan",
+    "meaning": "Merendahkan derajat orang-orang yang zalim, congkak, dan durhaka.",
+    "surahRef": {
+      "surahId": 56,
+      "surahName": "Al-Waqi'ah",
+      "ayahNumber": 3
+    },
+    "faedah": "Meredam kesombongan diri dan menghindarkan dari sifat takabbur."
+  },
+  {
+    "id": 23,
+    "arabic": "الرَّافِعُ",
+    "latin": "Ar-Rafi'",
+    "translation": "Maha Meninggikan",
+    "meaning": "Meninggikan derajat orang-orang yang beriman, bertakwa, dan berilmu di dunia-akhirat.",
+    "surahRef": {
+      "surahId": 58,
+      "surahName": "Al-Mujadilah",
+      "ayahNumber": 11
+    },
+    "faedah": "Meninggikan martabat akhlak dan kedudukan mulia di sisi Allah dan manusia."
+  },
+  {
+    "id": 24,
+    "arabic": "الْمُعِزُّ",
+    "latin": "Al-Mu'izz",
+    "translation": "Maha Memuliakan",
+    "meaning": "Memberikan kemuliaan, kehormatan, dan kekuatan sejati kepada siapa yang dikehendaki-Nya.",
+    "surahRef": {
+      "surahId": 3,
+      "surahName": "Ali 'Imran",
+      "ayahNumber": 26
+    },
+    "faedah": "Memperoleh kehormatan iman yang teguh dan tidak mudah tergoda kehinaan."
+  },
+  {
+    "id": 25,
+    "arabic": "الْمُذِلُّ",
+    "latin": "Al-Mudzill",
+    "translation": "Maha Menghinakan",
+    "meaning": "Menimpakan kehinaan bagi para penentang petunjuk dan pembangkang syariat-Nya.",
+    "surahRef": {
+      "surahId": 3,
+      "surahName": "Ali 'Imran",
+      "ayahNumber": 26
+    },
+    "faedah": "Berlindung dari kehinaan fitnah dunia dan siksa akhirat."
+  },
+  {
+    "id": 26,
+    "arabic": "السَّمِيعُ",
+    "latin": "As-Sami'",
+    "translation": "Maha Mendengar",
+    "meaning": "Mendengar segala bisikan hati, rintihan doa, dan ucapan tanpa terhalang jarak dan waktu.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 127
+    },
+    "faedah": "Meningkatkan kekhusyukan doa dan menjaga lisan dari ucapan tercela."
+  },
+  {
+    "id": 27,
+    "arabic": "الْبَصِيرُ",
+    "latin": "Al-Bashir",
+    "translation": "Maha Melihat",
+    "meaning": "Melihat seluruh rincian perbuatan makhluk, bahkan langkah semut hitam di batu hitam malam gelap.",
+    "surahRef": {
+      "surahId": 42,
+      "surahName": "Asy-Syura",
+      "ayahNumber": 11
+    },
+    "faedah": "Menjaga pandangan mata dan istiqamah dalam kesendirian."
+  },
+  {
+    "id": 28,
+    "arabic": "الْحَكَمُ",
+    "latin": "Al-Hakam",
+    "translation": "Maha Menetapkan Hukum",
+    "meaning": "Hakim yang Maha Adil, tiada banding, yang keputusannya pasti dan tak terbantahkan.",
+    "surahRef": {
+      "surahId": 6,
+      "surahName": "Al-An'am",
+      "ayahNumber": 114
+    },
+    "faedah": "Memberikan keteguhan hati dalam mencari keadilan dan menaati syariat-Nya."
+  },
+  {
+    "id": 29,
+    "arabic": "الْعَدْلُ",
+    "latin": "Al-'Adl",
+    "translation": "Maha Adil",
+    "meaning": "Sempurna dalam keadilan, bersih dari kezaliman, menempatkan segala sesuatu tepat pada tempatnya.",
+    "surahRef": {
+      "surahId": 6,
+      "surahName": "Al-An'am",
+      "ayahNumber": 115
+    },
+    "faedah": "Menumbuhkan sikap adil dalam perkataan, keputusan, dan pergaulan."
+  },
+  {
+    "id": 30,
+    "arabic": "اللَّطِيفُ",
+    "latin": "Al-Lathif",
+    "translation": "Maha Lembut",
+    "meaning": "Mengetahui hal-hal yang teramat halus dan memperlakukan hamba-Nya dengan kelembutan tak terduga.",
+    "surahRef": {
+      "surahId": 67,
+      "surahName": "Al-Mulk",
+      "ayahNumber": 14
+    },
+    "faedah": "Memohon jalan keluar yang lembut di saat menghadapi musibah rumit."
+  },
+  {
+    "id": 31,
+    "arabic": "الْخَبِيرُ",
+    "latin": "Al-Khabir",
+    "translation": "Maha Mengenal",
+    "meaning": "Mengetahui hakikat terdalam dari segala peristiwa, rahasia, dan niat tersembunyi.",
+    "surahRef": {
+      "surahId": 6,
+      "surahName": "Al-An'am",
+      "ayahNumber": 18
+    },
+    "faedah": "Melatih kepekaan nurani dan kehati-hatian dalam bertindak."
+  },
+  {
+    "id": 32,
+    "arabic": "الْحَلِيمُ",
+    "latin": "Al-Halim",
+    "translation": "Maha Penyantun",
+    "meaning": "Tidak lekas murka dan tidak tergesa-gesa menghukum hamba-Nya yang berbuat dosa agar sempat bertobat.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 225
+    },
+    "faedah": "Menenangkan amarah diri dan memupuk sifat pemaaf serta sabar."
+  },
+  {
+    "id": 33,
+    "arabic": "الْعَظِيمُ",
+    "latin": "Al-'Azhim",
+    "translation": "Maha Agung",
+    "meaning": "Memiliki keagungan tak terhingga yang melampaui batas akal budi seluruh makhluk.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 255
+    },
+    "faedah": "Menumbuhkan rasa takzim dan khusyuk saat membaca firman-Nya."
+  },
+  {
+    "id": 34,
+    "arabic": "الْغَفُورُ",
+    "latin": "Al-Ghafur",
+    "translation": "Maha Pengampun",
+    "meaning": "Mengampuni dosa-dosa besar sebanyak buih di lautan bagi hamba yang bertaubat dengan tulus.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 173
+    },
+    "faedah": "Menghapuskan beban rasa bersalah dan memberi harapan luas akan rahmat-Nya."
+  },
+  {
+    "id": 35,
+    "arabic": "الشَّكُورُ",
+    "latin": "Asy-Syakur",
+    "translation": "Maha Menghargai",
+    "meaning": "Membalas amal ibadah hamba yang sedikit dengan pahala yang berlipat ganda tanpa batas.",
+    "surahRef": {
+      "surahId": 35,
+      "surahName": "Fathir",
+      "ayahNumber": 30
+    },
+    "faedah": "Mendorong semangat istiqamah dalam amal kebajikan sekecil apa pun."
+  },
+  {
+    "id": 36,
+    "arabic": "الْعَلِيُّ",
+    "latin": "Al-'Aliyy",
+    "translation": "Maha Tinggi",
+    "meaning": "Maha Luhur sifat-Nya, kedudukan-Nya, dan kekuasaan-Nya di atas seluruh semesta alam.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 255
+    },
+    "faedah": "Menghindarkan diri dari perasaan kerdil di hadapan sesama manusia."
+  },
+  {
+    "id": 37,
+    "arabic": "الْكَبِيرُ",
+    "latin": "Al-Kabir",
+    "translation": "Maha Besar",
+    "meaning": "Kebesaran zat, sifat, dan perbuatan-Nya tidak dapat diukur dan ditandingi apa pun.",
+    "surahRef": {
+      "surahId": 13,
+      "surahName": "Ar-Ra'd",
+      "ayahNumber": 9
+    },
+    "faedah": "Mengecilkan pandangan terhadap masalah duniawi di hadapan kebesaran Allah."
+  },
+  {
+    "id": 38,
+    "arabic": "الْحَفِيظُ",
+    "latin": "Al-Hafizh",
+    "translation": "Maha Menjaga",
+    "meaning": "Menjaga keteraturan jagat raya dan memelihara amal perbuatan seluruh hamba.",
+    "surahRef": {
+      "surahId": 11,
+      "surahName": "Hud",
+      "ayahNumber": 57
+    },
+    "faedah": "Perlindungan dari marabahaya, bencana, dan godaan kemaksiatan."
+  },
+  {
+    "id": 39,
+    "arabic": "الْمُقِيتُ",
+    "latin": "Al-Muqit",
+    "translation": "Maha Memberi Kecukupan",
+    "meaning": "Mengatur kadar nutrisi, kekuatan jasmani, dan kecukupan rohani bagi kelangsungan hidup.",
+    "surahRef": {
+      "surahId": 4,
+      "surahName": "An-Nisa'",
+      "ayahNumber": 85
+    },
+    "faedah": "Ketenangan batin atas jaminan rezeki dan stamina hidup."
+  },
+  {
+    "id": 40,
+    "arabic": "الْحَسِيبُ",
+    "latin": "Al-Hasib",
+    "translation": "Maha Membuat Perhitungan",
+    "meaning": "Cukup sebagai sandaran hamba-Nya dan menghitung amal manusia secara presisi tanpa keliru.",
+    "surahRef": {
+      "surahId": 4,
+      "surahName": "An-Nisa'",
+      "ayahNumber": 6
+    },
+    "faedah": "Cukuplah Allah sebagai pelindung (Hasbunallah wa ni'mal wakil)."
+  },
+  {
+    "id": 41,
+    "arabic": "الْجَلِيلُ",
+    "latin": "Al-Jalil",
+    "translation": "Maha Mulia",
+    "meaning": "Memiliki kesempurnaan mutlak dalam keindahan, keagungan, dan kewibawaan Ilahi.",
+    "surahRef": {
+      "surahId": 55,
+      "surahName": "Ar-Rahman",
+      "ayahNumber": 27
+    },
+    "faedah": "Memancarkan kehormatan budi pekerti dan ketenangan wajah."
+  },
+  {
+    "id": 42,
+    "arabic": "الْكَرِيمُ",
+    "latin": "Al-Karim",
+    "translation": "Maha Pemurah",
+    "meaning": "Memberi sebelum diminta, mengampuni sebelum dituntut, dan membalas lebih dari yang pantas.",
+    "surahRef": {
+      "surahId": 82,
+      "surahName": "Al-Infithar",
+      "ayahNumber": 6
+    },
+    "faedah": "Menumbuhkan kedermawanan tangan dan kemurahan hati kepada sesama."
+  },
+  {
+    "id": 43,
+    "arabic": "الرَّقِيبُ",
+    "latin": "Ar-Raqib",
+    "translation": "Maha Mengawasi",
+    "meaning": "Senantiasa memperhatikan setiap gerak, desah nafas, dan isi sanubari seluruh ciptaan.",
+    "surahRef": {
+      "surahId": 4,
+      "surahName": "An-Nisa'",
+      "ayahNumber": 1
+    },
+    "faedah": "Memperkuat benteng integritas pribadi dari perbuatan khianat."
+  },
+  {
+    "id": 44,
+    "arabic": "الْمُجِيبُ",
+    "latin": "Al-Mujib",
+    "translation": "Maha Mengabulkan Doa",
+    "meaning": "Menjawab seruan orang-orang yang berdoa kepada-Nya dan menolong hamba yang terhimpit kesulitan.",
+    "surahRef": {
+      "surahId": 11,
+      "surahName": "Hud",
+      "ayahNumber": 61
+    },
+    "faedah": "Kekuatan doa mustajab dan keyakinan harapan yang tidak pernah sia-sia."
+  },
+  {
+    "id": 45,
+    "arabic": "الْوَاسِعُ",
+    "latin": "Al-Wasi'",
+    "translation": "Maha Luas",
+    "meaning": "Keluasan rahmat, ilmu, karunia, dan ampunan-Nya melingkupi langit dan bumi.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 115
+    },
+    "faedah": "Melapangkan kesempitan hidup dan menepis prasangka buruk atas takdir."
+  },
+  {
+    "id": 46,
+    "arabic": "الْحَكِيمُ",
+    "latin": "Al-Hakim",
+    "translation": "Maha Bijaksana",
+    "meaning": "Segala ketetapan, syariat, dan ciptaan-Nya sarat akan hikmah dan tujuan yang sempurna.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 129
+    },
+    "faedah": "Mengambil hikmah di balik setiap cobaan dan menajamkan pertimbangan."
+  },
+  {
+    "id": 47,
+    "arabic": "الْوَدُودُ",
+    "latin": "Al-Wadud",
+    "translation": "Maha Mencintai",
+    "meaning": "Mencintai hamba-hamba-Nya yang shaleh dan menanamkan cinta di hati mereka.",
+    "surahRef": {
+      "surahId": 11,
+      "surahName": "Hud",
+      "ayahNumber": 90
+    },
+    "faedah": "Merekadkan keharmonisan keluarga, kasih sayang suami-istri, dan persaudaraan."
+  },
+  {
+    "id": 48,
+    "arabic": "الْمَجِيدُ",
+    "latin": "Al-Majid",
+    "translation": "Maha Mulia",
+    "meaning": "Pemberi kebaikan berlimpah dan memiliki kedudukan yang teramat luhur.",
+    "surahRef": {
+      "surahId": 11,
+      "surahName": "Hud",
+      "ayahNumber": 73
+    },
+    "faedah": "Membimbing menuju kemuliaan akhlak dan nama baik yang terjaga."
+  },
+  {
+    "id": 49,
+    "arabic": "الْبَاعِثُ",
+    "latin": "Al-Ba'its",
+    "translation": "Maha Membangkitkan",
+    "meaning": "Membangkitkan seluruh manusia dari alam kubur pada hari kiamat dan meniupkan tekad baru.",
+    "surahRef": {
+      "surahId": 22,
+      "surahName": "Al-Hajj",
+      "ayahNumber": 7
+    },
+    "faedah": "Membangkitkan semangat ibadah yang redup dan kesiapan menghadapi yaumul hisab."
+  },
+  {
+    "id": 50,
+    "arabic": "الشَّهِيدُ",
+    "latin": "Asy-Syahid",
+    "translation": "Maha Menyaksikan",
+    "meaning": "Menyaksikan segala perkara yang tampak maupun yang tersembunyi tanpa luput sedikit pun.",
+    "surahRef": {
+      "surahId": 4,
+      "surahName": "An-Nisa'",
+      "ayahNumber": 79
+    },
+    "faedah": "Kejujuran dalam bersaksi dan ketentraman saat dizalimi tanpa saksi manusia."
+  },
+  {
+    "id": 51,
+    "arabic": "الْحَقُّ",
+    "latin": "Al-Haqq",
+    "translation": "Maha Benar",
+    "meaning": "Wujud-Nya nyata abadi, firman-Nya pasti, janji-Nya benar, dan kebenaran mutlak bersumber dari-Nya.",
+    "surahRef": {
+      "surahId": 22,
+      "surahName": "Al-Hajj",
+      "ayahNumber": 6
+    },
+    "faedah": "Meneguhkan pendirian dalam kebenaran dan menjauhkan keraguan."
+  },
+  {
+    "id": 52,
+    "arabic": "الْوَكِيلُ",
+    "latin": "Al-Wakil",
+    "translation": "Maha Memelihara / Pelindung",
+    "meaning": "Sebaik-baik tempat memasrahkan segala urusan dan penjamin kecukupan hamba-Nya.",
+    "surahRef": {
+      "surahId": 3,
+      "surahName": "Ali 'Imran",
+      "ayahNumber": 173
+    },
+    "faedah": "Tawakal yang sempurna dan kedamaian dari beban hidup berat."
+  },
+  {
+    "id": 53,
+    "arabic": "الْقَوِيُّ",
+    "latin": "Al-Qawiyy",
+    "translation": "Maha Kuat",
+    "meaning": "Kekuatan-Nya sempurna tanpa cela, tidak pernah lelah, letih, atau melemah.",
+    "surahRef": {
+      "surahId": 22,
+      "surahName": "Al-Hajj",
+      "ayahNumber": 40
+    },
+    "faedah": "Memperoleh kekuatan batin saat menghadapi cobaan fisik atau penyakit."
+  },
+  {
+    "id": 54,
+    "arabic": "الْمَتِينُ",
+    "latin": "Al-Matin",
+    "translation": "Maha Kokoh",
+    "meaning": "Kekuatan-Nya tak tergoyahkan dan keperkasaan-Nya teramat teguh melampaui segalanya.",
+    "surahRef": {
+      "surahId": 51,
+      "surahName": "Adz-Dzariyat",
+      "ayahNumber": 58
+    },
+    "faedah": "Istiqamah dalam memegang tali agama di tengah terpaan fitnah zaman."
+  },
+  {
+    "id": 55,
+    "arabic": "الْوَلِيُّ",
+    "latin": "Al-Waliyy",
+    "translation": "Maha Melindungi",
+    "meaning": "Sahabat pelindung dan penolong sejati bagi orang-orang yang beriman.",
+    "surahRef": {
+      "surahId": 4,
+      "surahName": "An-Nisa'",
+      "ayahNumber": 45
+    },
+    "faedah": "Merasakan kedekatan pertolongan Allah di setiap hembusan nafas."
+  },
+  {
+    "id": 56,
+    "arabic": "الْحَمِيدُ",
+    "latin": "Al-Hamid",
+    "translation": "Maha Terpuji",
+    "meaning": "Berhak atas segala pujian kesyukuran dari seluruh alam baik dalam nikmat maupun ujian.",
+    "surahRef": {
+      "surahId": 14,
+      "surahName": "Ibrahim",
+      "ayahNumber": 8
+    },
+    "faedah": "Membasahi lisan dengan tahmid dan mensyukuri aneka rupa takdir."
+  },
+  {
+    "id": 57,
+    "arabic": "الْمُحْصِي",
+    "latin": "Al-Muhshi",
+    "translation": "Maha Menghitung",
+    "meaning": "Menghitung secara rinci setiap helai daun yang gugur, butir pasir, dan desah nafas manusia.",
+    "surahRef": {
+      "surahId": 72,
+      "surahName": "Al-Jinn",
+      "ayahNumber": 28
+    },
+    "faedah": "Menjaga diri dari kelalaian detik-detik waktu yang berharga."
+  },
+  {
+    "id": 58,
+    "arabic": "الْمُبْدِئُ",
+    "latin": "Al-Mubdi'",
+    "translation": "Maha Memulai",
+    "meaning": "Memulai penciptaan alam semesta dari tiada tanpa membutuhkan model contoh terdahulu.",
+    "surahRef": {
+      "surahId": 10,
+      "surahName": "Yunus",
+      "ayahNumber": 4
+    },
+    "faedah": "Memberikan keberkahan dalam memulai langkah, karir, dan amal kebaikan baru."
+  },
+  {
+    "id": 59,
+    "arabic": "الْمُعِيدُ",
+    "latin": "Al-Mu'id",
+    "translation": "Maha Mengembalikan",
+    "meaning": "Mengembalikan ciptaan setelah rusak dan membangkitkan kembali manusia sesudah kematian.",
+    "surahRef": {
+      "surahId": 10,
+      "surahName": "Yunus",
+      "ayahNumber": 4
+    },
+    "faedah": "Mengembalikan barang yang hilang atau memulihkan hubungan yang retak."
+  },
+  {
+    "id": 60,
+    "arabic": "الْمُحْيِي",
+    "latin": "Al-Muhyi",
+    "translation": "Maha Menghidupkan",
+    "meaning": "Meniupkan kehidupan pada jasmani yang mati dan menyinari hati yang membatu dengan hidayah.",
+    "surahRef": {
+      "surahId": 30,
+      "surahName": "Ar-Rum",
+      "ayahNumber": 50
+    },
+    "faedah": "Menghidupkan hati yang redup dan memohon kesembuhan raga."
+  },
+  {
+    "id": 61,
+    "arabic": "الْمُمِيتُ",
+    "latin": "Al-Mumit",
+    "translation": "Maha Mematikan",
+    "meaning": "Menentukan batas ajal setiap yang bernyawa tepat pada waktunya tanpa terlambat sedetik pun.",
+    "surahRef": {
+      "surahId": 40,
+      "surahName": "Ghafir",
+      "ayahNumber": 68
+    },
+    "faedah": "Mengingat kematian sebagai penasihat terbaik dan mematikan nafsu buruk."
+  },
+  {
+    "id": 62,
+    "arabic": "الْحَيُّ",
+    "latin": "Al-Hayy",
+    "translation": "Maha Hidup",
+    "meaning": "Hidup kekal abadi tanpa awal dan tanpa akhir, tidak mengantuk dan tidak pernah tidur.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 255
+    },
+    "faedah": "Kekuatan doa Ismul A'zham (Ya Hayyu Ya Qayyum)."
+  },
+  {
+    "id": 63,
+    "arabic": "الْقَيُّومُ",
+    "latin": "Al-Qayyum",
+    "translation": "Maha Berdiri Sendiri",
+    "meaning": "Menegakkan dan mengurus seluruh ciptaan-Nya secara mandiri tanpa bantuan siapa pun.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 255
+    },
+    "faedah": "Kemandirian hidup dan pertolongan dalam memikul amanah besar."
+  },
+  {
+    "id": 64,
+    "arabic": "الْوَاجِدُ",
+    "latin": "Al-Wajid",
+    "translation": "Maha Menemukan",
+    "meaning": "Tidak pernah kekurangan apa pun dan segala sesuatu berada dalam genggaman-Nya.",
+    "surahRef": {
+      "surahId": 93,
+      "surahName": "Ad-Dhuha",
+      "ayahNumber": 7
+    },
+    "faedah": "Ketenangan batin dari kekhawatiran kehilangan barang atau kesempatan."
+  },
+  {
+    "id": 65,
+    "arabic": "الْمَاجِدُ",
+    "latin": "Al-Majid",
+    "translation": "Maha Mulia",
+    "meaning": "Memiliki kemuliaan, keagungan, dan kebaikan yang luas tak terhingga.",
+    "surahRef": {
+      "surahId": 85,
+      "surahName": "Al-Buruj",
+      "ayahNumber": 15
+    },
+    "faedah": "Menjaga kehormatan diri dan keluarga dari celaan."
+  },
+  {
+    "id": 66,
+    "arabic": "الْوَاحِدُ",
+    "latin": "Al-Wahid",
+    "translation": "Maha Tunggal",
+    "meaning": "Esa dalam zat, sifat, dan perbuatan-Nya, tiada sekutu atau tandingan bagi-Nya.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 163
+    },
+    "faedah": "Memurnikan tauhid dari syirik terselubung dan ketergantungan makhluk."
+  },
+  {
+    "id": 67,
+    "arabic": "الْأَحَدُ",
+    "latin": "Al-Ahad",
+    "translation": "Maha Esa Mutlak",
+    "meaning": "Tunggal tak terbagi-bagi, tidak beranak dan tidak diperanakkan.",
+    "surahRef": {
+      "surahId": 112,
+      "surahName": "Al-Ikhlas",
+      "ayahNumber": 1
+    },
+    "faedah": "Pondasi keimanan paling murni pelindung akidah umat Islam."
+  },
+  {
+    "id": 68,
+    "arabic": "الصَّمَدُ",
+    "latin": "Ash-Shamad",
+    "translation": "Maha Dibutuhkan",
+    "meaning": "Tempat bergantung seluruh makhluk untuk memenuhi segala hajat, permohonan, dan doa.",
+    "surahRef": {
+      "surahId": 112,
+      "surahName": "Al-Ikhlas",
+      "ayahNumber": 2
+    },
+    "faedah": "Memenuhi kebutuhan hidup yang mendesak hanya kepada Allah semata."
+  },
+  {
+    "id": 69,
+    "arabic": "الْقَادِرُ",
+    "latin": "Al-Qadir",
+    "translation": "Maha Berkuasa",
+    "meaning": "Mampu melakukan segala sesuatu yang dikehendaki-Nya tanpa ada rintangan.",
+    "surahRef": {
+      "surahId": 6,
+      "surahName": "Al-An'am",
+      "ayahNumber": 65
+    },
+    "faedah": "Kekuatan menghadapi rintangan mustahil menurut kalkulasi manusia."
+  },
+  {
+    "id": 70,
+    "arabic": "الْمُقْتَدِرُ",
+    "latin": "Al-Muqtadir",
+    "translation": "Maha Menentukan Kekuasaan",
+    "meaning": "Kekuasaan-Nya mutlak melampaui batas dan menetapkan takdir seluruh alam.",
+    "surahRef": {
+      "surahId": 54,
+      "surahName": "Al-Qamar",
+      "ayahNumber": 42
+    },
+    "faedah": "Pemberian ketabahan dalam menerima suratan takdir ilahi."
+  },
+  {
+    "id": 71,
+    "arabic": "الْمُقَدِّمُ",
+    "latin": "Al-Muqaddim",
+    "translation": "Maha Mendahulukan",
+    "meaning": "Mendahulukan apa yang layak didahulukan sesuai keadilan dan hikmah-Nya.",
+    "surahRef": {
+      "surahId": 50,
+      "surahName": "Qaf",
+      "ayahNumber": 28
+    },
+    "faedah": "Keberhasilan dalam kompetisi kebajikan dan kemajuan spiritual."
+  },
+  {
+    "id": 72,
+    "arabic": "الْمُؤَخِّرُ",
+    "latin": "Al-Mu'akhkhir",
+    "translation": "Maha Mengakhirkan",
+    "meaning": "Mengakhirkan apa yang layak diakhirkan demi hikmah kebaikan hamba-Nya.",
+    "surahRef": {
+      "surahId": 71,
+      "surahName": "Nuh",
+      "ayahNumber": 4
+    },
+    "faedah": "Menghindari ketergesa-gesaan dan melatih kesabaran menanti waktu terbaik."
+  },
+  {
+    "id": 73,
+    "arabic": "الْأَوَّلُ",
+    "latin": "Al-Awwal",
+    "translation": "Maha Awal",
+    "meaning": "Ada sebelum segala sesuatu ada, tanpa permulaan dan tanpa batasan waktu.",
+    "surahRef": {
+      "surahId": 57,
+      "surahName": "Al-Hadid",
+      "ayahNumber": 3
+    },
+    "faedah": "Menjadikan Allah sebagai orientasi pertama di awal setiap hari dan niat."
+  },
+  {
+    "id": 74,
+    "arabic": "الْآخِرُ",
+    "latin": "Al-Akhir",
+    "translation": "Maha Akhir",
+    "meaning": "Tetap kekal ada setelah seluruh alam semesta musnah, tanpa kesudahan.",
+    "surahRef": {
+      "surahId": 57,
+      "surahName": "Al-Hadid",
+      "ayahNumber": 3
+    },
+    "faedah": "Menjadikan ridha Allah sebagai tujuan akhir seluruh helaan nafas kehidupan."
+  },
+  {
+    "id": 75,
+    "arabic": "الظَّاهِرُ",
+    "latin": "Azh-Zhahir",
+    "translation": "Maha Nyata",
+    "meaning": "Keberadaan dan keagungan-Nya nyata terpancar lewat jutaan tanda kebesaran alam semesta.",
+    "surahRef": {
+      "surahId": 57,
+      "surahName": "Al-Hadid",
+      "ayahNumber": 3
+    },
+    "faedah": "Menemukan keindahan bukti kebesaran Allah dalam tiap ciptaan."
+  },
+  {
+    "id": 76,
+    "arabic": "الْبَاطِنُ",
+    "latin": "Al-Bathin",
+    "translation": "Maha Ghaib",
+    "meaning": "Tidak dapat dijangkau oleh panca indera mata jasmani, namun teramat dekat di hati sanubari.",
+    "surahRef": {
+      "surahId": 57,
+      "surahName": "Al-Hadid",
+      "ayahNumber": 3
+    },
+    "faedah": "Menyelami rahasia makrifatullah dan keheningan munajat malam."
+  },
+  {
+    "id": 77,
+    "arabic": "الْوَالِي",
+    "latin": "Al-Wali",
+    "translation": "Maha Memerintah",
+    "meaning": "Menguasai dan mengatur segala urusan seluruh ciptaan di jagat raya ini.",
+    "surahRef": {
+      "surahId": 13,
+      "surahName": "Ar-Ra'd",
+      "ayahNumber": 11
+    },
+    "faedah": "Perlindungan dari kezaliman pemimpin atau otoritas yang sewenang-wenang."
+  },
+  {
+    "id": 78,
+    "arabic": "الْمُتَعَالِي",
+    "latin": "Al-Muta'ali",
+    "translation": "Maha Maha Luhur",
+    "meaning": "Teramat tinggi dan suci dari segala sifat cela makhluk-Nya.",
+    "surahRef": {
+      "surahId": 13,
+      "surahName": "Ar-Ra'd",
+      "ayahNumber": 9
+    },
+    "faedah": "Mengangkat derajat dan memelihara diri dari perbuatan hina."
+  },
+  {
+    "id": 79,
+    "arabic": "الْبَرُّ",
+    "latin": "Al-Barr",
+    "translation": "Maha Penderma",
+    "meaning": "Melimpahkan kebaikan, kelapangan, dan kebajikan tiada tara kepada segenap makhluk.",
+    "surahRef": {
+      "surahId": 52,
+      "surahName": "Ath-Thur",
+      "ayahNumber": 28
+    },
+    "faedah": "Menjadi pribadi yang ringan berbuat baik dan berbakti kepada orang tua."
+  },
+  {
+    "id": 80,
+    "arabic": "التَّوَّابُ",
+    "latin": "At-Tawwab",
+    "translation": "Maha Penerima Taubat",
+    "meaning": "Menerima taubat hamba-Nya berulang kali dan mengampuni penyesalan yang jujur.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 37
+    },
+    "faedah": "Kemudahan kembali ke jalan lurus setiap kali tergelincir dosa."
+  },
+  {
+    "id": 81,
+    "arabic": "الْمُنْتَقِمُ",
+    "latin": "Al-Muntaqim",
+    "translation": "Maha Pemberi Balasan",
+    "meaning": "Menjatuhkan hukuman dan balasan setimpal kepada kaum zalim yang melampaui batas.",
+    "surahRef": {
+      "surahId": 32,
+      "surahName": "As-Sajdah",
+      "ayahNumber": 22
+    },
+    "faedah": "Menyerahkan pembalasan kezaliman kepada keadilan Allah tanpa dendam pribadi."
+  },
+  {
+    "id": 82,
+    "arabic": "الْعَفُوُّ",
+    "latin": "Al-'Afuww",
+    "translation": "Maha Pemaaf",
+    "meaning": "Menghapuskan dosa hingga ke akar-akarnya seakan-akan tidak pernah dilakukan.",
+    "surahRef": {
+      "surahId": 4,
+      "surahName": "An-Nisa'",
+      "ayahNumber": 99
+    },
+    "faedah": "Doa malam Lailatul Qadar (Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu 'anni)."
+  },
+  {
+    "id": 83,
+    "arabic": "الرَّءُوفُ",
+    "latin": "Ar-Ra'uf",
+    "translation": "Maha Pengasih",
+    "meaning": "Penuh belas kasihan yang amat mendalam melebihi kasih sayang seorang ibu kepada bayinya.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 143
+    },
+    "faedah": "Memperoleh perlakuan lemah lembut dan kemudahan dalam hisab."
+  },
+  {
+    "id": 84,
+    "arabic": "مَالِكُ الْمُلْكِ",
+    "latin": "Malikul Mulk",
+    "translation": "Penguasa Kerajaan Semesta",
+    "meaning": "Pemilik kekuasaan abadi atas seluruh langit, bumi, dan apa yang ada di antaranya.",
+    "surahRef": {
+      "surahId": 3,
+      "surahName": "Ali 'Imran",
+      "ayahNumber": 26
+    },
+    "faedah": "Ketenangan dari perebutan tahta dunia dan keikhlasan dalam kedudukan."
+  },
+  {
+    "id": 85,
+    "arabic": "ذُو الْجَلَالِ وَالْإِكْرَامِ",
+    "latin": "Dzul Jalali wal Ikram",
+    "translation": "Pemilik Keagungan dan Kemuliaan",
+    "meaning": "Pemilik segala kebesaran, kehormatan, dan kemuliaan yang berhak dicintai dan ditaati.",
+    "surahRef": {
+      "surahId": 55,
+      "surahName": "Ar-Rahman",
+      "ayahNumber": 27
+    },
+    "faedah": "Kunci pembuka terkabulnya doa mustajab (Alizzu bi Ya Dzal Jalali wal Ikram)."
+  },
+  {
+    "id": 86,
+    "arabic": "الْمُقْسِطُ",
+    "latin": "Al-Muqsith",
+    "translation": "Maha Pemberi Keadilan",
+    "meaning": "Menegakkan keadilan sejati dan membela orang tertindas dari tangan para penindas.",
+    "surahRef": {
+      "surahId": 3,
+      "surahName": "Ali 'Imran",
+      "ayahNumber": 18
+    },
+    "faedah": "Terhindar dari sikap berat sebelah dan fitnah persengketaan."
+  },
+  {
+    "id": 87,
+    "arabic": "الْجَامِعُ",
+    "latin": "Al-Jami'",
+    "translation": "Maha Mengumpulkan",
+    "meaning": "Mengumpulkan seluruh ciptaan di padang mahsyar dan menyatukan hati-hati yang berserak.",
+    "surahRef": {
+      "surahId": 3,
+      "surahName": "Ali 'Imran",
+      "ayahNumber": 9
+    },
+    "faedah": "Menyatukan kembali ikatan keluarga yang terpecah dan mencari barang tercecer."
+  },
+  {
+    "id": 88,
+    "arabic": "الْغَنِيُّ",
+    "latin": "Al-Ghaniyy",
+    "translation": "Maha Kaya",
+    "meaning": "Maha Kaya sempurna, tidak memerlukan apa pun dan siapa pun dari makhluk-Nya.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 267
+    },
+    "faedah": "Kekayaan hati (qana'ah) dan terhindar dari kehinaan meminta-minta kepada manusia."
+  },
+  {
+    "id": 89,
+    "arabic": "الْمُغْنِي",
+    "latin": "Al-Mughni",
+    "translation": "Maha Menganugerahi Kekayaan",
+    "meaning": "Menganugerahkan kekayaan harta, kecukupan hati, dan kelimpahan taufiq kepada siapa yang dikehendaki.",
+    "surahRef": {
+      "surahId": 9,
+      "surahName": "At-Taubah",
+      "ayahNumber": 28
+    },
+    "faedah": "Kemandirian finansial dan kecukupan hidup yang barakah."
+  },
+  {
+    "id": 90,
+    "arabic": "الْمَانِعُ",
+    "latin": "Al-Mani'",
+    "translation": "Maha Mencegah",
+    "meaning": "Mencegah marabahaya dari menimpa hamba-Nya dan menahan sesuatu demi kemaslahatan mereka.",
+    "surahRef": {
+      "surahId": 6,
+      "surahName": "Al-An'am",
+      "ayahNumber": 17
+    },
+    "faedah": "Terlindung dari marabahaya musuh, tipu daya jahat, dan bencana."
+  },
+  {
+    "id": 91,
+    "arabic": "الضَّارُّ",
+    "latin": "Adh-Dharr",
+    "translation": "Maha Memberi Kemudharatan",
+    "meaning": "Tiada bahaya atau mudharat yang dapat terjadi di semesta ini melainkan atas izin dan kehendak-Nya.",
+    "surahRef": {
+      "surahId": 6,
+      "surahName": "Al-An'am",
+      "ayahNumber": 17
+    },
+    "faedah": "Menyadari bahwa musuh tidak dapat mencelakai tanpa izin Allah SWT."
+  },
+  {
+    "id": 92,
+    "arabic": "النَّافِعُ",
+    "latin": "An-Nafi'",
+    "translation": "Maha Memberi Kebaikan & Manfaat",
+    "meaning": "Sumber segala manfaat, kebaikan, kesembuhan, dan keberkahan di dunia dan akhirat.",
+    "surahRef": {
+      "surahId": 30,
+      "surahName": "Ar-Rum",
+      "ayahNumber": 37
+    },
+    "faedah": "Memperoleh manfaat yang berlimpah dari setiap usaha dan pengobatan."
+  },
+  {
+    "id": 93,
+    "arabic": "النُّورُ",
+    "latin": "An-Nur",
+    "translation": "Maha Bercahaya",
+    "meaning": "Menerangi langit dan bumi, serta menerangi sanubari hamba-Nya dengan cahaya petunjuk iman.",
+    "surahRef": {
+      "surahId": 24,
+      "surahName": "An-Nur",
+      "ayahNumber": 35
+    },
+    "faedah": "Menerangi kegelapan hati, kejernihan akal, dan kecerahan wajah."
+  },
+  {
+    "id": 94,
+    "arabic": "الْهَادِي",
+    "latin": "Al-Hadi",
+    "translation": "Maha Pemberi Petunjuk",
+    "meaning": "Membimbing hati yang bimbang menuju jalan yang lurus dan kebenaran yang menyelematkan.",
+    "surahRef": {
+      "surahId": 22,
+      "surahName": "Al-Hajj",
+      "ayahNumber": 54
+    },
+    "faedah": "Petunjuk dalam keraguan, hidayah bagi keluarga, dan keteguhan di jalan haq."
+  },
+  {
+    "id": 95,
+    "arabic": "الْبَدِيعُ",
+    "latin": "Al-Badi'",
+    "translation": "Maha Pencipta Keindahan",
+    "meaning": "Menciptakan alam semesta dengan keindahan mengagumkan tanpa contoh pola sebelumnya.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 117
+    },
+    "faedah": "Inspirasi daya cipta positif, keindahan budi, dan jalan keluar yang tak terduga."
+  },
+  {
+    "id": 96,
+    "arabic": "الْبَاقِي",
+    "latin": "Al-Baqi",
+    "translation": "Maha Kekal",
+    "meaning": "Kekal abadi selamanya di saat seluruh alam ciptaan hancur sirna.",
+    "surahRef": {
+      "surahId": 55,
+      "surahName": "Ar-Rahman",
+      "ayahNumber": 27
+    },
+    "faedah": "Ketenangan menghadapi kehilangan materi dunia yang fana."
+  },
+  {
+    "id": 97,
+    "arabic": "الْوَارِثُ",
+    "latin": "Al-Warits",
+    "translation": "Maha Mewarisi",
+    "meaning": "Seluruh kerajaan alam semesta akan kembali kepada-Nya setelah semua makhluk binasa.",
+    "surahRef": {
+      "surahId": 15,
+      "surahName": "Al-Hijr",
+      "ayahNumber": 23
+    },
+    "faedah": "Doa Nabi Zakariya memohon keturunan penerus kebajikan (Rabbi la tadzarni fardan)."
+  },
+  {
+    "id": 98,
+    "arabic": "الرَّشِيدُ",
+    "latin": "Ar-Rasyid",
+    "translation": "Maha Membimbing",
+    "meaning": "Maha Benar dalam tindakan-Nya dan menuntun ciptaan-Nya menuju kemaslahatan yang sempurna.",
+    "surahRef": {
+      "surahId": 11,
+      "surahName": "Hud",
+      "ayahNumber": 87
+    },
+    "faedah": "Bimbingan dalam mengambil keputusan genting dan keselamatan langkah."
+  },
+  {
+    "id": 99,
+    "arabic": "الصَّبُورُ",
+    "latin": "Ash-Shabur",
+    "translation": "Maha Sabar",
+    "meaning": "Kesabaran-Nya melampaui batas pikiran, tidak tergesa-gesa membalas orang-orang yang durhaka.",
+    "surahRef": {
+      "surahId": 2,
+      "surahName": "Al-Baqarah",
+      "ayahNumber": 153
+    },
+    "faedah": "Ketabahan seluas samudera saat menghadapi ujian hidup yang panjang."
+  }
+]

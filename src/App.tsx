@@ -53,6 +53,7 @@ import { ProphetsCatalog } from './components/prophets/ProphetsCatalog';
 import { ProphetLanternBanner } from './components/prophets/ProphetLanternBanner';
 import { BlogCatalog } from './components/blog/BlogCatalog';
 import { PrayersCatalog } from './components/prayers/PrayersCatalog';
+import { AsmaulHusnaCatalog } from './components/asmaulhusna/AsmaulHusnaCatalog';
 import { QiblaCompass } from './components/qibla/QiblaCompass';
 import { MosqueMap } from './components/mosque/MosqueMap';
 import { KhatamPlannerModal } from './components/khatam/KhatamPlannerModal';
@@ -90,7 +91,7 @@ const DEFAULT_SETTINGS: ReaderSettings = {
 
 export const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<
-    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid'
+    'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna'
   >(() => {
     const p = window.location.pathname.toLowerCase();
     if (p === '/admin' || p.startsWith('/admin/')) return 'admin';
@@ -101,6 +102,7 @@ export const App: React.FC = () => {
     if (p === '/doa' || p.startsWith('/doa/')) return 'prayers';
     if (p === '/kiblat' || p.startsWith('/kiblat/')) return 'kiblat';
     if (p === '/masjid' || p.startsWith('/masjid/')) return 'masjid';
+    if (p === '/asmaul-husna' || p === '/asma' || p.startsWith('/asmaul-husna/') || p.startsWith('/asma/')) return 'asmaul-husna';
     return 'reader';
   });
 
@@ -111,7 +113,7 @@ export const App: React.FC = () => {
   }, []);
 
   const navigateTo = useCallback(
-    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid') => {
+    (route: 'reader' | 'admin' | 'user' | 'register' | 'prophets' | 'blog' | 'prayers' | 'kiblat' | 'masjid' | 'asmaul-husna') => {
       setCurrentRoute(route);
       const path =
         route === 'reader'
@@ -126,6 +128,8 @@ export const App: React.FC = () => {
           ? '/masjid'
           : route === 'register'
           ? '/daftar'
+          : route === 'asmaul-husna'
+          ? '/asmaul-husna'
           : `/${route}`;
       if (window.location.pathname !== path) {
         window.history.pushState({}, '', path);
@@ -145,6 +149,7 @@ export const App: React.FC = () => {
       else if (p === '/doa' || p.startsWith('/doa/')) setCurrentRoute('prayers');
       else if (p === '/kiblat' || p.startsWith('/kiblat/')) setCurrentRoute('kiblat');
       else if (p === '/masjid' || p.startsWith('/masjid/')) setCurrentRoute('masjid');
+      else if (p === '/asmaul-husna' || p === '/asma' || p.startsWith('/asmaul-husna/') || p.startsWith('/asma/')) setCurrentRoute('asmaul-husna');
       else setCurrentRoute('reader');
     };
     window.addEventListener('popstate', handlePopState);
@@ -728,6 +733,24 @@ export const App: React.FC = () => {
         onBackToMushaf={() => navigateTo('reader')}
         elderMode={settings.elderMode}
         theme={settings.theme}
+      />
+    );
+  }
+
+  if (currentRoute === 'asmaul-husna') {
+    if (!currentUser) {
+      setJoinModalOpen(true);
+      navigateTo('reader');
+      return null;
+    }
+    return (
+      <AsmaulHusnaCatalog
+        onBackToMushaf={() => navigateTo('reader')}
+        onNavigateToAyah={(surahId, ayahNumber) => {
+          handleJumpToAyah(surahId, ayahNumber);
+          navigateTo('reader');
+        }}
+        elderMode={settings.elderMode}
       />
     );
   }
@@ -1630,6 +1653,27 @@ export const App: React.FC = () => {
                       <div className="flex items-center gap-2.5">
                         <Sparkles className="h-4 w-4 text-emerald-500 shrink-0" />
                         <span>Doa Qur&apos;ani (40 Rabbana) &amp; Tasbih</span>
+                      </div>
+                      <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileDrawerOpen(false);
+                        if (!currentUser) setJoinModalOpen(true);
+                        else navigateTo('asmaul-husna');
+                      }}
+                      className="flex w-full items-center justify-between rounded-xl border p-2.5 text-xs font-semibold transition-all shadow-xs cursor-pointer"
+                      style={{
+                        backgroundColor: 'var(--bg-card)',
+                        borderColor: 'var(--border-color)',
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Sparkles className="h-4 w-4 text-amber-500 shrink-0" />
+                        <span>Asmaul Husna (99 Nama Allah)</span>
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text-accent)' }}>Buka →</span>
                     </button>

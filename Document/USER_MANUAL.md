@@ -450,7 +450,19 @@ Akses rute `/masjid` (khusus pengguna yang telah login):
 
 ---
 
-## 23. Pertanyaan yang Sering Diajukan (FAQ)
+## 23. Modul Asmaul Husna (99 Nama Allah) (`/asmaul-husna`)
+
+Akses rute `/asmaul-husna` atau `/asma` (khusus pengguna yang telah login/terdaftar):
+- **Koleksi Lengkap 99 Nama Agung:** Menampilkan seluruh 99 nama Allah Subhanahu wa Ta'ala dengan nomor urut, kaligrafi Arab berukuran besar (`font-arabic-amiri`), transliterasi Latin standar Kemenag, terjemahan ringkas, dan penjelasan makna hakiki.
+- **Tadabbur & Refleksi Kehidupan:** Setiap nama dilengkapi uraian faedah serta kiat pengamalan akhlak dalam keseharian seorang hamba.
+- **Rujukan Dalil Al-Qur'an (1-Click Mushaf Jump):** Tombol rujukan langsung melompat ke surah dan ayat Al-Qur'an terkait di mushaf utama secara instan (contoh: Ar-Rahman ke QS. Al-Fatihah: 1, Al-Quddus ke QS. Al-Hasyr: 23).
+- **Audio Pelafalan Suara (Web Speech API):** Tombol pengucapan audio dengan aksen Arab (fallback Bahasa Indonesia) yang berjalan luring tanpa kuota.
+- **Pencarian Cepat & Filter Favorit:** Cari nama berdasarkan nomor urut, lafadz Arab, ejaan Latin, atau arti terjemahan; simpan nama ke dalam daftar favorit peribadi.
+- **Aksesibilitas Ramah Lansia:** Tombol penyesuaian ukuran huruf 3 tingkat (A, A+, A++), tata letak Grid atau List, dan salin teks 1-klik ke clipboard.
+
+---
+
+## 24. Pertanyaan yang Sering Diajukan (FAQ)
 
 **Q: Apakah saya perlu mendaftar atau membuat akun?**  
 *A:* Tidak perlu. Seluruh fitur membaca, bookmark, terakhir dibaca, dan pengaturan tersimpan aman di peramban perangkat Anda sendiri (*zero sign-up*).

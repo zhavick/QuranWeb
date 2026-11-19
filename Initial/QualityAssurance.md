@@ -609,12 +609,13 @@ Sebagai persiapan memasuki fase implementasi teknis berikutnya (mengacu pada [DE
 | **TC-ST17-06** | Audit Standar Aksesibilitas Lansia & Kepatuhan WCAG AAA | Seluruh target sentuhan (tap target) memenuhi standar minimal `44px × 44px`. Rasio kontras teks dan ikon memenuhi kriteria WCAG AAA pada seluruh 4 tema (Light, Dark OLED, Sepia, High Contrast). Mode lansia (Elder Mode) dengan font Arab hingga 52px dan transliterasi/arti besar terverifikasi stabil. | **PASS** |
 | **TC-ST17-07** | Verifikasi Kompilasi TypeScript (`tsc -b`) | Seluruh berkas TypeScript dikompilasi dengan exit code 0 tanpa error tipe (`TS error = 0`). Seluruh impor modul bersih dari variabel tak terpakai. | **PASS** |
 | **TC-ST17-08** | Halaman Pendaftaran Akun Jamaah Baru (`/daftar` & API Registrasi) | Formulir registrasi ramah lansia (`RegisterView.tsx`), tombol toggle lihat/sembunyikan sandi, pencegahan duplikasi akun (HTTP 409), endpoint `POST /api/auth/register`, tab switcher di `/user`, tombol akses di Header/Drawer, dan fallback offline storage `localStorage` berjalan sempurna. | **PASS** |
+| **TC-ST17-09** | Modul Asmaul Husna 99 Nama Allah (`/asmaul-husna`) & Session Guard | Dataset 99 nama Allah lengkap dengan rujukan ayat Al-Qur'an dan faedah tadabbur (`public/data/asmaul_husna.json`). Proteksi rute khusus pengguna terdaftar (tamu otomatis dialihkan dan disajikan modal pendaftaran/masuk), tombol menu drawer khusus terdaftar, pelafalan suara Arab Web Speech API, ukuran font ramah lansia (A, A+, A++), tombol lompat ayat ke mushaf, dan offline caching di Service Worker v8 berjalan sempurna. | **PASS** |
 
 ---
 
 ## 14. Kesimpulan Akhir & Rekomendasi Rilis Fase 2 (Final Sign-off)
 
-1. **Hasil Akhir Menyeluruh:** Seluruh **146 kasus uji** yang mencakup modul Fase 1 (Step 1 s.d. 8) dan Fase 2 (Step 9 s.d. 17) dinyatakan **100% LULUS (ALL 146 PASS)**.
+1. **Hasil Akhir Menyeluruh:** Seluruh **147 kasus uji** yang mencakup modul Fase 1 (Step 1 s.d. 8) dan Fase 2 (Step 9 s.d. 17) dinyatakan **100% LULUS (ALL 147 PASS)**.
 2. **Kestabilan & Performa:** Aplikasi beroperasi sangat cepat (*zero unnecessary re-render*), memori ringan, hemat kuota data seluler, serta mendukung operasi 100% luring (offline) via Service Worker PWA v7 dan Web Speech API lisan.
 3. **Kepatuhan Terhadap Standar Religi & Aksesibilitas:**
    - Standar mushaf Kemenag RI (RTL, 6.236 ayat, font LPMQ Misbah, kaidah waqaf & tajwid) terpenuhi secara sempurna.

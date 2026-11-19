@@ -32,15 +32,17 @@
   - [3.3 Fitur 7: Kalkulator Zakat Harta & Fitrah Ramah Lansia (`/zakat`)](#33-fitur-7-kalkulator-zakat-harta--fitrah-ramah-lansia-zakat)
   - [3.4 Fitur 8: Panduan Visual Tata Cara Shalat Wajib & Sunnah (`/panduan-shalat`)](#34-fitur-8-panduan-visual-tata-cara-shalat-wajib--sunnah-panduan-shalat)
   - [3.5 Fitur 9: Audio Lantunan Azan Otomatis & Notifikasi Masuk Waktu Shalat](#35-fitur-9-audio-lantunan-azan-otomatis--notifikasi-masuk-waktu-shalat)
+  - [3.6 Fitur 10: Pelacak Kepatuhan Shalat (Prayer Checklist) & Pengingat Bertahap (Smart Reminder 10m/20m/Kustom)](#36-fitur-10-pelacak-kepatuhan-shalat-prayer-checklist--pengingat-bertahap-smart-reminder-10m20mkustom)
 - [BAB 4: PILAR III - KELUARGA, KEBERSIAMAAN & MEDIA SOSIAL (FAMILY & SOCIAL SYIAR)](#bab-4-pilar-iii---keluarga-kebersamaan--media-sosial-family--social-syiar)
-  - [4.1 Fitur 10: Pembuat Kartu Kutipan Ayat Indah (*Ayah Poster Maker / Share to WhatsApp*)](#41-fitur-10-pembuat-kartu-kutipan-ayat-indah-ayah-poster-maker--share-to-whatsapp)
-  - [4.2 Fitur 11: Lingkaran Khatam Bersama Keluarga (*Family Khatam Circle*)](#42-fitur-11-lingkaran-khatam-bersama-keluarga-family-khatam-circle)
-  - [4.3 Fitur 12: Buku Catatan Amalan Harian (*Mutaba'ah Yaumiyah / Daily Habit Tracker*)](#43-fitur-12-buku-catatan-amalan-harian-mutabaah-yaumiyah--daily-habit-tracker)
+  - [4.1 Fitur 11: Pembuat Kartu Kutipan Ayat Indah (*Ayah Poster Maker / Share to WhatsApp*)](#41-fitur-11-pembuat-kartu-kutipan-ayat-indah-ayah-poster-maker--share-to-whatsapp)
+  - [4.2 Fitur 12: Lingkaran Khatam Bersama Keluarga (*Family Khatam Circle*)](#42-fitur-12-lingkaran-khatam-bersama-keluarga-family-khatam-circle)
+  - [4.3 Fitur 13: Buku Catatan Amalan Harian (*Mutaba'ah Yaumiyah / Daily Habit Tracker*)](#43-fitur-13-buku-catatan-amalan-harian-mutabaah-yaumiyah--daily-habit-tracker)
+  - [4.4 Fitur 14: Portal Laporan Analitik Ibadah Jamaah (`/report`) - Rekapitulasi Tilawah, Shalat & Hafalan](#44-fitur-14-portal-laporan-analitik-ibadah-jamaah-report---rekapitulasi-tilawah-shalat--hafalan)
 - [BAB 5: PILAR IV - KHAZANAH HADITS NABAWI & FIQIH RINGKAS](#bab-5-pilar-iv---khazanah-hadits-nabawi--fiqih-ringkas)
-  - [5.1 Fitur 13: Modul Hadits Arba'in An-Nawawiyah 42 Hadits Pokok (`/hadits`)](#51-fitur-13-modul-hadits-arbain-an-nawawiyah-42-hadits-pokok-hadits)
+  - [5.1 Fitur 15: Modul Hadits Arba'in An-Nawawiyah 42 Hadits Pokok (`/hadits`)](#51-fitur-15-modul-hadits-arbain-an-nawawiyah-42-hadits-pokok-hadits)
 - [BAB 6: PILAR V - AKSESIBILITAS SUARA & AI BEBAS SENTUH (VOICE & TOUCHLESS NAVIGATION)](#bab-6-pilar-v---aksesibilitas-suara--ai-bebas-sentuh-voice--touchless-navigation)
-  - [6.1 Fitur 14: Pencarian Ayat Melalui Suara (*Voice Search*)](#61-fitur-14-pencarian-ayat-melalui-suara-voice-search)
-  - [6.2 Fitur 15: Pembalik Halaman Bebas Sentuh (*Hands-Free Page Turner*)](#62-fitur-15-pembalik-halaman-bebas-sentuh-hands-free-page-turner)
+  - [6.1 Fitur 16: Pencarian Ayat Melalui Suara (*Voice Search*)](#61-fitur-16-pencarian-ayat-melalui-suara-voice-search)
+  - [6.2 Fitur 17: Pembalik Halaman Bebas Sentuh (*Hands-Free Page Turner*)](#62-fitur-17-pembalik-halaman-bebas-sentuh-hands-free-page-turner)
 - [BAB 7: ARSITEKTUR TEKNIS, STRATEGI DATA & INTEGRASI LOGIKAL](#bab-7-arsitektur-teknis-strategi-data--integrasi-logikal)
   - [7.1 Desain Arsitektur Client-Side Heavy & Zero-Bloat](#71-desain-arsitektur-client-side-heavy--zero-bloat)
   - [7.2 Skema Penyimpanan Data Offline-First (PWA Precache v9)](#72-skema-penyimpanan-data-offline-first-pwa-precache-v9)
@@ -179,11 +181,29 @@ Rencana Tahap 3 dikelompokkan ke dalam 5 pilar tematik:
      - Menggunakan `Notification API` peramban: memunculkan push notification di layar ponsel/laptop meskipun tab QuranWeb sedang berada di latar belakang (*background tab / minimized*).
      - Berkas audio azan diprecache ke Service Worker PWA (`public/sw.js`) sehingga azan tetap berkumandang tepat waktu 100% offline tanpa perlu koneksi internet.
 
+### 3.6 Fitur 10: Pelacak Kepatuhan Shalat (Prayer Checklist) & Pengingat Bertahap (Smart Reminder 10m/20m/Kustom)
+* **Latar Belakang:** Sering kali setelah azan berkumandang, jamaah menunda beberapa menit (misal sedang menyelesaikan pekerjaan, di jalan, atau persiapan wudhu), namun kemudian terlupa bahwa waktu shalat hampir habis. Diperlukan pencatatan kepatuhan shalat (*prayer checklist*) dan alarm pengingat berulang yang ramah dan menenteramkan.
+* **Konsep Desain:**
+  1. **Checklist 5 Waktu Shalat & Shalat Sunnah:**
+     - Setiap waktu shalat (Subuh, Dzuhur, Ashar, Maghrib, Isya) serta shalat sunnah utama (Dhuha & Tahajjud) memiliki tombol centang status:
+       - 🔘 *Belum Shalat* (default saat waktu masuk).
+       - 🟢 *Sudah Shalat Tepat Waktu (Awal Waktu)*.
+       - 🕌 *Berjamaah di Masjid*.
+       - 🏠 *Munfarid / Sendiri di Rumah*.
+     - Tombol centang dapat diakses langsung dari widget shalat di header, modal jadwal shalat, maupun banner dialog azan.
+  2. **Pengingat Bertahap (Tiered Smart Reminders):**
+     - Jika waktu shalat telah masuk namun kotak centang belum ditandai (*belum shalat*), sistem akan memicu reminder berulang:
+       - **Pengingat 1 (10 Menit setelah Azan):** Notifikasi lembut di layar: *"Sudah 10 menit berlalu sejak azan [Nama Shalat]. Mari persiapkan diri untuk shalat tepat waktu."*
+       - **Pengingat 2 (20 Menit setelah Azan):** Getaran halus smartphone & notifikasi kedua: *"Sudahkah Anda menunaikan shalat [Nama Shalat]? Ketuk centang jika sudah selesai."*
+       - **Interval Kustom & Peringatan Batas Akhir (Pre-Expiry Warning):** Pengguna dapat menentukan interval sendiri (misal tiap 15 atau 30 menit) serta menerima alarm peringatan 15 menit sebelum waktu shalat berikutnya masuk agar terhindar dari shalat di luar waktu.
+  3. **Pemberhentian Otomatis (Auto-Clear Timer):**
+     - Sekali tombol centang shalat ditekan oleh pengguna, seluruh timer pengingat yang tersisa untuk waktu shalat tersebut otomatis dibatalkan, mengembalikan suasana tenang pada peramban.
+
 ---
 
 ## BAB 4: PILAR III - KELUARGA, KEBERSIAMAAN & MEDIA SOSIAL (FAMILY & SOCIAL SYIAR)
 
-### 4.1 Fitur 10: Pembuat Kartu Kutipan Ayat Indah (*Ayah Poster Maker / Share to WhatsApp*)
+### 4.1 Fitur 11: Pembuat Kartu Kutipan Ayat Indah (*Ayah Poster Maker / Share to WhatsApp*)
 * **Latar Belakang:** Jamaah sering ingin membagikan ayat Al-Qur'an yang menyentuh hati ke grup WhatsApp keluarga atau media sosial, namun kesulitan membuat desain yang rapi dan elegan.
 * **Konsep Desain:**
   - Tombol **"Bagikan Poster"** pada setiap kartu ayat.
@@ -194,7 +214,7 @@ Rencana Tahap 3 dikelompokkan ke dalam 5 pilar tematik:
     - Pilihan rasio aspek: Persegi (1:1 untuk feed/WhatsApp) dan Vertikal (9:16 untuk Story/Status).
   - Tombol 1-klik: **"Unduh Gambar PNG"** dan **"Kirim ke WhatsApp"**.
 
-### 4.2 Fitur 11: Lingkaran Khatam Bersama Keluarga (*Family Khatam Circle*)
+### 4.2 Fitur 12: Lingkaran Khatam Bersama Keluarga (*Family Khatam Circle*)
 * **Latar Belakang:** Tradisi khatam bersama keluarga di bulan Ramadhan atau momentum syukuran sering kali tercecer pencatatannya di grup obrolan teks.
 * **Konsep Desain:**
   - Jamaah terdaftar dapat membuat grup khatam: contoh *"Khatam Ramadhan Bani Sastro"*.
@@ -202,7 +222,7 @@ Rencana Tahap 3 dikelompokkan ke dalam 5 pilar tematik:
   - Anggota keluarga yang bergabung dapat memilih Juz (1 s.d. 30) atau paket 'Ain yang ingin dituntaskan.
   - Dashboard visual menampilkan cincin progres keluarga secara langsung: Juz mana yang sedang dibaca, siapa pembacanya, dan persentase penyelesaian bersama.
 
-### 4.3 Fitur 12: Buku Catatan Amalan Harian (*Mutaba'ah Yaumiyah / Daily Habit Tracker*)
+### 4.3 Fitur 13: Buku Catatan Amalan Harian (*Mutaba'ah Yaumiyah / Daily Habit Tracker*)
 * **Latar Belakang:** Memelihara istiqomah dalam ibadah harian melalui evaluasi diri yang menenangkan (*muhasabah*) tanpa menimbulkan rasa terbebani.
 * **Konsep Desain:**
   - Kotak centang harian sederhana di Portal Pengguna:
@@ -213,11 +233,32 @@ Rencana Tahap 3 dikelompokkan ke dalam 5 pilar tematik:
     - [x] Sedekah Subuh
   - Kalender mini yang menampilkan titik-titik hijau keistiqomahan (*streak of good deeds*) dan kutipan hadits penyemangat.
 
+### 4.4 Fitur 14: Portal Laporan Analitik Ibadah Jamaah (`/report`) - Rekapitulasi Tilawah, Shalat & Hafalan
+* **Latar Belakang:** Jamaah membutuhkan sarana evaluasi diri (*muhasabah*) yang terpadu untuk melihat sejauh mana kedisiplinan dan pertumbuhan spiritualitas mereka selama satu pekan atau satu bulan terakhir, meliputi tilawah, shalat, hafalan, dan dzikir.
+* **Konsep Desain:**
+  - Halaman khusus `/report` (khusus pengguna terdaftar, dapat diakses dari menu dropdown 3-garis pada navbar).
+  - **1. Metrik Tilawah Al-Qur'an:**
+    - Total ayat, lembar surat, juz, dan kelompok 'Ain yang telah diselesaikan.
+    - Grafik garis/batang tren tilawah harian (Chart.js / CSS Grid) dan estimasi pencapaian target khatam.
+    - Analisis waktu tilawah favorit (misal: 60% membaca ba'da Subuh).
+  - **2. Metrik Kepatuhan Shalat 5 Waktu:**
+    - Persentase shalat tepat waktu vs terlambat dalam 7/30 hari terakhir.
+    - Rasio shalat berjamaah di masjid vs shalat sendiri di rumah.
+    - Diagram lingkaran (*pie/donut chart*) keteraturan 5 waktu shalat.
+  - **3. Metrik Progres Hafalan (Tahfidz Tracker):**
+    - Daftar surat yang telah dihafal di Juz 30 / Juz 'Amma dan surat pilihan (Al-Mulk, As-Sajdah, dll.).
+    - Status hafalan: *Sangat Lancar (Mutqin)*, *Cukup*, atau *Perlu Muraja'ah*.
+  - **4. Metrik Dzikir & Tasbih Digital:**
+    - Total ketukan tasbih harian dan akumulasi putaran (*laps*).
+    - Kalimat dzikir yang paling sering dibaca (misal: Istighfar 1000x, Shalawat 500x).
+  - **5. Cetak & Ekspor Ringkasan Ibadah (Export to PDF / Card):**
+    - Tombol unduh laporan berkala berupa kartu ringkasan visual islami yang bersih (*Worship Report Card*) untuk disimpan pribadi, dikirimkan kepada orang tua/keluarga, atau pembimbing majelis taklim.
+
 ---
 
 ## BAB 5: PILAR IV - KHAZANAH HADITS NABAWI & FIQIH RINGKAS
 
-### 5.1 Fitur 13: Modul Hadits Arba'in An-Nawawiyah 42 Hadits Pokok (`/hadits`)
+### 5.1 Fitur 15: Modul Hadits Arba'in An-Nawawiyah 42 Hadits Pokok (`/hadits`)
 * **Latar Belakang:** Kitab *Al-Arba'in An-Nawawiyyah* karya Imam Abu Zakariya Yahya bin Syaraf An-Nawawi adalah himpunan hadits paling masyhur yang memuat kaidah-kaidah agung Islam.
 * **Konsep Desain:**
   - Rute mandiri `/hadits` dengan katalog 42 hadits shahih.
@@ -232,14 +273,14 @@ Rencana Tahap 3 dikelompokkan ke dalam 5 pilar tematik:
 
 ## BAB 6: PILAR V - AKSESIBILITAS SUARA & AI BEBAS SENTUH (VOICE & TOUCHLESS NAVIGATION)
 
-### 6.1 Fitur 14: Pencarian Ayat Melalui Suara (*Voice Search*)
+### 6.1 Fitur 16: Pencarian Ayat Melalui Suara (*Voice Search*)
 * **Latar Belakang:** Mengetik kata Arab atau Latin di keyboard ponsel pintar sering kali sulit bagi lansia dengan jari kaku, mata lelah, atau tremor.
 * **Konsep Desain:**
   - Ikon mikrofon di samping kotak pencarian Al-Qur'an.
   - Memanfaatkan `Web Speech Recognition API` (dengan bahasa default `id-ID` dan `ar-SA`).
   - Pengguna cukup berucap: *"Surat Yasin ayat tiga puluh enam"* atau *"Tentang berbakti kepada orang tua"*, sistem otomatis menerjemahkan ucapan menjadi teks pencarian dan membuka hasilnya seketika.
 
-### 6.2 Fitur 15: Pembalik Halaman Bebas Sentuh (*Hands-Free Page Turner*)
+### 6.2 Fitur 17: Pembalik Halaman Bebas Sentuh (*Hands-Free Page Turner*)
 * **Latar Belakang:** Memfasilitasi orang tua yang sedang duduk bersandar, berbaring di pembaringan karena udzur sakit, atau kedua tangannya sedang memegang tasbih fisik.
 * **Konsep Desain:**
   - Mode suara hening (*Gentle Voice Commands*):
@@ -281,16 +322,18 @@ Ketika Fase 3 diimplementasikan, Service Worker akan dinaikkan versinya ke `qura
 | **Perulangan Murottal** | Putar ulang manual per ayat yang merepotkan. | **Ayah Looper & Echo Pause:** Ulang otomatis 3x/5x/10x dengan jeda hening menirukan bacaan. |
 | **Kalender Islam** | Penuh iklan banner tanggalan dan notifikasi komersial. | **Kalender Hijriah Terpadu:** Penanda otomatis puasa sunnah, fase bulan & jadwal shalat. |
 | **Panggilan Shalat & Azan** | Notifikasi teks kaku atau suara azan terpotong iklan. | **Audio Azan Syahdu & Doa:** Pilihan Makkah/Madinah/Nusantara, mode senyap/ringkas, doa setelah azan & notifikasi background. |
+| **Pelacak Kepatuhan Shalat** | Tidak ada checklist atau sekadar alarm bunyi sekali. | **Smart Checklist & Tiered Reminder:** Centang shalat 5 waktu & sunnah, reminder bertahap 10m/20m/kustom hingga tuntas. |
 | **Khazanah Hadits** | Kitab hadits terpisah yang berat dan sulit dicari. | **Hadits Arba'in An-Nawawiyah:** 42 hadits pokok lengkap dengan faidah kontekstual modern. |
 | **Doa Sehari-hari** | Tersebar di banyak buku doa saku. | **Hisnul Muslim Digital:** Doa aktivitas harian lengkap dengan lafadz, arti, dan riwayat. |
 | **Zakat & Fiqih Harta** | Dihitung manual dengan rumus yang membingungkan. | **Kalkulator Zakat Ramah Lansia:** Otomatis bandingkan nisab emas dan tarif 2,5%. |
 | **Syiar Media Sosial** | Salin tempel teks mentah yang berantakan di WhatsApp. | **Pembuat Poster Ayat Indah:** 1-klik cetak gambar kaligrafi elegan siap kirim ke WhatsApp. |
 | **Khatam Bersama** | Obrolan grup WhatsApp yang mudah tenggelam. | **Lingkaran Khatam Keluarga:** Dashboard cincin progres bersama yang membahagiakan. |
+| **Laporan & Analitik Ibadah** | Terfragmentasi atau tidak ada rekapitulasi sama sekali. | **Portal Laporan Komprehensif (/report):** Rekapitulasi visual tilawah, shalat, hafalan tahfidz, dzikir, dan export Worship Card. |
 | **Navigasi Lansia** | Wajib menatap dan mengetik layar kecil. | **Pencarian Suara & Pembalik Halaman Bebas Sentuh:** Perintah suara santun tanpa sentuh layar. |
 
 ---
 
-## BAB 9: ROADMAP EKSEKUSI TAHAP 3 (STEP 22 S.D. STEP 29)
+## BAB 9: ROADMAP EKSEKUSI TAHAP 3 (STEP 22 S.D. STEP 31)
 
 Rekomendasi urutan implementasi teknis Tahap 3 disusun secara modular dan bertahap:
 
@@ -303,17 +346,19 @@ Rekomendasi urutan implementasi teknis Tahap 3 disusun secara modular dan bertah
   │   ├── Step 22: Modul Hadits Arba'in An-Nawawiyah (/hadits) & Dataset JSON
   │   └── Step 23: Integrasi Tafsir Ringkas Kemenag RI per Ayat pada AyahCard
   │
-  ├── [Fase B: Syiar Keluarga & Media Sosial]
+  ├── [Fase B: Syiar Keluarga & Analitik Ibadah]
   │   ├── Step 24: Generator Poster Kutipan Ayat ke WhatsApp (HTML5 Canvas)
-  │   └── Step 25: Lingkaran Khatam Bersama Keluarga (Family Khatam Circle)
+  │   ├── Step 25: Lingkaran Khatam Bersama Keluarga (Family Khatam Circle)
+  │   └── Step 26: Portal Laporan Analitik Ibadah Jamaah (/report) & Worship Card
   │
-  ├── [Fase C: Amalan Sunnah & Fiqih Harian]
-  │   ├── Step 26: Kalender Hijriah, Penanda Puasa Sunnah & Kalkulator Zakat
-  │   ├── Step 27: Audio Lantunan Azan Otomatis (Auto-Adhan) & Notifikasi Waktu Shalat
-  │   └── Step 28: Kumpulan Doa Sehari-hari (Hisnul Muslim) & Panduan Shalat
+  ├── [Fase C: Amalan Sunnah, Waktu Shalat & Kepatuhan Ibadah]
+  │   ├── Step 27: Kalender Hijriah, Penanda Puasa Sunnah & Kalkulator Zakat
+  │   ├── Step 28: Audio Lantunan Azan Otomatis (Auto-Adhan) & Notifikasi Waktu Shalat
+  │   ├── Step 29: Pelacak Kepatuhan Shalat (Prayer Checklist) & Pengingat Bertahap
+  │   └── Step 30: Kumpulan Doa Sehari-hari (Hisnul Muslim) & Panduan Shalat
   │
   └── [Fase D: Inovasi Aksesibilitas Suara & Tahfidz Cerdas]
-      └── Step 29: Mode Uji Hafalan (Tahfidz Masker), Audio Looper & Navigasi Suara
+      └── Step 31: Mode Uji Hafalan (Tahfidz Masker), Audio Looper & Navigasi Suara
 ```
 
 ### Rincian Pembagian Tahapan Eksekusi:
@@ -336,22 +381,31 @@ Rekomendasi urutan implementasi teknis Tahap 3 disusun secara modular dan bertah
    - Antarmuka pembuatan dan pengelolaan grup tilawah keluarga di Portal Pengguna (`/user`).
    - Visualisasi cincin progres grup dan penugasan Juz/'Ain antar-anggota keluarga.
 
-5. **Step 26: Kalender Hijriah, Penanda Puasa Sunnah & Kalkulator Zakat**
+5. **Step 26: Portal Laporan Analitik Ibadah Jamaah (`/report`)**
+   - Pembangunan rute `/report` dengan dashboard analitik tilawah, kepatuhan shalat, hafalan juz 'amma, dan dzikir tasbih.
+   - Grafik tren konsistensi Chart.js dan fitur ekspor *Worship Report Card* PDF/PNG.
+
+6. **Step 27: Kalender Hijriah, Penanda Puasa Sunnah & Kalkulator Zakat**
    - Perhitungan hisab kalender Hijriah dan deteksi otomatis puasa sunnah (Senin-Kamis, Ayyamul Bidh).
    - Halaman `/kalender` interaktif dan komponen `/zakat` untuk zakat maal, profesi, dan fitrah.
 
-6. **Step 27: Audio Lantunan Azan Otomatis (Auto-Adhan) & Notifikasi Masuk Waktu Shalat**
+7. **Step 28: Audio Lantunan Azan Otomatis (Auto-Adhan) & Notifikasi Masuk Waktu Shalat**
    - Integrasi pemutar audio azan otomatis saat waktu shalat tiba dengan pilihan muadzin (Makkah, Madinah, Al-Aqsa, Nusantara, Subuh).
    - Pengaturan mode fleksibel (Full Adhan, Takbir Awal, Nada Lembut, Senyap per Waktu Shalat).
    - Banner dialog panggilan shalat, doa setelah azan, tombol mute cepat, dan notifikasi latar belakang via Web Notification API & PWA Service Worker precache.
 
-7. **Step 28: Kumpulan Doa Sehari-hari (*Hisnul Muslim*) & Panduan Shalat**
+8. **Step 29: Pelacak Kepatuhan Shalat (Prayer Checklist) & Pengingat Bertahap**
+   - Checklist status shalat (Tepat Waktu, Berjamaah di Masjid, Munfarid di Rumah) pada widget header dan modal shalat.
+   - Sistem pengingat bertahap (10 menit, 20 menit, interval kustom, dan peringatan 15 menit sebelum waktu berakhir).
+   - Pembatalan otomatis seluruh reminder saat shalat telah dicentang.
+
+9. **Step 30: Kumpulan Doa Sehari-hari (*Hisnul Muslim*) & Panduan Shalat**
    - Kompilasi doa aktivitas harian berlandaskan hadits shahih pada rute `/doa-harian`.
    - Modul rukun shalat bergambar dan doa shalat sunnah (Tahajjud, Dhuha, Jenazah).
 
-8. **Step 29: Mode Uji Hafalan (Tahfidz Masker), Audio Looper & Navigasi Suara**
-   - Pengaktifan mode masker ayat pada lembar mushaf dan kontrol pengulang murottal (*Repeat A-B*).
-   - Integrasi Web Speech Recognition API untuk pencarian ayat dan pembalik halaman bebas sentuh (*hands-free*).
+10. **Step 31: Mode Uji Hafalan (Tahfidz Masker), Audio Looper & Navigasi Suara**
+    - Pengaktifan mode masker ayat pada lembar mushaf dan kontrol pengulang murottal (*Repeat A-B*).
+    - Integrasi Web Speech Recognition API untuk pencarian ayat dan pembalik halaman bebas sentuh (*hands-free*).
 
 ---
 
